@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <SourceRoot Condition="$(SourceRoot) == ''">..\..\</SourceRoot>
+  </PropertyGroup>
+  <Import Project="$(SourceRoot)scripts/settings.targets" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.5</TargetFramework>
+    <AssemblyName>Spekt.TestLogger</AssemblyName>
+    <Version>$(PackageVersion)</Version>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Configuration">
+    <RootNamespace>Spekt.TestLogger</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="15.5.0" />
+  </ItemGroup>
+
+</Project>

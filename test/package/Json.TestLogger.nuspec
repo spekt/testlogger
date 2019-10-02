@@ -1,0 +1,24 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Json.TestLogger</id>
+    <version>$version$</version>
+    <title>Json.TestLogger</title>
+    <authors>codito</authors>
+    <owners>codito</owners>
+    <projectUrl>https://github.com/spekt/testlogger</projectUrl>
+    <description>Core test logger library with multiple framework support</description>
+    <license type="expression">MIT</license>
+  </metadata>
+  <files>
+    <file src="Json.TestLogger.dll" target="build\_common\" />
+    <file src="Json.TestAdapter.dll" target="build\_common\" />
+    <file src="Spekt.TestLogger.dll" target="build\_common\" />
+
+    <!-- Net Core -->
+    <file src="Json.TestLogger.props" target="build\netstandard1.0\" />
+
+    <!-- Desktop -->
+    <file src="Json.TestLogger.props" target="build\net45\" />
+  </files>
+</package>

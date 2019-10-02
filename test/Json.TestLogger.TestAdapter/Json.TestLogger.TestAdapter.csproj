@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <SourceRoot Condition="$(SourceRoot) == ''">..\..\</SourceRoot>
+  </PropertyGroup>
+  <Import Project="$(SourceRoot)scripts/settings.targets" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.5</TargetFramework>
+    <AssemblyName>Json.TestAdapter</AssemblyName>
+    <Version>$(PackageVersion)</Version>
+    <IsPackable>false</IsPackable>
+
+    <!-- Disable stylecop since the files are already checked in TestLogger project -->
+    <StylecopEnabled>false</StylecopEnabled>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Json.TestLogger\JsonTestLogger.cs">
+      <Link>JsonTestLogger.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/TestLogger/TestLogger.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="15.5.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.3.0" />
+  </ItemGroup>
+</Project>
