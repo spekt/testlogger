@@ -9,4 +9,4 @@ solution: testlogger.sln
 
 script:
     - ./build.sh
-    - bash <(curl -s https://codecov.io/bash) -f test/TestLogger.UnitTests/coverage.json
+    - bash <(curl -s https://codecov.io/bash) -f test/TestLogger.UnitTests/coverage.opencover.xml
