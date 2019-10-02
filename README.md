@@ -4,7 +4,7 @@ Common test logger abstractions for [Visual Studio Test Platform](https://gtihub
 Work in progress.
 
 [![Build Status](https://travis-ci.com/spekt/testlogger.svg?branch=master)](https://travis-ci.com/spekt/testlogger)
-[![Build status](https://ci.appveyor.com/api/projects/status/73iw12g89lhlr9ir?svg=true)](https://ci.appveyor.com/project/spekt/testlogger)
+[![Build status](https://ci.appveyor.com/api/projects/status/h4tqij673e79yosn?svg=true)](https://ci.appveyor.com/project/spekt/testlogger)
 
 ## Packages
 TODO
