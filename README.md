@@ -5,6 +5,7 @@ Work in progress.
 
 [![Build Status](https://travis-ci.com/spekt/testlogger.svg?branch=master)](https://travis-ci.com/spekt/testlogger)
 [![Build status](https://ci.appveyor.com/api/projects/status/h4tqij673e79yosn?svg=true)](https://ci.appveyor.com/project/spekt/testlogger)
+[![Code coverage](https://codecov.io/gh/spekt/testlogger/branch/master/graph/badge.svg)](https://codecov.io/gh/spekt/testlogger)
 
 ## Packages
 TODO
