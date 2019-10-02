@@ -16,4 +16,11 @@
     <ProjectReference Include="../../src/TestLogger/TestLogger.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="coverlet.msbuild" Version="$(CoverletVersion)">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>

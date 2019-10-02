@@ -12,6 +12,9 @@ namespace Spekt.TestLogger
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
+    /// <summary>
+    /// Base test logger implementation.
+    /// </summary>
     public class TestLogger : ITestLoggerWithParameters
     {
         public const string LogFilePathKey = "LogFilePath";
