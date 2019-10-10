@@ -17,7 +17,7 @@ namespace Spekt.TestLogger.UnitTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Spekt.TestLogger;
-    using Spekt.TestLogger.UnitTests.Doubles;
+    using Spekt.TestLogger.UnitTests.TestDoubles;
 
     [TestClass]
     public class TestLoggerTests
@@ -96,6 +96,15 @@ namespace Spekt.TestLogger.UnitTests
 
             Assert.IsTrue(this.dummyEvents.TestRunEventsSubscribed());
             Assert.IsFalse(this.dummyEvents.TestDiscoveryEventsSubscribed());
+        }
+
+        [TestMethod]
+        public void TestRunShouldInvokeEventHandlers()
+        {
+            // TODO fix this dummy test with asserts
+            var simulator = new TestRunSimulator(this.logger);
+
+            simulator.Run();
         }
     }
 }
