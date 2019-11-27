@@ -4,62 +4,63 @@
 namespace TestLogger.UnitTests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Spekt.TestLogger;
 
     [TestClass]
     public class StringExtensionsTests
     {
-        // [TestMethod]
-        // [DataRow(null)]
-        // [DataRow("")]
-        // public void ReplaceInvalidXmlCharShouldIgnoreEmptyOrNullInput(string input)
-        // {
-        //     Assert.AreEqual(input, input.ReplaceInvalidXmlChar());
-        // }
+        [TestMethod]
+        [DataRow(null)]
+        [DataRow("")]
+        public void ReplaceInvalidXmlCharShouldIgnoreEmptyOrNullInput(string input)
+        {
+            Assert.AreEqual(input, input.ReplaceInvalidXmlChar());
+        }
 
-        // [TestMethod]
-        // public void ReplaceInvalidXmlCharShouldReplaceInvalidXmlCharWithUnicode()
-        // {
-        //     Assert.AreEqual(@"aa\u0000\u000bbb", "aa\0\vbb".ReplaceInvalidXmlChar());
-        // }
+        [TestMethod]
+        public void ReplaceInvalidXmlCharShouldReplaceInvalidXmlCharWithUnicode()
+        {
+            Assert.AreEqual(@"aa\u0000\u000bbb", "aa\0\vbb".ReplaceInvalidXmlChar());
+        }
 
-        // [TestMethod]
-        // public void SubstringAfterDotShouldSplitAndGetLastPartOfString()
-        // {
-        //     Assert.AreEqual("c", "a.b.c".SubstringAfterDot());
-        // }
+        [TestMethod]
+        public void SubstringAfterDotShouldSplitAndGetLastPartOfString()
+        {
+            Assert.AreEqual("c", "a.b.c".SubstringAfterDot());
+        }
 
-        // [TestMethod]
-        // public void SubstringAfterDotShouldNotSplitIfInputDoesNotHaveDot()
-        // {
-        //     Assert.AreEqual("abc", "abc".SubstringAfterDot());
-        // }
+        [TestMethod]
+        public void SubstringAfterDotShouldNotSplitIfInputDoesNotHaveDot()
+        {
+            Assert.AreEqual("abc", "abc".SubstringAfterDot());
+        }
 
-        // [TestMethod]
-        // [DataRow(null)]
-        // [DataRow("")]
-        // public void SubstringAfterDotShouldReturnEmptyIfInputIsNullOrEmpty(string input)
-        // {
-        //     Assert.AreEqual(string.Empty, input.SubstringAfterDot());
-        // }
+        [TestMethod]
+        [DataRow(null)]
+        [DataRow("")]
+        public void SubstringAfterDotShouldReturnEmptyIfInputIsNullOrEmpty(string input)
+        {
+            Assert.AreEqual(string.Empty, input.SubstringAfterDot());
+        }
 
-        // [TestMethod]
-        // public void SubstringBeforeDotShouldSplitAndGetFirstPartOfString()
-        // {
-        //     Assert.AreEqual("a.b", "a.b.c".SubstringBeforeDot());
-        // }
+        [TestMethod]
+        public void SubstringBeforeDotShouldSplitAndGetFirstPartOfString()
+        {
+            Assert.AreEqual("a.b", "a.b.c".SubstringBeforeDot());
+        }
 
-        // [TestMethod]
-        // public void SubstringBeforeDotShouldReturnEmptyIfInputDoesNotHaveDot()
-        // {
-        //     Assert.AreEqual(string.Empty, "c".SubstringBeforeDot());
-        // }
+        [TestMethod]
+        public void SubstringBeforeDotShouldReturnEmptyIfInputDoesNotHaveDot()
+        {
+            Assert.AreEqual(string.Empty, "c".SubstringBeforeDot());
+        }
 
-        // [TestMethod]
-        // [DataRow(null)]
-        // [DataRow("")]
-        // public void SubstringBeforeDotShouldReturnEmptyIfInputIsNullOrEmpty(string input)
-        // {
-        //     Assert.AreEqual(string.Empty, input.SubstringBeforeDot());
-        // }
+        [TestMethod]
+        [DataRow(null)]
+        [DataRow("")]
+        public void SubstringBeforeDotShouldReturnEmptyIfInputIsNullOrEmpty(string input)
+        {
+            Assert.AreEqual(string.Empty, input.SubstringBeforeDot());
+        }
     }
 }
