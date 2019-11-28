@@ -10,7 +10,7 @@ namespace Spekt.TestLogger.UnitTests
     using System.Linq;
     using System.Xml.Linq;
     using System.Xml.XPath;
-
+    using Json.TestLogger;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
@@ -22,14 +22,14 @@ namespace Spekt.TestLogger.UnitTests
     [TestClass]
     public class TestLoggerTests
     {
-        private TestLogger logger;
+        private JsonTestLogger logger;
         private DummyTestLoggerEvents dummyEvents;
         private string resultsPath = "/tmp/temp-result-dir";
         private Dictionary<string, string> loggerParams;
 
         public TestLoggerTests()
         {
-            this.logger = new TestLogger();
+            this.logger = new JsonTestLogger();
             this.dummyEvents = new DummyTestLoggerEvents();
             this.loggerParams = new Dictionary<string, string> { { DefaultLoggerParameterNames.TestRunDirectory, this.resultsPath } };
         }

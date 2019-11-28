@@ -29,12 +29,13 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.y.x.ape.bar(\"ar.g\",\")(\")", "z.y.x", "ape", "bar(\"ar.g\",\")(\")")]
         public void Parse_ParsesAllParsableInputs_WithoutConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
         {
+            var loggerName = "TestLogger";
             var expected = new Tuple<string, string>(expectedType, expectedMethod);
 
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                var actual = TestCaseNameParser.Parse(testCaseName);
+                var actual = TestCaseNameParser.Parse(testCaseName, loggerName);
 
                 Assert.AreEqual(expectedNamespace, actual.NamespaceName);
                 Assert.AreEqual(expectedType, actual.TypeName);
@@ -55,8 +56,10 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("a.b(0.5f)", TestCaseNameParser.TestCaseParserUnknownNamsepace, "a", "b(0.5f)")]
         public void Parse_ParsesAllParsableInputsWithoutNamespace_WithoutConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
         {
+            var loggerName = "TestLogger";
             var expectedConsole = string.Format(
                     TestCaseNameParser.TestCaseParserErrorTemplate,
+                    loggerName,
                     testCaseName,
                     expectedNamespace,
                     expectedType,
@@ -65,7 +68,7 @@ namespace Spekt.TestLogger.UnitTests
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                var actual = TestCaseNameParser.Parse(testCaseName);
+                var actual = TestCaseNameParser.Parse(testCaseName, loggerName);
 
                 Assert.AreEqual(expectedNamespace, actual.NamespaceName);
                 Assert.AreEqual(expectedType, actual.TypeName);
@@ -93,8 +96,10 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.y.x.\"\")")]
         public void Parse_FailsGracefullyOnNonParsableInputs_WithConsoleOutput(string testCaseName)
         {
+            var loggerName = "TestLogger";
             var expectedConsole = string.Format(
                 TestCaseNameParser.TestCaseParserErrorTemplate,
+                loggerName,
                 testCaseName,
                 TestCaseNameParser.TestCaseParserUnknownNamsepace,
                 TestCaseNameParser.TestCaseParserUnknownType,
@@ -103,7 +108,7 @@ namespace Spekt.TestLogger.UnitTests
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                var actual = TestCaseNameParser.Parse(testCaseName);
+                var actual = TestCaseNameParser.Parse(testCaseName, loggerName);
 
                 Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownNamsepace, actual.NamespaceName);
                 Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownType, actual.TypeName);

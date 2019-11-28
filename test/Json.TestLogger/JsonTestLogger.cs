@@ -7,10 +7,11 @@ namespace Json.TestLogger
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-
+    using System.Linq;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
+    using Spekt.TestLogger;
 
     [FriendlyName(FriendlyName)]
     [ExtensionUri(ExtensionUri)]
@@ -25,6 +26,20 @@ namespace Json.TestLogger
         /// Alternate user friendly string to uniquely identify the console logger.
         /// </summary>
         public const string FriendlyName = "json";
+
+        public override string GetExtensionUri() => ExtensionUri;
+
+        public override string GetFriendlyName() => FriendlyName;
+
+        public override string BuildLog(List<TestResultInfo> resultList)
+        {
+            return string.Join(", ", resultList.Select(x => x.Name));
+        }
+
+        public override void Initialize(Dictionary<string, string> parameters)
+        {
+            return;
+        }
     }
 
 #if NONE

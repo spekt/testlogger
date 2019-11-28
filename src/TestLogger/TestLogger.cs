@@ -7,7 +7,8 @@ namespace Spekt.TestLogger
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-
+    using System.Linq;
+    using System.Xml;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
@@ -15,14 +16,44 @@ namespace Spekt.TestLogger
     /// <summary>
     /// Base test logger implementation.
     /// </summary>
-    public class TestLogger : ITestLoggerWithParameters
+    public abstract class TestLogger : ITestLoggerWithParameters
     {
+        // Dicionary keys for command line arguments.
         public const string LogFilePathKey = "LogFilePath";
+        public const string LogFileNameKey = "LogFileName";
+        public const string ResultDirectoryKey = "TestRunDirectory";
+
+        // Other public strings
+        public const string ResultStatusPassed = "Passed";
+        public const string ResultStatusFailed = "Failed";
+        public const string DateFormat = "yyyy-MM-ddT HH:mm:ssZ";
+
+        // Tokens to allow user to manipulate output file or directory names.
+        private const string AssemblyToken = "{assembly}";
+        private const string FrameworkToken = "{framework}";
 
         private readonly object resultsGuard = new object();
         private string outputFilePath;
-        private List<string> results;
-        private DateTime localStartTime;
+
+        private List<TestResultInfo> results;
+
+        public DateTime LocalStartTime { get; set; }
+
+        /// <summary>
+        /// Gets uri used to uniquely identify the logger.
+        /// </summary>
+        /// <returns>Returns the extension URI for the implementation.</returns>
+        public abstract string GetExtensionUri();
+
+        /// <summary>
+        /// Gets Alternate user friendly string to uniquely identify the console logger.
+        /// </summary>
+        /// <returns>Returns the friendly name for the implementation.</returns>
+        public abstract string GetFriendlyName();
+
+        public abstract string BuildLog(List<TestResultInfo> resultList);
+
+        public abstract void Initialize(Dictionary<string, string> parameters);
 
         public void Initialize(TestLoggerEvents events, string testResultsDirPath)
         {
@@ -64,6 +95,8 @@ namespace Spekt.TestLogger
             {
                 throw new ArgumentException($"Expected {LogFilePathKey} or {DefaultLoggerParameterNames.TestRunDirectory} parameter", nameof(parameters));
             }
+
+            this.Initialize(parameters);
         }
 
         private void InitializeImpl(TestLoggerEvents events, string outputPath)
@@ -77,10 +110,10 @@ namespace Spekt.TestLogger
 
             lock (this.resultsGuard)
             {
-                this.results = new List<string>();
+                this.results = new List<TestResultInfo>();
             }
 
-            this.localStartTime = DateTime.UtcNow;
+            this.LocalStartTime = DateTime.UtcNow;
         }
 
         /// <summary>
@@ -95,7 +128,6 @@ namespace Spekt.TestLogger
         /// </summary>
         private void TestRunStartHandler(object sender, TestRunStartEventArgs e)
         {
-#if NONE
             if (this.outputFilePath.Contains(AssemblyToken))
             {
                 string assemblyPath = e.TestRunCriteria.AdapterSourceMap["_none_"].First();
@@ -112,7 +144,6 @@ namespace Spekt.TestLogger
                 framework = framework.Replace(",Version=v", string.Empty).Replace(".", string.Empty);
                 this.outputFilePath = this.outputFilePath.Replace(FrameworkToken, framework);
             }
-#endif
         }
 
         /// <summary>
@@ -122,19 +153,16 @@ namespace Spekt.TestLogger
         {
             TestResult result = e.Result;
 
-            this.results.Add(result.TestCase.FullyQualifiedName);
-#if NONE
-            if (TryParseName(result.TestCase.FullyQualifiedName, out var typeName, out var methodName, out _))
+            var parsedName = TestCaseNameParser.Parse(result.TestCase.FullyQualifiedName, this.GetFriendlyName());
+
+            lock (this.resultsGuard)
             {
-                lock (this.resultsGuard)
-                {
-                    this.results.Add(new TestResultInfo(
-                        result,
-                        typeName,
-                        methodName));
-                }
+                this.results.Add(new TestResultInfo(
+                    result,
+                    parsedName.NamespaceName,
+                    parsedName.TypeName,
+                    parsedName.MethodName));
             }
-#endif
         }
 
         /// <summary>
@@ -142,26 +170,40 @@ namespace Spekt.TestLogger
         /// </summary>
         private void TestRunCompleteHandler(object sender, TestRunCompleteEventArgs e)
         {
-            List<string> resultList;
-            lock (this.resultsGuard)
+            try
             {
-                resultList = this.results;
-                this.results = new List<string>();
-            }
+                List<TestResultInfo> resultList;
+                lock (this.resultsGuard)
+                {
+                    resultList = this.results;
+                    this.results = new List<TestResultInfo>();
+                }
 
-            // Create directory if not exist
-            var loggerFileDirPath = Path.GetDirectoryName(this.outputFilePath);
-            if (!Directory.Exists(loggerFileDirPath))
+                var testLog = this.BuildLog(resultList);
+                if (string.IsNullOrWhiteSpace(testLog))
+                {
+                    throw new Exception("The log produced was empty");
+                }
+
+                // Create directory if not exist
+                var loggerFileDirPath = Path.GetDirectoryName(this.outputFilePath);
+                if (!Directory.Exists(loggerFileDirPath))
+                {
+                    Directory.CreateDirectory(loggerFileDirPath);
+                }
+
+                File.WriteAllText(this.outputFilePath, testLog);
+
+                var resultsFileMessage = string.Format(CultureInfo.CurrentCulture, "{0} Logger - Results File: {1}", this.GetFriendlyName(), this.outputFilePath);
+                Console.WriteLine(Environment.NewLine + resultsFileMessage);
+            }
+            catch (Exception ex)
             {
-                Directory.CreateDirectory(loggerFileDirPath);
+                Console.WriteLine($"{this.GetFriendlyName()} Logger: Threw an unhandeled exception. ");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Source);
+                throw;
             }
-
-            using (var f = File.Create(this.outputFilePath))
-            {
-            }
-
-            var resultsFileMessage = string.Format(CultureInfo.CurrentCulture, "Results File: {0}", this.outputFilePath);
-            Console.WriteLine(resultsFileMessage);
         }
     }
 }

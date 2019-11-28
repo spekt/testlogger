@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <SourceRoot Condition="$(SourceRoot) == ''">..\..\</SourceRoot>
     <TestProject>true</TestProject>
@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/TestLogger/TestLogger.csproj" />
+    <ProjectReference Include="..\Json.TestLogger.TestAdapter\Json.TestLogger.TestAdapter.csproj" />
   </ItemGroup>
 
   <ItemGroup>

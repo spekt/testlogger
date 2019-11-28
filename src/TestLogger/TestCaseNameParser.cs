@@ -12,9 +12,9 @@ namespace Spekt.TestLogger
     {
         public const string TestCaseParserUnknownNamsepace = "UnknownNamespace";
         public const string TestCaseParserUnknownType = "UnknownType";
-        public const string TestCaseParserErrorTemplate = "Test Logger: " +
-            "Unable to parse the test name '{0}' into a namespace, type and method. " +
-            "Using Namespace='{1}', Type='{2}' and Method='{3}'";
+        public const string TestCaseParserErrorTemplate = "{0} Logger: " +
+            "Unable to parse the test name '{1}' into a namespace, type and method. " +
+            "Using Namespace='{2}', Type='{3}' and Method='{4}'";
 
         private enum NameParseStep
         {
@@ -45,11 +45,14 @@ namespace Spekt.TestLogger
         /// String like 'namespace.type.method', where type and or method may be followed by parenthesis containing
         /// parameter values.
         /// </param>
+        /// <param name="loggerName">
+        /// Logger name, used to improve clarity of logging error messages.
+        /// </param>
         /// <returns>
         /// An instance of ParsedName containing the parsed results. A result is always returned, even in the case when
         /// the input could not be full parsed.
         /// </returns>
-        public static ParsedName Parse(string fullyQualifedName)
+        public static ParsedName Parse(string fullyQualifedName, string loggerName)
         {
             var metadataNamespaceName = string.Empty;
             var metadataTypeName = string.Empty;
@@ -184,12 +187,12 @@ namespace Spekt.TestLogger
                     metadataNamespaceName = TestCaseParserUnknownNamsepace;
                     metadataTypeName = TestCaseParserUnknownType;
                     metadataMethodName = fullyQualifedName;
-                    Console.WriteLine(string.Format(TestCaseParserErrorTemplate, fullyQualifedName, metadataNamespaceName, metadataTypeName, metadataMethodName));
+                    Console.WriteLine(string.Format(TestCaseParserErrorTemplate, loggerName, fullyQualifedName, metadataNamespaceName, metadataTypeName, metadataMethodName));
                 }
                 else if (string.IsNullOrWhiteSpace(metadataNamespaceName))
                 {
                     metadataNamespaceName = TestCaseParserUnknownNamsepace;
-                    Console.WriteLine(string.Format(TestCaseParserErrorTemplate, fullyQualifedName, metadataNamespaceName, metadataTypeName, metadataMethodName));
+                    Console.WriteLine(string.Format(TestCaseParserErrorTemplate, loggerName, fullyQualifedName, metadataNamespaceName, metadataTypeName, metadataMethodName));
                 }
             }
 
