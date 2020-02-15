@@ -8,7 +8,9 @@ namespace Spekt.TestLogger
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Text;
     using System.Xml;
+    using System.Xml.Linq;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
@@ -22,6 +24,7 @@ namespace Spekt.TestLogger
         public const string LogFilePathKey = "LogFilePath";
         public const string LogFileNameKey = "LogFileName";
         public const string ResultDirectoryKey = "TestRunDirectory";
+        public const string FileEncodingKey = "FileEncoding";
 
         // Other public strings
         public const string ResultStatusPassed = "Passed";
@@ -35,6 +38,21 @@ namespace Spekt.TestLogger
         private string outputFilePath;
 
         private List<TestResultInfo> results;
+
+        public enum FileEncoding
+        {
+            /// <summary>
+            /// UTF8
+            /// </summary>
+            UTF8,
+
+            /// <summary>
+            /// UTF8 Bom
+            /// </summary>
+            UTF8Bom
+        }
+
+        public FileEncoding FileEncodingOption { get; private set; } = FileEncoding.UTF8;
 
         public DateTime RunStartTimeUtc { get; set; }
 
@@ -50,7 +68,7 @@ namespace Spekt.TestLogger
         /// <returns>Returns the friendly name for the implementation.</returns>
         public abstract string GetFriendlyName();
 
-        public abstract string BuildLog(List<TestResultInfo> resultList);
+        public abstract XDocument BuildLog(List<TestResultInfo> resultList);
 
         public abstract void Initialize(Dictionary<string, string> parameters);
 
@@ -93,6 +111,18 @@ namespace Spekt.TestLogger
             else
             {
                 throw new ArgumentException($"Expected {LogFilePathKey} or {DefaultLoggerParameterNames.TestRunDirectory} parameter", nameof(parameters));
+            }
+
+            if (parameters.TryGetValue(FileEncodingKey, out string fileEncoding))
+            {
+                if (Enum.TryParse(fileEncoding, true, out FileEncoding encoding))
+                {
+                    this.FileEncodingOption = encoding;
+                }
+                else
+                {
+                    Console.WriteLine($"JunitXML Logger: The provided File Encoding '{fileEncoding}' is not a recognized option. Using default");
+                }
             }
 
             this.Initialize(parameters);
@@ -178,11 +208,7 @@ namespace Spekt.TestLogger
                     this.results = new List<TestResultInfo>();
                 }
 
-                var testLog = this.BuildLog(resultList);
-                if (string.IsNullOrWhiteSpace(testLog))
-                {
-                    throw new Exception("The log produced was empty");
-                }
+                var doc = this.BuildLog(resultList);
 
                 // Create directory if not exist
                 var loggerFileDirPath = Path.GetDirectoryName(this.outputFilePath);
@@ -191,7 +217,19 @@ namespace Spekt.TestLogger
                     Directory.CreateDirectory(loggerFileDirPath);
                 }
 
-                File.WriteAllText(this.outputFilePath, testLog);
+                var settings = new XmlWriterSettings()
+                {
+                    Encoding = new UTF8Encoding(this.FileEncodingOption == FileEncoding.UTF8Bom),
+                    Indent = true,
+                };
+
+                using (var f = File.Create(this.outputFilePath))
+                {
+                    using (var w = XmlWriter.Create(f, settings))
+                    {
+                        doc.Save(w);
+                    }
+                }
 
                 var resultsFileMessage = string.Format(CultureInfo.CurrentCulture, "{0} Logger - Results File: {1}", this.GetFriendlyName(), this.outputFilePath);
                 Console.WriteLine(Environment.NewLine + resultsFileMessage);
