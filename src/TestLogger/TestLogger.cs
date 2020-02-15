@@ -26,7 +26,6 @@ namespace Spekt.TestLogger
         // Other public strings
         public const string ResultStatusPassed = "Passed";
         public const string ResultStatusFailed = "Failed";
-        public const string DateFormat = "yyyy-MM-ddT HH:mm:ssZ";
 
         // Tokens to allow user to manipulate output file or directory names.
         private const string AssemblyToken = "{assembly}";
