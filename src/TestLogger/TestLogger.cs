@@ -36,7 +36,7 @@ namespace Spekt.TestLogger
 
         private List<TestResultInfo> results;
 
-        public DateTime LocalStartTime { get; set; }
+        public DateTime RunStartTimeUtc { get; set; }
 
         /// <summary>
         /// Gets uri used to uniquely identify the logger.
@@ -112,7 +112,7 @@ namespace Spekt.TestLogger
                 this.results = new List<TestResultInfo>();
             }
 
-            this.LocalStartTime = DateTime.UtcNow;
+            this.RunStartTimeUtc = DateTime.UtcNow;
         }
 
         /// <summary>
