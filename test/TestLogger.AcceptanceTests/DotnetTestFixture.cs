@@ -7,8 +7,10 @@ namespace TestLogger.AcceptanceTests
     using System.Diagnostics;
     using System.IO;
 
-    public class DotnetTestFixture
+    public static class DotnetTestFixture
     {
+        private const string NetcoreVersion = "netcoreapp3.0";
+
         public static string RootDirectory { get; set; } = Path.GetFullPath(
                     Path.Combine(
                         Environment.CurrentDirectory,
@@ -30,7 +32,7 @@ namespace TestLogger.AcceptanceTests
 #else
                 var config = "Release";
 #endif
-                return Path.Combine(RootDirectory, "bin", config, "netcoreapp2.0", TestAssemblyName);
+                return Path.Combine(RootDirectory, "bin", config, NetcoreVersion, TestAssemblyName);
             }
         }
 
@@ -55,7 +57,7 @@ namespace TestLogger.AcceptanceTests
             // Log the contents of test output directory. Useful to verify if the logger is copied
             Console.WriteLine("------------");
             Console.WriteLine("Contents of test output directory:");
-            foreach (var f in Directory.GetFiles(Path.Combine(testProject, "bin/Debug/netcoreapp2.0")))
+            foreach (var f in Directory.GetFiles(Path.Combine(testProject, $"bin/Debug/{NetcoreVersion}")))
             {
                 Console.WriteLine("  " + f);
             }
