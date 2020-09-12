@@ -9,12 +9,28 @@
     <TargetFramework>netstandard1.5</TargetFramework>
     <AssemblyName>Spekt.TestLogger</AssemblyName>
     <Version>$(PackageVersion)</Version>
-    <IsPackable>false</IsPackable>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Label="Configuration">
     <RootNamespace>Spekt.TestLogger</RootNamespace>
   </PropertyGroup>
+
+  <!-- Nuget properties. Testlogger will be a local package for internal spekt consumption. -->
+  <PropertyGroup>
+    <Authors>Spekt contributors</Authors>
+    <Description>Core test logger for Spekt</Description>
+    <Copyright>Copyright 2020 © Spekt Contributors. All rights reserved.</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/spekt/testlogger</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+<!--    <PackageIconUrl>https://raw.githubusercontent.com/spekt/testlogger/master/assets/icon-120x120.png</PackageIconUrl>-->
+<!--    <PackageIcon>icon-120x120.png</PackageIcon>-->
+  </PropertyGroup>
+
+<!--  <ItemGroup>-->
+<!--    <None Include="icon-120x120.png" Pack="true" PackagePath="\"/>-->
+<!--  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="15.5.0" />

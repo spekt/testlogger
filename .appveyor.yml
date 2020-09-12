@@ -12,7 +12,7 @@ build_script:
 test: off
 
 artifacts:
-    - path: 'src\package\bin\Release\*.nupkg'
+    - path: 'src\TestLogger\bin\Release\*.nupkg'
 
 deploy:
     provider: NuGet
