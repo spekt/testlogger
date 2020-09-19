@@ -4,25 +4,38 @@
 namespace Spekt.TestLogger.UnitTests.Platform
 {
     using System;
+    using System.Runtime.InteropServices;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Platform;
 
     [TestClass]
     public class FileSystemTests
     {
+        private readonly IFileSystem fileSystem;
+
+        public FileSystemTests()
+        {
+            this.fileSystem = new FileSystem();
+        }
+
         [TestMethod]
         public void FileSystemWriteShouldThrowNotImplementedException()
         {
-            var fs = new FileSystem();
-            Assert.ThrowsException<NotImplementedException>(() => fs.Write(string.Empty));
+            Assert.ThrowsException<NotImplementedException>(() => this.fileSystem.Write(string.Empty));
         }
 
         [TestMethod]
         public void GetFullPathShouldReturnAbsolutePath()
         {
-            var fs = new FileSystem();
+            var expectedPath = "/tmp";
+            var actualPath = "/tmp/xx/..";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                expectedPath = @"C:\tmp";
+                actualPath = @"C:\tmp\xx\..";
+            }
 
-            Assert.AreEqual("/tmp", fs.GetFullPath("/tmp/xx/.."));
+            Assert.AreEqual(expectedPath, this.fileSystem.GetFullPath(actualPath));
         }
     }
 }
