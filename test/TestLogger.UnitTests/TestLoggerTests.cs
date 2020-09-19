@@ -5,33 +5,56 @@ namespace Spekt.TestLogger.UnitTests
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Linq;
-    using System.Xml.Linq;
-    using System.Xml.XPath;
-
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Spekt.TestLogger;
+    using Spekt.TestLogger.Core;
     using Spekt.TestLogger.UnitTests.TestDoubles;
 
     [TestClass]
     public class TestLoggerTests
     {
-        private TestLogger logger;
-        private DummyTestLoggerEvents dummyEvents;
-        private string resultsPath = "/tmp/temp-result-dir";
-        private Dictionary<string, string> loggerParams;
+        private readonly Dictionary<string, string> loggerParams;
+        private readonly TestLogger logger;
+        private readonly MockTestLoggerEvents mockEvents;
+        private readonly string resultsPath = "/tmp/temp-result-dir";
 
         public TestLoggerTests()
         {
-            this.logger = new TestLogger();
-            this.dummyEvents = new DummyTestLoggerEvents();
+            this.logger = new TestableTestLogger();
+            this.mockEvents = new MockTestLoggerEvents();
             this.loggerParams = new Dictionary<string, string> { { DefaultLoggerParameterNames.TestRunDirectory, this.resultsPath } };
+        }
+
+        [TestMethod]
+        public void TestLoggerShouldCreateAbstractLoggerWithSerializer()
+        {
+            Assert.IsNotNull(new ValidTestLogger(new JsonTestResultSerializer()));
+        }
+
+        [TestMethod]
+        public void TestLoggerWithNullFileSystemShouldThrowArgumentNullException()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new TestLoggerWithNullFileSystem());
+        }
+
+        [TestMethod]
+        public void TestLoggerWithNullConsoleOutputShouldThrowArgumentNullException()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new TestLoggerWithNullConsoleOutput());
+        }
+
+        [TestMethod]
+        public void TestLoggerWithNullResultStoreShouldThrowArgumentNullException()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new TestLoggerWithNullResultStore());
+        }
+
+        [TestMethod]
+        public void TestLoggerWithNullResultSerializerShouldThrowArgumentNullException()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new TestLoggerWithNullResultSerializer());
         }
 
         [TestMethod]
@@ -43,16 +66,16 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void TestLoggerInitializeShouldThrowForNullResultsDir()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.dummyEvents, testResultsDirPath: null));
+            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, testResultsDirPath: null));
         }
 
         [TestMethod]
         public void TestLoggerInitializeShouldSubscribeToRunEvents()
         {
-            this.logger.Initialize(this.dummyEvents, this.resultsPath);
+            this.logger.Initialize(this.mockEvents, this.resultsPath);
 
-            Assert.IsTrue(this.dummyEvents.TestRunEventsSubscribed());
-            Assert.IsFalse(this.dummyEvents.TestDiscoveryEventsSubscribed());
+            Assert.IsTrue(this.mockEvents.TestRunEventsSubscribed());
+            Assert.IsFalse(this.mockEvents.TestDiscoveryEventsSubscribed());
         }
 
         [TestMethod]
@@ -64,20 +87,20 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void TestLoggerInitializeWithParametersShouldThrowForNullParameters()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.dummyEvents, parameters: null));
+            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, parameters: null));
         }
 
         [TestMethod]
         public void TestLoggerInitializeWithParametersShouldThrowIfOutputDirectoryIsNotSet()
         {
-            Assert.ThrowsException<ArgumentException>(() => this.logger.Initialize(this.dummyEvents, new Dictionary<string, string>()));
+            Assert.ThrowsException<ArgumentException>(() => this.logger.Initialize(this.mockEvents, new Dictionary<string, string>()));
         }
 
         [TestMethod]
         public void TestLoggerInitializeWithParametersShouldThrowIfOutputDirectoryIsNull()
         {
             this.loggerParams[DefaultLoggerParameterNames.TestRunDirectory] = null;
-            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.dummyEvents, this.loggerParams));
+            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, this.loggerParams));
         }
 
         [TestMethod]
@@ -86,25 +109,96 @@ namespace Spekt.TestLogger.UnitTests
             this.loggerParams[TestLogger.LogFilePathKey] = null;
             this.loggerParams[DefaultLoggerParameterNames.TestRunDirectory] = this.resultsPath;
 
-            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.dummyEvents, this.loggerParams));
+            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, this.loggerParams));
+        }
+
+        [TestMethod]
+        public void TestLoggerInitializeWithParametersLogFilePathShouldSubscribeToRunEvents()
+        {
+            this.loggerParams[TestLogger.LogFilePathKey] = this.resultsPath;
+
+            this.logger.Initialize(this.mockEvents, this.loggerParams);
+
+            Assert.IsTrue(this.mockEvents.TestRunEventsSubscribed());
+            Assert.IsFalse(this.mockEvents.TestDiscoveryEventsSubscribed());
         }
 
         [TestMethod]
         public void TestLoggerInitializeWithParametersShouldSubscribeToRunEvents()
         {
-            this.logger.Initialize(this.dummyEvents, this.loggerParams);
+            this.logger.Initialize(this.mockEvents, this.loggerParams);
 
-            Assert.IsTrue(this.dummyEvents.TestRunEventsSubscribed());
-            Assert.IsFalse(this.dummyEvents.TestDiscoveryEventsSubscribed());
+            Assert.IsTrue(this.mockEvents.TestRunEventsSubscribed());
+            Assert.IsFalse(this.mockEvents.TestDiscoveryEventsSubscribed());
         }
 
-        [TestMethod]
+        // [TestMethod]
+        public void TestRunCompleteShouldCreateAResultFile()
+        {
+            var logger = new TestableTestLogger();
+            using (var simulator = new TestRunSimulator(logger))
+            {
+                simulator.Run();
+            }
+        }
+
+        // [TestMethod]
         public void TestRunShouldInvokeEventHandlers()
         {
             // TODO fix this dummy test with asserts
             var simulator = new TestRunSimulator(this.logger);
 
             simulator.Run();
+        }
+
+        private class ValidTestLogger : TestLogger
+        {
+            public ValidTestLogger(ITestResultSerializer serializer)
+                : base(serializer)
+            {
+            }
+
+            protected override string DefaultTestResultFile => "DummyResult.json";
+        }
+
+        private class TestLoggerWithNullConsoleOutput : TestLogger
+        {
+            public TestLoggerWithNullConsoleOutput()
+                : base(new FakeFileSystem(), null, new TestResultStore(), new JsonTestResultSerializer())
+            {
+            }
+
+            protected override string DefaultTestResultFile => "DummyResult.json";
+        }
+
+        private class TestLoggerWithNullFileSystem : TestLogger
+        {
+            public TestLoggerWithNullFileSystem()
+                : base(null, new FakeConsoleOutput(), new TestResultStore(), new JsonTestResultSerializer())
+            {
+            }
+
+            protected override string DefaultTestResultFile => "DummyResult.json";
+        }
+
+        private class TestLoggerWithNullResultStore : TestLogger
+        {
+            public TestLoggerWithNullResultStore()
+                : base(new FakeFileSystem(), new FakeConsoleOutput(), null, new JsonTestResultSerializer())
+            {
+            }
+
+            protected override string DefaultTestResultFile => "DummyResult.json";
+        }
+
+        private class TestLoggerWithNullResultSerializer : TestLogger
+        {
+            public TestLoggerWithNullResultSerializer()
+                : base(new FakeFileSystem(), new FakeConsoleOutput(), new TestResultStore(), null)
+            {
+            }
+
+            protected override string DefaultTestResultFile => "DummyResult.json";
         }
     }
 }

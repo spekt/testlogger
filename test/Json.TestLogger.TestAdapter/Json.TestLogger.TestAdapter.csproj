@@ -19,6 +19,9 @@
     <Compile Include="..\Json.TestLogger\JsonTestLogger.cs">
       <Link>JsonTestLogger.cs</Link>
     </Compile>
+    <Compile Include="..\TestLogger.UnitTests\TestDoubles\JsonTestResultSerializer.cs">
+      <Link>JsonTestResultSerializer.cs</Link>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

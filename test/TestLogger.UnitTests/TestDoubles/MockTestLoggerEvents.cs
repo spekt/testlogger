@@ -9,7 +9,7 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
-    public class DummyTestLoggerEvents : TestLoggerEvents
+    public class MockTestLoggerEvents : TestLoggerEvents
     {
         /// <inheritdoc/>
         public override event EventHandler<TestRunMessageEventArgs> TestRunMessage;

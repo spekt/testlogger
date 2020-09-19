@@ -12,6 +12,10 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <PropertyGroup Label="Configuration">
+    <RootNamespace>Spekt.TestLogger.UnitTests</RootNamespace>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="../../src/TestLogger/TestLogger.csproj" />
   </ItemGroup>

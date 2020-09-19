@@ -3,14 +3,8 @@
 
 namespace Json.TestLogger
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
+    using Spekt.TestLogger.UnitTests.TestDoubles;
 
     [FriendlyName(FriendlyName)]
     [ExtensionUri(ExtensionUri)]
@@ -19,12 +13,19 @@ namespace Json.TestLogger
         /// <summary>
         /// Uri used to uniquely identify the logger.
         /// </summary>
-        public const string ExtensionUri = "logger://Microsoft/TestPlatform/JsonLogger/v1";
+        private const string ExtensionUri = "logger://Microsoft/TestPlatform/JsonLogger/v1";
 
         /// <summary>
         /// Alternate user friendly string to uniquely identify the console logger.
         /// </summary>
-        public const string FriendlyName = "json";
+        private const string FriendlyName = "json";
+
+        public JsonTestLogger()
+            : base(new JsonTestResultSerializer())
+        {
+        }
+
+        protected override string DefaultTestResultFile => "TestResults.json";
     }
 
 #if NONE

@@ -17,6 +17,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\TestLogger.UnitTests\TestDoubles\JsonTestResultSerializer.cs">
+      <Link>JsonTestResultSerializer.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="../../src/TestLogger/TestLogger.csproj" />
   </ItemGroup>
 

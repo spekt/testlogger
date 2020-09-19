@@ -5,25 +5,48 @@ namespace Spekt.TestLogger
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
-
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
+    using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.Platform;
 
     /// <summary>
     /// Base test logger implementation.
     /// </summary>
-    public class TestLogger : ITestLoggerWithParameters
+    public abstract class TestLogger : ITestLoggerWithParameters
     {
         public const string LogFilePathKey = "LogFilePath";
 
-        private readonly object resultsGuard = new object();
-        private string outputFilePath;
-        private List<string> results;
-        private DateTime localStartTime;
+        private readonly IFileSystem fileSystem;
+        private readonly IConsoleOutput consoleOutput;
+        private readonly ITestResultStore resultStore;
+        private readonly ITestResultSerializer resultSerializer;
+        private ITestRun testRun;
 
+        protected TestLogger(ITestResultSerializer resultSerializer)
+            : this(new FileSystem(), new ConsoleOutput(), new TestResultStore(), resultSerializer)
+        {
+        }
+
+        protected TestLogger(
+            IFileSystem fileSystem,
+            IConsoleOutput consoleOutput,
+            ITestResultStore resultStore,
+            ITestResultSerializer resultSerializer)
+        {
+            this.fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
+            this.consoleOutput = consoleOutput ?? throw new ArgumentNullException(nameof(consoleOutput));
+            this.resultStore = resultStore ?? throw new ArgumentNullException(nameof(resultStore));
+            this.resultSerializer = resultSerializer ?? throw new ArgumentNullException(nameof(resultSerializer));
+        }
+
+        protected abstract string DefaultTestResultFile { get; }
+
+        /// <inheritdoc />
+        /// <remarks>
+        /// Overrides <see cref="ITestLogger.Initialize"/> method. Supports older runners.
+        /// </remarks>
         public void Initialize(TestLoggerEvents events, string testResultsDirPath)
         {
             if (events == null)
@@ -36,10 +59,13 @@ namespace Spekt.TestLogger
                 throw new ArgumentNullException(nameof(testResultsDirPath));
             }
 
-            var outputPath = Path.Combine(testResultsDirPath, "TestResults.xml");
-            this.InitializeImpl(events, outputPath);
+            var outputPath = Path.Combine(testResultsDirPath, this.DefaultTestResultFile);
+
+            this.CreateTestRun(events, outputPath);
         }
 
+        /// <inheritdoc />
+        /// <remarks>Overrides <c>ITestLoggerWithParameters.Initialize(TestLoggerEvents, Dictionary)</c> method.</remarks>
         public void Initialize(TestLoggerEvents events, Dictionary<string, string> parameters)
         {
             if (events == null)
@@ -52,11 +78,11 @@ namespace Spekt.TestLogger
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            if (parameters.TryGetValue(LogFilePathKey, out string outputPath))
+            if (parameters.TryGetValue(LogFilePathKey, out var outputPath))
             {
-                this.InitializeImpl(events, outputPath);
+                this.CreateTestRun(events, outputPath);
             }
-            else if (parameters.TryGetValue(DefaultLoggerParameterNames.TestRunDirectory, out string outputDir))
+            else if (parameters.TryGetValue(DefaultLoggerParameterNames.TestRunDirectory, out var outputDir))
             {
                 this.Initialize(events, outputDir);
             }
@@ -66,102 +92,16 @@ namespace Spekt.TestLogger
             }
         }
 
-        private void InitializeImpl(TestLoggerEvents events, string outputPath)
+        private void CreateTestRun(TestLoggerEvents events, string outputPath)
         {
-            events.TestRunMessage += this.TestMessageHandler;
-            events.TestRunStart += this.TestRunStartHandler;
-            events.TestResult += this.TestResultHandler;
-            events.TestRunComplete += this.TestRunCompleteHandler;
-
-            this.outputFilePath = Path.GetFullPath(outputPath);
-
-            lock (this.resultsGuard)
-            {
-                this.results = new List<string>();
-            }
-
-            this.localStartTime = DateTime.UtcNow;
-        }
-
-        /// <summary>
-        /// Called when a test message is received.
-        /// </summary>
-        private void TestMessageHandler(object sender, TestRunMessageEventArgs e)
-        {
-        }
-
-        /// <summary>
-        /// Called when a test starts.
-        /// </summary>
-        private void TestRunStartHandler(object sender, TestRunStartEventArgs e)
-        {
-#if NONE
-            if (this.outputFilePath.Contains(AssemblyToken))
-            {
-                string assemblyPath = e.TestRunCriteria.AdapterSourceMap["_none_"].First();
-                string assemblyName = Path.GetFileNameWithoutExtension(assemblyPath);
-                this.outputFilePath = this.outputFilePath.Replace(AssemblyToken, assemblyName);
-            }
-
-            if (this.outputFilePath.Contains(FrameworkToken))
-            {
-                XmlDocument runSettings = new XmlDocument();
-                runSettings.LoadXml(e.TestRunCriteria.TestRunSettings);
-                XmlNode x = runSettings.GetElementsByTagName("TargetFrameworkVersion")[0];
-                string framework = x.InnerText;
-                framework = framework.Replace(",Version=v", string.Empty).Replace(".", string.Empty);
-                this.outputFilePath = this.outputFilePath.Replace(FrameworkToken, framework);
-            }
-#endif
-        }
-
-        /// <summary>
-        /// Called when a test result is received.
-        /// </summary>
-        private void TestResultHandler(object sender, TestResultEventArgs e)
-        {
-            TestResult result = e.Result;
-
-            this.results.Add(result.TestCase.FullyQualifiedName);
-#if NONE
-            if (TryParseName(result.TestCase.FullyQualifiedName, out var typeName, out var methodName, out _))
-            {
-                lock (this.resultsGuard)
-                {
-                    this.results.Add(new TestResultInfo(
-                        result,
-                        typeName,
-                        methodName));
-                }
-            }
-#endif
-        }
-
-        /// <summary>
-        /// Called when a test run is completed.
-        /// </summary>
-        private void TestRunCompleteHandler(object sender, TestRunCompleteEventArgs e)
-        {
-            List<string> resultList;
-            lock (this.resultsGuard)
-            {
-                resultList = this.results;
-                this.results = new List<string>();
-            }
-
-            // Create directory if not exist
-            var loggerFileDirPath = Path.GetDirectoryName(this.outputFilePath);
-            if (!Directory.Exists(loggerFileDirPath))
-            {
-                Directory.CreateDirectory(loggerFileDirPath);
-            }
-
-            using (var f = File.Create(this.outputFilePath))
-            {
-            }
-
-            var resultsFileMessage = string.Format(CultureInfo.CurrentCulture, "Results File: {0}", this.outputFilePath);
-            Console.WriteLine(resultsFileMessage);
+            this.testRun = new TestRunBuilder()
+                .WithFileSystem(this.fileSystem)
+                .WithConsoleOutput(this.consoleOutput)
+                .WithStore(this.resultStore)
+                .WithSerializer(this.resultSerializer)
+                .WithResultFile(this.fileSystem.GetFullPath(outputPath))
+                .Subscribe(events)
+                .Build();
         }
     }
 }
