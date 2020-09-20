@@ -15,9 +15,12 @@ namespace Spekt.TestLogger.UnitTests
     public class TestRunCompleteWorkflowTests
     {
         [TestMethod]
-        public void CompleteShouldThrowNotImplementedException()
+        public void CompleteShouldCreateAnEmptyFile()
         {
+            var fileSystem = new FakeFileSystem();
             var testRun = new TestRunBuilder()
+                .WithResultFile("dummyFile.json")
+                .WithFileSystem(fileSystem)
                 .WithStore(new TestResultStore())
                 .WithSerializer(new JsonTestResultSerializer())
                 .Build();
@@ -28,7 +31,10 @@ namespace Spekt.TestLogger.UnitTests
                 error: null,
                 attachmentSets: new Collection<AttachmentSet>(),
                 elapsedTime: TimeSpan.Zero);
-            Assert.ThrowsException<NotImplementedException>(() => testRun.Complete(testRunCompleteEvent));
+
+            testRun.Complete(testRunCompleteEvent);
+
+            Assert.AreEqual(string.Empty, fileSystem.Read(testRun.ResultFile));
         }
     }
 }

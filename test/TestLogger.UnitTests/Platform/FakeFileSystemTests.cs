@@ -4,13 +4,13 @@
 namespace Spekt.TestLogger.UnitTests.Platform
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Spekt.TestLogger.Platform;
+    using Spekt.TestLogger.UnitTests.TestDoubles;
 
     [TestClass]
-    public class FileSystemTests : BaseFileSystemTests
+    public class FakeFileSystemTests : BaseFileSystemTests
     {
-        public FileSystemTests()
-            : base(new FileSystem())
+        public FakeFileSystemTests()
+            : base(new FakeFileSystem())
         {
         }
     }

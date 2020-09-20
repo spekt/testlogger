@@ -4,18 +4,39 @@
 namespace Spekt.TestLogger.UnitTests.TestDoubles
 {
     using System;
+    using System.Collections.Generic;
     using Spekt.TestLogger.Platform;
 
     public class FakeFileSystem : IFileSystem
     {
-        public void Write(string path)
+        private readonly Dictionary<string, string> files;
+
+        public FakeFileSystem()
         {
-            throw new NotImplementedException();
+            this.files = new Dictionary<string, string>();
         }
 
-        public string GetFullPath(string path)
+        public string Read(string path)
         {
-            return path;
+            if (this.files.TryGetValue(path, out var content))
+            {
+                return content;
+            }
+
+            throw new ArgumentException("File does not exist.", nameof(path));
+        }
+
+        public void Write(string path, string content)
+        {
+            this.files[path] = content;
+        }
+
+        public void Delete(string path)
+        {
+            if (this.files.ContainsKey(path))
+            {
+                this.files.Remove(path);
+            }
         }
     }
 }

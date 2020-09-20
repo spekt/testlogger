@@ -9,7 +9,7 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
     {
         public string Serialize(ITestResultStore store)
         {
-            throw new System.NotImplementedException();
+            return string.Empty;
         }
     }
 }

@@ -9,23 +9,23 @@ namespace TestLogger.AcceptanceTests
     [TestClass]
     public class TestLoggerAcceptanceTests
     {
-        private readonly string resultsFile;
-
-        public TestLoggerAcceptanceTests()
-        {
-            this.resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
-        }
+        private static readonly string ResultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
 
         [ClassInitialize]
         public static void SuiteInitialize(TestContext context)
         {
+            if (File.Exists(ResultsFile))
+            {
+                File.Delete(ResultsFile);
+            }
+
             DotnetTestFixture.Execute("test-results.json");
         }
 
         [TestMethod]
         public void TestRunWithLoggerAndFilePathShouldCreateResultsFile()
         {
-            Assert.IsTrue(File.Exists(this.resultsFile));
+            Assert.IsTrue(File.Exists(ResultsFile));
         }
     }
 }

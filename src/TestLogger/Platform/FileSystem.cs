@@ -3,18 +3,38 @@
 
 namespace Spekt.TestLogger.Platform
 {
+    using System;
     using System.IO;
 
     public class FileSystem : IFileSystem
     {
-        public void Write(string path)
+        public string Read(string path)
         {
-            throw new System.NotImplementedException();
+            if (!File.Exists(path))
+            {
+                throw new ArgumentException("File does not exist.", nameof(path));
+            }
+
+            using (var reader = new StreamReader(new FileStream(path, FileMode.Open)))
+            {
+                return reader.ReadToEnd();
+            }
         }
 
-        public string GetFullPath(string path)
+        public void Write(string path, string content)
         {
-            return Path.GetFullPath(path);
+            using (var writer = new StreamWriter(new FileStream(path, FileMode.OpenOrCreate)))
+            {
+                writer.Write(content);
+            }
+        }
+
+        public void Delete(string path)
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
         }
     }
 }

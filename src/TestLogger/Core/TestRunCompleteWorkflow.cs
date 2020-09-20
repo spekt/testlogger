@@ -18,7 +18,7 @@ namespace Spekt.TestLogger.Core
             //    serialize store into relevant string
             //    write the serialized string to file
             //    show a message on console
-            testRun.Serializer.Serialize(testRun.Store);
+            testRun.FileSystem.Write(testRun.ResultFile, testRun.Serializer.Serialize(testRun.Store));
     #if NONE
             List<string> resultList;
             lock (this.resultsGuard)

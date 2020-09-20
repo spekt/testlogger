@@ -99,7 +99,7 @@ namespace Spekt.TestLogger
                 .WithConsoleOutput(this.consoleOutput)
                 .WithStore(this.resultStore)
                 .WithSerializer(this.resultSerializer)
-                .WithResultFile(this.fileSystem.GetFullPath(outputPath))
+                .WithResultFile(Path.GetFullPath(outputPath))
                 .Subscribe(events)
                 .Build();
         }
