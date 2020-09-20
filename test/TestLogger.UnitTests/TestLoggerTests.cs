@@ -10,6 +10,7 @@ namespace Spekt.TestLogger.UnitTests
 
     using Spekt.TestLogger;
     using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.Platform;
     using Spekt.TestLogger.UnitTests.TestDoubles;
 
     [TestClass]
@@ -55,6 +56,14 @@ namespace Spekt.TestLogger.UnitTests
         public void TestLoggerWithNullResultSerializerShouldThrowArgumentNullException()
         {
             Assert.ThrowsException<ArgumentNullException>(() => new TestLoggerWithNullResultSerializer());
+        }
+
+        [TestMethod]
+        public void TestLoggerInitializeWithNullDefaultResultFileShouldThrow()
+        {
+            var testLogger = new TestLoggerWithNullResultFile();
+            Assert.ThrowsException<ArgumentException>(() =>
+                testLogger.Initialize(new MockTestLoggerEvents(), string.Empty));
         }
 
         [TestMethod]
@@ -199,6 +208,16 @@ namespace Spekt.TestLogger.UnitTests
             }
 
             protected override string DefaultTestResultFile => "DummyResult.json";
+        }
+
+        private class TestLoggerWithNullResultFile : TestLogger
+        {
+            public TestLoggerWithNullResultFile()
+                : base(new JsonTestResultSerializer())
+            {
+            }
+
+            protected override string DefaultTestResultFile => string.Empty;
         }
     }
 }

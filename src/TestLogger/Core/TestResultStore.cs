@@ -3,12 +3,13 @@
 
 namespace Spekt.TestLogger.Core
 {
+    using System;
     using System.Collections.Generic;
 
     public class TestResultStore : ITestResultStore
     {
         private readonly object resultsGuard = new object();
-        private List<TestResultInfo> results;
+        private readonly List<TestResultInfo> results;
 
         public TestResultStore()
         {
@@ -17,7 +18,8 @@ namespace Spekt.TestLogger.Core
 
         public void Add(TestResultInfo result)
         {
-            throw new System.NotImplementedException();
+            this.results.Add(result);
+            throw new NotImplementedException();
         }
     }
 }
