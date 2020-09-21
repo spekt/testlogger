@@ -18,13 +18,13 @@ namespace Spekt.TestLogger.Core
 
         public ITestRunBuilder WithStore(ITestResultStore store)
         {
-            this.testRun.Store = store;
+            this.testRun.Store = store ?? throw new ArgumentNullException(nameof(store));
             return this;
         }
 
         public ITestRunBuilder WithSerializer(ITestResultSerializer serializer)
         {
-            this.testRun.Serializer = serializer;
+            this.testRun.Serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
             return this;
         }
 
@@ -41,6 +41,11 @@ namespace Spekt.TestLogger.Core
 
         public ITestRunBuilder Subscribe(TestLoggerEvents loggerEvents)
         {
+            if (loggerEvents == null)
+            {
+                throw new ArgumentNullException(nameof(loggerEvents));
+            }
+
             loggerEvents.TestRunStart += (sender, eventArgs) => this.testRun.Start(eventArgs);
             loggerEvents.TestRunMessage += (sender, eventArgs) => this.testRun.Message(eventArgs);
             loggerEvents.TestResult += (sender, eventArgs) => this.testRun.Result(eventArgs);
@@ -51,13 +56,13 @@ namespace Spekt.TestLogger.Core
 
         public ITestRunBuilder WithFileSystem(IFileSystem fileSystem)
         {
-            this.testRun.FileSystem = fileSystem;
+            this.testRun.FileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
             return this;
         }
 
         public ITestRunBuilder WithConsoleOutput(IConsoleOutput consoleOutput)
         {
-            this.testRun.ConsoleOutput = consoleOutput;
+            this.testRun.ConsoleOutput = consoleOutput ?? throw new ArgumentNullException(nameof(consoleOutput));
             return this;
         }
 
