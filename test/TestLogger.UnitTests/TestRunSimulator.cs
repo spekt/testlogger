@@ -14,17 +14,17 @@ namespace Spekt.TestLogger.UnitTests
     using Spekt.TestLogger;
     using Spekt.TestLogger.UnitTests.TestDoubles;
 
-    public class TestRunSimulator
+    public class TestRunSimulator : IDisposable
     {
         public static readonly string TestResultsDirectory = "/tmp/temp-results-dir";
 
         private TestLogger logger;
-        private DummyTestLoggerEvents loggerEvents;
+        private MockTestLoggerEvents loggerEvents;
 
         public TestRunSimulator(TestLogger logger)
         {
             this.logger = logger;
-            this.loggerEvents = new DummyTestLoggerEvents();
+            this.loggerEvents = new MockTestLoggerEvents();
         }
 
         public void Run()
@@ -49,6 +49,10 @@ namespace Spekt.TestLogger.UnitTests
             // Simulate test run completion
             var stats = new TestRunStatistics(new Dictionary<TestOutcome, long> { { TestOutcome.Passed, 1 } });
             this.loggerEvents.RaiseTestRunComplete(stats);
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
