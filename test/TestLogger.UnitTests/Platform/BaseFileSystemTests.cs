@@ -20,6 +20,62 @@ namespace Spekt.TestLogger.UnitTests.Platform
         }
 
         [TestMethod]
+        public void CreateDirectoryShouldNotCreateIfDirectoryExists()
+        {
+            var directory = Path.GetTempPath();
+
+            // Expect no exception since the directory already exists
+            this.fileSystem.CreateDirectory(directory);
+        }
+
+        [TestMethod]
+        public void CreateDirectoryShouldCreateIfDirectoryDoesNotExist()
+        {
+            var directory = GetTempDirectory("dummyDir1");
+
+            this.fileSystem.CreateDirectory(directory);
+
+            Assert.IsTrue(this.fileSystem.ExistsDirectory(directory));
+        }
+
+        [TestMethod]
+        public void ExistsDirectoryShouldReturnFalseIfDirectoryDoesNotExist()
+        {
+            var directory = GetTempDirectory("dirNotExist");
+
+            Assert.IsFalse(this.fileSystem.ExistsDirectory(directory));
+        }
+
+        [TestMethod]
+        public void ExistsDirectoryShouldReturnTrueIfDirectoryDoesExist()
+        {
+            var directory = Path.GetTempPath();
+
+            Assert.IsTrue(this.fileSystem.ExistsDirectory(directory));
+        }
+
+        [TestMethod]
+        public void RemoveDirectoryShouldNotThrowIfDirectoryDoesNotExist()
+        {
+            var directory = GetTempDirectory("doesNotExist");
+
+            this.fileSystem.RemoveDirectory(directory);
+        }
+
+        [TestMethod]
+        public void RemoveDirectoryShouldRemoveDirectoryFromFileSystem()
+        {
+            var directory = GetTempDirectory("dummyParent/dummyChild");
+            this.fileSystem.CreateDirectory(directory);
+            Assert.IsTrue(this.fileSystem.ExistsDirectory(directory));
+
+            this.fileSystem.RemoveDirectory(GetTempDirectory("dummyParent"));
+
+            Assert.IsFalse(this.fileSystem.ExistsDirectory(GetTempDirectory("dummyParent")));
+            Assert.IsFalse(this.fileSystem.ExistsDirectory(directory));
+        }
+
+        [TestMethod]
         public void ReadShouldThrowIfFileDoesNotExist()
         {
             var dummyFile = GetTempFile("dummyFileDoesNotExist.txt");
@@ -61,6 +117,12 @@ namespace Spekt.TestLogger.UnitTests.Platform
         {
             var tempDir = Path.GetTempPath();
             return Path.Combine(tempDir, fileName);
+        }
+
+        private static string GetTempDirectory(string dirName)
+        {
+            var tempDir = Path.GetTempPath();
+            return Path.Combine(tempDir, dirName);
         }
     }
 }

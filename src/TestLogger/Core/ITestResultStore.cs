@@ -3,8 +3,18 @@
 
 namespace Spekt.TestLogger.Core
 {
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Store for test run results and messages.
+    /// Thread safe implementation to allow concurrent operations.
+    /// </summary>
     public interface ITestResultStore
     {
         void Add(TestResultInfo result);
+
+        void Add(TestMessageInfo message);
+
+        void Pop(out List<TestResultInfo> results, out List<TestMessageInfo> messages);
     }
 }

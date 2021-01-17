@@ -5,6 +5,7 @@ namespace Spekt.TestLogger.Core
 {
     using System;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
+    using Spekt.TestLogger.Extensions;
     using Spekt.TestLogger.Platform;
 
     public class TestRunBuilder : ITestRunBuilder
@@ -13,7 +14,17 @@ namespace Spekt.TestLogger.Core
 
         public TestRunBuilder()
         {
-            this.testRun = new TestRun();
+            this.testRun = new TestRun
+            {
+                RunConfiguration = new TestRunConfiguration(),
+                AdapterFactory = new TestAdapterFactory()
+            };
+        }
+
+        public ITestRunBuilder WithLoggerConfiguration(LoggerConfiguration configuration)
+        {
+            this.testRun.LoggerConfiguration = configuration;
+            return this;
         }
 
         public ITestRunBuilder WithStore(ITestResultStore store)
@@ -28,17 +39,6 @@ namespace Spekt.TestLogger.Core
             return this;
         }
 
-        public ITestRunBuilder WithResultFile(string resultFilePath)
-        {
-            if (string.IsNullOrEmpty(resultFilePath))
-            {
-                throw new ArgumentNullException(nameof(resultFilePath));
-            }
-
-            this.testRun.ResultFile = resultFilePath;
-            return this;
-        }
-
         public ITestRunBuilder Subscribe(TestLoggerEvents loggerEvents)
         {
             if (loggerEvents == null)
@@ -46,10 +46,13 @@ namespace Spekt.TestLogger.Core
                 throw new ArgumentNullException(nameof(loggerEvents));
             }
 
-            loggerEvents.TestRunStart += (sender, eventArgs) => this.testRun.Start(eventArgs);
-            loggerEvents.TestRunMessage += (sender, eventArgs) => this.testRun.Message(eventArgs);
-            loggerEvents.TestResult += (sender, eventArgs) => this.testRun.Result(eventArgs);
-            loggerEvents.TestRunComplete += (sender, eventArgs) => this.testRun.Complete(eventArgs);
+            loggerEvents.TestRunStart += (_, eventArgs) =>
+            {
+                this.testRun.RunConfiguration = this.testRun.Start(eventArgs);
+            };
+            loggerEvents.TestRunMessage += (_, eventArgs) => this.testRun.Message(eventArgs);
+            loggerEvents.TestResult += (_, eventArgs) => this.testRun.Result(eventArgs);
+            loggerEvents.TestRunComplete += (_, eventArgs) => this.testRun.Complete(eventArgs);
 
             return this;
         }

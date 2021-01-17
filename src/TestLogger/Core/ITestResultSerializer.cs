@@ -3,8 +3,13 @@
 
 namespace Spekt.TestLogger.Core
 {
+    using System.Collections.Generic;
+
     public interface ITestResultSerializer
     {
-        string Serialize(ITestResultStore store);
+        string Serialize(
+            LoggerConfiguration loggerConfiguration,
+            TestRunConfiguration runConfiguration,
+            List<TestResultInfo> results);
     }
 }

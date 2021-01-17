@@ -3,32 +3,35 @@
 
 namespace Spekt.TestLogger.Core
 {
-    using System;
+    using System.Linq;
+    using System.Xml;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 
     public static class TestRunStartWorkflow
     {
-        public static void Start(this ITestRun testRun, TestRunStartEventArgs startedEvent)
+        public static TestRunConfiguration Start(this ITestRun testRun, TestRunStartEventArgs startedEvent)
         {
-#if NONE
-            if (this.outputFilePath.Contains(AssemblyToken))
-            {
-                string assemblyPath = e.TestRunCriteria.AdapterSourceMap["_none_"].First();
-                string assemblyName = Path.GetFileNameWithoutExtension(assemblyPath);
-                this.outputFilePath = this.outputFilePath.Replace(AssemblyToken, assemblyName);
-            }
+            // Extract assembly path and adapter from test run criteria
+            // TODO validate if the testcase filter or running specific tests is going to break this!
+            var assemblyPath = startedEvent.TestRunCriteria.Sources.First();
 
-            if (this.outputFilePath.Contains(FrameworkToken))
+            // Extract target framework from run settings
+            var runSettings = new XmlDocument();
+            runSettings.LoadXml(startedEvent.TestRunCriteria.TestRunSettings);
+            var framework = runSettings
+                .GetElementsByTagName("TargetFrameworkVersion")[0]
+                .InnerText;
+
+            // var framework = runSettings
+            //     .GetElementsByTagName("TargetFrameworkVersion")[0]
+            //     .InnerText
+            //     .Replace(",Version=v", string.Empty)
+            //     .Replace(".", string.Empty);
+            return new TestRunConfiguration
             {
-                XmlDocument runSettings = new XmlDocument();
-                runSettings.LoadXml(e.TestRunCriteria.TestRunSettings);
-                XmlNode x = runSettings.GetElementsByTagName("TargetFrameworkVersion")[0];
-                string framework = x.InnerText;
-                framework = framework.Replace(",Version=v", string.Empty).Replace(".", string.Empty);
-                this.outputFilePath = this.outputFilePath.Replace(FrameworkToken, framework);
-            }
-#endif
-            throw new NotImplementedException();
+                AssemblyPath = assemblyPath,
+                TargetFramework = framework
+            };
         }
     }
 }

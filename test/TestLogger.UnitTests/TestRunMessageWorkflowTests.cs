@@ -3,7 +3,6 @@
 
 namespace Spekt.TestLogger.UnitTests
 {
-    using System;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
@@ -11,12 +10,27 @@ namespace Spekt.TestLogger.UnitTests
     [TestClass]
     public class TestRunMessageWorkflowTests
     {
-        [TestMethod]
-        public void MessageShouldThrowNotImplementedException()
+        private readonly TestResultStore store;
+
+        public TestRunMessageWorkflowTests()
         {
-            var testRun = new TestRun();
-            var messageEvent = new TestRunMessageEventArgs(TestMessageLevel.Informational, "Dummy message");
-            Assert.ThrowsException<NotImplementedException>(() => testRun.Message(messageEvent));
+            this.store = new TestResultStore();
+        }
+
+        [TestMethod]
+        public void MessageShouldStoreRunMessages()
+        {
+            var testRun = new TestRunBuilder().WithStore(this.store).Build();
+            var messageEvent = new TestRunMessageEventArgs(
+                    TestMessageLevel.Informational,
+                    "Dummy message");
+
+            testRun.Message(messageEvent);
+
+            testRun.Store.Pop(out _, out var messages);
+            Assert.AreEqual(1, messages.Count);
+            Assert.AreEqual(TestMessageLevel.Informational, messages[0].Level);
+            Assert.AreEqual("Dummy message", messages[0].Message);
         }
     }
 }

@@ -3,11 +3,15 @@
 
 namespace Spekt.TestLogger.UnitTests.TestDoubles
 {
+    using System.Collections.Generic;
     using Spekt.TestLogger.Core;
 
     public class JsonTestResultSerializer : ITestResultSerializer
     {
-        public string Serialize(ITestResultStore store)
+        public string Serialize(
+            LoggerConfiguration loggerConfiguration,
+            TestRunConfiguration runConfiguration,
+            List<TestResultInfo> results)
         {
             return string.Empty;
         }

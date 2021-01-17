@@ -7,34 +7,68 @@ namespace Spekt.TestLogger.UnitTests
     using System.Collections.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
+    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.UnitTests.TestDoubles;
+    using TestResult = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult;
 
     [TestClass]
     public class TestRunCompleteWorkflowTests
     {
-        [TestMethod]
-        public void CompleteShouldCreateAnEmptyFile()
+        private readonly FakeFileSystem fileSystem;
+        private readonly ITestRun testRun;
+        private readonly TestRunCompleteEventArgs testRunCompleteEvent;
+
+        public TestRunCompleteWorkflowTests()
         {
-            var fileSystem = new FakeFileSystem();
-            var testRun = new TestRunBuilder()
-                .WithResultFile("dummyFile.json")
-                .WithFileSystem(fileSystem)
+            this.fileSystem = new FakeFileSystem();
+            this.testRun = new TestRunBuilder()
+                .WithLoggerConfiguration(new LoggerConfiguration(new() { { LoggerConfiguration.LogFilePathKey, "/tmp/results.json" } }))
+                .WithFileSystem(this.fileSystem)
+                .WithConsoleOutput(new FakeConsoleOutput())
                 .WithStore(new TestResultStore())
                 .WithSerializer(new JsonTestResultSerializer())
                 .Build();
-            var testRunCompleteEvent = new TestRunCompleteEventArgs(
+            this.testRunCompleteEvent = new TestRunCompleteEventArgs(
                 stats: new TestRunStatistics(),
                 isCanceled: false,
                 isAborted: false,
                 error: null,
                 attachmentSets: new Collection<AttachmentSet>(),
                 elapsedTime: TimeSpan.Zero);
+        }
 
-            testRun.Complete(testRunCompleteEvent);
+        [TestMethod]
+        public void CompleteShouldFreezeAndResetResultStore()
+        {
+            this.testRun.Result(new TestResultEventArgs(new TestResult(new TestCase())));
+            this.testRun.Message(new TestRunMessageEventArgs(TestMessageLevel.Informational, "dummy message"));
 
-            Assert.AreEqual(string.Empty, fileSystem.Read(testRun.ResultFile));
+            this.testRun.Complete(this.testRunCompleteEvent);
+
+            this.testRun.Store.Pop(out var results, out var messages);
+            Assert.AreEqual(0, results.Count);
+            Assert.AreEqual(0, messages.Count);
+        }
+
+        [TestMethod]
+        public void CompleteShouldWriteTestResults()
+        {
+            var source = "/tmp/test.dll";
+            var executorUri = new Uri("executor://dummy");
+            var passingResult =
+                new TestResult(new TestCase("NS.C.TM1", executorUri, source))
+                    { Outcome = TestOutcome.Passed };
+            var failingResult =
+                new TestResult(new TestCase("NS.C.TM2", executorUri, source))
+                    { Outcome = TestOutcome.Failed };
+            this.testRun.Result(new TestResultEventArgs(passingResult));
+            this.testRun.Result(new TestResultEventArgs(failingResult));
+            this.testRun.Complete(this.testRunCompleteEvent);
+
+            var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
+            Assert.AreEqual(string.Empty, this.fileSystem.Read(logFilePath));
         }
     }
 }
