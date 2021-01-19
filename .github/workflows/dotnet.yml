@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      APP_BUILD_VERSION: "2.1.$GITHUB_RUN_NUMBER" 
+      APP_BUILD_VERSION: ${{ format('2.1.{0}', github.run_number }}
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
