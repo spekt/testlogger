@@ -13,6 +13,7 @@
     <NUnitVersion>3.10.1</NUnitVersion>
     <NUnitTestAdapterVersion>3.10.0</NUnitTestAdapterVersion>
 
-    <StylecopVersion>1.2.0-beta.321</StylecopVersion>
+    <!-- Only use stable versions of stylecop -->
+    <StylecopVersion>1.1.118</StylecopVersion>
   </PropertyGroup>
 </Project>
