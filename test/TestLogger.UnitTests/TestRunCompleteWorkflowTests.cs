@@ -24,7 +24,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             this.fileSystem = new FakeFileSystem();
             this.testRun = new TestRunBuilder()
-                .WithLoggerConfiguration(new LoggerConfiguration(new() { { LoggerConfiguration.LogFilePathKey, "/tmp/results.json" } }))
+                .WithLoggerConfiguration(new LoggerConfiguration(new () { { LoggerConfiguration.LogFilePathKey, "/tmp/results.json" } }))
                 .WithFileSystem(this.fileSystem)
                 .WithConsoleOutput(new FakeConsoleOutput())
                 .WithStore(new TestResultStore())

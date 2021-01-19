@@ -17,7 +17,7 @@ namespace Spekt.TestLogger.UnitTests
     public class TestRunResultWorkflowTests
     {
         private const string DummySourceFile = "/tmp/test-project/DummyTests.cs";
-        private static readonly Uri DummyAdapterUri = new("adapter://Microsoft/TestPlatform/DummyTestAdapter");
+        private static readonly Uri DummyAdapterUri = new ("adapter://Microsoft/TestPlatform/DummyTestAdapter");
         private readonly TestResultStore testResultStore;
         private readonly TestCase dummyTestCase;
 

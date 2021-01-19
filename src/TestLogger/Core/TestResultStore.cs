@@ -7,8 +7,8 @@ namespace Spekt.TestLogger.Core
 
     public class TestResultStore : ITestResultStore
     {
-        private readonly object messageLock = new();
-        private readonly object resultLock = new();
+        private readonly object messageLock = new ();
+        private readonly object resultLock = new ();
 
         private List<TestResultInfo> results;
         private List<TestMessageInfo> messages;

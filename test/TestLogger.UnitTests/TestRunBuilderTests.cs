@@ -37,7 +37,7 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void WithLoggerConfigurationShouldSetTestLoggerConfiguration()
         {
-            var config = new LoggerConfiguration(new()
+            var config = new LoggerConfiguration(new ()
             {
                 { LoggerConfiguration.LogFilePathKey, "/tmp/results.json" },
                 { DefaultLoggerParameterNames.TestRunDirectory, "/tmp" }
