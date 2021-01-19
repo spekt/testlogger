@@ -35,4 +35,4 @@ jobs:
         files: test/TestLogger.UnitTests/coverage.opencover.xml
     - name: Publish to github packages
       if: ${{ github.event_name == 'push' }}
-      run: dotnet nuget push 'src\TestLogger\bin\Release\*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/spekt/index.json
+      run: dotnet nuget push 'src/TestLogger/bin/Release/*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/spekt/index.json
