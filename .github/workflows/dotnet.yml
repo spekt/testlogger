@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     env:
       APP_BUILD_VERSION: ${{ format('2.1.{0}', github.run_number) }}
@@ -34,3 +33,6 @@ jobs:
       uses: codecov/codecov-action@v1.2.1
       with:
         files: test/TestLogger.UnitTests/coverage.opencover.xml
+    - name: Publish to github packages
+      if: ${{ github.event_name == 'push' }}
+      run: dotnet nuget push 'src\TestLogger\bin\Release\*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/spekt/index.json
