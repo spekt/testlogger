@@ -45,6 +45,11 @@ namespace Spekt.TestLogger.Core
 
         private static void CreateResultsDirectory(IFileSystem fs, string path)
         {
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
+
             fs.CreateDirectory(path);
         }
     }

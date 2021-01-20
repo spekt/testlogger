@@ -55,6 +55,34 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void CompleteShouldWriteTestResults()
         {
+            SimulateTestResult(this.testRun);
+
+            this.testRun.Complete(this.testRunCompleteEvent);
+
+            var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
+            Assert.AreEqual(string.Empty, this.fileSystem.Read(logFilePath));
+        }
+
+        [TestMethod]
+        public void CompleteShouldWriteTestResultsForRelativeLogFilePath()
+        {
+            var testRun = new TestRunBuilder()
+                .WithLoggerConfiguration(new LoggerConfiguration(new () { { LoggerConfiguration.LogFilePathKey, "results.json" } }))
+                .WithFileSystem(this.fileSystem)
+                .WithConsoleOutput(new FakeConsoleOutput())
+                .WithStore(new TestResultStore())
+                .WithSerializer(new JsonTestResultSerializer())
+                .Build();
+            SimulateTestResult(this.testRun);
+
+            testRun.Complete(this.testRunCompleteEvent);
+
+            var logFilePath = testRun.LoggerConfiguration.LogFilePath;
+            Assert.AreEqual(string.Empty, this.fileSystem.Read(logFilePath));
+        }
+
+        private static void SimulateTestResult(ITestRun testRun)
+        {
             var source = "/tmp/test.dll";
             var executorUri = new Uri("executor://dummy");
             var passingResult =
@@ -63,12 +91,8 @@ namespace Spekt.TestLogger.UnitTests
             var failingResult =
                 new TestResult(new TestCase("NS.C.TM2", executorUri, source))
                     { Outcome = TestOutcome.Failed };
-            this.testRun.Result(new TestResultEventArgs(passingResult));
-            this.testRun.Result(new TestResultEventArgs(failingResult));
-            this.testRun.Complete(this.testRunCompleteEvent);
-
-            var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
-            Assert.AreEqual(string.Empty, this.fileSystem.Read(logFilePath));
+            testRun.Result(new TestResultEventArgs(passingResult));
+            testRun.Result(new TestResultEventArgs(failingResult));
         }
     }
 }
