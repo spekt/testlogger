@@ -23,7 +23,7 @@ namespace Spekt.TestLogger.Core
                 var executorUri = transformedResults[0]
                     .TestCase.ExecutorUri?.ToString();
                 var adapter = testRun.AdapterFactory.CreateTestAdapter(executorUri);
-                transformedResults = adapter?.TransformResults(results, messages);
+                transformedResults = adapter.TransformResults(results, messages);
             }
 
             // Prepare test results file from logger configuration

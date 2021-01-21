@@ -21,7 +21,27 @@ namespace Spekt.TestLogger.UnitTests
         }
 
         [TestMethod]
-        public void EqualsOnlyComparesErrorInformation()
+        public void EqualsShouldReturnFalseForNonTestResultInfoObject()
+        {
+            var result = new TestResult(new TestCase());
+            var resultInfo = new TestResultInfo(result, string.Empty, string.Empty, string.Empty);
+
+            Assert.IsFalse(resultInfo.Equals(new ()));
+        }
+
+        [TestMethod]
+        public void EqualsShouldReturnFalseIfErrorMessageOrStackTraceDoNotMatch()
+        {
+            var result1 = new TestResult(new TestCase()) { ErrorMessage = "error 1" };
+            var result2 = new TestResult(new TestCase()) { ErrorMessage = "error 2" };
+            var r1 = new TestResultInfo(result1, string.Empty, string.Empty, string.Empty);
+            var r2 = new TestResultInfo(result2, string.Empty, string.Empty, string.Empty);
+
+            Assert.IsFalse(r1.Equals(r2));
+        }
+
+        [TestMethod]
+        public void EqualsShouldReturnTrueIfErrorMessageAndStackTraceMatch()
         {
             var result = new TestResult(new TestCase());
             var r1 = new TestResultInfo(result, string.Empty, string.Empty, string.Empty);

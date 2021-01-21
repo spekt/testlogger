@@ -3,14 +3,11 @@
 
 namespace Spekt.TestLogger.Core
 {
-    using System;
     using Spekt.TestLogger.Extensions;
     using Spekt.TestLogger.Platform;
 
     public class TestRun : ITestRun
     {
-        public string ResultFile { get; internal set; }
-
         public LoggerConfiguration LoggerConfiguration { get; internal set; }
 
         public TestRunConfiguration RunConfiguration { get; internal set; }

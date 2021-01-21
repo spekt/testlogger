@@ -14,7 +14,7 @@ namespace Spekt.TestLogger.UnitTests
         [DataTestMethod]
         [DataRow("z.a.b", "z", "a", "b")]
 
-        // Cover all expected cases of different parentesis locations, handling normal strings
+        // Cover all expected cases of different parenthesis locations, handling normal strings
         [DataRow("z.y.x.a.b(\"arg\",2)", "z.y.x", "a", "b(\"arg\",2)")]
         [DataRow("z.y.x.a(\"arg\",2).b", "z.y.x", "a(\"arg\",2)", "b")]
         [DataRow("z.y.x.a(\"arg\",2).b(\"arg\",2)", "z.y.x", "a(\"arg\",2)", "b(\"arg\",2)")]
@@ -36,10 +36,8 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.a.b((\"arg\",1))", "z", "a", "b((\"arg\",1))")]
         [DataRow("z.a.b((0,1),(2,3))", "z", "a", "b((0,1),(2,3))")]
         [DataRow("z.a.b((0,(0,1)),(0,1))", "z", "a", "b((0,(0,1)),(0,1))")]
-        public void Parse_ParsesAllParsableInputs_WithoutConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
+        public void Parse_ParsesAllParseableInputs_WithoutConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
         {
-            var expected = new Tuple<string, string>(expectedType, expectedMethod);
-
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
@@ -62,7 +60,7 @@ namespace Spekt.TestLogger.UnitTests
 
         // Examples with period in non string
         [DataRow("a.b(0.5f)", TestCaseNameParser.TestCaseParserUnknownNamespace, "a", "b(0.5f)")]
-        public void Parse_ParsesAllParsableInputsWithoutNamespace_WithConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
+        public void Parse_ParsesAllParseableInputsWithoutNamespace_WithConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
         {
             var expectedConsole = string.Format(
                     TestCaseNameParser.TestCaseParserErrorTemplate,
@@ -88,6 +86,7 @@ namespace Spekt.TestLogger.UnitTests
         [DataTestMethod]
         [DataRow("x.()x()")]
         [DataRow("x")]
+        [DataRow("..Z")]
         [DataRow("z.y.X(x")]
         [DataRow("z.y.x(")]
         [DataRow("z.y.X\"x")]
@@ -104,7 +103,7 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.a.b((0,1)))")]
         [DataRow("z.a.b((0,(0,1))")]
         [DataRow("z.a.b((0,(0,1))))")]
-        public void Parse_FailsGracefullyOnNonParsableInputs_WithConsoleOutput(string testCaseName)
+        public void Parse_FailsGracefullyOnNonParseableInputs_WithConsoleOutput(string testCaseName)
         {
             var expectedConsole = string.Format(
                 TestCaseNameParser.TestCaseParserErrorTemplate,

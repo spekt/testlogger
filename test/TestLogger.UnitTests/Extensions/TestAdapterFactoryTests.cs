@@ -6,6 +6,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Extensions;
 
+    [TestClass]
     public class TestAdapterFactoryTests
     {
         [TestMethod]
