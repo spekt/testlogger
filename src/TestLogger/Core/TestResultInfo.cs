@@ -11,12 +11,6 @@ namespace Spekt.TestLogger.Core
     {
         private readonly TestResult result;
 
-        public TestResultInfo(TestResult result)
-        {
-            this.result = result;
-        }
-
-#if NONE
         public TestResultInfo(
             TestResult result,
             string @namespace,
@@ -66,17 +60,13 @@ namespace Spekt.TestLogger.Core
 
         public override bool Equals(object obj)
         {
-            if (obj is TestResultInfo objectToCompare)
+            if (obj is not TestResultInfo objectToCompare)
             {
-                if (string.Compare(this.ErrorMessage, objectToCompare.ErrorMessage) == 0
-                    && string.Compare(this.ErrorStackTrace, objectToCompare.ErrorStackTrace) == 0)
-                {
-                    return true;
-                }
+                return false;
             }
 
-            return false;
+            return string.Compare(this.ErrorMessage, objectToCompare.ErrorMessage, StringComparison.CurrentCulture) == 0
+                   && string.Compare(this.ErrorStackTrace, objectToCompare.ErrorStackTrace, StringComparison.CurrentCulture) == 0;
         }
-#endif
     }
 }

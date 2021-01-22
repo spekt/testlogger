@@ -3,23 +3,51 @@
 
 namespace Spekt.TestLogger.Core
 {
-    using System;
     using System.Collections.Generic;
 
     public class TestResultStore : ITestResultStore
     {
-        private readonly object resultsGuard = new object();
-        private readonly List<TestResultInfo> results;
+        private readonly object messageLock = new ();
+        private readonly object resultLock = new ();
+
+        private List<TestResultInfo> results;
+        private List<TestMessageInfo> messages;
 
         public TestResultStore()
         {
             this.results = new List<TestResultInfo>();
+            this.messages = new List<TestMessageInfo>();
         }
 
         public void Add(TestResultInfo result)
         {
-            this.results.Add(result);
-            throw new NotImplementedException();
+            lock (this.resultLock)
+            {
+                this.results.Add(result);
+            }
+        }
+
+        public void Add(TestMessageInfo message)
+        {
+            lock (this.messageLock)
+            {
+                this.messages.Add(message);
+            }
+        }
+
+        public void Pop(out List<TestResultInfo> results, out List<TestMessageInfo> messages)
+        {
+            lock (this.resultLock)
+            {
+                results = this.results;
+                this.results = new List<TestResultInfo>();
+            }
+
+            lock (this.messageLock)
+            {
+                messages = this.messages;
+                this.messages = new List<TestMessageInfo>();
+            }
         }
     }
 }

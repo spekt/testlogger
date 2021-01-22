@@ -8,11 +8,11 @@ namespace Spekt.TestLogger.Core
 
     public interface ITestRunBuilder
     {
+        ITestRunBuilder WithLoggerConfiguration(LoggerConfiguration configuration);
+
         ITestRunBuilder WithStore(ITestResultStore store);
 
         ITestRunBuilder WithSerializer(ITestResultSerializer serializer);
-
-        ITestRunBuilder WithResultFile(string resultFilePath);
 
         ITestRunBuilder Subscribe(TestLoggerEvents loggerEvents);
 

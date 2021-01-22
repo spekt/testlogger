@@ -3,51 +3,54 @@
 
 namespace Spekt.TestLogger.Core
 {
-    using System;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
+    using Spekt.TestLogger.Platform;
 
     public static class TestRunCompleteWorkflow
     {
         public static void Complete(this ITestRun testRun, TestRunCompleteEventArgs completeEvent)
         {
-            // Workflow - serialize and persist the test results
-            //    Input - result store, persisted file
-            //    Output - void - side effect results are persisted
-            //
-            //    if result store is empty -> return
-            //    serialize store into relevant string
-            //    write the serialized string to file
-            //    show a message on console
-            testRun.FileSystem.Write(testRun.ResultFile, testRun.Serializer.Serialize(testRun.Store));
-    #if NONE
-            List<string> resultList;
-            lock (this.resultsGuard)
+            // Freeze and reset the test result store
+            testRun.Store.Pop(out var results, out var messages);
+
+            // Transform the results with adapter specific hooks
+            var transformedResults = results;
+            if (transformedResults.Any())
             {
-                resultList = this.results;
-                this.results = new List<string>();
+                var executorUri = transformedResults[0]
+                    .TestCase.ExecutorUri?.ToString();
+                var adapter = testRun.AdapterFactory.CreateTestAdapter(executorUri);
+                transformedResults = adapter.TransformResults(results, messages);
             }
 
-            // Workflow
-            // var completeRunWorkflow = TestRunCompleteWorkflow()
-            //     .withStore(testStore)
-            //     .withSerializer(resultSerializer)
-            //     .serialize()
-            //     .write(resultPath);
+            // Prepare test results file from logger configuration
+            var logFilePath = testRun.LoggerConfiguration
+                .GetFormattedLogFilePath(testRun.RunConfiguration);
+            CreateResultsDirectory(testRun.FileSystem, Path.GetDirectoryName(logFilePath));
 
-            // Create directory if not exist
-            var loggerFileDirPath = Path.GetDirectoryName(this.outputFilePath);
-            if (!Directory.Exists(loggerFileDirPath))
+            var content = testRun.Serializer.Serialize(
+                testRun.LoggerConfiguration,
+                testRun.RunConfiguration,
+                transformedResults);
+            testRun.FileSystem.Write(logFilePath, content);
+
+            testRun.ConsoleOutput.WriteMessage(string.Format(
+                CultureInfo.CurrentCulture,
+                "Results File: {0}",
+                logFilePath));
+        }
+
+        private static void CreateResultsDirectory(IFileSystem fs, string path)
+        {
+            if (string.IsNullOrEmpty(path))
             {
-                Directory.CreateDirectory(loggerFileDirPath);
+                return;
             }
 
-            using (var f = File.Create(this.outputFilePath))
-            {
-            }
-
-            var resultsFileMessage = string.Format(CultureInfo.CurrentCulture, "Results File: {0}", this.outputFilePath);
-            Console.WriteLine(resultsFileMessage);
-#endif
+            fs.CreateDirectory(path);
         }
     }
 }

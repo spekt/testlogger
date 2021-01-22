@@ -8,6 +8,29 @@ namespace Spekt.TestLogger.Platform
 
     public class FileSystem : IFileSystem
     {
+        public void CreateDirectory(string path)
+        {
+            if (this.ExistsDirectory(path))
+            {
+                return;
+            }
+
+            Directory.CreateDirectory(path);
+        }
+
+        public bool ExistsDirectory(string path)
+        {
+            return Directory.Exists(path);
+        }
+
+        public void RemoveDirectory(string path)
+        {
+            if (this.ExistsDirectory(path))
+            {
+                Directory.Delete(path, recursive: true);
+            }
+        }
+
         public string Read(string path)
         {
             if (!File.Exists(path))

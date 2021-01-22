@@ -5,15 +5,38 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
     using Spekt.TestLogger.Platform;
 
     public class FakeFileSystem : IFileSystem
     {
         private readonly Dictionary<string, string> files;
+        private readonly HashSet<string> directories;
 
         public FakeFileSystem()
         {
             this.files = new Dictionary<string, string>();
+            this.directories = new HashSet<string> { Path.GetTempPath() };
+        }
+
+        public void CreateDirectory(string path)
+        {
+            this.directories.Add(path);
+        }
+
+        public bool ExistsDirectory(string path)
+        {
+            return this.directories.Contains(path);
+        }
+
+        public void RemoveDirectory(string path)
+        {
+            // Remove all paths which could be children of provided path
+            foreach (var p in this.directories.Where(p => p.StartsWith(path)).ToList())
+            {
+                this.directories.Remove(p);
+            }
         }
 
         public string Read(string path)

@@ -26,6 +26,9 @@
 
     <!-- Show full paths for the warnings and errors -->
     <GenerateFullPaths>true</GenerateFullPaths>
+
+    <!-- Use C# 9.0 -->
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

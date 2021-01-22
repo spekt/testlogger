@@ -9,6 +9,25 @@ namespace Spekt.TestLogger.Platform
     public interface IFileSystem
     {
         /// <summary>
+        /// Creates a directory recursively if not exists.
+        /// </summary>
+        /// <param name="path">Directory path.</param>
+        void CreateDirectory(string path);
+
+        /// <summary>
+        /// Return true if a Directory exists on the file system.
+        /// </summary>
+        /// <param name="path">Directory path.</param>
+        /// <returns>True if the directory exists.</returns>
+        bool ExistsDirectory(string path);
+
+        /// <summary>
+        /// Removes a directory.
+        /// </summary>
+        /// <param name="path">Directory path.</param>
+        void RemoveDirectory(string path);
+
+        /// <summary>
         /// Read the contents of given file path.
         /// </summary>
         /// <param name="path">Valid file path.</param>

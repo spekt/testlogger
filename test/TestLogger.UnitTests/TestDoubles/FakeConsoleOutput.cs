@@ -3,18 +3,23 @@
 
 namespace Spekt.TestLogger.UnitTests.TestDoubles
 {
+    using System.Collections.Generic;
     using Spekt.TestLogger.Platform;
 
     public class FakeConsoleOutput : IConsoleOutput
     {
+        private readonly List<(string, string)> messages;
+
+        public FakeConsoleOutput() => this.messages = new List<(string, string)>();
+
         public void WriteMessage(string message)
         {
-            throw new System.NotImplementedException();
+            this.messages.Add(("stdout", message));
         }
 
         public void WriteError(string message)
         {
-            throw new System.NotImplementedException();
+            this.messages.Add(("stderr", message));
         }
     }
 }

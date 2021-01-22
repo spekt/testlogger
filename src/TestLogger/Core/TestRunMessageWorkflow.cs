@@ -3,14 +3,13 @@
 
 namespace Spekt.TestLogger.Core
 {
-    using System;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
     public static class TestRunMessageWorkflow
     {
         public static void Message(this ITestRun testRun, TestRunMessageEventArgs messageEvent)
         {
-            throw new NotImplementedException();
+            testRun.Store.Add(new TestMessageInfo { Level = messageEvent.Level, Message = messageEvent.Message });
         }
     }
 }

@@ -9,9 +9,9 @@ namespace TestLogger.AcceptanceTests
 
     public static class DotnetTestFixture
     {
-        private const string NetcoreVersion = "netcoreapp3.0";
+        private const string NetcoreVersion = "netcoreapp3.1";
 
-        public static string RootDirectory { get; set; } = Path.GetFullPath(
+        public static string RootDirectory { get; } = Path.GetFullPath(
                     Path.Combine(
                         Environment.CurrentDirectory,
                         "..",
@@ -21,7 +21,7 @@ namespace TestLogger.AcceptanceTests
                         "assets",
                         "Json.TestLogger.NetCore.Tests"));
 
-        public static string TestAssemblyName { get; set; } = "Json.TestLogger.NetCore.Tests.dll";
+        public static string TestAssemblyName { get; } = "Json.TestLogger.NetCore.Tests.dll";
 
         public static string TestAssembly
         {
@@ -46,7 +46,7 @@ namespace TestLogger.AcceptanceTests
 
             // Strip out tokens
             var sanitizedResultFile = System.Text.RegularExpressions.Regex.Replace(resultsFile, @"{.*}\.*", string.Empty);
-            foreach (string fileName in Directory.GetFiles(testProject))
+            foreach (var fileName in Directory.GetFiles(testProject))
             {
                 if (fileName.Contains("test-results.json"))
                 {
@@ -65,22 +65,25 @@ namespace TestLogger.AcceptanceTests
             Console.WriteLine();
 
             // Run dotnet test with logger
-            using (var p = new Process())
+            using var dotnet = new Process
             {
-                p.StartInfo.UseShellExecute = false;
-                p.StartInfo.RedirectStandardOutput = true;
-                p.StartInfo.FileName = "dotnet";
-                p.StartInfo.Arguments = $"test --no-build {testLogger} {testProject}";
-                p.Start();
+                StartInfo =
+                {
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    FileName = "dotnet",
+                    Arguments = $"test --no-build {testLogger} {testProject}"
+                }
+            };
+            dotnet.Start();
 
-                Console.WriteLine("dotnet arguments: " + p.StartInfo.Arguments);
+            Console.WriteLine("dotnet arguments: " + dotnet.StartInfo.Arguments);
 
-                // To avoid deadlocks, always read the output stream first and then wait.
-                string output = p.StandardOutput.ReadToEnd();
-                p.WaitForExit();
-                Console.WriteLine("dotnet output: " + output);
-                Console.WriteLine("------------");
-            }
+            // To avoid deadlocks, always read the output stream first and then wait.
+            var output = dotnet.StandardOutput.ReadToEnd();
+            dotnet.WaitForExit();
+            Console.WriteLine("dotnet output: " + output);
+            Console.WriteLine("------------");
         }
     }
 }

@@ -3,26 +3,18 @@
 
 namespace Spekt.TestLogger.Core
 {
-    using System;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
     public static class TestRunResultWorkflow
     {
         public static void Result(this ITestRun testRun, TestResultEventArgs resultEvent)
         {
-            testRun.Store.Add(new TestResultInfo(resultEvent.Result));
-#if NONE
-            if (TryParseName(result.TestCase.FullyQualifiedName, out var typeName, out var methodName, out _))
-            {
-                lock (this.resultsGuard)
-                {
-                    this.results.Add(new TestResultInfo(
-                        result,
-                        typeName,
-                        methodName));
-                }
-            }
-#endif
+            var parsedName = TestCaseNameParser.Parse(resultEvent.Result.TestCase.FullyQualifiedName);
+            testRun.Store.Add(new TestResultInfo(
+                resultEvent.Result,
+                parsedName.NamespaceName,
+                parsedName.TypeName,
+                parsedName.MethodName));
         }
     }
 }

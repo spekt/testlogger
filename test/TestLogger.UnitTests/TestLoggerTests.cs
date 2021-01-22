@@ -10,7 +10,6 @@ namespace Spekt.TestLogger.UnitTests
 
     using Spekt.TestLogger;
     using Spekt.TestLogger.Core;
-    using Spekt.TestLogger.Platform;
     using Spekt.TestLogger.UnitTests.TestDoubles;
 
     [TestClass]
@@ -62,7 +61,7 @@ namespace Spekt.TestLogger.UnitTests
         public void TestLoggerInitializeWithNullDefaultResultFileShouldThrow()
         {
             var testLogger = new TestLoggerWithNullResultFile();
-            Assert.ThrowsException<ArgumentException>(() =>
+            Assert.ThrowsException<ArgumentNullException>(() =>
                 testLogger.Initialize(new MockTestLoggerEvents(), string.Empty));
         }
 
@@ -115,7 +114,7 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void TestLoggerInitializeWithParametersShouldThrowIfLogFilePathIsNull()
         {
-            this.loggerParams[TestLogger.LogFilePathKey] = null;
+            this.loggerParams[LoggerConfiguration.LogFilePathKey] = null;
             this.loggerParams[DefaultLoggerParameterNames.TestRunDirectory] = this.resultsPath;
 
             Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, this.loggerParams));
@@ -124,7 +123,7 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void TestLoggerInitializeWithParametersLogFilePathShouldSubscribeToRunEvents()
         {
-            this.loggerParams[TestLogger.LogFilePathKey] = this.resultsPath;
+            this.loggerParams[LoggerConfiguration.LogFilePathKey] = this.resultsPath;
 
             this.logger.Initialize(this.mockEvents, this.loggerParams);
 

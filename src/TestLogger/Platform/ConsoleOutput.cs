@@ -3,16 +3,18 @@
 
 namespace Spekt.TestLogger.Platform
 {
+    using System;
+
     public class ConsoleOutput : IConsoleOutput
     {
         public void WriteMessage(string message)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine(message);
         }
 
         public void WriteError(string message)
         {
-            throw new System.NotImplementedException();
+            Console.Error.WriteLine(message);
         }
     }
 }

@@ -16,8 +16,6 @@ namespace Spekt.TestLogger
     /// </summary>
     public abstract class TestLogger : ITestLoggerWithParameters
     {
-        public const string LogFilePathKey = "LogFilePath";
-
         private readonly IFileSystem fileSystem;
         private readonly IConsoleOutput consoleOutput;
         private readonly ITestResultStore resultStore;
@@ -59,9 +57,13 @@ namespace Spekt.TestLogger
                 throw new ArgumentNullException(nameof(testResultsDirPath));
             }
 
-            var outputPath = Path.Combine(testResultsDirPath, this.DefaultTestResultFile);
+            var config = new Dictionary<string, string>
+            {
+                { DefaultLoggerParameterNames.TestRunDirectory, testResultsDirPath },
+                { LoggerConfiguration.LogFilePathKey, Path.Combine(testResultsDirPath, this.DefaultTestResultFile) }
+            };
 
-            this.CreateTestRun(events, outputPath);
+            this.CreateTestRun(events, new LoggerConfiguration(config));
         }
 
         /// <inheritdoc />
@@ -78,28 +80,26 @@ namespace Spekt.TestLogger
                 throw new ArgumentNullException(nameof(parameters));
             }
 
-            if (parameters.TryGetValue(LogFilePathKey, out var outputPath))
+            var config = new Dictionary<string, string>(parameters);
+
+            // Set the default log file name if not provided by user
+            if (!config.ContainsKey(LoggerConfiguration.LogFilePathKey) &&
+                !config.ContainsKey(LoggerConfiguration.LogFileNameKey))
             {
-                this.CreateTestRun(events, outputPath);
+                config[LoggerConfiguration.LogFileNameKey] = this.DefaultTestResultFile;
             }
-            else if (parameters.TryGetValue(DefaultLoggerParameterNames.TestRunDirectory, out var outputDir))
-            {
-                this.Initialize(events, outputDir);
-            }
-            else
-            {
-                throw new ArgumentException($"Expected {LogFilePathKey} or {DefaultLoggerParameterNames.TestRunDirectory} parameter", nameof(parameters));
-            }
+
+            this.CreateTestRun(events, new LoggerConfiguration(config));
         }
 
-        private void CreateTestRun(TestLoggerEvents events, string outputPath)
+        private void CreateTestRun(TestLoggerEvents events, LoggerConfiguration config)
         {
             this.testRun = new TestRunBuilder()
+                .WithLoggerConfiguration(config)
                 .WithFileSystem(this.fileSystem)
                 .WithConsoleOutput(this.consoleOutput)
                 .WithStore(this.resultStore)
                 .WithSerializer(this.resultSerializer)
-                .WithResultFile(Path.GetFullPath(outputPath))
                 .Subscribe(events)
                 .Build();
         }

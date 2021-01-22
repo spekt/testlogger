@@ -4,6 +4,7 @@
 namespace Spekt.TestLogger.UnitTests
 {
     using System;
+    using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
 
@@ -18,6 +19,36 @@ namespace Spekt.TestLogger.UnitTests
         }
 
         [TestMethod]
+        public void TestRunBuilderShouldCreateDefaultRunConfiguration()
+        {
+            var run = this.testRunBuilder.Build();
+
+            Assert.IsNotNull(run.RunConfiguration);
+        }
+
+        [TestMethod]
+        public void TestRunBuilderShouldCreateDefaultTestAdapterFactory()
+        {
+            var run = this.testRunBuilder.Build();
+
+            Assert.IsNotNull(run.AdapterFactory);
+        }
+
+        [TestMethod]
+        public void WithLoggerConfigurationShouldSetTestLoggerConfiguration()
+        {
+            var config = new LoggerConfiguration(new ()
+            {
+                { LoggerConfiguration.LogFilePathKey, "/tmp/results.json" },
+                { DefaultLoggerParameterNames.TestRunDirectory, "/tmp" }
+            });
+
+            var run = this.testRunBuilder.WithLoggerConfiguration(config).Build();
+
+            Assert.AreSame(config, run.LoggerConfiguration);
+        }
+
+        [TestMethod]
         public void WithStoreShouldThrowForNullTestResultStore()
         {
             Assert.ThrowsException<ArgumentNullException>(() => this.testRunBuilder.WithStore(null));
@@ -27,14 +58,6 @@ namespace Spekt.TestLogger.UnitTests
         public void WithSerializerShouldThrowForNullTestResultSerializer()
         {
             Assert.ThrowsException<ArgumentNullException>(() => this.testRunBuilder.WithSerializer(null));
-        }
-
-        [DataTestMethod]
-        [DataRow("")]
-        [DataRow(null)]
-        public void WithResultFileShouldThrowForNullOrEmptyFileName(string fileName)
-        {
-            Assert.ThrowsException<ArgumentNullException>(() => this.testRunBuilder.WithResultFile(fileName));
         }
 
         [TestMethod]
