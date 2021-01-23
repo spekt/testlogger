@@ -4,13 +4,17 @@
 namespace Spekt.TestLogger.UnitTests
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Newtonsoft.Json;
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.UnitTests.TestDoubles;
+    using JsonSerializer = System.Text.Json.JsonSerializer;
     using TestResult = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult;
 
     [TestClass]
@@ -40,6 +44,17 @@ namespace Spekt.TestLogger.UnitTests
         }
 
         [TestMethod]
+        public void CompleteShouldUpdateTestRunCompleteTimestamp()
+        {
+            this.testRun.Result(new TestResultEventArgs(new TestResult(new TestCase())));
+            this.testRun.Message(new TestRunMessageEventArgs(TestMessageLevel.Informational, "dummy message"));
+
+            this.testRun.Complete(this.testRunCompleteEvent);
+
+            Assert.AreEqual(DateTime.Now.Date, this.testRun.RunConfiguration.EndTime.ToLocalTime().Date);
+        }
+
+        [TestMethod]
         public void CompleteShouldFreezeAndResetResultStore()
         {
             this.testRun.Result(new TestResultEventArgs(new TestResult(new TestCase())));
@@ -60,7 +75,21 @@ namespace Spekt.TestLogger.UnitTests
             this.testRun.Complete(this.testRunCompleteEvent);
 
             var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
-            Assert.AreEqual(string.Empty, this.fileSystem.Read(logFilePath));
+            Assert.IsFalse(string.IsNullOrEmpty(this.fileSystem.Read(logFilePath)));
+        }
+
+        [TestMethod]
+        public void CompleteShouldSerializeTestResults()
+        {
+            SimulateTestResult(this.testRun);
+
+            this.testRun.Complete(this.testRunCompleteEvent);
+
+            var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
+            var results = JsonSerializer.Deserialize<List<JsonTestResultSerializer.TestAssembly>>(this.fileSystem.Read(logFilePath), null);
+            Assert.AreEqual("/tmp/test.dll", results[0].Name);
+            Assert.AreEqual("C", results[0].Fixtures.First().Name);
+            Assert.AreEqual(2, results[0].Fixtures.First().Tests.Count());
         }
 
         [TestMethod]
@@ -78,7 +107,7 @@ namespace Spekt.TestLogger.UnitTests
             testRun.Complete(this.testRunCompleteEvent);
 
             var logFilePath = testRun.LoggerConfiguration.LogFilePath;
-            Assert.AreEqual(string.Empty, this.fileSystem.Read(logFilePath));
+            Assert.IsFalse(string.IsNullOrEmpty(this.fileSystem.Read(logFilePath)));
         }
 
         private static void SimulateTestResult(ITestRun testRun)

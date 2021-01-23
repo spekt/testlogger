@@ -3,6 +3,7 @@
 
 namespace Spekt.TestLogger.Core
 {
+    using System;
     using System.Linq;
     using System.Xml;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
@@ -22,15 +23,11 @@ namespace Spekt.TestLogger.Core
                 .GetElementsByTagName("TargetFrameworkVersion")[0]
                 .InnerText;
 
-            // var framework = runSettings
-            //     .GetElementsByTagName("TargetFrameworkVersion")[0]
-            //     .InnerText
-            //     .Replace(",Version=v", string.Empty)
-            //     .Replace(".", string.Empty);
             return new TestRunConfiguration
             {
                 AssemblyPath = assemblyPath,
-                TargetFramework = framework
+                TargetFramework = framework,
+                StartTime = DateTime.UtcNow
             };
         }
     }

@@ -3,6 +3,7 @@
 
 namespace Spekt.TestLogger.Core
 {
+    using System;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -13,6 +14,9 @@ namespace Spekt.TestLogger.Core
     {
         public static void Complete(this ITestRun testRun, TestRunCompleteEventArgs completeEvent)
         {
+            // Update the test run complete timestamp
+            testRun.RunConfiguration.EndTime = DateTime.UtcNow;
+
             // Freeze and reset the test result store
             testRun.Store.Pop(out var results, out var messages);
 
