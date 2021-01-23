@@ -3,6 +3,8 @@
 
 namespace Spekt.TestLogger.Core
 {
+    using System;
+
     /// <summary>
     /// Configuration for the Test Run.
     /// </summary>
@@ -15,5 +17,15 @@ namespace Spekt.TestLogger.Core
         public string AssemblyPath { get; init; }
 
         public string TargetFramework { get; init; }
+
+        /// <summary>
+        /// Gets the start timestamp of test run (test run start event) in UTC.
+        /// </summary>
+        public DateTime StartTime { get; init; }
+
+        /// <summary>
+        /// Gets the end timestamp of test run (test run complete event) in UTC.
+        /// </summary>
+        public DateTime EndTime { get; internal set; }
     }
 }

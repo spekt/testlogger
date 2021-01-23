@@ -3,6 +3,7 @@
 
 namespace Spekt.TestLogger.UnitTests
 {
+    using System;
     using System.Collections.Generic;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -61,6 +62,18 @@ namespace Spekt.TestLogger.UnitTests
         }
 
         [TestMethod]
+        public void StartShouldRecordStartTimeOfTestRun()
+        {
+            var startedEvent = new TestRunStartEventArgs(this.testRunCriteria);
+
+            var config = this.testRun.Start(startedEvent);
+
+            Assert.AreEqual(
+                DateTime.Now.Date,
+                config.StartTime.ToLocalTime().Date);
+        }
+
+        [TestMethod]
         public void StartShouldUpdateTestRunConfiguration()
         {
             var loggerEvents = new MockTestLoggerEvents();
@@ -71,6 +84,7 @@ namespace Spekt.TestLogger.UnitTests
             Assert.IsNotNull(run.RunConfiguration);
             Assert.AreEqual("/tmp/test.dll", run.RunConfiguration.AssemblyPath);
             Assert.AreEqual(".NETCoreApp,Version=v5.0", run.RunConfiguration.TargetFramework);
+            Assert.IsNotNull(run.RunConfiguration.StartTime);
         }
     }
 }

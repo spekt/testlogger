@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      APP_BUILD_VERSION: ${{ format('2.1.{0}', github.run_number) }}
+      APP_BUILD_VERSION: ${{ format('3.0.{0}', github.run_number) }}
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET 5.0
