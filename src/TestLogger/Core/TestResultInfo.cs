@@ -4,7 +4,7 @@
 namespace Spekt.TestLogger.Core
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
     public sealed class TestResultInfo
@@ -49,7 +49,7 @@ namespace Spekt.TestLogger.Core
 
         public string ErrorStackTrace => this.result.ErrorStackTrace;
 
-        public IReadOnlyCollection<TestResultMessage> Messages => this.result.Messages;
+        public Collection<TestResultMessage> Messages => this.result.Messages;
 
         public TraitCollection Traits => this.result.Traits;
 
