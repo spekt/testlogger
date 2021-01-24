@@ -10,8 +10,8 @@ namespace Spekt.TestLogger.Core
     /// </summary>
     public class TestMessageInfo
     {
-        public TestMessageLevel Level { get; internal set; }
+        public TestMessageLevel Level { get; set; }
 
-        public string Message { get; internal set; }
+        public string Message { get; set; }
     }
 }
