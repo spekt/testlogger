@@ -46,7 +46,7 @@ namespace Spekt.TestLogger.Platform
 
         public void Write(string path, string content)
         {
-            using (var writer = new StreamWriter(new FileStream(path, FileMode.OpenOrCreate)))
+            using (var writer = new StreamWriter(new FileStream(path, FileMode.Create)))
             {
                 writer.Write(content);
             }

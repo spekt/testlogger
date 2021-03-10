@@ -103,6 +103,17 @@ namespace Spekt.TestLogger.UnitTests.Platform
         }
 
         [TestMethod]
+        public void WriteShouldOverwriteFileWithContent()
+        {
+            var dummyFile = GetTempFile("dummyFile.txt");
+            this.fileSystem.Write(dummyFile, "Dummy content extra");
+
+            this.fileSystem.Write(dummyFile, "Dummy content");
+
+            Assert.AreEqual("Dummy content", this.fileSystem.Read(dummyFile));
+        }
+
+        [TestMethod]
         public void DeleteShouldRemoveTheFile()
         {
             var dummyFile = GetTempFile("dummyDeleteFile.txt");
