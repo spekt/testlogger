@@ -39,7 +39,8 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
         public string Serialize(
             LoggerConfiguration loggerConfiguration,
             TestRunConfiguration runConfiguration,
-            List<TestResultInfo> results)
+            List<TestResultInfo> results,
+            List<TestMessageInfo> messages)
         {
             var res = from r in results
                 group r by r.AssemblyPath
