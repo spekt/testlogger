@@ -57,6 +57,10 @@ namespace TestLogger.AcceptanceTests
             // Log the contents of test output directory. Useful to verify if the logger is copied
             Console.WriteLine("------------");
             Console.WriteLine("Contents of test output directory:");
+
+            // Create directory so test does not fail under windows.
+            Directory.CreateDirectory(Path.Combine(testProject, $"bin/Debug/{NetcoreVersion}"));
+
             foreach (var f in Directory.GetFiles(Path.Combine(testProject, $"bin/Debug/{NetcoreVersion}")))
             {
                 Console.WriteLine("  " + f);
