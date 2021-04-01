@@ -36,12 +36,16 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
     /// </remarks>
     public class JsonTestResultSerializer : ITestResultSerializer
     {
+        public List<TestMessageInfo> TestMessages { get; set; }
+
         public string Serialize(
             LoggerConfiguration loggerConfiguration,
             TestRunConfiguration runConfiguration,
             List<TestResultInfo> results,
             List<TestMessageInfo> messages)
         {
+            this.TestMessages = messages;
+
             var res = from r in results
                 group r by r.AssemblyPath
                 into assemblies

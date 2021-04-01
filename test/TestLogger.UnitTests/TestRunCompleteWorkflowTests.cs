@@ -110,6 +110,29 @@ namespace Spekt.TestLogger.UnitTests
             Assert.IsFalse(string.IsNullOrEmpty(this.fileSystem.Read(logFilePath)));
         }
 
+        [TestMethod]
+        public void CompleteShouldPassAllMessagesToSeralizer()
+        {
+            var seralizer = new JsonTestResultSerializer();
+
+            var messageTestRun = new TestRunBuilder()
+                .WithLoggerConfiguration(new LoggerConfiguration(new () { { LoggerConfiguration.LogFilePathKey, "results.json" } }))
+                .WithFileSystem(this.fileSystem)
+                .WithConsoleOutput(new FakeConsoleOutput())
+                .WithStore(new TestResultStore())
+                .WithSerializer(seralizer)
+                .Build();
+            SimulateTestResult(messageTestRun);
+
+            messageTestRun.Complete(this.testRunCompleteEvent);
+
+            var expectedMessages = TestRunMessageEventArgs();
+            Assert.AreEqual(expectedMessages.Count, seralizer.TestMessages.Count);
+            expectedMessages
+                .ForEach(exp => Assert.IsTrue(
+                    seralizer.TestMessages.SingleOrDefault(act => act.Level == exp.Level && act.Message == exp.Message) is TestMessageInfo));
+        }
+
         private static void SimulateTestResult(ITestRun testRun)
         {
             var source = "/tmp/test.dll";
@@ -122,6 +145,20 @@ namespace Spekt.TestLogger.UnitTests
                     { Outcome = TestOutcome.Failed };
             testRun.Result(new TestResultEventArgs(passingResult));
             testRun.Result(new TestResultEventArgs(failingResult));
+            TestRunMessageEventArgs().ForEach(x => testRun.Message(x));
+        }
+
+        private static List<TestRunMessageEventArgs> TestRunMessageEventArgs()
+        {
+            return new ()
+            {
+                new (TestMessageLevel.Informational, "9CB2F5CB-0B24-48F6-9FBC-17E794FF589D"),
+                new (TestMessageLevel.Informational, "9A87B0DF-60F3-45A3-A662-59527EC2B114"),
+                new (TestMessageLevel.Warning, "A0DE6354-C727-4F5F-9D29-ECE75B533424"),
+                new (TestMessageLevel.Warning, "73D2D4B1-A513-4D9C-B876-9B16202F0BCB"),
+                new (TestMessageLevel.Error, "18E79A95-528E-428C-BCCF-BBC1B53CB46C"),
+                new (TestMessageLevel.Error, "E6FB8071-0745-4A9C-A685-8BC5E9E6FE32"),
+            };
         }
     }
 }
