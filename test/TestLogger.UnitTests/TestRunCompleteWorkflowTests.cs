@@ -95,18 +95,18 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void CompleteShouldWriteTestResultsForRelativeLogFilePath()
         {
-            var testRun = new TestRunBuilder()
+            var relativePathTestRun = new TestRunBuilder()
                 .WithLoggerConfiguration(new LoggerConfiguration(new () { { LoggerConfiguration.LogFilePathKey, "results.json" } }))
                 .WithFileSystem(this.fileSystem)
                 .WithConsoleOutput(new FakeConsoleOutput())
                 .WithStore(new TestResultStore())
                 .WithSerializer(new JsonTestResultSerializer())
                 .Build();
-            SimulateTestResult(this.testRun);
+            SimulateTestResult(relativePathTestRun);
 
-            testRun.Complete(this.testRunCompleteEvent);
+            relativePathTestRun.Complete(this.testRunCompleteEvent);
 
-            var logFilePath = testRun.LoggerConfiguration.LogFilePath;
+            var logFilePath = relativePathTestRun.LoggerConfiguration.LogFilePath;
             Assert.IsFalse(string.IsNullOrEmpty(this.fileSystem.Read(logFilePath)));
         }
 
