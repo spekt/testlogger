@@ -111,7 +111,7 @@ namespace Spekt.TestLogger.UnitTests
         }
 
         [TestMethod]
-        public void CompleteShouldPassAllMessagesToSeralizer()
+        public void CompleteShouldPassAllMessagesToSerializer()
         {
             var seralizer = new JsonTestResultSerializer();
 
