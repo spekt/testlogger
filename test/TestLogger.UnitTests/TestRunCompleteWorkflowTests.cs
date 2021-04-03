@@ -86,10 +86,11 @@ namespace Spekt.TestLogger.UnitTests
             this.testRun.Complete(this.testRunCompleteEvent);
 
             var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
-            var results = JsonSerializer.Deserialize<List<JsonTestResultSerializer.TestAssembly>>(this.fileSystem.Read(logFilePath), null);
-            Assert.AreEqual("/tmp/test.dll", results[0].Name);
-            Assert.AreEqual("C", results[0].Fixtures.First().Name);
-            Assert.AreEqual(2, results[0].Fixtures.First().Tests.Count());
+            var results = JsonSerializer.Deserialize<JsonTestResultSerializer.TestReport>(this.fileSystem.Read(logFilePath), null);
+            var assembly = results.TestAssemblies.First();
+            Assert.AreEqual("/tmp/test.dll", assembly.Name);
+            Assert.AreEqual("C", assembly.Fixtures.First().Name);
+            Assert.AreEqual(2, assembly.Fixtures.First().Tests.Count());
         }
 
         [TestMethod]
@@ -113,24 +114,18 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void CompleteShouldPassAllMessagesToSerializer()
         {
-            var seralizer = new JsonTestResultSerializer();
+            SimulateTestResult(this.testRun);
 
-            var messageTestRun = new TestRunBuilder()
-                .WithLoggerConfiguration(new LoggerConfiguration(new () { { LoggerConfiguration.LogFilePathKey, "results.json" } }))
-                .WithFileSystem(this.fileSystem)
-                .WithConsoleOutput(new FakeConsoleOutput())
-                .WithStore(new TestResultStore())
-                .WithSerializer(seralizer)
-                .Build();
-            SimulateTestResult(messageTestRun);
+            this.testRun.Complete(this.testRunCompleteEvent);
 
-            messageTestRun.Complete(this.testRunCompleteEvent);
-
+            var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
+            var results = JsonSerializer.Deserialize<JsonTestResultSerializer.TestReport>(this.fileSystem.Read(logFilePath), null);
             var expectedMessages = TestRunMessageEventArgs();
-            Assert.AreEqual(expectedMessages.Count, seralizer.TestMessages.Count);
+
+            Assert.AreEqual(expectedMessages.Count, results.TestMessages.Count());
             expectedMessages
                 .ForEach(exp => Assert.IsTrue(
-                    seralizer.TestMessages.SingleOrDefault(act => act.Level == exp.Level && act.Message == exp.Message) is TestMessageInfo));
+                    results.TestMessages.SingleOrDefault(act => act.Level == exp.Level && act.Message == exp.Message) is TestMessageInfo));
         }
 
         private static void SimulateTestResult(ITestRun testRun)
