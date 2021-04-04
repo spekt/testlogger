@@ -3,6 +3,7 @@
 
 namespace Spekt.TestLogger.UnitTests.TestDoubles
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -16,22 +17,30 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
     /// <remarks>
     /// Sample json output:
     /// <code>
-    /// [{
-    ///     name: "TestAssembly",
-    ///     fixtures: [
+    /// {
+    ///     "TestAssemblies": [
     ///         {
-    ///             name: "TestClass",
-    ///             tests: [
+    ///             "Name": "TestAssembly",
+    ///             "Fixtures": [
     ///                 {
-    ///                     name: "TestMethod",
-    ///                     result: (pass|fail|skipped),
-    ///                     traits: [
-    ///                         { name: "key", value: "value" }
+    ///                     "Name": "TestClass",
+    ///                     "Tests": [
+    ///                         {
+    ///                             "Name": "TestMethod",
+    ///                             "Result": (pass|fail|skipped),
+    ///                         }
+    ///                     ]
     ///                 }
     ///             ]
     ///         }
+    ///     ],
+    ///     "TestMessages": [
+    ///         {
+    ///             "Level": (0,1,2),
+    ///             "Message": "MessageText"
+    ///         }
     ///     ]
-    /// }]
+    /// }
     /// </code>
     /// </remarks>
     public class JsonTestResultSerializer : ITestResultSerializer
@@ -39,7 +48,8 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
         public string Serialize(
             LoggerConfiguration loggerConfiguration,
             TestRunConfiguration runConfiguration,
-            List<TestResultInfo> results)
+            List<TestResultInfo> results,
+            List<TestMessageInfo> messages)
         {
             var res = from r in results
                 group r by r.AssemblyPath
@@ -48,7 +58,7 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
                 select this.CreateAssembly(assemblies);
 
             var content = new StringBuilder();
-            new JsonSerializer().Serialize(new StringWriter(content), res);
+            new JsonSerializer().Serialize(new StringWriter(content), new TestReport(res, messages));
             return content.ToString();
         }
 
@@ -79,6 +89,19 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
                 Name = result.Method,
                 Result = result.Outcome.ToString()
             };
+        }
+
+        internal class TestReport
+        {
+            public TestReport(IEnumerable<TestAssembly> testAssemblies, IEnumerable<TestMessageInfo> testMessages)
+            {
+                this.TestAssemblies = testAssemblies ?? throw new ArgumentNullException(nameof(testAssemblies));
+                this.TestMessages = testMessages ?? throw new ArgumentNullException(nameof(testMessages));
+            }
+
+            public IEnumerable<TestAssembly> TestAssemblies { get; set; }
+
+            public IEnumerable<TestMessageInfo> TestMessages { get; set; }
         }
 
         internal class TestAssembly

@@ -86,28 +86,46 @@ namespace Spekt.TestLogger.UnitTests
             this.testRun.Complete(this.testRunCompleteEvent);
 
             var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
-            var results = JsonSerializer.Deserialize<List<JsonTestResultSerializer.TestAssembly>>(this.fileSystem.Read(logFilePath), null);
-            Assert.AreEqual("/tmp/test.dll", results[0].Name);
-            Assert.AreEqual("C", results[0].Fixtures.First().Name);
-            Assert.AreEqual(2, results[0].Fixtures.First().Tests.Count());
+            var results = JsonSerializer.Deserialize<JsonTestResultSerializer.TestReport>(this.fileSystem.Read(logFilePath), null);
+            var assembly = results.TestAssemblies.First();
+            Assert.AreEqual("/tmp/test.dll", assembly.Name);
+            Assert.AreEqual("C", assembly.Fixtures.First().Name);
+            Assert.AreEqual(2, assembly.Fixtures.First().Tests.Count());
         }
 
         [TestMethod]
         public void CompleteShouldWriteTestResultsForRelativeLogFilePath()
         {
-            var testRun = new TestRunBuilder()
+            var relativePathTestRun = new TestRunBuilder()
                 .WithLoggerConfiguration(new LoggerConfiguration(new () { { LoggerConfiguration.LogFilePathKey, "results.json" } }))
                 .WithFileSystem(this.fileSystem)
                 .WithConsoleOutput(new FakeConsoleOutput())
                 .WithStore(new TestResultStore())
                 .WithSerializer(new JsonTestResultSerializer())
                 .Build();
+            SimulateTestResult(relativePathTestRun);
+
+            relativePathTestRun.Complete(this.testRunCompleteEvent);
+
+            var logFilePath = relativePathTestRun.LoggerConfiguration.LogFilePath;
+            Assert.IsFalse(string.IsNullOrEmpty(this.fileSystem.Read(logFilePath)));
+        }
+
+        [TestMethod]
+        public void CompleteShouldPassAllMessagesToSerializer()
+        {
             SimulateTestResult(this.testRun);
 
-            testRun.Complete(this.testRunCompleteEvent);
+            this.testRun.Complete(this.testRunCompleteEvent);
 
-            var logFilePath = testRun.LoggerConfiguration.LogFilePath;
-            Assert.IsFalse(string.IsNullOrEmpty(this.fileSystem.Read(logFilePath)));
+            var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
+            var results = JsonSerializer.Deserialize<JsonTestResultSerializer.TestReport>(this.fileSystem.Read(logFilePath), null);
+            var expectedMessages = TestRunMessageEventArgs();
+
+            Assert.AreEqual(expectedMessages.Count, results.TestMessages.Count());
+            expectedMessages
+                .ForEach(exp => Assert.IsTrue(
+                    results.TestMessages.SingleOrDefault(act => act.Level == exp.Level && act.Message == exp.Message) is TestMessageInfo));
         }
 
         private static void SimulateTestResult(ITestRun testRun)
@@ -122,6 +140,20 @@ namespace Spekt.TestLogger.UnitTests
                     { Outcome = TestOutcome.Failed };
             testRun.Result(new TestResultEventArgs(passingResult));
             testRun.Result(new TestResultEventArgs(failingResult));
+            TestRunMessageEventArgs().ForEach(x => testRun.Message(x));
+        }
+
+        private static List<TestRunMessageEventArgs> TestRunMessageEventArgs()
+        {
+            return new ()
+            {
+                new (TestMessageLevel.Informational, "9CB2F5CB-0B24-48F6-9FBC-17E794FF589D"),
+                new (TestMessageLevel.Informational, "9A87B0DF-60F3-45A3-A662-59527EC2B114"),
+                new (TestMessageLevel.Warning, "A0DE6354-C727-4F5F-9D29-ECE75B533424"),
+                new (TestMessageLevel.Warning, "73D2D4B1-A513-4D9C-B876-9B16202F0BCB"),
+                new (TestMessageLevel.Error, "18E79A95-528E-428C-BCCF-BBC1B53CB46C"),
+                new (TestMessageLevel.Error, "E6FB8071-0745-4A9C-A685-8BC5E9E6FE32"),
+            };
         }
     }
 }

@@ -104,7 +104,10 @@ namespace Spekt.TestLogger.UnitTests
 
             var loggerConfiguration = new LoggerConfiguration(config);
 
-            Assert.AreEqual("/tmp/results/result.json", loggerConfiguration.LogFilePath);
+            // Prevents test from failing on windows.
+            var forwardSlashPath = loggerConfiguration.LogFilePath.Replace('\\', '/');
+
+            Assert.AreEqual("/tmp/results/result.json", forwardSlashPath);
         }
 
         [TestMethod]

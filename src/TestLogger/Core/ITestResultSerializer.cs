@@ -10,6 +10,7 @@ namespace Spekt.TestLogger.Core
         string Serialize(
             LoggerConfiguration loggerConfiguration,
             TestRunConfiguration runConfiguration,
-            List<TestResultInfo> results);
+            List<TestResultInfo> results,
+            List<TestMessageInfo> messages);
     }
 }

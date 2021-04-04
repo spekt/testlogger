@@ -38,7 +38,8 @@ namespace Spekt.TestLogger.Core
             var content = testRun.Serializer.Serialize(
                 testRun.LoggerConfiguration,
                 testRun.RunConfiguration,
-                transformedResults);
+                transformedResults,
+                messages);
             testRun.FileSystem.Write(logFilePath, content);
 
             testRun.ConsoleOutput.WriteMessage(string.Format(
