@@ -6,6 +6,7 @@ namespace Spekt.TestLogger.Core
     using System;
     using System.Collections.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+    using Spekt.TestLogger.Extensions;
 
     public sealed class TestResultInfo
     {
@@ -35,6 +36,11 @@ namespace Spekt.TestLogger.Core
 
         public string FullTypeName => this.Namespace + "." + this.Type;
 
+        /// <summary>
+        /// Gets a string that contain the method name, along with any paramaterized
+        /// data related to the method. For example, `SomeMethod` or
+        /// `SomeParameterizedMethod(true)`.
+        /// </summary>
         public string Method { get; private set; }
 
         public string Name => this.result.TestCase.DisplayName;
@@ -67,6 +73,37 @@ namespace Spekt.TestLogger.Core
 
             return string.Compare(this.ErrorMessage, objectToCompare.ErrorMessage, StringComparison.CurrentCulture) == 0
                    && string.Compare(this.ErrorStackTrace, objectToCompare.ErrorStackTrace, StringComparison.CurrentCulture) == 0;
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="TestResultInfo"/>. Clones all
+        /// data, but replaces <see cref="Method"/>.
+        /// </summary>
+        /// <remarks>
+        /// This exists to allow <see cref="MSTestAdapter"/> to adjust the value
+        /// of <see cref="Method"/> while leaving the class immutable. Note that
+        /// <see cref="TestResult.DisplayName"/> is not the same as the value
+        /// used in <see cref="Name"/>.
+        /// </remarks>
+        /// <returns>
+        /// A new instance of <see cref="TestResultInfo"/>.
+        /// </returns>
+        internal TestResultInfo WithResultDisplayNameAsMethod()
+        {
+            string displayName = this.result.DisplayName;
+            string method = this.Method;
+
+            if (string.IsNullOrWhiteSpace(displayName))
+            {
+                DebugLogger.WriteLine($"Preserving method '{method}' because result display name was empty");
+            }
+            else if (method != displayName)
+            {
+                DebugLogger.WriteLine($"Overwritting test method '{method}' with display name '{displayName}'");
+                return new TestResultInfo(this.result, this.Namespace, this.Type, displayName);
+            }
+
+            return new TestResultInfo(this.result, this.Namespace, this.Type, method);
         }
     }
 }
