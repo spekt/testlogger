@@ -22,7 +22,6 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         }
 
         [TestMethod]
-        [DataRow("executor://MSTestAdapter/v2")]
         [DataRow("executor://NUnit3TestExecutor")]
         public void CreateTestAdapterShouldReturnDefaultAdapterForNonXunitFramework(string executorUri)
         {
@@ -41,6 +40,16 @@ namespace Spekt.TestLogger.UnitTests.Extensions
             var adapter = factory.CreateTestAdapter("executor://xunit/VsTestRunner2/net");
 
             Assert.IsTrue(adapter is XunitTestAdapter);
+        }
+
+        [TestMethod]
+        public void CreateTestAdapterShouldReturnMSTestAdapterForMSTest()
+        {
+            var factory = new TestAdapterFactory();
+
+            var adapter = factory.CreateTestAdapter("executor://MSTestAdapter/v2");
+
+            Assert.IsTrue(adapter is MSTestAdapter);
         }
     }
 }
