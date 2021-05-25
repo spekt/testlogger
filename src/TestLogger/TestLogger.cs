@@ -82,6 +82,13 @@ namespace Spekt.TestLogger
 
             var config = new Dictionary<string, string>(parameters);
 
+            if (config.ContainsKey(DebugLogger.DebugLoggerKey) &&
+                bool.TryParse(config[DebugLogger.DebugLoggerKey], out bool debug) &&
+                debug)
+            {
+                DebugLogger.EnableLogging();
+            }
+
             // Set the default log file name if not provided by user
             if (!config.ContainsKey(LoggerConfiguration.LogFilePathKey) &&
                 !config.ContainsKey(LoggerConfiguration.LogFileNameKey))
