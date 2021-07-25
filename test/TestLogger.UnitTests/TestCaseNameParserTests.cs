@@ -12,7 +12,6 @@ namespace Spekt.TestLogger.UnitTests
     public class TestCaseNameParserTests
     {
         [DataTestMethod]
-        [DataRow("sampleproject.test.json.layers.UnitTest1.Test1", "z", "a", "b")]
         [DataRow("z.a.b", "z", "a", "b")]
 
         // Cover all expected cases of different parenthesis locations, handling normal strings
