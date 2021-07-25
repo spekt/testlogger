@@ -9,8 +9,6 @@ namespace Spekt.TestLogger.Extensions
     {
         public ITestAdapter CreateTestAdapter(string executorUri)
         {
-            DebugLogger.WriteLine($"Create test adapter using executorUri: {executorUri}");
-
             if (!string.IsNullOrEmpty(executorUri) && executorUri.ToLowerInvariant().Contains("xunit"))
             {
                 return new XunitTestAdapter();

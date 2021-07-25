@@ -11,6 +11,7 @@ namespace Spekt.TestLogger.Core
     {
         public const string TestCaseParserUnknownNamespace = "UnknownNamespace";
         public const string TestCaseParserUnknownType = "UnknownType";
+
         public const string TestCaseParserErrorTemplate = "Xml Logger: Unable to parse the test name '{0}' into a namespace type and method. " +
             "Using Namespace='{1}', Type='{2}' and Method='{3}'";
 
@@ -29,22 +30,22 @@ namespace Spekt.TestLogger.Core
         }
 
         /// <summary>
-        /// This method attempts to parse out a Namespace, Type and Method name from a given string. When a clearly
-        /// invalid output is encountered, a message is written to the console.
+        /// This method attempts to parse out a Namespace, Type and Method name from a given string.
+        /// When a clearly invalid output is encountered, a message is written to the console.
         /// </summary>
         /// <remarks>
-        /// This is fragile, because the fully qualified name is constructed by a test adapter and there is
-        /// no enforcement that the FQN starts with the namespace, or is of the expected format.
-        /// Because the possible input space is very large and this parser is relatively simple
-        /// there are some invalid strings, such as "#.#.#" will 'successfully' parse.
+        /// This is fragile, because the fully qualified name is constructed by a test adapter and
+        /// there is no enforcement that the FQN starts with the namespace, or is of the expected
+        /// format. Because the possible input space is very large and this parser is relatively
+        /// simple there are some invalid strings, such as "#.#.#" will 'successfully' parse.
         /// </remarks>
         /// <param name="fullyQualifiedName">
-        /// String like 'namespace.type.method', where type and or method may be followed by parenthesis containing
-        /// parameter values.
+        /// String like 'namespace.type.method', where type and or method may be followed by
+        /// parenthesis containing parameter values.
         /// </param>
         /// <returns>
-        /// An instance of ParsedName containing the parsed results. A result is always returned, even in the case when
-        /// the input could not be full parsed.
+        /// An instance of ParsedName containing the parsed results. A result is always returned,
+        /// even in the case when the input could not be full parsed.
         /// </returns>
         public static ParsedName Parse(string fullyQualifiedName)
         {
@@ -139,13 +140,14 @@ namespace Spekt.TestLogger.Core
 
                         if (thisChar == '(')
                         {
-                            // If we found the beginning of the parenthesis block, we are back in default state
+                            // If we found the beginning of the parenthesis block, we are back in
+                            // default state
                             state = NameParseState.Default;
                         }
                         else if (thisChar == '"')
                         {
-                            // This must come at the end of a string, when escape characters aren't an issue, so we are
-                            // 'entering' string state, because of the reverse parsing.
+                            // This must come at the end of a string, when escape characters aren't
+                            // an issue, so we are 'entering' string state, because of the reverse parsing.
                             state = NameParseState.String;
                         }
 
@@ -157,8 +159,8 @@ namespace Spekt.TestLogger.Core
                     {
                         if (thisChar == '"' && fullyQualifiedName.ElementAtOrDefault(i - 1) != '\\')
                         {
-                            // If this is a quote that has not been escaped, switch the state. If it had
-                            // been escaped, we would still be in a string.
+                            // If this is a quote that has not been escaped, switch the state. If it
+                            // had been escaped, we would still be in a string.
                             state = NameParseState.Parenthesis;
                         }
 
@@ -171,8 +173,8 @@ namespace Spekt.TestLogger.Core
                     throw new Exception($"Unbalanced count of parentheses found ({parenthesisCount})");
                 }
 
-                // We are done. If we are finding type, set that variable.
-                // Otherwise, there was some issue, so leave the type blank.
+                // We are done. If we are finding type, set that variable. Otherwise, there was some
+                // issue, so leave the type blank.
                 if (step == NameParseStep.FindNamespace)
                 {
                     metadataNamespaceName = string.Join(string.Empty, output);
@@ -190,8 +192,8 @@ namespace Spekt.TestLogger.Core
             }
             finally
             {
-                // If for any reason we don't have a Type Name or Namespace then
-                // we fall back on our safe option and notify the user
+                // If for any reason we don't have a Type Name or Namespace then we fall back on our
+                // safe option and notify the user
                 if (string.IsNullOrWhiteSpace(metadataNamespaceName) && string.IsNullOrWhiteSpace(metadataTypeName))
                 {
                     metadataNamespaceName = TestCaseParserUnknownNamespace;

@@ -14,7 +14,6 @@ namespace Spekt.TestLogger.Extensions
     {
         public List<TestResultInfo> TransformResults(List<TestResultInfo> results, List<TestMessageInfo> messages)
         {
-            DebugLogger.WriteLine($"Performing MSTestAdapter result transformation");
             return results.Select(x => x.WithResultDisplayNameAsMethod()).ToList();
         }
     }
