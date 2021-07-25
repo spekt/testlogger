@@ -14,7 +14,24 @@ namespace Spekt.TestLogger.Extensions
     {
         public List<TestResultInfo> TransformResults(List<TestResultInfo> results, List<TestMessageInfo> messages)
         {
-            return results.Select(x => x.WithResultDisplayNameAsMethod()).ToList();
+            // MS Test puts test parameters in the DisplayName and not in the FullyQualifiedName.
+            // So we use the DisplayName whenever it is available.
+            foreach (var result in results)
+            {
+                string displayName = result.Result.DisplayName;
+                string method = result.Method;
+
+                if (string.IsNullOrWhiteSpace(displayName))
+                {
+                    // Preserving method because result display name was empty
+                }
+                else if (method != displayName)
+                {
+                        result.Method = displayName;
+                }
+            }
+
+            return results;
         }
     }
 }

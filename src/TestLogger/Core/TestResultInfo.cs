@@ -40,7 +40,7 @@ namespace Spekt.TestLogger.Core
         /// Gets a string that contain the method name, along with any paramaterized data related to
         /// the method. For example, `SomeMethod` or `SomeParameterizedMethod(true)`.
         /// </summary>
-        public string Method { get; private set; }
+        public string Method { get; internal set; }
 
         public string Name => this.result.TestCase.DisplayName;
 
@@ -58,6 +58,8 @@ namespace Spekt.TestLogger.Core
 
         public TraitCollection Traits => this.result.Traits;
 
+        internal TestResult Result => this.result;
+
         public override int GetHashCode()
         {
             return this.result.GetHashCode();
@@ -72,33 +74,6 @@ namespace Spekt.TestLogger.Core
 
             return string.Compare(this.ErrorMessage, objectToCompare.ErrorMessage, StringComparison.CurrentCulture) == 0
                    && string.Compare(this.ErrorStackTrace, objectToCompare.ErrorStackTrace, StringComparison.CurrentCulture) == 0;
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="TestResultInfo"/>. Clones all data, but replaces
-        /// <see cref="Method"/>.
-        /// </summary>
-        /// <remarks>
-        /// This exists to allow <see cref="MSTestAdapter"/> to adjust the value of <see
-        /// cref="Method"/> while leaving the class immutable. Note that <see
-        /// cref="TestResult.DisplayName"/> is not the same as the value used in <see cref="Name"/>.
-        /// </remarks>
-        /// <returns>A new instance of <see cref="TestResultInfo"/>.</returns>
-        internal TestResultInfo WithResultDisplayNameAsMethod()
-        {
-            string displayName = this.result.DisplayName;
-            string method = this.Method;
-
-            if (string.IsNullOrWhiteSpace(displayName))
-            {
-                // Preserving method because result display name was empty
-            }
-            else if (method != displayName)
-            {
-                return new TestResultInfo(this.result, this.Namespace, this.Type, displayName);
-            }
-
-            return new TestResultInfo(this.result, this.Namespace, this.Type, method);
         }
     }
 }
