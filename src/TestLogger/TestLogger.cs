@@ -41,10 +41,8 @@ namespace Spekt.TestLogger
 
         protected abstract string DefaultTestResultFile { get; }
 
-        /// <inheritdoc />
-        /// <remarks>
-        /// Overrides <see cref="ITestLogger.Initialize"/> method. Supports older runners.
-        /// </remarks>
+        /// <inheritdoc/>
+        /// <remarks>Overrides <see cref="ITestLogger.Initialize"/> method. Supports older runners.</remarks>
         public void Initialize(TestLoggerEvents events, string testResultsDirPath)
         {
             if (events == null)
@@ -66,8 +64,10 @@ namespace Spekt.TestLogger
             this.CreateTestRun(events, new LoggerConfiguration(config));
         }
 
-        /// <inheritdoc />
-        /// <remarks>Overrides <c>ITestLoggerWithParameters.Initialize(TestLoggerEvents, Dictionary)</c> method.</remarks>
+        /// <inheritdoc/>
+        /// <remarks>
+        /// Overrides <c>ITestLoggerWithParameters.Initialize(TestLoggerEvents, Dictionary)</c> method.
+        /// </remarks>
         public void Initialize(TestLoggerEvents events, Dictionary<string, string> parameters)
         {
             if (events == null)

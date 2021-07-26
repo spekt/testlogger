@@ -6,6 +6,7 @@ namespace Spekt.TestLogger.Core
     using System;
     using System.Collections.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+    using Spekt.TestLogger.Extensions;
 
     public sealed class TestResultInfo
     {
@@ -35,7 +36,11 @@ namespace Spekt.TestLogger.Core
 
         public string FullTypeName => this.Namespace + "." + this.Type;
 
-        public string Method { get; private set; }
+        /// <summary>
+        /// Gets a string that contain the method name, along with any paramaterized data related to
+        /// the method. For example, `SomeMethod` or `SomeParameterizedMethod(true)`.
+        /// </summary>
+        public string Method { get; internal set; }
 
         public string Name => this.result.TestCase.DisplayName;
 
@@ -52,6 +57,8 @@ namespace Spekt.TestLogger.Core
         public Collection<TestResultMessage> Messages => this.result.Messages;
 
         public TraitCollection Traits => this.result.Traits;
+
+        internal TestResult Result => this.result;
 
         public override int GetHashCode()
         {

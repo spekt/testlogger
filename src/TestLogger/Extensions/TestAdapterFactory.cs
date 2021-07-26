@@ -3,6 +3,8 @@
 
 namespace Spekt.TestLogger.Extensions
 {
+    using Spekt.TestLogger.Core;
+
     public class TestAdapterFactory : ITestAdapterFactory
     {
         public ITestAdapter CreateTestAdapter(string executorUri)
@@ -10,6 +12,10 @@ namespace Spekt.TestLogger.Extensions
             if (!string.IsNullOrEmpty(executorUri) && executorUri.ToLowerInvariant().Contains("xunit"))
             {
                 return new XunitTestAdapter();
+            }
+            else if (!string.IsNullOrEmpty(executorUri) && executorUri.ToLowerInvariant().Contains("mstest"))
+            {
+                return new MSTestAdapter();
             }
 
             return new DefaultTestAdapter();
