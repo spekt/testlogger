@@ -54,7 +54,6 @@ namespace Spekt.TestLogger.UnitTests
             Assert.AreEqual("SampleNamespace", results[0].Namespace);
             Assert.AreEqual("SampleClass", results[0].Type);
             Assert.AreEqual("SampleNamespace.SampleClass", results[0].FullTypeName);
-            Assert.AreEqual("SampleNamespace.SampleClass.SampleTest", results[0].Method);
             Assert.AreEqual("SampleTest", results[0].Method);
             Assert.AreEqual(this.dummyTestCase, results[0].TestCase);
             Assert.AreEqual(DummySourceFile, results[0].AssemblyPath);
