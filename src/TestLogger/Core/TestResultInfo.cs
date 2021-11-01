@@ -42,8 +42,6 @@ namespace Spekt.TestLogger.Core
         /// </summary>
         public string Method { get; internal set; }
 
-        public string Name => this.result.TestCase.DisplayName;
-
         public DateTime StartTime => this.result.StartTime.UtcDateTime;
 
         public DateTime EndTime => this.result.EndTime.UtcDateTime;
