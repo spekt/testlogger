@@ -22,11 +22,12 @@ namespace Spekt.TestLogger.Core
             this.Namespace = @namespace;
             this.Type = type;
             this.Method = method;
+            this.Outcome = result.Outcome;
         }
 
         public TestCase TestCase => this.result.TestCase;
 
-        public TestOutcome Outcome => this.result.Outcome;
+        public TestOutcome Outcome { get; set; }
 
         public string AssemblyPath => this.result.TestCase.Source;
 
