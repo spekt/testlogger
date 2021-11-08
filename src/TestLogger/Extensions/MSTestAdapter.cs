@@ -27,7 +27,7 @@ namespace Spekt.TestLogger.Extensions
                 }
                 else if (method != displayName)
                 {
-                        result.Method = displayName;
+                    result.Method = displayName;
                 }
             }
 

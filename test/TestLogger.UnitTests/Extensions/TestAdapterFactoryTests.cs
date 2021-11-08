@@ -12,6 +12,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         [TestMethod]
         [DataRow("")]
         [DataRow(null)]
+        [DataRow("executor://NotExitTestExecutor")]
         public void CreateTestAdapterShouldReturnDefaultAdapterIfExecutorUriIsInvalid(string executorUri)
         {
             var factory = new TestAdapterFactory();
@@ -23,13 +24,13 @@ namespace Spekt.TestLogger.UnitTests.Extensions
 
         [TestMethod]
         [DataRow("executor://NUnit3TestExecutor")]
-        public void CreateTestAdapterShouldReturnDefaultAdapterForNonXunitFramework(string executorUri)
+        public void CreateTestAdapterShouldReturnNUnitAdapterForNUnitFramework(string executorUri)
         {
             var factory = new TestAdapterFactory();
 
             var adapter = factory.CreateTestAdapter(executorUri);
 
-            Assert.IsTrue(adapter is DefaultTestAdapter);
+            Assert.IsTrue(adapter is NUnitTestAdapter);
         }
 
         [TestMethod]
