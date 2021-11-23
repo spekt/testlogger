@@ -104,6 +104,7 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.y.x\\")]
         [DataRow("z.y.X\\)")]
         [DataRow("z.y.X\')")]
+        [DataRow("z.y.\'x")]
         [DataRow("z.y.x))")]
         [DataRow("z.y.x()x")]
         [DataRow("z.y.x.")]
