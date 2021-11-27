@@ -36,6 +36,15 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.a.b((\"arg\",1))", "z", "a", "b((\"arg\",1))")]
         [DataRow("z.a.b((0,1),(2,3))", "z", "a", "b((0,1),(2,3))")]
         [DataRow("z.a.b((0,(0,1)),(0,1))", "z", "a", "b((0,(0,1)),(0,1))")]
+
+        // See nunit.testlogger #90
+        [DataRow("z.y.x.ape.bar('A',False)", "z.y.x", "ape", "bar('A',False)")]
+        [DataRow("z.y.x.ape.bar('\"',False)", "z.y.x", "ape", "bar('\"',False)")]
+        [DataRow("z.y.x.ape.bar('(',False)", "z.y.x", "ape", "bar('(',False)")]
+        [DataRow("z.y.x.ape.bar(')',False)", "z.y.x", "ape", "bar(')',False)")]
+        [DataRow("z.y.x.ape.bar('.',False)", "z.y.x", "ape", "bar('.',False)")]
+        [DataRow("z.y.x.ape.bar('\\'',False)", "z.y.x", "ape", "bar('\\'',False)")]
+        [DataRow("z.y.x.ape.bar('\\\\',False)", "z.y.x", "ape", "bar('\\\\',False)")]
         public void Parse_ParsesAllParseableInputs_WithoutConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
         {
             using (var sw = new StringWriter())
@@ -94,6 +103,8 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.y.X\\x")]
         [DataRow("z.y.x\\")]
         [DataRow("z.y.X\\)")]
+        [DataRow("z.y.X\')")]
+        [DataRow("z.y.\'x")]
         [DataRow("z.y.x))")]
         [DataRow("z.y.x()x")]
         [DataRow("z.y.x.")]

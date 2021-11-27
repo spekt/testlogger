@@ -26,7 +26,8 @@ namespace Spekt.TestLogger.Core
         {
             Default,
             Parenthesis,
-            String
+            String,
+            Char,
         }
 
         /// <summary>
@@ -85,6 +86,10 @@ namespace Spekt.TestLogger.Core
                         {
                             throw new Exception("Found invalid characters");
                         }
+                        else if (thisChar == '\'')
+                        {
+                            throw new Exception("Found invalid characters");
+                        }
                         else if (thisChar == ')')
                         {
                             if ((output.Count > 0) && (parenthesisCount == 0))
@@ -137,8 +142,7 @@ namespace Spekt.TestLogger.Core
                         {
                             parenthesisCount++;
                         }
-
-                        if (thisChar == '(')
+                        else if (thisChar == '(')
                         {
                             // If we found the beginning of the parenthesis block, we are back in
                             // default state
@@ -150,17 +154,30 @@ namespace Spekt.TestLogger.Core
                             // an issue, so we are 'entering' string state, because of the reverse parsing.
                             state = NameParseState.String;
                         }
+                        else if (thisChar == '\'')
+                        {
+                            state |= NameParseState.Char;
+                        }
 
                         output.Insert(0, thisChar);
                     }
-
-                    // state == NameParseState.String
-                    else
+                    else if (state == NameParseState.String)
                     {
                         if (thisChar == '"' && fullyQualifiedName.ElementAtOrDefault(i - 1) != '\\')
                         {
                             // If this is a quote that has not been escaped, switch the state. If it
                             // had been escaped, we would still be in a string.
+                            state = NameParseState.Parenthesis;
+                        }
+
+                        output.Insert(0, thisChar);
+                    }
+                    else if (state == NameParseState.Char)
+                    {
+                        if (thisChar == '\'' && fullyQualifiedName.ElementAtOrDefault(i - 1) != '\\')
+                        {
+                            // If this is a single quote that has not been escaped, switch the state. If it
+                            // had been escaped, we would still be in a char.
                             state = NameParseState.Parenthesis;
                         }
 
