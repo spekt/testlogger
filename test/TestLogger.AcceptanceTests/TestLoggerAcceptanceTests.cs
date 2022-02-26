@@ -15,9 +15,15 @@ namespace TestLogger.AcceptanceTests
     public class TestLoggerAcceptanceTests : VerifyBase
     {
         [TestMethod]
+        [DataRow("Json.TestLogger.MStest.NetCore.Tests")]
+        [DataRow("Json.TestLogger.MStest.NetFull.Tests")]
+        [DataRow("Json.TestLogger.MStest.NetMulti.Tests")]
         [DataRow("Json.TestLogger.NUnit.NetCore.Tests")]
         [DataRow("Json.TestLogger.NUnit.NetFull.Tests")]
         [DataRow("Json.TestLogger.NUnit.NetMulti.Tests")]
+        [DataRow("Json.TestLogger.XUnit.NetCore.Tests")]
+        [DataRow("Json.TestLogger.XUnit.NetFull.Tests")]
+        [DataRow("Json.TestLogger.XUnit.NetMulti.Tests")]
         public Task VerifyTestRunOutput(string testAssembly)
         {
             DotnetTestFixture.Execute(testAssembly, "test-results.json");

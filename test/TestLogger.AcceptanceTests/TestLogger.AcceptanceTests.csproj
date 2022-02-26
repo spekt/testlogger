@@ -16,16 +16,29 @@
   <!-- Build test assets for acceptance tests -->
   <PropertyGroup>
     <TestRestoreConfig>$(MSBuildThisFileDirectory)../assets/NuGet.$(Configuration).config</TestRestoreConfig>
-    <TestFullProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NUnit.NetFull.Tests/Json.TestLogger.NUnit.NetFull.Tests.csproj</TestFullProject>
-    <TestCoreProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NUnit.NetCore.Tests/Json.TestLogger.NUnit.NetCore.Tests.csproj</TestCoreProject>
-    <TestMultiProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NUnit.NetMulti.Tests/Json.TestLogger.NUnit.NetMulti.Tests.csproj</TestMultiProject>
+
+    <MSTestTestFullProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetFull.Tests/Json.TestLogger.MSTest.NetFull.Tests.csproj</MSTestTestFullProject>
+    <MSTestTestCoreProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj</MSTestTestCoreProject>
+    <MSTestTestMultiProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetMulti.Tests/Json.TestLogger.MSTest.NetMulti.Tests.csproj</MSTestTestMultiProject>
+    <NUnitTestFullProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NUnit.NetFull.Tests/Json.TestLogger.NUnit.NetFull.Tests.csproj</NUnitTestFullProject>
+    <NUnitTestCoreProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NUnit.NetCore.Tests/Json.TestLogger.NUnit.NetCore.Tests.csproj</NUnitTestCoreProject>
+    <NUnitTestMultiProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NUnit.NetMulti.Tests/Json.TestLogger.NUnit.NetMulti.Tests.csproj</NUnitTestMultiProject>
+    <XUnitTestFullProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.XUnit.NetFull.Tests/Json.TestLogger.XUnit.NetFull.Tests.csproj</XUnitTestFullProject>
+    <XUnitTestCoreProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.XUnit.NetCore.Tests/Json.TestLogger.XUnit.NetCore.Tests.csproj</XUnitTestCoreProject>
+    <XUnitTestMultiProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.XUnit.NetMulti.Tests/Json.TestLogger.XUnit.NetMulti.Tests.csproj</XUnitTestMultiProject>      
   </PropertyGroup>
   <Target Name="TestTarget" AfterTargets="Build">
     <Message Importance="High" Text="... Building test assets" />
     <RemoveDir Directories="$(NuGetPackageRoot)/nunitxml.testlogger" />
-    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestCoreProject)" />
-    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestFullProject)" />
-    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestMultiProject)" />
+    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(MSTestTestCoreProject)" />
+    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(MSTestTestFullProject)" />
+    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(MSTestTestMultiProject)" />      
+    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(NUnitTestCoreProject)" />
+    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(NUnitTestFullProject)" />
+    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(NUnitTestMultiProject)" />
+    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(XUnitTestCoreProject)" />
+    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(XUnitTestFullProject)" />
+    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(XUnitTestMultiProject)" />
     <Message Importance="High" Text="... Completed" />
   </Target>
   <ItemGroup>

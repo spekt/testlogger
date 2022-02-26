@@ -1,0 +1,21 @@
+﻿{
+  TestAssemblies: [],
+  TestMessages: [
+    {
+      Message: NUnit Adapter 3.10.0.21: Test execution started
+    },
+    {
+      Message: Running all tests in {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.XUnit.NetCore.Tests.dll
+    },
+    {
+      Message: NUnit3TestExecutor converted 0 of 0 NUnit test cases
+    },
+    {
+      Message: NUnit Adapter 3.10.0.21: Test execution complete
+    },
+    {
+      Level: Warning,
+      Message: No test is available in {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.XUnit.NetCore.Tests.dll. Make sure that installed test discoverers & executors, platform & framework version settings are appropriate and try again.
+    }
+  ]
+}
