@@ -26,13 +26,18 @@ namespace TestLogger.AcceptanceTests
         [DataRow("Json.TestLogger.XUnit.NetMulti.Tests")]
         public Task VerifyTestRunOutput(string testAssembly)
         {
-            DotnetTestFixture.Execute(testAssembly, "test-results.json");
-            var resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
-
-            var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
             var settings = new VerifyTests.VerifySettings();
             settings.UseDirectory("Snapshots");
             settings.UseParameters(testAssembly);
+
+            if (testAssembly.Contains(".XUnit.", StringComparison.OrdinalIgnoreCase))
+            {
+                settings.ScrubLinesWithReplace(x => System.Text.RegularExpressions.Regex.Replace(x, @"\[xUnit\.net [0-9:.]{11,}\]", "[xUnit.net _Timestamp_]"));
+            }
+
+            DotnetTestFixture.Execute(testAssembly, "test-results.json");
+            var resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
+            var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
 
             return this.Verify(testReport, settings);
         }

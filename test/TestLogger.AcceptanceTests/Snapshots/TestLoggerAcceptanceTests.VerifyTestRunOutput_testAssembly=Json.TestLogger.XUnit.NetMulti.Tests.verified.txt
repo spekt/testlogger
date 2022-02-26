@@ -21,57 +21,57 @@
   ],
   TestMessages: [
     {
-      Message: [xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.4.3+1b45f5407b (64-bit .NET Core 3.1.22)
+      Message: [xUnit.net _Timestamp_] xUnit.net VSTest Adapter v2.4.3+1b45f5407b (64-bit .NET Core 3.1.22)
     },
     {
-      Message: [xUnit.net 00:00:00.37]   Discovering: Json.TestLogger.XUnit.NetMulti.Tests
+      Message: [xUnit.net _Timestamp_]   Discovering: Json.TestLogger.XUnit.NetMulti.Tests
     },
     {
-      Message: [xUnit.net 00:00:00.39]   Discovered:  Json.TestLogger.XUnit.NetMulti.Tests
+      Message: [xUnit.net _Timestamp_]   Discovered:  Json.TestLogger.XUnit.NetMulti.Tests
     },
     {
-      Message: [xUnit.net 00:00:00.40]   Starting:    Json.TestLogger.XUnit.NetMulti.Tests
-    },
-    {
-      Level: Error,
-      Message: [xUnit.net 00:00:00.47]     NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure [FAIL]
-    },
-    {
-      Message: [xUnit.net 00:00:00.47]       Assert.False() Failure
-    },
-    {
-      Message: [xUnit.net 00:00:00.47]       Expected: False
-    },
-    {
-      Message: [xUnit.net 00:00:00.47]       Actual:   True
-    },
-    {
-      Message: [xUnit.net 00:00:00.47]       Stack Trace:
-    },
-    {
-      Message: [xUnit.net 00:00:00.47]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(12,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
+      Message: [xUnit.net _Timestamp_]   Starting:    Json.TestLogger.XUnit.NetMulti.Tests
     },
     {
       Level: Error,
-      Message: [xUnit.net 00:00:00.48]     NUnit.Xml.TestLogger.Tests2.UnitTest1.Example_Failure [FAIL]
+      Message: [xUnit.net _Timestamp_]     NUnit.Xml.TestLogger.Tests2.UnitTest1.Example_Failure [FAIL]
     },
     {
-      Message: [xUnit.net 00:00:00.48]       Assert.False() Failure
+      Message: [xUnit.net _Timestamp_]       Assert.False() Failure
     },
     {
-      Message: [xUnit.net 00:00:00.48]       Expected: False
+      Message: [xUnit.net _Timestamp_]       Expected: False
     },
     {
-      Message: [xUnit.net 00:00:00.48]       Actual:   True
+      Message: [xUnit.net _Timestamp_]       Actual:   True
     },
     {
-      Message: [xUnit.net 00:00:00.48]       Stack Trace:
+      Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net 00:00:00.48]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(12,0): at NUnit.Xml.TestLogger.Tests2.UnitTest1.Example_Failure()
+      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(12,0): at NUnit.Xml.TestLogger.Tests2.UnitTest1.Example_Failure()
     },
     {
-      Message: [xUnit.net 00:00:00.48]   Finished:    Json.TestLogger.XUnit.NetMulti.Tests
+      Level: Error,
+      Message: [xUnit.net _Timestamp_]     NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure [FAIL]
+    },
+    {
+      Message: [xUnit.net _Timestamp_]       Assert.False() Failure
+    },
+    {
+      Message: [xUnit.net _Timestamp_]       Expected: False
+    },
+    {
+      Message: [xUnit.net _Timestamp_]       Actual:   True
+    },
+    {
+      Message: [xUnit.net _Timestamp_]       Stack Trace:
+    },
+    {
+      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(12,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
+    },
+    {
+      Message: [xUnit.net _Timestamp_]   Finished:    Json.TestLogger.XUnit.NetMulti.Tests
     }
   ]
 }
