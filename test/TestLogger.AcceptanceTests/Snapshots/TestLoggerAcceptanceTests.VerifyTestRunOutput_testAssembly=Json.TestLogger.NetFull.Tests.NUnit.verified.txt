@@ -1,0 +1,338 @@
+﻿{
+  TestAssemblies: [
+    {
+      Name: {SolutionDirectory}test\assets\Json.TestLogger.NetFull.Tests.NUnit\bin\Debug\net46\Json.TestLogger.NetFull.Tests.NUnit.dll,
+      Fixtures: [
+        {
+          Name: FailingOneTimeSetUp,
+          Tests: [
+            {
+              Name: Test,
+              Result: Failed
+            },
+            {
+              Name: Test,
+              Result: Failed
+            }
+          ]
+        },
+        {
+          Name: FailingOneTimeTearDown,
+          Tests: [
+            {
+              Name: Test,
+              Result: Passed
+            },
+            {
+              Name: Test,
+              Result: Passed
+            }
+          ]
+        },
+        {
+          Name: FailingTearDown,
+          Tests: [
+            {
+              Name: Test,
+              Result: Failed
+            },
+            {
+              Name: Test,
+              Result: Failed
+            }
+          ]
+        },
+        {
+          Name: FailingTestSetup,
+          Tests: [
+            {
+              Name: Test,
+              Result: Failed
+            },
+            {
+              Name: Test,
+              Result: Failed
+            }
+          ]
+        },
+        {
+          Name: ParametrizedFixture("Answer",42),
+          Tests: [
+            {
+              Name: Test,
+              Result: Passed
+            },
+            {
+              Name: Test,
+              Result: Passed
+            }
+          ]
+        },
+        {
+          Name: ParametrizedFixture("Question",1),
+          Tests: [
+            {
+              Name: Test,
+              Result: Passed
+            },
+            {
+              Name: Test,
+              Result: Passed
+            }
+          ]
+        },
+        {
+          Name: ParametrizedTestCases,
+          Tests: [
+            {
+              Name: TestData(1,"A"),
+              Result: Passed
+            },
+            {
+              Name: TestData(1,"B"),
+              Result: Passed
+            },
+            {
+              Name: TestData(2,"A"),
+              Result: Failed
+            },
+            {
+              Name: TestData(2,"B"),
+              Result: Failed
+            },
+            {
+              Name: TestData(1,"A"),
+              Result: Passed
+            },
+            {
+              Name: TestData(1,"B"),
+              Result: Passed
+            },
+            {
+              Name: TestData(2,"A"),
+              Result: Failed
+            },
+            {
+              Name: TestData(2,"B"),
+              Result: Failed
+            }
+          ]
+        },
+        {
+          Name: SuccessAndInconclusiveFixture,
+          Tests: [
+            {
+              Name: InconclusiveTest,
+              Result: None
+            },
+            {
+              Name: SuccessTest,
+              Result: Passed
+            },
+            {
+              Name: InconclusiveTest,
+              Result: None
+            },
+            {
+              Name: SuccessTest,
+              Result: Passed
+            }
+          ]
+        },
+        {
+          Name: SuccessFixture,
+          Tests: [
+            {
+              Name: SuccessTest,
+              Result: Passed
+            },
+            {
+              Name: SuccessTest,
+              Result: Passed
+            }
+          ]
+        },
+        {
+          Name: UnitTest1,
+          Tests: [
+            {
+              Name: FailTest11,
+              Result: Failed
+            },
+            {
+              Name: Ignored,
+              Result: Skipped
+            },
+            {
+              Name: Inconclusive,
+              Result: None
+            },
+            {
+              Name: MultipleCategories,
+              Result: Passed
+            },
+            {
+              Name: NoProperty,
+              Result: Passed
+            },
+            {
+              Name: PassTest11,
+              Result: Passed
+            },
+            {
+              Name: WithCategory,
+              Result: Passed
+            },
+            {
+              Name: WithCategoryAndProperty,
+              Result: Passed
+            },
+            {
+              Name: WithProperties,
+              Result: Passed
+            },
+            {
+              Name: WithProperty,
+              Result: Passed
+            },
+            {
+              Name: FailTest11,
+              Result: Failed
+            },
+            {
+              Name: Ignored,
+              Result: Skipped
+            },
+            {
+              Name: Inconclusive,
+              Result: None
+            },
+            {
+              Name: PassTest11,
+              Result: Passed
+            }
+          ]
+        },
+        {
+          Name: UnitTest2,
+          Tests: [
+            {
+              Name: ExplicitTest,
+              Result: Skipped
+            },
+            {
+              Name: FailTest22,
+              Result: Failed
+            },
+            {
+              Name: IgnoredTest,
+              Result: Skipped
+            },
+            {
+              Name: Inconclusive,
+              Result: None
+            },
+            {
+              Name: PassTest21,
+              Result: Passed
+            },
+            {
+              Name: WarningTest,
+              Result: Skipped
+            },
+            {
+              Name: ExplicitTest,
+              Result: Skipped
+            },
+            {
+              Name: FailTest22,
+              Result: Failed
+            },
+            {
+              Name: IgnoredTest,
+              Result: Skipped
+            },
+            {
+              Name: Inconclusive,
+              Result: None
+            },
+            {
+              Name: PassTest21,
+              Result: Passed
+            },
+            {
+              Name: WarningTest,
+              Result: Skipped
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  TestMessages: [
+    {
+      Message: NUnit Adapter 3.10.0.21: Test execution started
+    },
+    {
+      Message: Running all tests in {SolutionDirectory}test\assets\Json.TestLogger.NetFull.Tests.NUnit\bin\Debug\net46\Json.TestLogger.NetFull.Tests.NUnit.dll
+    },
+    {
+      Message: NUnit3TestExecutor converted 52 of 52 NUnit test cases
+    },
+    {
+      Level: Warning,
+      Message: SetUp failed for test fixture NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp
+    },
+    {
+      Level: Warning,
+      Message: System.InvalidOperationException : Operation is not valid due to the current state of the object.
+    },
+    {
+      Level: Warning,
+      Message:    at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.OneTimeSetUp() in {SolutionDirectory}test\assets\Json.TestLogger.NetCore.Tests.NUnit\UnitTest1.cs:line 145
+    },
+    {
+      Level: Warning,
+      Message: TearDown failed for test fixture NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown
+    },
+    {
+      Level: Warning,
+      Message: TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.
+    },
+    {
+      Level: Warning,
+      Message:
+--TearDown
+   at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.OneTimeTearDown() in {SolutionDirectory}test\assets\Json.TestLogger.NetCore.Tests.NUnit\UnitTest1.cs:line 190
+    },
+    {
+      Level: Warning,
+      Message: SetUp failed for test fixture NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp
+    },
+    {
+      Level: Warning,
+      Message: System.InvalidOperationException : Operation is not valid due to the current state of the object.
+    },
+    {
+      Level: Warning,
+      Message:    at NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.OneTimeSetUp() in {SolutionDirectory}test\assets\Json.TestLogger.NetCore.Tests.NUnit\UnitTest2.cs:line 107
+    },
+    {
+      Level: Warning,
+      Message: TearDown failed for test fixture NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown
+    },
+    {
+      Level: Warning,
+      Message: TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.
+    },
+    {
+      Level: Warning,
+      Message:
+--TearDown
+   at NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.OneTimeTearDown() in {SolutionDirectory}test\assets\Json.TestLogger.NetCore.Tests.NUnit\UnitTest2.cs:line 152
+    },
+    {
+      Message: NUnit Adapter 3.10.0.21: Test execution complete
+    }
+  ]
+}

@@ -21,10 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\Json.TestLogger.NetCore.Tests\UnitTest1.cs">
+    <Compile Include="..\Json.TestLogger.NetCore.Tests.NUnit\UnitTest1.cs">
       <Link>UnitTest1.cs</Link>
     </Compile>
-    <Compile Include="..\Json.TestLogger.NetCore.Tests\UnitTest2.cs">
+    <Compile Include="..\Json.TestLogger.NetCore.Tests.NUnit\UnitTest2.cs">
       <Link>UnitTest2.cs</Link>
     </Compile>
   </ItemGroup>

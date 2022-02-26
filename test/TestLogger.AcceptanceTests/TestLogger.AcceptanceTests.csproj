@@ -16,9 +16,9 @@
   <!-- Build test assets for acceptance tests -->
   <PropertyGroup>
     <TestRestoreConfig>$(MSBuildThisFileDirectory)../assets/NuGet.$(Configuration).config</TestRestoreConfig>
-    <TestFullProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NetFull.Tests/Json.TestLogger.NetFull.Tests.csproj</TestFullProject>
-    <TestCoreProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NetCore.Tests/Json.TestLogger.NetCore.Tests.csproj</TestCoreProject>
-    <TestMultiProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NetMulti.Tests/Json.TestLogger.NetMulti.Tests.csproj</TestMultiProject>
+    <TestFullProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NetFull.Tests.NUnit/Json.TestLogger.NetFull.Tests.NUnit.csproj</TestFullProject>
+    <TestCoreProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NetCore.Tests.NUnit/Json.TestLogger.NetCore.Tests.NUnit.csproj</TestCoreProject>
+    <TestMultiProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NetMulti.Tests.NUnit/Json.TestLogger.NetMulti.Tests.NUnit.csproj</TestMultiProject>
   </PropertyGroup>
   <Target Name="TestTarget" AfterTargets="Build">
     <Message Importance="High" Text="... Building test assets" />

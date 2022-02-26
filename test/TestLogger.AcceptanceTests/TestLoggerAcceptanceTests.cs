@@ -15,7 +15,9 @@ namespace TestLogger.AcceptanceTests
     public class TestLoggerAcceptanceTests : VerifyBase
     {
         [TestMethod]
-        [DataRow("Json.TestLogger.NetCore.Tests")]
+        [DataRow("Json.TestLogger.NetCore.Tests.NUnit")]
+        [DataRow("Json.TestLogger.NetFull.Tests.NUnit")]
+        [DataRow("Json.TestLogger.NetMulti.Tests.NUnit")]
         public Task VerifyTestRunOutput(string testAssembly)
         {
             DotnetTestFixture.Execute(testAssembly, "test-results.json");
