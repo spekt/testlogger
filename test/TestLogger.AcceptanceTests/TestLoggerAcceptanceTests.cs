@@ -15,16 +15,16 @@ namespace TestLogger.AcceptanceTests
     public class TestLoggerAcceptanceTests : VerifyBase
     {
         [TestMethod]
-        ////[DataRow()]
-        public Task VerifyTestRunOutput() ////string testAssembly)
+        [DataRow("Json.TestLogger.NetCore.Tests")]
+        public Task VerifyTestRunOutput(string testAssembly)
         {
-            var testAssembly = "Json.TestLogger.NetCore.Tests";
             DotnetTestFixture.Execute(testAssembly, "test-results.json");
             var resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
 
             var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
             var settings = new VerifyTests.VerifySettings();
             settings.UseDirectory("Snapshots");
+            settings.UseParameters(testAssembly);
 
             return this.Verify(testReport, settings);
         }
