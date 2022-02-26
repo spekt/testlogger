@@ -14,29 +14,15 @@ namespace TestLogger.AcceptanceTests
     [TestClass]
     public class TestLoggerAcceptanceTests : VerifyBase
     {
-        private static readonly string ResultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
-
-        [ClassInitialize]
-        public static void SuiteInitialize(TestContext context)
-        {
-            if (File.Exists(ResultsFile))
-            {
-                File.Delete(ResultsFile);
-            }
-
-            DotnetTestFixture.Execute("test-results.json");
-        }
-
         [TestMethod]
-        public void TestRunWithLoggerAndFilePathShouldCreateResultsFile()
+        ////[DataRow()]
+        public Task VerifyTestRunOutput() ////string testAssembly)
         {
-            Assert.IsTrue(File.Exists(ResultsFile));
-        }
+            var testAssembly = "Json.TestLogger.NetCore.Tests";
+            DotnetTestFixture.Execute(testAssembly, "test-results.json");
+            var resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
 
-        [TestMethod]
-        public Task VerifyTestRunOutput()
-        {
-            var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(ResultsFile));
+            var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
             var settings = new VerifyTests.VerifySettings();
             settings.UseDirectory("Snapshots");
 

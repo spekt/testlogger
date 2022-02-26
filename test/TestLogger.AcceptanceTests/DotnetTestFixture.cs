@@ -11,7 +11,9 @@ namespace TestLogger.AcceptanceTests
     {
         private const string NetcoreVersion = "netcoreapp3.1";
 
-        public static string RootDirectory { get; } = Path.GetFullPath(
+        private static string foo = string.Empty;
+
+        public static string RootDirectory => Path.GetFullPath(
                     Path.Combine(
                         Environment.CurrentDirectory,
                         "..",
@@ -19,9 +21,9 @@ namespace TestLogger.AcceptanceTests
                         "..",
                         "..",
                         "assets",
-                        "Json.TestLogger.NetCore.Tests"));
+                        foo));
 
-        public static string TestAssemblyName { get; } = "Json.TestLogger.NetCore.Tests.dll";
+        public static string TestAssemblyName => $"{foo}.dll";
 
         public static string TestAssembly
         {
@@ -36,10 +38,17 @@ namespace TestLogger.AcceptanceTests
             }
         }
 
-        public static void Execute(string resultsFile)
+        public static void Execute(string testName, string resultsFile)
         {
+            foo = testName;
             var testProject = RootDirectory;
             var testLogger = $"--logger:\"json;LogFilePath={resultsFile}\"";
+
+            var fullResultFilePath = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
+            if (File.Exists(fullResultFilePath))
+            {
+                File.Delete(fullResultFilePath);
+            }
 
             // Delete stale results file
             var testLogFile = Path.Combine(testProject, resultsFile);
