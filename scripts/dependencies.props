@@ -8,8 +8,8 @@
 
     <!-- Test Assets use the minimum supported versions -->
     <NETTestSdkMinimumVersion>15.0.0</NETTestSdkMinimumVersion>
-    <XunitVersion>2.3.1</XunitVersion>
-    <XunitTestAdapterVersion>2.3.1</XunitTestAdapterVersion>
+    <XunitVersion>2.4.1</XunitVersion>
+    <XunitTestAdapterVersion>2.4.3</XunitTestAdapterVersion>
     <NUnitVersion>3.10.1</NUnitVersion>
     <NUnitTestAdapterVersion>3.10.0</NUnitTestAdapterVersion>
 

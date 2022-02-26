@@ -1,21 +1,77 @@
 ﻿{
-  TestAssemblies: [],
+  TestAssemblies: [
+    {
+      Name: {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetFull.Tests\bin\Debug\net46\Json.TestLogger.XUnit.NetFull.Tests.dll,
+      Fixtures: [
+        {
+          Name: UnitTest1,
+          Tests: [
+            {
+              Name: Example_Failure,
+              Result: Failed
+            },
+            {
+              Name: Example_Failure,
+              Result: Failed
+            }
+          ]
+        }
+      ]
+    }
+  ],
   TestMessages: [
     {
-      Message: NUnit Adapter 3.10.0.21: Test execution started
+      Message: [xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.4.3+1b45f5407b (32-bit Desktop .NET 4.0.30319.42000)
     },
     {
-      Message: Running all tests in {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetFull.Tests\bin\Debug\net46\Json.TestLogger.XUnit.NetFull.Tests.dll
+      Message: [xUnit.net 00:00:00.63]   Discovering: Json.TestLogger.XUnit.NetFull.Tests
     },
     {
-      Message: NUnit3TestExecutor converted 0 of 0 NUnit test cases
+      Message: [xUnit.net 00:00:00.73]   Discovered:  Json.TestLogger.XUnit.NetFull.Tests
     },
     {
-      Message: NUnit Adapter 3.10.0.21: Test execution complete
+      Message: [xUnit.net 00:00:00.74]   Starting:    Json.TestLogger.XUnit.NetFull.Tests
     },
     {
-      Level: Warning,
-      Message: No test is available in {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetFull.Tests\bin\Debug\net46\Json.TestLogger.XUnit.NetFull.Tests.dll. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+      Level: Error,
+      Message: [xUnit.net 00:00:00.94]     NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure [FAIL]
+    },
+    {
+      Message: [xUnit.net 00:00:00.94]       Assert.False() Failure
+    },
+    {
+      Message: [xUnit.net 00:00:00.94]       Expected: False
+    },
+    {
+      Message: [xUnit.net 00:00:00.94]       Actual:   True
+    },
+    {
+      Message: [xUnit.net 00:00:00.94]       Stack Trace:
+    },
+    {
+      Message: [xUnit.net 00:00:00.94]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(12,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
+    },
+    {
+      Level: Error,
+      Message: [xUnit.net 00:00:00.95]     NUnit.Xml.TestLogger.Tests2.UnitTest1.Example_Failure [FAIL]
+    },
+    {
+      Message: [xUnit.net 00:00:00.95]       Assert.False() Failure
+    },
+    {
+      Message: [xUnit.net 00:00:00.95]       Expected: False
+    },
+    {
+      Message: [xUnit.net 00:00:00.95]       Actual:   True
+    },
+    {
+      Message: [xUnit.net 00:00:00.95]       Stack Trace:
+    },
+    {
+      Message: [xUnit.net 00:00:00.95]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(12,0): at NUnit.Xml.TestLogger.Tests2.UnitTest1.Example_Failure()
+    },
+    {
+      Message: [xUnit.net 00:00:00.95]   Finished:    Json.TestLogger.XUnit.NetFull.Tests
     }
   ]
 }

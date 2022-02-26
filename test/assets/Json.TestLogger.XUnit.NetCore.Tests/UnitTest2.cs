@@ -1,11 +1,15 @@
 using System;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Xunit;
 
 namespace NUnit.Xml.TestLogger.Tests2
 {
-    [TestFixture]
     public class UnitTest1
     {
+        [Fact]
+        public void Example_Failure()
+        {
+            Assert.False(true);
+        }
     }
 }
