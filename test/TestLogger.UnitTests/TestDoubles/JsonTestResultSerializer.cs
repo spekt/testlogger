@@ -87,10 +87,11 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
             return new ()
             {
                 FullyQualifiedName = result.TestCase.FullyQualifiedName,
+                DisplayName = result.TestCase.DisplayName,
                 Namespace = result.Namespace,
                 Type = result.Type,
                 Method = result.Method,
-                Result = result.Outcome.ToString()
+                Result = result.Outcome.ToString(),
             };
         }
 
@@ -124,6 +125,8 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
         public class Test
         {
             public string FullyQualifiedName { get; set; }
+
+            public string DisplayName { get; set; }
 
             public string Namespace { get; set; }
 
