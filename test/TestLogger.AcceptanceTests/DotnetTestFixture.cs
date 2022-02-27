@@ -11,7 +11,7 @@ namespace TestLogger.AcceptanceTests
     {
         private const string NetcoreVersion = "netcoreapp3.1";
 
-        private static string foo = string.Empty;
+        private static string assembly = string.Empty;
 
         public static string RootDirectory => Path.GetFullPath(
                     Path.Combine(
@@ -21,9 +21,9 @@ namespace TestLogger.AcceptanceTests
                         "..",
                         "..",
                         "assets",
-                        foo));
+                        assembly));
 
-        public static string TestAssemblyName => $"{foo}.dll";
+        public static string TestAssemblyName => $"{assembly}.dll";
 
         public static string TestAssembly
         {
@@ -40,7 +40,7 @@ namespace TestLogger.AcceptanceTests
 
         public static void Execute(string testName, string resultsFile)
         {
-            foo = testName;
+            assembly = testName;
             var testProject = RootDirectory;
             var testLogger = $"--logger:\"json;LogFilePath={resultsFile}\"";
 
