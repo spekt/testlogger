@@ -45,6 +45,6 @@
     <PackageReference Include="Verify.MSTest" Version="16.3.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Json.TestLogger.TestAdapter\Json.TestLogger.TestAdapter.csproj" />
+    <ProjectReference Include="..\TestLogger.UnitTests\TestLogger.UnitTests.csproj" />
   </ItemGroup>
 </Project>

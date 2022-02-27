@@ -58,7 +58,8 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
                 select this.CreateAssembly(assemblies);
 
             var content = new StringBuilder();
-            new JsonSerializer().Serialize(new StringWriter(content), new TestReport(res, messages));
+            JsonSerializer.Create(new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include })
+                .Serialize(new StringWriter(content), new TestReport(res, messages));
             return content.ToString();
         }
 

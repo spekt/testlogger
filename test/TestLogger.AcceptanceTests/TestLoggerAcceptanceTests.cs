@@ -7,9 +7,9 @@ namespace TestLogger.AcceptanceTests
     using System.IO;
     using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Newtonsoft.Json;
+    using Spekt.TestLogger.UnitTests.TestDoubles;
     using VerifyMSTest;
-    using static Spekt.TestLogger.UnitTests.TestDoubles.JsonTestResultSerializer;
+    using JsonSerializer = System.Text.Json.JsonSerializer;
 
     [TestClass]
     public class TestLoggerAcceptanceTests : VerifyBase
@@ -37,7 +37,8 @@ namespace TestLogger.AcceptanceTests
 
             DotnetTestFixture.Execute(testAssembly, "test-results.json");
             var resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
-            var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
+            var json = File.ReadAllText(resultsFile);
+            var testReport = JsonSerializer.Deserialize<JsonTestResultSerializer.TestReport>(json, null);
 
             return this.Verify(testReport, settings);
         }
