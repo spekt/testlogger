@@ -19,6 +19,34 @@
               Type: UnitTest1,
               Method: Example_Success,
               Result: Passed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: MyTheory,
+              Result: Passed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: MyTheory,
+              Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
+              Result: Passed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
+              Result: Passed
             }
           ]
         },
@@ -67,7 +95,20 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(18,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
+      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(19,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
+    },
+    {
+      Level: Error,
+      Message: [xUnit.net _Timestamp_]     NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(input: null) [FAIL]
+    },
+    {
+      Message: [xUnit.net _Timestamp_]       Assert.NotNull() Failure
+    },
+    {
+      Message: [xUnit.net _Timestamp_]       Stack Trace:
+    },
+    {
+      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(27,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(String input)
     },
     {
       Level: Error,
