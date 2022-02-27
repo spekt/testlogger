@@ -1,17 +1,23 @@
 ﻿{
   TestAssemblies: [
     {
-      Name: {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.NUnit.NetCore.Tests.dll,
+      Name: {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.NUnit.NetCore.Tests.dll,
       Fixtures: [
         {
           Name: FailingOneTimeSetUp,
           Tests: [
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.Test,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: FailingOneTimeSetUp,
+              Method: Test,
               Result: Failed
             },
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.Test,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: FailingOneTimeSetUp,
+              Method: Test,
               Result: Failed
             }
           ]
@@ -20,11 +26,17 @@
           Name: FailingOneTimeTearDown,
           Tests: [
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.Test,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: FailingOneTimeTearDown,
+              Method: Test,
               Result: Passed
             },
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.Test,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: FailingOneTimeTearDown,
+              Method: Test,
               Result: Passed
             }
           ]
@@ -33,11 +45,17 @@
           Name: FailingTearDown,
           Tests: [
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.FailingTearDown.Test,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: FailingTearDown,
+              Method: Test,
               Result: Failed
             },
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingTearDown.Test,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: FailingTearDown,
+              Method: Test,
               Result: Failed
             }
           ]
@@ -46,11 +64,17 @@
           Name: FailingTestSetup,
           Tests: [
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.FailingTestSetup.Test,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: FailingTestSetup,
+              Method: Test,
               Result: Failed
             },
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingTestSetup.Test,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: FailingTestSetup,
+              Method: Test,
               Result: Failed
             }
           ]
@@ -59,11 +83,17 @@
           Name: ParametrizedFixture("Answer",42),
           Tests: [
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture("Answer",42).Test,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: ParametrizedFixture("Answer",42),
+              Method: Test,
               Result: Passed
             },
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture("Answer",42).Test,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: ParametrizedFixture("Answer",42),
+              Method: Test,
               Result: Passed
             }
           ]
@@ -72,11 +102,17 @@
           Name: ParametrizedFixture("Question",1),
           Tests: [
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture("Question",1).Test,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: ParametrizedFixture("Question",1),
+              Method: Test,
               Result: Passed
             },
             {
-              Name: Test,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture("Question",1).Test,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: ParametrizedFixture("Question",1),
+              Method: Test,
               Result: Passed
             }
           ]
@@ -85,35 +121,59 @@
           Name: ParametrizedTestCases,
           Tests: [
             {
-              Name: TestData(1,"A"),
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,"A"),
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: ParametrizedTestCases,
+              Method: TestData(1,"A"),
               Result: Passed
             },
             {
-              Name: TestData(1,"B"),
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,"B"),
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: ParametrizedTestCases,
+              Method: TestData(1,"B"),
               Result: Passed
             },
             {
-              Name: TestData(2,"A"),
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,"A"),
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: ParametrizedTestCases,
+              Method: TestData(2,"A"),
               Result: Failed
             },
             {
-              Name: TestData(2,"B"),
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,"B"),
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: ParametrizedTestCases,
+              Method: TestData(2,"B"),
               Result: Failed
             },
             {
-              Name: TestData(1,"A"),
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,"A"),
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: ParametrizedTestCases,
+              Method: TestData(1,"A"),
               Result: Passed
             },
             {
-              Name: TestData(1,"B"),
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,"B"),
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: ParametrizedTestCases,
+              Method: TestData(1,"B"),
               Result: Passed
             },
             {
-              Name: TestData(2,"A"),
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,"A"),
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: ParametrizedTestCases,
+              Method: TestData(2,"A"),
               Result: Failed
             },
             {
-              Name: TestData(2,"B"),
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,"B"),
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: ParametrizedTestCases,
+              Method: TestData(2,"B"),
               Result: Failed
             }
           ]
@@ -122,19 +182,31 @@
           Name: SuccessAndInconclusiveFixture,
           Tests: [
             {
-              Name: InconclusiveTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture.InconclusiveTest,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: SuccessAndInconclusiveFixture,
+              Method: InconclusiveTest,
               Result: None
             },
             {
-              Name: SuccessTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture.SuccessTest,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: SuccessAndInconclusiveFixture,
+              Method: SuccessTest,
               Result: Passed
             },
             {
-              Name: InconclusiveTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture.InconclusiveTest,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: SuccessAndInconclusiveFixture,
+              Method: InconclusiveTest,
               Result: None
             },
             {
-              Name: SuccessTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture.SuccessTest,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: SuccessAndInconclusiveFixture,
+              Method: SuccessTest,
               Result: Passed
             }
           ]
@@ -143,11 +215,17 @@
           Name: SuccessFixture,
           Tests: [
             {
-              Name: SuccessTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.SuccessFixture.SuccessTest,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: SuccessFixture,
+              Method: SuccessTest,
               Result: Passed
             },
             {
-              Name: SuccessTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.SuccessFixture.SuccessTest,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: SuccessFixture,
+              Method: SuccessTest,
               Result: Passed
             }
           ]
@@ -156,59 +234,101 @@
           Name: UnitTest1,
           Tests: [
             {
-              Name: FailTest11,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.FailTest11,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: FailTest11,
               Result: Failed
             },
             {
-              Name: Ignored,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Ignored,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: Ignored,
               Result: Skipped
             },
             {
-              Name: Inconclusive,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Inconclusive,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: Inconclusive,
               Result: None
             },
             {
-              Name: MultipleCategories,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MultipleCategories,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: MultipleCategories,
               Result: Passed
             },
             {
-              Name: NoProperty,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.NoProperty,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: NoProperty,
               Result: Passed
             },
             {
-              Name: PassTest11,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.PassTest11,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: PassTest11,
               Result: Passed
             },
             {
-              Name: WithCategory,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithCategory,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: WithCategory,
               Result: Passed
             },
             {
-              Name: WithCategoryAndProperty,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithCategoryAndProperty,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: WithCategoryAndProperty,
               Result: Passed
             },
             {
-              Name: WithProperties,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithProperties,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: WithProperties,
               Result: Passed
             },
             {
-              Name: WithProperty,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithProperty,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: WithProperty,
               Result: Passed
             },
             {
-              Name: FailTest11,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.FailTest11,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest1,
+              Method: FailTest11,
               Result: Failed
             },
             {
-              Name: Ignored,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.Ignored,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest1,
+              Method: Ignored,
               Result: Skipped
             },
             {
-              Name: Inconclusive,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.Inconclusive,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest1,
+              Method: Inconclusive,
               Result: None
             },
             {
-              Name: PassTest11,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.PassTest11,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest1,
+              Method: PassTest11,
               Result: Passed
             }
           ]
@@ -217,51 +337,87 @@
           Name: UnitTest2,
           Tests: [
             {
-              Name: ExplicitTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.ExplicitTest,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest2,
+              Method: ExplicitTest,
               Result: Skipped
             },
             {
-              Name: FailTest22,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.FailTest22,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest2,
+              Method: FailTest22,
               Result: Failed
             },
             {
-              Name: IgnoredTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.IgnoredTest,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest2,
+              Method: IgnoredTest,
               Result: Skipped
             },
             {
-              Name: Inconclusive,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.Inconclusive,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest2,
+              Method: Inconclusive,
               Result: None
             },
             {
-              Name: PassTest21,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.PassTest21,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest2,
+              Method: PassTest21,
               Result: Passed
             },
             {
-              Name: WarningTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.WarningTest,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest2,
+              Method: WarningTest,
               Result: Skipped
             },
             {
-              Name: ExplicitTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.ExplicitTest,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: ExplicitTest,
               Result: Skipped
             },
             {
-              Name: FailTest22,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.FailTest22,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: FailTest22,
               Result: Failed
             },
             {
-              Name: IgnoredTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.IgnoredTest,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: IgnoredTest,
               Result: Skipped
             },
             {
-              Name: Inconclusive,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.Inconclusive,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: Inconclusive,
               Result: None
             },
             {
-              Name: PassTest21,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.PassTest21,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: PassTest21,
               Result: Passed
             },
             {
-              Name: WarningTest,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.WarningTest,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: WarningTest,
               Result: Skipped
             }
           ]
@@ -274,7 +430,7 @@
       Message: NUnit Adapter 3.10.0.21: Test execution started
     },
     {
-      Message: Running all tests in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.NUnit.NetCore.Tests.dll
+      Message: Running all tests in {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.NUnit.NetCore.Tests.dll
     },
     {
       Message: NUnit3TestExecutor converted 52 of 52 NUnit test cases
@@ -289,7 +445,7 @@
     },
     {
       Level: Warning,
-      Message:    at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.OneTimeSetUp() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest1.cs:line 145
+      Message:    at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.OneTimeSetUp() in {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest1.cs:line 145
     },
     {
       Level: Warning,
@@ -303,7 +459,7 @@
       Level: Warning,
       Message:
 --TearDown
-   at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.OneTimeTearDown() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest1.cs:line 190
+   at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.OneTimeTearDown() in {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest1.cs:line 190
     },
     {
       Level: Warning,
@@ -315,7 +471,7 @@
     },
     {
       Level: Warning,
-      Message:    at NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.OneTimeSetUp() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest2.cs:line 107
+      Message:    at NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.OneTimeSetUp() in {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest2.cs:line 107
     },
     {
       Level: Warning,
@@ -329,7 +485,7 @@
       Level: Warning,
       Message:
 --TearDown
-   at NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.OneTimeTearDown() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest2.cs:line 152
+   at NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.OneTimeTearDown() in {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest2.cs:line 152
     },
     {
       Message: NUnit Adapter 3.10.0.21: Test execution complete

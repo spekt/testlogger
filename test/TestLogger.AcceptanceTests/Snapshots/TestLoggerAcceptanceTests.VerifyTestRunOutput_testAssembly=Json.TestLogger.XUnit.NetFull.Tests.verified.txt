@@ -1,26 +1,35 @@
 ﻿{
   TestAssemblies: [
     {
-      Name: {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetFull.Tests\bin\Debug\net46\Json.TestLogger.XUnit.NetFull.Tests.dll,
+      Name: {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.XUnit.NetFull.Tests\bin\Debug\net46\Json.TestLogger.XUnit.NetFull.Tests.dll,
       Fixtures: [
         {
-          Name: UnitTest2,
+          Name: UnitTest1,
           Tests: [
             {
-              Name: Example_Failure,
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Success,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: Example_Success,
+              Result: Passed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: Example_Failure,
               Result: Failed
             }
           ]
         },
         {
-          Name: UnitTest1,
+          Name: UnitTest2,
           Tests: [
             {
-              Name: Example_Success,
-              Result: Passed
-            },
-            {
-              Name: Example_Failure,
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: Example_Failure,
               Result: Failed
             }
           ]
@@ -43,25 +52,6 @@
     },
     {
       Level: Error,
-      Message: [xUnit.net _Timestamp_]     NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure [FAIL]
-    },
-    {
-      Message: [xUnit.net _Timestamp_]       Assert.False() Failure
-    },
-    {
-      Message: [xUnit.net _Timestamp_]       Expected: False
-    },
-    {
-      Message: [xUnit.net _Timestamp_]       Actual:   True
-    },
-    {
-      Message: [xUnit.net _Timestamp_]       Stack Trace:
-    },
-    {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(12,0): at NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure()
-    },
-    {
-      Level: Error,
       Message: [xUnit.net _Timestamp_]     NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure [FAIL]
     },
     {
@@ -77,7 +67,26 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(18,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
+      Message: [xUnit.net _Timestamp_]         {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(18,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
+    },
+    {
+      Level: Error,
+      Message: [xUnit.net _Timestamp_]     NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure [FAIL]
+    },
+    {
+      Message: [xUnit.net _Timestamp_]       Assert.False() Failure
+    },
+    {
+      Message: [xUnit.net _Timestamp_]       Expected: False
+    },
+    {
+      Message: [xUnit.net _Timestamp_]       Actual:   True
+    },
+    {
+      Message: [xUnit.net _Timestamp_]       Stack Trace:
+    },
+    {
+      Message: [xUnit.net _Timestamp_]         {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(12,0): at NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure()
     },
     {
       Message: [xUnit.net _Timestamp_]   Finished:    Json.TestLogger.XUnit.NetFull.Tests
