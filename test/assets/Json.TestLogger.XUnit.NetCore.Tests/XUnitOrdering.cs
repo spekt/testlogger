@@ -4,12 +4,6 @@ using Xunit;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-// Added to ensure we get deterministic log message order for verification testing.
-// Example code from https://docs.microsoft.com/en-us/dotnet/core/testing/order-unit-tests?pivots=xunit
-[assembly: CollectionBehavior(DisableTestParallelization = true)]
-[assembly: TestCaseOrderer("Json.TestLogger.XUnit.Orderers.AlphabeticalOrderer", "Json.TestLogger.XUnit.NetCore.Tests")]
-[assembly: TestCollectionOrderer("Json.TestLogger.XUnit.Orderers.DisplayNameOrderer", "Json.TestLogger.XUnit.NetCore.Tests")]
-
 namespace Json.TestLogger.XUnit.Orderers
 {
     public class DisplayNameOrderer : ITestCollectionOrderer

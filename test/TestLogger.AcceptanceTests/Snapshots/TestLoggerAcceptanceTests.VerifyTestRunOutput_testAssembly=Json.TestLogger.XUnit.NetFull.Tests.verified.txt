@@ -7,18 +7,18 @@
           Name: UnitTest1,
           Tests: [
             {
-              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Success,
-              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
-              Type: UnitTest1,
-              Method: Example_Success,
-              Result: Passed
-            },
-            {
               FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure,
               Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
               Type: UnitTest1,
               Method: Example_Failure,
               Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Success,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: Example_Success,
+              Result: Passed
             }
           ]
         },
