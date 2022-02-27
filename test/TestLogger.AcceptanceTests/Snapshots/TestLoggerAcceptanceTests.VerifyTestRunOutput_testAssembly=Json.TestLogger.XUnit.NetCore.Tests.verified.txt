@@ -7,12 +7,12 @@
           Name: UnitTest1,
           Tests: [
             {
-              Name: Example_Success,
-              Result: Passed
-            },
-            {
               Name: Example_Failure,
               Result: Failed
+            },
+            {
+              Name: Example_Success,
+              Result: Passed
             }
           ]
         },
