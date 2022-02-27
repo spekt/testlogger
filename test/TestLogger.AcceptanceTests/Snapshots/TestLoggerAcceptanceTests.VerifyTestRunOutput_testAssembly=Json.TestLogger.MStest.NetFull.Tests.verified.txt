@@ -13,6 +13,54 @@
               Type: UnitTest2,
               Method: ExampleFailure,
               Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.TestMethodDataRow,
+              DisplayName: TestMethodDataRow (-1),
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: TestMethodDataRow (-1),
+              Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.TestMethodDataRow,
+              DisplayName: TestMethodDataRow (0),
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: TestMethodDataRow (0),
+              Result: Passed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.TestMethodDataRow,
+              DisplayName: TestMethodDataRow (1),
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: TestMethodDataRow (1),
+              Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.DataTestMethodDataRow,
+              DisplayName: DataTestMethodDataRow (-1),
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: DataTestMethodDataRow (-1),
+              Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.DataTestMethodDataRow,
+              DisplayName: DataTestMethodDataRow (0),
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: DataTestMethodDataRow (0),
+              Result: Passed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.DataTestMethodDataRow,
+              DisplayName: DataTestMethodDataRow (1),
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: UnitTest2,
+              Method: DataTestMethodDataRow (1),
+              Result: Failed
             }
           ]
         },

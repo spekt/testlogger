@@ -12,5 +12,23 @@ namespace NUnit.Xml.TestLogger.Tests2
         {
             Assert.Fail();
         }
+
+        [TestMethod]
+        [DataRow(-1)]
+        [DataRow(0)]
+        [DataRow(1)]
+        public void TestMethodDataRow(int value)
+        {
+            Assert.AreEqual(0,value);
+        }
+
+        [DataTestMethod]
+        [DataRow(-1)]
+        [DataRow(0)]
+        [DataRow(1)]
+        public void DataTestMethodDataRow(int value)
+        {
+            Assert.AreEqual(0, value);
+        }
     }
 }
