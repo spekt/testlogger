@@ -74,6 +74,59 @@
               Type: UnitTest1,
               Method: ExampleFailure,
               Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Test_Add,
+              DisplayName: Custom - Test_Add (1,1,2),
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: Custom - Test_Add (1,1,2),
+              Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Test_Add,
+              DisplayName: Custom - Test_Add (12,30,42),
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: Custom - Test_Add (12,30,42),
+              Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Test_Add,
+              DisplayName: Custom - Test_Add (14,1,15),
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: Custom - Test_Add (14,1,15),
+              Result: Failed
+            }
+          ]
+        },
+        {
+          Name: MathTests,
+          Tests: [
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.MathTests.Test_Add_DynamicData_Property,
+              DisplayName: Test_Add_DynamicData_Property (1,1,2),
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: MathTests,
+              Method: Test_Add_DynamicData_Property (1,1,2),
+              Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.MathTests.Test_Add_DynamicData_Property,
+              DisplayName: Test_Add_DynamicData_Property (12,30,42),
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: MathTests,
+              Method: Test_Add_DynamicData_Property (12,30,42),
+              Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.MathTests.Test_Add_DynamicData_Property,
+              DisplayName: Test_Add_DynamicData_Property (14,1,15),
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: MathTests,
+              Method: Test_Add_DynamicData_Property (14,1,15),
+              Result: Failed
             }
           ]
         }
