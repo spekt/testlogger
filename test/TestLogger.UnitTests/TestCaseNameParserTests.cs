@@ -46,6 +46,11 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.y.x.ape.bar('\\'',False)", "z.y.x", "ape", "bar('\\'',False)")]
         [DataRow("z.y.x.ape.bar('\\\\',False)", "z.y.x", "ape", "bar('\\\\',False)")]
 
+        // Strip out any line breaks
+        [DataRow($"z.y.x.ape.bar('aa\r\nbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
+        [DataRow($"z.y.x.ape.bar('aa\nbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
+        [DataRow($"z.y.x.ape.bar('aa\rbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
+
         [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.8m,4.5m,(4.8, False))", "NetCore.Tests.NetCoreOnly", "Issue28_Examples", "ExampleTest2(True,4.8m,4.5m,(4.8, False))")]
         [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples(asdf \".\\).ExampleTest2(True,4.8m,4.5m,(4.8, False))", "NetCore.Tests.NetCoreOnly", "Issue28_Examples(asdf \".\\)", "ExampleTest2(True,4.8m,4.5m,(4.8, False))")]
         [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples(asdf \".\\).ExampleTest2", "NetCore.Tests.NetCoreOnly", "Issue28_Examples(asdf \".\\)", "ExampleTest2")]
@@ -64,11 +69,12 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.a.b((0,1)))", "z", "a", "b((0,1)))")]
         [DataRow("z.a.b((0,(0,1))", "z", "a", "b((0,(0,1))")]
         [DataRow("z.a.b((0,(0,1))))", "z", "a", "b((0,(0,1))))")]
+        [DataRow("a.z.y.x.", "a.z", "y", "x.")]
 
-        // These three just get parsed wrong right now.
+        // These produce strange results but don't output errors. TODO decide if these are ok.
         [DataRow("z.y.x.", "z", "y", "x.")]
-        [DataRow("z.y.x.)", "z", "y", "x.)")]
-        [DataRow("z.y.x.\"\")", "z", "y", "x.\"\")")]
+        [DataRow("z.y.x.)", "z.y", "x", ")")]
+        [DataRow("z.y.x.\"\")", "z.y", "x", "\"\")")]
         public void Parse_ParsesAllParseableInputs_WithoutConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
         {
             using (var sw = new StringWriter())
@@ -84,39 +90,11 @@ namespace Spekt.TestLogger.UnitTests
         }
 
         [DataTestMethod]
-        [DataRow("a.b", TestCaseNameParser.TestCaseParserUnknownNamespace, "a", "b")]
-
-        // Cover all expected cases of different parenthesis locations, handling normal strings
-        [DataRow("a.b(\"arg\",2)", TestCaseNameParser.TestCaseParserUnknownNamespace, "a", "b(\"arg\",2)")]
-        [DataRow("a(\"arg\",2).b", TestCaseNameParser.TestCaseParserUnknownNamespace, "a(\"arg\",2)", "b")]
-        [DataRow("a(\"arg\",2).b(\"arg\",2)", TestCaseNameParser.TestCaseParserUnknownNamespace, "a(\"arg\",2)", "b(\"arg\",2)")]
-
-        // Examples with period in non string
-        [DataRow("a.b(0.5f)", TestCaseNameParser.TestCaseParserUnknownNamespace, "a", "b(0.5f)")]
-        public void Parse_ParsesAllParseableInputsWithoutNamespace_WithConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
-        {
-            var expectedConsole = string.Format(
-                    TestCaseNameParser.TestCaseParserErrorTemplate,
-                    testCaseName,
-                    expectedNamespace,
-                    expectedType,
-                    expectedMethod);
-
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                var actual = TestCaseNameParser.Parse(testCaseName);
-
-                Assert.AreEqual(expectedNamespace, actual.NamespaceName);
-                Assert.AreEqual(expectedType, actual.TypeName);
-                Assert.AreEqual(expectedMethod, actual.MethodName);
-
-                // Remove the trailing new line before comparing.
-                Assert.AreEqual(expectedConsole, sw.ToString().Replace(sw.NewLine, string.Empty));
-            }
-        }
-
-        [DataTestMethod]
+        [DataRow("a.b")]
+        [DataRow("a.b(\"arg\",2)")]
+        [DataRow("a(\"arg\",2).b")]
+        [DataRow("a(\"arg\",2).b(\"arg\",2)")]
+        [DataRow("a.b(0.5f)")]
         [DataRow("x.()x()")]
         [DataRow("x")]
         [DataRow("..Z")]

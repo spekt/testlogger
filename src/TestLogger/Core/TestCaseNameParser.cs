@@ -55,209 +55,44 @@ namespace Spekt.TestLogger.Core
             var metadataTypeName = string.Empty;
             var metadataMethodName = string.Empty;
 
-            var step = NameParseStep.FindMethod;
-            var state = NameParseState.Default;
-            var parenthesisCount = 0;
-
-            var output = new List<char>();
-
-            try
+            if (fullyQualifiedName != null)
             {
-                for (int i = fullyQualifiedName.Length - 1; i >= 0; i--)
+                // Occassionally we get multi line results. Flatten those.
+                fullyQualifiedName = fullyQualifiedName.Replace("\r", string.Empty);
+                fullyQualifiedName = fullyQualifiedName.Replace("\n", string.Empty);
+
+                var regexOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase;
+
+                var method = new Regex(@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,})\.(.{1,})$", regexOptions); // This one picks up anything with just method parameters or no method params.
+                if (method.IsMatch(fullyQualifiedName))
                 {
-                    var thisChar = fullyQualifiedName[i];
-                    if (step == NameParseStep.FindNamespace)
-                    {
-                        // When we are doing namespace, we always accumulate the char.
-                        output.Insert(0, thisChar);
-                    }
-                    else if (state == NameParseState.Default)
-                    {
-                        if (thisChar == '(')
-                        {
-                            parenthesisCount--;
-                        }
-
-                        // Backslashes allowed only inside parenthesis block
-                        if ((thisChar == '\\') && (parenthesisCount == 0))
-                        {
-                            throw new Exception("Found invalid characters");
-                        }
-                        else if (thisChar == '"')
-                        {
-                            throw new Exception("Found invalid characters");
-                        }
-                        else if (thisChar == '\'')
-                        {
-                            throw new Exception("Found invalid characters");
-                        }
-                        else if (thisChar == ')')
-                        {
-                            if ((output.Count > 0) && (parenthesisCount == 0))
-                            {
-                                throw new Exception("The closing parenthesis we detected wouldn't be the last character in the output string. This isn't acceptable because we aren't in a string");
-                            }
-
-                            state = NameParseState.Parenthesis;
-                            output.Insert(0, thisChar);
-                        }
-                        else if (thisChar == '.')
-                        {
-                            // Found the end of this element.
-                            if (step == NameParseStep.FindMethod)
-                            {
-                                if (output.Count == 0)
-                                {
-                                    throw new Exception("This shouldn't be an empty string");
-                                }
-
-                                metadataMethodName = string.Join(string.Empty, output);
-
-                                // Prep the next step
-                                output = new List<char>();
-                                step = NameParseStep.FindType;
-                            }
-                            else if (step == NameParseStep.FindType)
-                            {
-                                if (output.Count == 0)
-                                {
-                                    throw new Exception("This shouldn't be an empty string");
-                                }
-
-                                metadataTypeName = string.Join(string.Empty, output);
-
-                                // Get The Namespace Next
-                                step = NameParseStep.FindNamespace;
-                                output = new List<char>();
-                            }
-                        }
-                        else
-                        {
-                            // Part of the name to add
-                            output.Insert(0, thisChar);
-                        }
-                    }
-                    else if (state == NameParseState.Parenthesis)
-                    {
-                        if (thisChar == ')')
-                        {
-                            parenthesisCount++;
-                        }
-                        else if (thisChar == '(')
-                        {
-                            // If we found the beginning of the parenthesis block, we are back in
-                            // default state
-                            state = NameParseState.Default;
-                        }
-                        else if (thisChar == '"')
-                        {
-                            // This must come at the end of a string, when escape characters aren't
-                            // an issue, so we are 'entering' string state, because of the reverse parsing.
-                            state = NameParseState.String;
-                        }
-                        else if (thisChar == '\'')
-                        {
-                            state |= NameParseState.Char;
-                        }
-
-                        output.Insert(0, thisChar);
-                    }
-                    else if (state == NameParseState.String)
-                    {
-                        if (thisChar == '"' && fullyQualifiedName.ElementAtOrDefault(i - 1) != '\\')
-                        {
-                            // If this is a quote that has not been escaped, switch the state. If it
-                            // had been escaped, we would still be in a string.
-                            state = NameParseState.Parenthesis;
-                        }
-
-                        output.Insert(0, thisChar);
-                    }
-                    else if (state == NameParseState.Char)
-                    {
-                        if (thisChar == '\'' && fullyQualifiedName.ElementAtOrDefault(i - 1) != '\\')
-                        {
-                            // If this is a single quote that has not been escaped, switch the state. If it
-                            // had been escaped, we would still be in a char.
-                            state = NameParseState.Parenthesis;
-                        }
-
-                        output.Insert(0, thisChar);
-                    }
+                    var matches = method.Matches(fullyQualifiedName);
+                    metadataNamespaceName = matches[0].Groups[1].Value;
+                    metadataTypeName = matches[0].Groups[2].Value;
+                    metadataMethodName = matches[0].Groups[3].Value;
                 }
 
-                if (parenthesisCount != 0)
+                var classData = new Regex(@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,}\(.{0,}\))\.(.{1,})$", regexOptions); // This one picks up anything with class data and maybe method data
+                if (classData.IsMatch(fullyQualifiedName))
                 {
-                    throw new Exception($"Unbalanced count of parentheses found ({parenthesisCount})");
-                }
-
-                // We are done. If we are finding type, set that variable. Otherwise, there was some
-                // issue, so leave the type blank.
-                if (step == NameParseStep.FindNamespace)
-                {
-                    metadataNamespaceName = string.Join(string.Empty, output);
-                }
-                else if (step == NameParseStep.FindType)
-                {
-                    metadataTypeName = string.Join(string.Empty, output);
+                    var matches = classData.Matches(fullyQualifiedName);
+                    metadataNamespaceName = matches[0].Groups[1].Value;
+                    metadataTypeName = matches[0].Groups[2].Value;
+                    metadataMethodName = matches[0].Groups[3].Value;
                 }
             }
-            catch (Exception)
-            {
-                // On exception, wipe out the type name
-                metadataTypeName = string.Empty;
-                metadataNamespaceName = string.Empty;
-            }
-            finally
-            {
-                // If for any reason we don't have a Type Name or Namespace then we try the fallback parser
-                if (string.IsNullOrWhiteSpace(metadataNamespaceName) || string.IsNullOrWhiteSpace(metadataTypeName))
-                {
-                    FallbackParser(fullyQualifiedName, ref metadataNamespaceName, ref metadataTypeName, ref metadataMethodName);
-                }
 
-                // If the fallback failed, then use unknowns and inform the user.
-                if (string.IsNullOrWhiteSpace(metadataNamespaceName) && string.IsNullOrWhiteSpace(metadataTypeName))
-                {
-                    metadataNamespaceName = TestCaseParserUnknownNamespace;
-                    metadataTypeName = TestCaseParserUnknownType;
-                    metadataMethodName = fullyQualifiedName;
-                    Console.WriteLine(TestCaseParserErrorTemplate, fullyQualifiedName, metadataNamespaceName, metadataTypeName, metadataMethodName);
-                }
-                else if (string.IsNullOrWhiteSpace(metadataNamespaceName))
-                {
-                    metadataNamespaceName = TestCaseParserUnknownNamespace;
-                    Console.WriteLine(TestCaseParserErrorTemplate, fullyQualifiedName, metadataNamespaceName, metadataTypeName, metadataMethodName);
-                }
+            if (string.IsNullOrWhiteSpace(metadataNamespaceName)
+                || string.IsNullOrWhiteSpace(metadataTypeName)
+                || string.IsNullOrWhiteSpace(metadataMethodName))
+            {
+                metadataNamespaceName = TestCaseParserUnknownNamespace;
+                metadataTypeName = TestCaseParserUnknownType;
+                metadataMethodName = fullyQualifiedName;
+                Console.WriteLine(TestCaseParserErrorTemplate, fullyQualifiedName, metadataNamespaceName, metadataTypeName, metadataMethodName);
             }
 
             return new ParsedName(metadataNamespaceName, metadataTypeName, metadataMethodName);
-        }
-
-        private static void FallbackParser(string fullyQualifiedName, ref string metadataNamespaceName, ref string metadataTypeName, ref string metadataMethodName)
-        {
-            if (string.IsNullOrWhiteSpace(fullyQualifiedName))
-            {
-                return;
-            }
-
-            var method = new Regex(@"^([a-zA-z1-9_.]{1,})\.([a-zA-z1-9_.]{1,})\.(.{0,})$"); // This one picks up anything with just method parameters or no method params.
-            if (method.IsMatch(fullyQualifiedName))
-            {
-                var matches = method.Matches(fullyQualifiedName);
-                metadataNamespaceName = matches[0].Groups[1].Value;
-                metadataTypeName = matches[0].Groups[2].Value;
-                metadataMethodName = matches[0].Groups[3].Value;
-            }
-
-            var classData = new Regex(@"^([a-zA-z1-9_.]{1,})\.([a-zA-z1-9_.]{1,}\(.{0,}\))\.(.{0,})$"); // This one picks up anything with class data and maybe method data
-            if (classData.IsMatch(fullyQualifiedName))
-            {
-                var matches = classData.Matches(fullyQualifiedName);
-                metadataNamespaceName = matches[0].Groups[1].Value;
-                metadataTypeName = matches[0].Groups[2].Value;
-                metadataMethodName = matches[0].Groups[3].Value;
-            }
         }
 
         public class ParsedName
