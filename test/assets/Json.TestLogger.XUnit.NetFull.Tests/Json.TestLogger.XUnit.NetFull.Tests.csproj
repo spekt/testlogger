@@ -27,7 +27,7 @@
     <Compile Include="..\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs">
       <Link>UnitTest2.cs</Link>
     </Compile>
-    <Compile Include="..\Json.TestLogger.XUnit.NetCore.Tests\Assembly.cs">
+    <Compile Include="..\Json.TestLogger.XUnit.NetCore.Tests\XUnitOrdering.cs">
       <Link>Assembly.cs</Link>
     </Compile>    
   </ItemGroup>

@@ -4,7 +4,7 @@ using Xunit;
 
 namespace NUnit.Xml.TestLogger.Tests2
 {
-    public class UnitTest1
+    public class UnitTest2
     {
         [Fact]
         public void Example_Failure()
