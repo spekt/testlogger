@@ -210,20 +210,19 @@ namespace Spekt.TestLogger.Core
             }
             finally
             {
-                // If for any reason we don't have a Type Name or Namespace then we fall back on our
-                // safe option and notify the user
-                if (string.IsNullOrWhiteSpace(metadataNamespaceName) && string.IsNullOrWhiteSpace(metadataTypeName))
+                // If for any reason we don't have a Type Name or Namespace then we try the fallback parser
+                if (string.IsNullOrWhiteSpace(metadataNamespaceName) || string.IsNullOrWhiteSpace(metadataTypeName))
                 {
                     FallbackParser(fullyQualifiedName, ref metadataNamespaceName, ref metadataTypeName, ref metadataMethodName);
+                }
 
-                    // If fallback parser didn't succed, then use all unknowns
-                    if (string.IsNullOrWhiteSpace(metadataNamespaceName) && string.IsNullOrWhiteSpace(metadataTypeName))
-                    {
-                        metadataNamespaceName = TestCaseParserUnknownNamespace;
-                        metadataTypeName = TestCaseParserUnknownType;
-                        metadataMethodName = fullyQualifiedName;
-                        Console.WriteLine(TestCaseParserErrorTemplate, fullyQualifiedName, metadataNamespaceName, metadataTypeName, metadataMethodName);
-                    }
+                // If the fallback failed, then use unknowns and inform the user.
+                if (string.IsNullOrWhiteSpace(metadataNamespaceName) && string.IsNullOrWhiteSpace(metadataTypeName))
+                {
+                    metadataNamespaceName = TestCaseParserUnknownNamespace;
+                    metadataTypeName = TestCaseParserUnknownType;
+                    metadataMethodName = fullyQualifiedName;
+                    Console.WriteLine(TestCaseParserErrorTemplate, fullyQualifiedName, metadataNamespaceName, metadataTypeName, metadataMethodName);
                 }
                 else if (string.IsNullOrWhiteSpace(metadataNamespaceName))
                 {
@@ -237,6 +236,11 @@ namespace Spekt.TestLogger.Core
 
         private static void FallbackParser(string fullyQualifiedName, ref string metadataNamespaceName, ref string metadataTypeName, ref string metadataMethodName)
         {
+            if (string.IsNullOrWhiteSpace(fullyQualifiedName))
+            {
+                return;
+            }
+
             var method = new Regex(@"^([a-zA-z1-9_.]{1,})\.([a-zA-z1-9_.]{1,})\.(.{0,})$"); // This one picks up anything with just method parameters or no method params.
             if (method.IsMatch(fullyQualifiedName))
             {
