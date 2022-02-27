@@ -31,4 +31,18 @@ namespace NUnit.Xml.TestLogger.Tests2
             Assert.AreEqual(0, value);
         }
     }
+
+    [TestClass]
+    public class DataRowWithDisplayName
+    {
+        [TestMethod]
+        [DataRow("ABCDE", 3, null, DisplayName = "When string is null")]
+        [DataRow("", 3, "", DisplayName = "When string is empty")]
+        public void Substring(string testString, int targetLength, string expectedValue)
+        {
+            testString = testString.Substring(targetLength);
+
+            Assert.AreEqual(expectedValue, testString);
+        }
+    }
 }

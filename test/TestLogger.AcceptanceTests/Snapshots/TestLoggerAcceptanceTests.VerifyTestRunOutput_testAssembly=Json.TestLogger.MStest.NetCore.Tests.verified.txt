@@ -65,6 +65,27 @@
           ]
         },
         {
+          Name: DataRowWithDisplayName,
+          Tests: [
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.DataRowWithDisplayName.Substring,
+              DisplayName: When string is null,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: DataRowWithDisplayName,
+              Method: When string is null,
+              Result: Failed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.DataRowWithDisplayName.Substring,
+              DisplayName: When string is empty,
+              Namespace: NUnit.Xml.TestLogger.Tests2,
+              Type: DataRowWithDisplayName,
+              Method: When string is empty,
+              Result: Failed
+            }
+          ]
+        },
+        {
           Name: UnitTest1,
           Tests: [
             {
