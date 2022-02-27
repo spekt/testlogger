@@ -1,13 +1,14 @@
 ﻿{
   TestAssemblies: [
     {
-      Name: {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetFull.Tests\bin\Debug\net46\Json.TestLogger.XUnit.NetFull.Tests.dll,
+      Name: {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.XUnit.NetFull.Tests\bin\Debug\net46\Json.TestLogger.XUnit.NetFull.Tests.dll,
       Fixtures: [
         {
           Name: UnitTest1,
           Tests: [
             {
               FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure,
+              DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure,
               Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
               Type: UnitTest1,
               Method: Example_Failure,
@@ -15,6 +16,7 @@
             },
             {
               FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Success,
+              DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Success,
               Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
               Type: UnitTest1,
               Method: Example_Success,
@@ -22,30 +24,34 @@
             },
             {
               FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory,
+              DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(input: "foo"),
               Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
               Type: UnitTest1,
-              Method: MyTheory,
+              Method: MyTheory(input: "foo"),
               Result: Passed
             },
             {
               FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory,
+              DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(input: null),
               Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
               Type: UnitTest1,
-              Method: MyTheory,
+              Method: MyTheory(input: null),
               Result: Failed
             },
             {
               FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
+              DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
               Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
               Type: UnitTest1,
-              Method: When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
+              Method: When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly(test: ValidationTest { }),
               Result: Passed
             },
             {
               FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
+              DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
               Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
               Type: UnitTest1,
-              Method: When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
+              Method: When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly(test: ValidationTest { }),
               Result: Passed
             }
           ]
@@ -55,6 +61,7 @@
           Tests: [
             {
               FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure,
+              DisplayName: NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure,
               Namespace: NUnit.Xml.TestLogger.Tests2,
               Type: UnitTest2,
               Method: Example_Failure,
@@ -95,7 +102,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(19,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
+      Message: [xUnit.net _Timestamp_]         {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(19,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
     },
     {
       Level: Error,
@@ -108,7 +115,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(27,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(String input)
+      Message: [xUnit.net _Timestamp_]         {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(27,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(String input)
     },
     {
       Level: Error,
@@ -127,7 +134,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(12,0): at NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure()
+      Message: [xUnit.net _Timestamp_]         {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(12,0): at NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure()
     },
     {
       Message: [xUnit.net _Timestamp_]   Finished:    Json.TestLogger.XUnit.NetFull.Tests

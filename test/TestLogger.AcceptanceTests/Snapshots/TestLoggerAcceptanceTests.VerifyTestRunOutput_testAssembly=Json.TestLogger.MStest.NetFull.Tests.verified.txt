@@ -1,13 +1,14 @@
 ﻿{
   TestAssemblies: [
     {
-      Name: {SolutionDirectory}test\assets\Json.TestLogger.MStest.NetFull.Tests\bin\Debug\net46\Json.TestLogger.MSTest.NetFull.Tests.dll,
+      Name: {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.MStest.NetFull.Tests\bin\Debug\net46\Json.TestLogger.MSTest.NetFull.Tests.dll,
       Fixtures: [
         {
           Name: UnitTest2,
           Tests: [
             {
               FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.ExampleFailure,
+              DisplayName: ExampleFailure,
               Namespace: NUnit.Xml.TestLogger.Tests2,
               Type: UnitTest2,
               Method: ExampleFailure,
@@ -20,6 +21,7 @@
           Tests: [
             {
               FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.ExampleFailure,
+              DisplayName: ExampleFailure,
               Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
               Type: UnitTest1,
               Method: ExampleFailure,
