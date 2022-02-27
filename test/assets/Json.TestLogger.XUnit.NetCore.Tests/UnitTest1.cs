@@ -26,5 +26,25 @@ namespace NUnit.Xml.TestLogger.NetFull.Tests
         {
             Assert.NotNull(input);
         }
+
+        public static IEnumerable<object[]> ValidationTests
+        {
+            get
+            {
+                List<object[]> tests = new List<object[]>();
+                tests.Add(new object[] { new ValidationTest() });
+                tests.Add(new object[] { new ValidationTest() });
+                return tests;
+            }
+        }
+
+        public class ValidationTest { }
+
+        [Theory]
+        [MemberData(nameof(ValidationTests))]
+        public void When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly(ValidationTest test)
+        {
+            Assert.NotNull(test);
+        }
     }
 }
