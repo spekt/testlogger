@@ -1,21 +1,28 @@
 ﻿{
-  TestAssemblies: [],
-  TestMessages: [
+  TestAssemblies: [
     {
-      Message: NUnit Adapter 3.10.0.21: Test execution started
-    },
-    {
-      Message: Running all tests in {SolutionDirectory}test\assets\Json.TestLogger.MStest.NetFull.Tests\bin\Debug\net46\Json.TestLogger.MSTest.NetFull.Tests.dll
-    },
-    {
-      Message: NUnit3TestExecutor converted 0 of 0 NUnit test cases
-    },
-    {
-      Message: NUnit Adapter 3.10.0.21: Test execution complete
-    },
-    {
-      Level: Warning,
-      Message: No test is available in {SolutionDirectory}test\assets\Json.TestLogger.MStest.NetFull.Tests\bin\Debug\net46\Json.TestLogger.MSTest.NetFull.Tests.dll. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+      Name: {SolutionDirectory}test\assets\Json.TestLogger.MStest.NetFull.Tests\bin\Debug\net46\Json.TestLogger.MSTest.NetFull.Tests.dll,
+      Fixtures: [
+        {
+          Name: UnitTest2,
+          Tests: [
+            {
+              Name: ExampleFailure,
+              Result: Failed
+            }
+          ]
+        },
+        {
+          Name: UnitTest1,
+          Tests: [
+            {
+              Name: ExampleFailure,
+              Result: Failed
+            }
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  TestMessages: []
 }

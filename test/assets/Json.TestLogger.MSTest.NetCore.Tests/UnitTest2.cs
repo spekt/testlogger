@@ -1,11 +1,16 @@
 using System;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NUnit.Xml.TestLogger.Tests2
 {
-    [TestFixture]
-    public class UnitTest1
+    [TestClass]
+    public class UnitTest2
     {
+        [TestMethod]
+        public void ExampleFailure()
+        {
+            Assert.Fail();
+        }
     }
 }
