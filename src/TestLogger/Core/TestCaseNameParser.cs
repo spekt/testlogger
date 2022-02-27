@@ -36,10 +36,9 @@ namespace Spekt.TestLogger.Core
         /// When a clearly invalid output is encountered, a message is written to the console.
         /// </summary>
         /// <remarks>
-        /// This is fragile, because the fully qualified name is constructed by a test adapter and
+        /// This can be fragile because qualified name is constructed by a test adapter and
         /// there is no enforcement that the FQN starts with the namespace, or is of the expected
-        /// format. Because the possible input space is very large and this parser is relatively
-        /// simple there are some invalid strings, such as "#.#.#" will 'successfully' parse.
+        /// format.
         /// </remarks>
         /// <param name="fullyQualifiedName">
         /// String like 'namespace.type.method', where type and or method may be followed by
