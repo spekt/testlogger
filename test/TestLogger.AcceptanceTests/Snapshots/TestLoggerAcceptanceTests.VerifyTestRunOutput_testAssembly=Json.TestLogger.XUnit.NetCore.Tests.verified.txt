@@ -1,7 +1,7 @@
 ﻿{
   TestAssemblies: [
     {
-      Name: {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.XUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.XUnit.NetCore.Tests.dll,
+      Name: {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.XUnit.NetCore.Tests.dll,
       Fixtures: [
         {
           Name: UnitTest1,
@@ -67,7 +67,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(18,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
+      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(18,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
     },
     {
       Level: Error,
@@ -86,7 +86,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(12,0): at NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure()
+      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(12,0): at NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure()
     },
     {
       Message: [xUnit.net _Timestamp_]   Finished:    Json.TestLogger.XUnit.NetCore.Tests

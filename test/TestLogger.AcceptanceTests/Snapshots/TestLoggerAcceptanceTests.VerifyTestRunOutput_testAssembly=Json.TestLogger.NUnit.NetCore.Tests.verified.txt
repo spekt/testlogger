@@ -1,7 +1,7 @@
 ﻿{
   TestAssemblies: [
     {
-      Name: {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.NUnit.NetCore.Tests.dll,
+      Name: {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.NUnit.NetCore.Tests.dll,
       Fixtures: [
         {
           Name: FailingOneTimeSetUp,
@@ -430,7 +430,7 @@
       Message: NUnit Adapter 3.10.0.21: Test execution started
     },
     {
-      Message: Running all tests in {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.NUnit.NetCore.Tests.dll
+      Message: Running all tests in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.NUnit.NetCore.Tests.dll
     },
     {
       Message: NUnit3TestExecutor converted 52 of 52 NUnit test cases
@@ -445,7 +445,7 @@
     },
     {
       Level: Warning,
-      Message:    at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.OneTimeSetUp() in {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest1.cs:line 145
+      Message:    at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.OneTimeSetUp() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest1.cs:line 145
     },
     {
       Level: Warning,
@@ -459,7 +459,7 @@
       Level: Warning,
       Message:
 --TearDown
-   at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.OneTimeTearDown() in {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest1.cs:line 190
+   at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.OneTimeTearDown() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest1.cs:line 190
     },
     {
       Level: Warning,
@@ -471,7 +471,7 @@
     },
     {
       Level: Warning,
-      Message:    at NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.OneTimeSetUp() in {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest2.cs:line 107
+      Message:    at NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.OneTimeSetUp() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest2.cs:line 107
     },
     {
       Level: Warning,
@@ -485,7 +485,7 @@
       Level: Warning,
       Message:
 --TearDown
-   at NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.OneTimeTearDown() in {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest2.cs:line 152
+   at NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.OneTimeTearDown() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest2.cs:line 152
     },
     {
       Message: NUnit Adapter 3.10.0.21: Test execution complete
