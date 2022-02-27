@@ -797,7 +797,7 @@ ExampleTest4(System.AggregateException: One or more errors occurred. (Exception 
       Level: Warning,
       Message:
 --TearDown
-   at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.OneTimeTearDown() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest1.cs:line 192
+test/assets/Json.TestLogger.NUnit.NetCore.Tests/UnitTest1.cs:line 192
     },
     {
       Level: Warning,
@@ -823,7 +823,7 @@ ExampleTest4(System.AggregateException: One or more errors occurred. (Exception 
       Level: Warning,
       Message:
 --TearDown
-   at NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.OneTimeTearDown() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest2.cs:line 152
+test/assets/Json.TestLogger.NUnit.NetCore.Tests/UnitTest2.cs:line 152
     },
     {
       Message: NUnit Adapter 3.10.0.21: Test execution complete

@@ -10,6 +10,7 @@ namespace TestLogger.AcceptanceTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using VerifyMSTest;
+    using VerifyTests;
     using static Spekt.TestLogger.UnitTests.TestDoubles.JsonTestResultSerializer;
 
     [TestClass]
@@ -35,13 +36,20 @@ namespace TestLogger.AcceptanceTests
             settings.ScrubLinesWithReplace(x =>
             {
                 var options = RegexOptions.IgnoreCase | RegexOptions.Compiled;
-                var pathMatch = new Regex(@"^(.{0,}: )(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
-                if (pathMatch.IsMatch(x))
+                var prefixedMatch = new Regex(@"^(.{0,}: )(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
+                var pathMatch = new Regex(@"^(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
+                if (prefixedMatch.IsMatch(x))
                 {
-                    var m = pathMatch.Match(x);
+                    var m = prefixedMatch.Match(x);
                     var prefix = m.Groups[1].Captures[0].Value.Replace('\\', '/');
                     var pathForwardSlashes = m.Groups[3].Captures[0].Value.Replace('\\', '/');
                     x = prefix + "test/assets/Json.TestLogger" + pathForwardSlashes;
+                }
+                else if (pathMatch.IsMatch(x))
+                {
+                    var m = pathMatch.Match(x);
+                    var pathForwardSlashes = m.Groups[2].Captures[0].Value.Replace('\\', '/');
+                    x = "test/assets/Json.TestLogger" + pathForwardSlashes;
                 }
 
                 return x;
