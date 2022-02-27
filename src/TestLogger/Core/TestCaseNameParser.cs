@@ -6,6 +6,7 @@ namespace Spekt.TestLogger.Core
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
 
     public static class TestCaseNameParser
     {
@@ -213,10 +214,16 @@ namespace Spekt.TestLogger.Core
                 // safe option and notify the user
                 if (string.IsNullOrWhiteSpace(metadataNamespaceName) && string.IsNullOrWhiteSpace(metadataTypeName))
                 {
-                    metadataNamespaceName = TestCaseParserUnknownNamespace;
-                    metadataTypeName = TestCaseParserUnknownType;
-                    metadataMethodName = fullyQualifiedName;
-                    Console.WriteLine(TestCaseParserErrorTemplate, fullyQualifiedName, metadataNamespaceName, metadataTypeName, metadataMethodName);
+                    FallbackParser(fullyQualifiedName, ref metadataNamespaceName, ref metadataTypeName, ref metadataMethodName);
+
+                    // If fallback parser didn't succed, then use all unknowns
+                    if (string.IsNullOrWhiteSpace(metadataNamespaceName) && string.IsNullOrWhiteSpace(metadataTypeName))
+                    {
+                        metadataNamespaceName = TestCaseParserUnknownNamespace;
+                        metadataTypeName = TestCaseParserUnknownType;
+                        metadataMethodName = fullyQualifiedName;
+                        Console.WriteLine(TestCaseParserErrorTemplate, fullyQualifiedName, metadataNamespaceName, metadataTypeName, metadataMethodName);
+                    }
                 }
                 else if (string.IsNullOrWhiteSpace(metadataNamespaceName))
                 {
@@ -226,6 +233,27 @@ namespace Spekt.TestLogger.Core
             }
 
             return new ParsedName(metadataNamespaceName, metadataTypeName, metadataMethodName);
+        }
+
+        private static void FallbackParser(string fullyQualifiedName, ref string metadataNamespaceName, ref string metadataTypeName, ref string metadataMethodName)
+        {
+            var method = new Regex(@"^([a-zA-z1-9_.]{1,})\.([a-zA-z1-9_.]{1,})\.(.{0,})$"); // This one picks up anything with just method parameters or no method params.
+            if (method.IsMatch(fullyQualifiedName))
+            {
+                var matches = method.Matches(fullyQualifiedName);
+                metadataNamespaceName = matches[0].Groups[1].Value;
+                metadataTypeName = matches[0].Groups[2].Value;
+                metadataMethodName = matches[0].Groups[3].Value;
+            }
+
+            var classData = new Regex(@"^([a-zA-z1-9_.]{1,})\.([a-zA-z1-9_.]{1,}\(.{0,}\))\.(.{0,})$"); // This one picks up anything with class data and maybe method data
+            if (classData.IsMatch(fullyQualifiedName))
+            {
+                var matches = classData.Matches(fullyQualifiedName);
+                metadataNamespaceName = matches[0].Groups[1].Value;
+                metadataTypeName = matches[0].Groups[2].Value;
+                metadataMethodName = matches[0].Groups[3].Value;
+            }
         }
 
         public class ParsedName
