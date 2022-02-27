@@ -1,7 +1,7 @@
 ﻿{
   TestAssemblies: [
     {
-      Name: {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.NUnit.NetCore.Tests.dll,
+      Name: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll,
       Fixtures: [
         {
           Name: Issue28_Examples,
@@ -768,7 +768,7 @@ ExampleTest4(System.AggregateException: One or more errors occurred. (Exception 
       Message: NUnit Adapter 3.10.0.21: Test execution started
     },
     {
-      Message: Running all tests in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.NUnit.NetCore.Tests.dll
+      Message: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
     },
     {
       Message: NUnit3TestExecutor converted 85 of 85 NUnit test cases
@@ -783,7 +783,7 @@ ExampleTest4(System.AggregateException: One or more errors occurred. (Exception 
     },
     {
       Level: Warning,
-      Message:    at NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.OneTimeSetUp() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest1.cs:line 147
+      Message: test/assets/Json.TestLogger.NUnit.NetCore.Tests/UnitTest1.cs:line 147
     },
     {
       Level: Warning,
@@ -809,7 +809,7 @@ ExampleTest4(System.AggregateException: One or more errors occurred. (Exception 
     },
     {
       Level: Warning,
-      Message:    at NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.OneTimeSetUp() in {SolutionDirectory}test\assets\Json.TestLogger.NUnit.NetCore.Tests\UnitTest2.cs:line 107
+      Message: test/assets/Json.TestLogger.NUnit.NetCore.Tests/UnitTest2.cs:line 107
     },
     {
       Level: Warning,

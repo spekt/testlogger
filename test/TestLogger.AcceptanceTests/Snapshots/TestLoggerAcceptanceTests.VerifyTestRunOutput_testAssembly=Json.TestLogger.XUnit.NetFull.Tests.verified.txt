@@ -1,7 +1,7 @@
 ﻿{
   TestAssemblies: [
     {
-      Name: {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetFull.Tests\bin\Debug\net46\Json.TestLogger.XUnit.NetFull.Tests.dll,
+      Name: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll,
       Fixtures: [
         {
           Name: UnitTest1,
@@ -197,7 +197,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(19,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
+      Message: test/assets/Json.TestLogger.XUnit.NetCore.Tests/UnitTest1.cs(19,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure()
     },
     {
       Level: Error,
@@ -210,7 +210,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest1.cs(27,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(String input)
+      Message: test/assets/Json.TestLogger.XUnit.NetCore.Tests/UnitTest1.cs(27,0): at NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(String input)
     },
     {
       Level: Error,
@@ -229,7 +229,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(66,0): at NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(Int32 i, Int32 j, Int32 expected)
+      Message: test/assets/Json.TestLogger.XUnit.NetCore.Tests/UnitTest2.cs(66,0): at NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(Int32 i, Int32 j, Int32 expected)
     },
     {
       Level: Error,
@@ -248,7 +248,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(66,0): at NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(Int32 i, Int32 j, Int32 expected)
+      Message: test/assets/Json.TestLogger.XUnit.NetCore.Tests/UnitTest2.cs(66,0): at NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(Int32 i, Int32 j, Int32 expected)
     },
     {
       Level: Error,
@@ -267,7 +267,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(66,0): at NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(Int32 i, Int32 j, Int32 expected)
+      Message: test/assets/Json.TestLogger.XUnit.NetCore.Tests/UnitTest2.cs(66,0): at NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(Int32 i, Int32 j, Int32 expected)
     },
     {
       Level: Error,
@@ -286,7 +286,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(66,0): at NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(Int32 i, Int32 j, Int32 expected)
+      Message: test/assets/Json.TestLogger.XUnit.NetCore.Tests/UnitTest2.cs(66,0): at NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(Int32 i, Int32 j, Int32 expected)
     },
     {
       Level: Error,
@@ -305,7 +305,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(90,0): at NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod(Int32 i, Int32 j, Int32 expected)
+      Message: test/assets/Json.TestLogger.XUnit.NetCore.Tests/UnitTest2.cs(90,0): at NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod(Int32 i, Int32 j, Int32 expected)
     },
     {
       Level: Error,
@@ -324,7 +324,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(90,0): at NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod(Int32 i, Int32 j, Int32 expected)
+      Message: test/assets/Json.TestLogger.XUnit.NetCore.Tests/UnitTest2.cs(90,0): at NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod(Int32 i, Int32 j, Int32 expected)
     },
     {
       Level: Error,
@@ -343,7 +343,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(90,0): at NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod(Int32 i, Int32 j, Int32 expected)
+      Message: test/assets/Json.TestLogger.XUnit.NetCore.Tests/UnitTest2.cs(90,0): at NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod(Int32 i, Int32 j, Int32 expected)
     },
     {
       Level: Error,
@@ -362,7 +362,7 @@
       Message: [xUnit.net _Timestamp_]       Stack Trace:
     },
     {
-      Message: [xUnit.net _Timestamp_]         {SolutionDirectory}test\assets\Json.TestLogger.XUnit.NetCore.Tests\UnitTest2.cs(15,0): at NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure()
+      Message: test/assets/Json.TestLogger.XUnit.NetCore.Tests/UnitTest2.cs(15,0): at NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure()
     },
     {
       Message: [xUnit.net _Timestamp_]   Finished:    Json.TestLogger.XUnit.NetFull.Tests
