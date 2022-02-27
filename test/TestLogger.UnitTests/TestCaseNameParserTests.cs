@@ -49,6 +49,26 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.8m,4.5m,(4.8, False))", "NetCore.Tests.NetCoreOnly", "Issue28_Examples", "ExampleTest2(True,4.8m,4.5m,(4.8, False))")]
         [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples(asdf \".\\).ExampleTest2(True,4.8m,4.5m,(4.8, False))", "NetCore.Tests.NetCoreOnly", "Issue28_Examples(asdf \".\\)", "ExampleTest2(True,4.8m,4.5m,(4.8, False))")]
         [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples(asdf \".\\).ExampleTest2", "NetCore.Tests.NetCoreOnly", "Issue28_Examples(asdf \".\\)", "ExampleTest2")]
+        [DataRow("z.y.X(x", "z", "y", "X(x")]
+        [DataRow("z.y.x(", "z", "y", "x(")]
+        [DataRow("z.y.X\"x", "z", "y", "X\"x")]
+        [DataRow("z.y.x\"", "z", "y", "x\"")]
+        [DataRow("z.y.X\\x", "z", "y", "X\\x")]
+        [DataRow("z.y.x\\", "z", "y", "x\\")]
+        [DataRow("z.y.X\\)", "z", "y", "X\\)")]
+        [DataRow("z.y.X\')", "z", "y", "X\')")]
+        [DataRow("z.y.\'x", "z", "y", "\'x")]
+        [DataRow("z.y.x))", "z", "y", "x))")]
+        [DataRow("z.y.x()x", "z", "y", "x()x")]
+        [DataRow("z.a.b((0,1)", "z", "a", "b((0,1)")]
+        [DataRow("z.a.b((0,1)))", "z", "a", "b((0,1)))")]
+        [DataRow("z.a.b((0,(0,1))", "z", "a", "b((0,(0,1))")]
+        [DataRow("z.a.b((0,(0,1))))", "z", "a", "b((0,(0,1))))")]
+
+        // These three just get parsed wrong right now.
+        [DataRow("z.y.x.", "z", "y", "x.")]
+        [DataRow("z.y.x.)", "z", "y", "x.)")]
+        [DataRow("z.y.x.\"\")", "z", "y", "x.\"\")")]
         public void Parse_ParsesAllParseableInputs_WithoutConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
         {
             using (var sw = new StringWriter())
@@ -100,24 +120,6 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("x.()x()")]
         [DataRow("x")]
         [DataRow("..Z")]
-        [DataRow("z.y.X(x")]
-        [DataRow("z.y.x(")]
-        [DataRow("z.y.X\"x")]
-        [DataRow("z.y.x\"")]
-        [DataRow("z.y.X\\x")]
-        [DataRow("z.y.x\\")]
-        [DataRow("z.y.X\\)")]
-        [DataRow("z.y.X\')")]
-        [DataRow("z.y.\'x")]
-        [DataRow("z.y.x))")]
-        [DataRow("z.y.x()x")]
-        [DataRow("z.y.x.")]
-        [DataRow("z.y.x.)")]
-        [DataRow("z.y.x.\"\")")]
-        [DataRow("z.a.b((0,1)")]
-        [DataRow("z.a.b((0,1)))")]
-        [DataRow("z.a.b((0,(0,1))")]
-        [DataRow("z.a.b((0,(0,1))))")]
         public void Parse_FailsGracefullyOnNonParseableInputs_WithConsoleOutput(string testCaseName)
         {
             var expectedConsole = string.Format(
