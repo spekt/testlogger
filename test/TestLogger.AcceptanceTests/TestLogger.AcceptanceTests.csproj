@@ -13,10 +13,14 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<DefineConstants Condition="$([MSBuild]::IsOSPlatform('Windows'))">WINDOWS_OS</DefineConstants>
+	</PropertyGroup>
+
 	<!-- Build test assets for acceptance tests -->
 	<PropertyGroup>
 		<TestRestoreConfig>$(MSBuildThisFileDirectory)../assets/NuGet.$(Configuration).config</TestRestoreConfig>
-
+		
 		<MSTestTestFullProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetFull.Tests/Json.TestLogger.MSTest.NetFull.Tests.csproj</MSTestTestFullProject>
 		<MSTestTestCoreProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj</MSTestTestCoreProject>
 		<MSTestTestMultiProject>$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetMulti.Tests/Json.TestLogger.MSTest.NetMulti.Tests.csproj</MSTestTestMultiProject>
