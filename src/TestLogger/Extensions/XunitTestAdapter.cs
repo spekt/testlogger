@@ -46,6 +46,14 @@ namespace Spekt.TestLogger.Extensions
                     result.Messages.Add(new TestResultMessage("skipReason", skipReason));
                 }
 
+                string displayName = result.Result.DisplayName;
+
+                // Add parameters for theories.
+                if (displayName is string dn && dn.Contains("("))
+                {
+                    result.Method += dn.Substring(displayName.IndexOf("("));
+                }
+
                 transformedResults.Add(result);
             }
 
