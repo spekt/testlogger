@@ -1,7 +1,7 @@
 ﻿{
   TestAssemblies: [
     {
-      Name: {UserProfile}\Documents\GitHub\testlogger\test\assets\Json.TestLogger.MStest.NetMulti.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.MSTest.NetMulti.Tests.dll,
+      Name: {SolutionDirectory}test\assets\Json.TestLogger.MStest.NetMulti.Tests\bin\Debug\netcoreapp3.1\Json.TestLogger.MSTest.NetMulti.Tests.dll,
       Fixtures: [
         {
           Name: UnitTest2,
