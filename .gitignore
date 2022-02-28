@@ -336,3 +336,5 @@ ASALocalRun/
 .mfractor/
 
 .vscode/settings.json
+
+*.received.txt
