@@ -50,19 +50,6 @@ namespace TestLogger.AcceptanceTests
                 File.Delete(fullResultFilePath);
             }
 
-            // Delete stale results file
-            var testLogFile = Path.Combine(testProject, resultsFile);
-
-            // Strip out tokens
-            var sanitizedResultFile = System.Text.RegularExpressions.Regex.Replace(resultsFile, @"{.*}\.*", string.Empty);
-            foreach (var fileName in Directory.GetFiles(testProject))
-            {
-                if (fileName.Contains("test-results.json"))
-                {
-                    File.Delete(fileName);
-                }
-            }
-
             // Log the contents of test output directory. Useful to verify if the logger is copied
             Console.WriteLine("------------");
             Console.WriteLine("Contents of test output directory:");
