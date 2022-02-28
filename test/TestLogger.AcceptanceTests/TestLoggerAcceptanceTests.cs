@@ -10,11 +10,17 @@ namespace TestLogger.AcceptanceTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using VerifyMSTest;
+    using VerifyTests;
     using static Spekt.TestLogger.UnitTests.TestDoubles.JsonTestResultSerializer;
 
     [TestClass]
     public class TestLoggerAcceptanceTests : VerifyBase
     {
+        public TestLoggerAcceptanceTests()
+        {
+            VerifierSettings.OmitContentFromException();
+        }
+
         [TestMethod]
         [DataRow("Json.TestLogger.MSTest.NetCore.Tests")]
         [DataRow("Json.TestLogger.NUnit.NetCore.Tests")]
