@@ -49,9 +49,9 @@ namespace Spekt.TestLogger.Extensions
                 string displayName = result.Result.DisplayName;
 
                 // Add parameters for theories.
-                if (displayName is string dn && dn.Contains("("))
+                if (string.IsNullOrWhiteSpace(displayName) == false && displayName.Contains("("))
                 {
-                    result.Method += dn.Substring(displayName.IndexOf("("));
+                    result.Method += displayName.Substring(displayName.IndexOf("("));
                 }
 
                 transformedResults.Add(result);
