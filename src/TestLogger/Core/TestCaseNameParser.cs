@@ -65,8 +65,7 @@ namespace Spekt.TestLogger.Core
             if (!string.IsNullOrWhiteSpace(fullyQualifiedName))
             {
                 // Occassionally we get multi line results. Flatten those.
-                fullyQualifiedName = fullyQualifiedName.Replace("\r", string.Empty);
-                fullyQualifiedName = fullyQualifiedName.Replace("\n", string.Empty);
+                fullyQualifiedName = Regex.Replace(fullyQualifiedName, @"\r\n?|\n", string.Empty);
 
                 // This matches a subset of cases which the method regex below also
                 // matches, but gets wrong. So this goes first.
