@@ -79,8 +79,7 @@ namespace TestLogger.AcceptanceTests
                 settings.ScrubLinesWithReplace(x => Regex.Replace(x, @"\[xUnit\.net [0-9:.]{11,}\]", "[xUnit.net _Timestamp_]"));
             }
 
-            DotnetTestFixture.Execute(testAssembly, "test-results.json");
-            var resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
+            DotnetTestFixture.Execute(testAssembly, out var resultsFile);
             var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
 
             return this.Verify(testReport, settings);
