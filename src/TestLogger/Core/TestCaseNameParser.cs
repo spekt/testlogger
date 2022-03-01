@@ -16,6 +16,18 @@ namespace Spekt.TestLogger.Core
         public const string TestCaseParserErrorTemplate = "Xml Logger: Unable to parse the test name '{0}' into a namespace type and method. " +
             "Using Namespace='{1}', Type='{2}' and Method='{3}'";
 
+        private static readonly RegexOptions RegexOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase;
+
+        /// <summary>
+        /// This one can handle standard formatting with or without method data.
+        /// </summary>
+        private static readonly Regex MethodRegex = new Regex(@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,})\.(.{1,})$", RegexOptions);
+
+        /// <summary>
+        /// Can handle standard formatting with class and method data.
+        /// </summary>
+        private static readonly Regex ClassDataRegex = new Regex(@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,}\(.{0,}\))\.(.{1,})$", RegexOptions);
+
         private enum NameParseStep
         {
             FindMethod,
@@ -50,48 +62,41 @@ namespace Spekt.TestLogger.Core
         /// </returns>
         public static ParsedName Parse(string fullyQualifiedName)
         {
-            var metadataNamespaceName = string.Empty;
-            var metadataTypeName = string.Empty;
-            var metadataMethodName = string.Empty;
-
-            if (fullyQualifiedName != null)
+            if (!string.IsNullOrWhiteSpace(fullyQualifiedName))
             {
                 // Occassionally we get multi line results. Flatten those.
                 fullyQualifiedName = fullyQualifiedName.Replace("\r", string.Empty);
                 fullyQualifiedName = fullyQualifiedName.Replace("\n", string.Empty);
 
-                var regexOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase;
-
-                var method = new Regex(@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,})\.(.{1,})$", regexOptions); // This one picks up anything with just method parameters or no method params.
-                if (method.IsMatch(fullyQualifiedName))
+                // This matches a subset of cases which the method regex below also
+                // matches, but gets wrong. So this goes first.
+                var cdMatches = ClassDataRegex.Matches(fullyQualifiedName);
+                if (cdMatches.Count > 0)
                 {
-                    var matches = method.Matches(fullyQualifiedName);
-                    metadataNamespaceName = matches[0].Groups[1].Value;
-                    metadataTypeName = matches[0].Groups[2].Value;
-                    metadataMethodName = matches[0].Groups[3].Value;
+                    return new ParsedName(
+                        cdMatches[0].Groups[1].Value,
+                        cdMatches[0].Groups[2].Value,
+                        cdMatches[0].Groups[3].Value);
                 }
 
-                var classData = new Regex(@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,}\(.{0,}\))\.(.{1,})$", regexOptions); // This one picks up anything with class data and maybe method data
-                if (classData.IsMatch(fullyQualifiedName))
+                var matches = MethodRegex.Matches(fullyQualifiedName);
+                if (matches.Count > 0)
                 {
-                    var matches = classData.Matches(fullyQualifiedName);
-                    metadataNamespaceName = matches[0].Groups[1].Value;
-                    metadataTypeName = matches[0].Groups[2].Value;
-                    metadataMethodName = matches[0].Groups[3].Value;
+                   return new ParsedName(
+                         matches[0].Groups[1].Value,
+                         matches[0].Groups[2].Value,
+                         matches[0].Groups[3].Value);
                 }
             }
 
-            if (string.IsNullOrWhiteSpace(metadataNamespaceName)
-                || string.IsNullOrWhiteSpace(metadataTypeName)
-                || string.IsNullOrWhiteSpace(metadataMethodName))
-            {
-                metadataNamespaceName = TestCaseParserUnknownNamespace;
-                metadataTypeName = TestCaseParserUnknownType;
-                metadataMethodName = fullyQualifiedName;
-                Console.WriteLine(TestCaseParserErrorTemplate, fullyQualifiedName, metadataNamespaceName, metadataTypeName, metadataMethodName);
-            }
+            var pn = new ParsedName(
+                    TestCaseParserUnknownNamespace,
+                    TestCaseParserUnknownType,
+                    fullyQualifiedName ?? string.Empty);
 
-            return new ParsedName(metadataNamespaceName, metadataTypeName, metadataMethodName);
+            Console.WriteLine(TestCaseParserErrorTemplate, fullyQualifiedName, pn.NamespaceName, pn.TypeName, pn.MethodName);
+
+            return pn;
         }
 
         public class ParsedName
