@@ -70,6 +70,10 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.a.b((0,(0,1))", "z", "a", "b((0,(0,1))")]
         [DataRow("z.a.b((0,(0,1))))", "z", "a", "b((0,(0,1))))")]
         [DataRow("a.z.y.x.", "a.z", "y", "x.")]
+        [DataRow("z.a(0,1).b", "z", "a(0,1)", "b")]
+        [DataRow("z.a((0,1).b", "z", "a((0,1)", "b")]
+        [DataRow("z.a(0,1)).b", "z", "a(0,1))", "b")]
+        [DataRow("z.a(0.21).b", "z", "a(0.21)", "b")]
 
         // These produce strange results but don't output errors. TODO decide if these are ok.
         [DataRow("z.y.x.", "z", "y", "x.")]
