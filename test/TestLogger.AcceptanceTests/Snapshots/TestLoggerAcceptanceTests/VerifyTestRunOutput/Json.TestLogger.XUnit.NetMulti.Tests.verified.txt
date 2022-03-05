@@ -23,6 +23,22 @@
               Result: Passed
             },
             {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2,
+              DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: MemberDataTest2(test: ValidationTest2 { Value = "Foo" }),
+              Result: Passed
+            },
+            {
+              FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2,
+              DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2,
+              Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+              Type: UnitTest1,
+              Method: MemberDataTest2(test: ValidationTest2 { Value = "Bar" }),
+              Result: Passed
+            },
+            {
               FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory,
               DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(input: "foo"),
               Namespace: NUnit.Xml.TestLogger.NetFull.Tests,

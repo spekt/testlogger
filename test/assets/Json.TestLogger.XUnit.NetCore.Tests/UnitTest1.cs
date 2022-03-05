@@ -46,5 +46,33 @@ namespace NUnit.Xml.TestLogger.NetFull.Tests
         {
             Assert.NotNull(test);
         }
+
+        public static IEnumerable<object[]> ValidationTests2
+        {
+            get
+            {
+                List<object[]> tests = new List<object[]>();
+                tests.Add(new object[] { new ValidationTest2("Foo") });
+                tests.Add(new object[] { new ValidationTest2("Bar") });
+                return tests;
+            }
+        }
+
+        public class ValidationTest2 
+        { 
+            public ValidationTest2(string val)            
+            {
+                Value = val;
+            }
+
+            public string Value {get; set;}
+        }
+
+        [Theory]
+        [MemberData(nameof(ValidationTests2))]
+        public void MemberDataTest2(ValidationTest2 test)
+        {
+            Assert.NotNull(test);
+        }
     }
 }

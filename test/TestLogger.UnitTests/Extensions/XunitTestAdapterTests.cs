@@ -51,11 +51,10 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         {
             var results = new List<TestResultInfo>
             {
-                new (new TestResult(
-                    new TestCase("N.C.M1", ExecutorUri, Source) { DisplayName = "N.C.M1" }),
+                new (new TestResult(new TestCase("N.C.M1", ExecutorUri, Source)) { DisplayName = "N.C.M1" },
                     "N", "C", "M1"),
                 new (new TestResult(
-                    new TestCase("N.C.M2", ExecutorUri, Source) { DisplayName = "N.C.M2(some args)" }),
+                    new TestCase("N.C.M2", ExecutorUri, Source)) { DisplayName = "N.C.M2(some args)" },
                     "N", "C", "M2")
             };
             var messages = new List<TestMessageInfo>();
