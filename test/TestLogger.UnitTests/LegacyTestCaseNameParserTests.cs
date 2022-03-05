@@ -50,7 +50,7 @@ namespace Spekt.TestLogger.UnitTests
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                var actual = LegacyTestCaseNameParser.Parse(testCaseName);
+                var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
 
                 Assert.AreEqual(expectedNamespace, actual.NamespaceName);
                 Assert.AreEqual(expectedType, actual.TypeName);
@@ -71,25 +71,16 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("a.b(0.5f)", LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, "a", "b(0.5f)")]
         public void Parse_ParsesAllParseableInputsWithoutNamespace_WithConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
         {
-            var expectedConsole = string.Format(
-                    LegacyTestCaseNameParser.TestCaseParserErrorTemplate,
-                    testCaseName,
-                    expectedNamespace,
-                    expectedType,
-                    expectedMethod);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
 
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                var actual = LegacyTestCaseNameParser.Parse(testCaseName);
+            Assert.AreEqual(expectedNamespace, actual.NamespaceName);
+            Assert.AreEqual(expectedType, actual.TypeName);
+            Assert.AreEqual(expectedMethod, actual.MethodName);
 
-                Assert.AreEqual(expectedNamespace, actual.NamespaceName);
-                Assert.AreEqual(expectedType, actual.TypeName);
-                Assert.AreEqual(expectedMethod, actual.MethodName);
-
-                // Remove the trailing new line before comparing.
-                Assert.AreEqual(expectedConsole, sw.ToString().Replace(sw.NewLine, string.Empty));
-            }
+            // Remove the trailing new line before comparing.
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
         }
 
         [DataTestMethod]
@@ -116,25 +107,16 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.a.b((0,(0,1))))")]
         public void Parse_FailsGracefullyOnNonParseableInputs_WithConsoleOutput(string testCaseName)
         {
-            var expectedConsole = string.Format(
-                LegacyTestCaseNameParser.TestCaseParserErrorTemplate,
-                testCaseName,
-                LegacyTestCaseNameParser.TestCaseParserUnknownNamespace,
-                LegacyTestCaseNameParser.TestCaseParserUnknownType,
-                testCaseName);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
 
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                var actual = LegacyTestCaseNameParser.Parse(testCaseName);
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, actual.NamespaceName);
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownType, actual.TypeName);
+            Assert.AreEqual(testCaseName, actual.MethodName);
 
-                Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, actual.NamespaceName);
-                Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownType, actual.TypeName);
-                Assert.AreEqual(testCaseName, actual.MethodName);
-
-                // Remove the trailing new line before comparing.
-                Assert.AreEqual(expectedConsole, sw.ToString().Replace(sw.NewLine, string.Empty));
-            }
+            // Remove the trailing new line before comparing.
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
         }
     }
 }

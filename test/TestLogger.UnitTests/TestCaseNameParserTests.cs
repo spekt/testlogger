@@ -85,7 +85,7 @@ namespace Spekt.TestLogger.UnitTests
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                var actual = TestCaseNameParser.Parse(testCaseName);
+                var actual = new TestCaseNameParser().Parse(testCaseName);
 
                 Assert.AreEqual(expectedNamespace, actual.NamespaceName);
                 Assert.AreEqual(expectedType, actual.TypeName);
@@ -105,25 +105,17 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("..Z")]
         public void Parse_FailsGracefullyOnNonParseableInputs_WithConsoleOutput(string testCaseName)
         {
-            var expectedConsole = string.Format(
-                TestCaseNameParser.TestCaseParserErrorTemplate,
-                testCaseName,
-                TestCaseNameParser.TestCaseParserUnknownNamespace,
-                TestCaseNameParser.TestCaseParserUnknownType,
-                testCaseName);
+            using var sw = new StringWriter();
 
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                var actual = TestCaseNameParser.Parse(testCaseName);
+            Console.SetOut(sw);
+            var actual = new TestCaseNameParser().Parse(testCaseName);
 
-                Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownNamespace, actual.NamespaceName);
-                Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownType, actual.TypeName);
-                Assert.AreEqual(testCaseName, actual.MethodName);
+            Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownNamespace, actual.NamespaceName);
+            Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownType, actual.TypeName);
+            Assert.AreEqual(testCaseName, actual.MethodName);
 
-                // Remove the trailing new line before comparing.
-                Assert.AreEqual(expectedConsole, sw.ToString().Replace(sw.NewLine, string.Empty));
-            }
+            // Remove the trailing new line before comparing.
+            Assert.AreEqual(TestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
         }
     }
 }

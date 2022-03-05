@@ -8,25 +8,30 @@ namespace Spekt.TestLogger.Core
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    public static class TestCaseNameParser
+    public class TestCaseNameParser
     {
         public const string TestCaseParserUnknownNamespace = "UnknownNamespace";
         public const string TestCaseParserUnknownType = "UnknownType";
 
-        public const string TestCaseParserErrorTemplate = "Xml Logger: Unable to parse the test name '{0}' into a namespace type and method. " +
-            "Using Namespace='{1}', Type='{2}' and Method='{3}'";
+        public const string TestCaseParserError =
+            "Test Logger: Unable to parse one or more test names provided by your test runner. " +
+            "These will be logged using Namespace='UnknownNamespace', Type='UnknownType'. " +
+            "The entire test name will be used as the Method name. Please open a ticket so we can " +
+            "review this issue";
 
         private static readonly RegexOptions RegexOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase;
 
         /// <summary>
         /// This one can handle standard formatting with or without method data.
         /// </summary>
-        private static readonly Regex MethodRegex = new Regex(@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,})\.(.{1,})$", RegexOptions);
+        private static readonly Regex MethodRegex = new (@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,})\.(.{1,})$", RegexOptions);
 
         /// <summary>
         /// Can handle standard formatting with class and method data.
         /// </summary>
-        private static readonly Regex ClassDataRegex = new Regex(@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,}\(.{0,}\))\.(.{1,})$", RegexOptions);
+        private static readonly Regex ClassDataRegex = new (@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,}\(.{0,}\))\.(.{1,})$", RegexOptions);
+
+        private bool parserErrorReported;
 
         /// <summary>
         /// This method attempts to parse out a Namespace, Type and Method name from a given string.
@@ -45,7 +50,7 @@ namespace Spekt.TestLogger.Core
         /// An instance of ParsedName containing the parsed results. A result is always returned,
         /// even in the case when the input could not be full parsed.
         /// </returns>
-        public static ParsedName Parse(string fullyQualifiedName)
+        public ParsedName Parse(string fullyQualifiedName)
         {
             if (!string.IsNullOrWhiteSpace(fullyQualifiedName))
             {
@@ -78,7 +83,11 @@ namespace Spekt.TestLogger.Core
                     TestCaseParserUnknownType,
                     fullyQualifiedName ?? string.Empty);
 
-            Console.WriteLine(TestCaseParserErrorTemplate, fullyQualifiedName, pn.NamespaceName, pn.TypeName, pn.MethodName);
+            if (!this.parserErrorReported)
+            {
+                this.parserErrorReported = true;
+                Console.WriteLine(TestCaseParserError);
+            }
 
             return pn;
         }
