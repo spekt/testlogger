@@ -22,34 +22,27 @@ namespace TestLogger.AcceptanceTests
         }
 
         [TestMethod]
-        [DataRow("Json.TestLogger.MSTest.NetCore.Tests")]
-        [DataRow("Json.TestLogger.NUnit.NetCore.Tests")]
-        [DataRow("Json.TestLogger.XUnit.NetCore.Tests")]
-        [DataRow("Json.TestLogger.MSTest.NetMulti.Tests")]
-        [DataRow("Json.TestLogger.NUnit.NetMulti.Tests")]
-        [DataRow("Json.TestLogger.XUnit.NetMulti.Tests")]
-
-        public Task VerifyTestRunOutput(string testAssembly)
-        {
-            return this.VerifyAssembly(testAssembly);
-        }
-
+        [DataRow("Json.TestLogger.MSTest.NetCore.Tests", "")]
+        [DataRow("Json.TestLogger.NUnit.NetCore.Tests", "")]
+        [DataRow("Json.TestLogger.XUnit.NetCore.Tests", "")]
+        [DataRow("Json.TestLogger.MSTest.NetMulti.Tests", "")]
+        [DataRow("Json.TestLogger.NUnit.NetMulti.Tests", "")]
+        [DataRow("Json.TestLogger.XUnit.NetMulti.Tests", "")]
 #if WINDOWS_OS
-        [TestMethod]
-        [DataRow("Json.TestLogger.MSTest.NetFull.Tests")]
-        [DataRow("Json.TestLogger.NUnit.NetFull.Tests")]
-        [DataRow("Json.TestLogger.XUnit.NetFull.Tests")]
-        public Task VerifyTestRunOutput_WindowsOnly(string testAssembly)
-        {
-            return this.VerifyAssembly(testAssembly);
-        }
+        [DataRow("Json.TestLogger.MSTest.NetFull.Tests", "WindowsOnly")]
+        [DataRow("Json.TestLogger.NUnit.NetFull.Tests", "WindowsOnly")]
+        [DataRow("Json.TestLogger.XUnit.NetFull.Tests", "WindowsOnly")]
 #endif
+        public Task VerifyTestRunOutput(string testAssembly, string comment)
+        {
+            return this.VerifyAssembly(testAssembly, comment);
+        }
 
-        private Task VerifyAssembly(string testAssembly)
+        private Task VerifyAssembly(string testAssembly, string comment)
         {
             var settings = new VerifyTests.VerifySettings();
-            settings.UseDirectory("Snapshots");
-            settings.UseParameters(testAssembly);
+            settings.UseDirectory(@"Snapshots\TestLoggerAcceptanceTests\VerifyTestRunOutput");
+            settings.UseFileName($"{testAssembly}{(comment.Length > 0 ? "-" + comment : string.Empty)}");
 
             // Make any paths uniform regardless of OS.
             settings.ScrubLinesWithReplace(x =>
