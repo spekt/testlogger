@@ -3,13 +3,21 @@
 
 namespace Spekt.TestLogger.Core
 {
+    using System;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
     public static class TestRunResultWorkflow
     {
         public static void Result(this ITestRun testRun, TestResultEventArgs resultEvent)
         {
-            var parsedName = TestCaseNameParser.Parse(resultEvent.Result.TestCase.FullyQualifiedName);
+            var fqn = resultEvent.Result.TestCase.FullyQualifiedName;
+            testRun.LoggerConfiguration.Values.TryGetValue(LoggerConfiguration.ParserKey, out string parserVal);
+            var parsedName = parserVal switch
+            {
+                string x when x.Equals("Legacy", StringComparison.OrdinalIgnoreCase) => LegacyTestCaseNameParser.Parse(fqn),
+                _ => TestCaseNameParser.Parse(fqn),
+            };
+
             testRun.Store.Add(new TestResultInfo(
                 resultEvent.Result,
                 parsedName.NamespaceName,

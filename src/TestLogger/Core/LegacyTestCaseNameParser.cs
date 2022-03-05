@@ -227,21 +227,5 @@ namespace Spekt.TestLogger.Core
 
             return new ParsedName(metadataNamespaceName, metadataTypeName, metadataMethodName);
         }
-
-        public class ParsedName
-        {
-            public ParsedName(string namespaceName, string typeName, string methodName)
-            {
-                this.NamespaceName = namespaceName;
-                this.TypeName = typeName;
-                this.MethodName = methodName;
-            }
-
-            public string NamespaceName { get; }
-
-            public string TypeName { get; }
-
-            public string MethodName { get; }
-        }
     }
 }

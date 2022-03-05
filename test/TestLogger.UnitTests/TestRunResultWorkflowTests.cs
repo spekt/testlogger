@@ -36,7 +36,9 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow(TestOutcome.Skipped)]
         public void ResultShouldCaptureTestCaseAndResult(TestOutcome testOutcome)
         {
-            var testRun = new TestRunBuilder().WithStore(this.testResultStore).Build();
+            var testRun = new TestRunBuilder()
+                .WithLoggerConfiguration(new LoggerConfiguration(BasicConfig()))
+                .WithStore(this.testResultStore).Build();
             var resultEvent = new TestResultEventArgs(new TestResult(this.dummyTestCase)
             {
                 Outcome = testOutcome,
@@ -73,7 +75,9 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public async Task ResultShouldCaptureTestCaseAndResultForParallelRun()
         {
-            var testRun = new TestRunBuilder().WithStore(this.testResultStore).Build();
+            var testRun = new TestRunBuilder()
+                .WithLoggerConfiguration(new LoggerConfiguration(BasicConfig()))
+                .WithStore(this.testResultStore).Build();
             var resultEvent = new TestResultEventArgs(new TestResult(this.dummyTestCase));
             var tasks = new List<Task>();
 
@@ -86,6 +90,15 @@ namespace Spekt.TestLogger.UnitTests
 
             this.testResultStore.Pop(out var results, out _);
             Assert.AreEqual(100, results.Count);
+        }
+
+        private static Dictionary<string, string> BasicConfig()
+        {
+            return new Dictionary<string, string>
+            {
+                { DefaultLoggerParameterNames.TestRunDirectory, "dir" },
+                { LoggerConfiguration.LogFilePathKey, @"dir\results.json" }
+            };
         }
     }
 }
