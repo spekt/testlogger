@@ -75,7 +75,8 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.a(0,1)).b", "z", "a(0,1))", "b")]
         [DataRow("z.a(0.21).b", "z", "a(0.21)", "b")]
 
-        // These produce strange results but don't output errors. TODO decide if these are ok.
+        // These produce strange results but don't output errors.
+        // Will revisit these if users report errors.
         [DataRow("z.y.x.", "z", "y", "x.")]
         [DataRow("z.y.x.)", "z.y", "x", ")")]
         [DataRow("z.y.x.\"\")", "z.y", "x", "\"\")")]
