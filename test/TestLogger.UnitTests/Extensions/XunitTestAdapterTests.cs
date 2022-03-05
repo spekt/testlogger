@@ -56,11 +56,9 @@ namespace Spekt.TestLogger.UnitTests.Extensions
                     "N", "C", "M1"),
                 new (new TestResult(
                     new TestCase("N.C.M2", ExecutorUri, Source) { DisplayName = "N.C.M2(some args)" }),
-                    "N", "C", "M2(some args)")
+                    "N", "C", "M2")
             };
-            var messages = new List<TestMessageInfo>
-            {
-            };
+            var messages = new List<TestMessageInfo>();
             var xunit = new XunitTestAdapter();
 
             var transformedResults = xunit.TransformResults(results, messages);
