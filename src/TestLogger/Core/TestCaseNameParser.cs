@@ -28,21 +28,6 @@ namespace Spekt.TestLogger.Core
         /// </summary>
         private static readonly Regex ClassDataRegex = new Regex(@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,}\(.{0,}\))\.(.{1,})$", RegexOptions);
 
-        private enum NameParseStep
-        {
-            FindMethod,
-            FindType,
-            FindNamespace
-        }
-
-        private enum NameParseState
-        {
-            Default,
-            Parenthesis,
-            String,
-            Char,
-        }
-
         /// <summary>
         /// This method attempts to parse out a Namespace, Type and Method name from a given string.
         /// When a clearly invalid output is encountered, a message is written to the console.
