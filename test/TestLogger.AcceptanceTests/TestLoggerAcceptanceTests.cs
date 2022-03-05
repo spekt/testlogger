@@ -29,11 +29,9 @@ namespace TestLogger.AcceptanceTests
         [DataRow("Json.TestLogger.MSTest.NetMulti.Tests", "", "")]
         [DataRow("Json.TestLogger.NUnit.NetMulti.Tests", "", "")]
         [DataRow("Json.TestLogger.XUnit.NetMulti.Tests", "", "")]
-#if WINDOWS_OS
-        [DataRow("Json.TestLogger.MSTest.NetFull.Tests", "", "WindowsOnly")]
-        [DataRow("Json.TestLogger.NUnit.NetFull.Tests", "", "WindowsOnly")]
-        [DataRow("Json.TestLogger.XUnit.NetFull.Tests", "", "WindowsOnly")]
-#endif
+        [DataRow("Json.TestLogger.MSTest.NetFull.Tests", "", "")]
+        [DataRow("Json.TestLogger.NUnit.NetFull.Tests", "", "")]
+        [DataRow("Json.TestLogger.XUnit.NetFull.Tests", "", "")]
         public Task VerifyTestRunOutput(string testAssembly, string args, string comment)
         {
             return this.VerifyAssembly(testAssembly, args, comment);

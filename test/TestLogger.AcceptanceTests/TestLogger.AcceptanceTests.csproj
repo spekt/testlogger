@@ -13,10 +13,6 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<DefineConstants Condition="$([MSBuild]::IsOSPlatform('Windows'))">WINDOWS_OS</DefineConstants>
-	</PropertyGroup>
-
 	<!-- Build test assets for acceptance tests -->
 	<PropertyGroup>
 		<TestRestoreConfig>$(MSBuildThisFileDirectory)../assets/NuGet.$(Configuration).config</TestRestoreConfig>
