@@ -42,7 +42,7 @@ namespace TestLogger.AcceptanceTests
         private Task VerifyAssembly(string testAssembly, string args, string comment)
         {
             var settings = new VerifySettings();
-            settings.UseDirectory(@"Snapshots\TestLoggerAcceptanceTests\VerifyTestRunOutput");
+            settings.UseDirectory(Path.Combine("Snapshots", "TestLoggerAcceptanceTests", "VerifyTestRunOutput"));
             settings.UseFileName(
                 $"{testAssembly}" +
                 $"{(args.Length > 0 ? "-" + args : string.Empty)}" +
