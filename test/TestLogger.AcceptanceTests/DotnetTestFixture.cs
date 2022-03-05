@@ -12,7 +12,7 @@ namespace TestLogger.AcceptanceTests
         private const string NetcoreVersion = "netcoreapp3.1";
         private const string ResultFile = "test-results.json";
 
-        public static void Execute(string assemblyName, out string resultsFile)
+        public static void Execute(string assemblyName, string args, out string resultsFile)
         {
             resultsFile = Path.Combine(GetAssemblyPath(assemblyName), "test-results.json");
             if (File.Exists(resultsFile))
@@ -42,7 +42,7 @@ namespace TestLogger.AcceptanceTests
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     FileName = "dotnet",
-                    Arguments = $"test --no-build --logger:\"json;LogFilePath={ResultFile}\" {GetAssemblyPath(assemblyName)}\\{assemblyName}.csproj"
+                    Arguments = $"test --no-build --logger:\"json;LogFilePath={ResultFile}{args}\" {GetAssemblyPath(assemblyName)}\\{assemblyName}.csproj"
                 }
             };
             dotnet.Start();

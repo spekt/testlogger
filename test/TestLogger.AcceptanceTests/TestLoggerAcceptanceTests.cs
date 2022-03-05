@@ -22,27 +22,31 @@ namespace TestLogger.AcceptanceTests
         }
 
         [TestMethod]
-        [DataRow("Json.TestLogger.MSTest.NetCore.Tests", "")]
-        [DataRow("Json.TestLogger.NUnit.NetCore.Tests", "")]
-        [DataRow("Json.TestLogger.XUnit.NetCore.Tests", "")]
-        [DataRow("Json.TestLogger.MSTest.NetMulti.Tests", "")]
-        [DataRow("Json.TestLogger.NUnit.NetMulti.Tests", "")]
-        [DataRow("Json.TestLogger.XUnit.NetMulti.Tests", "")]
+        [DataRow("Json.TestLogger.MSTest.NetCore.Tests", "", "")]
+        [DataRow("Json.TestLogger.NUnit.NetCore.Tests", "", "")]
+        [DataRow("Json.TestLogger.NUnit.NetCore.Tests", ";Parser=Legacy", "IncludesParserFailures")]
+        [DataRow("Json.TestLogger.XUnit.NetCore.Tests", "", "")]
+        [DataRow("Json.TestLogger.MSTest.NetMulti.Tests", "", "")]
+        [DataRow("Json.TestLogger.NUnit.NetMulti.Tests", "", "")]
+        [DataRow("Json.TestLogger.XUnit.NetMulti.Tests", "", "")]
 #if WINDOWS_OS
-        [DataRow("Json.TestLogger.MSTest.NetFull.Tests", "WindowsOnly")]
-        [DataRow("Json.TestLogger.NUnit.NetFull.Tests", "WindowsOnly")]
-        [DataRow("Json.TestLogger.XUnit.NetFull.Tests", "WindowsOnly")]
+        [DataRow("Json.TestLogger.MSTest.NetFull.Tests", "", "WindowsOnly")]
+        [DataRow("Json.TestLogger.NUnit.NetFull.Tests", "", "WindowsOnly")]
+        [DataRow("Json.TestLogger.XUnit.NetFull.Tests", "", "WindowsOnly")]
 #endif
-        public Task VerifyTestRunOutput(string testAssembly, string comment)
+        public Task VerifyTestRunOutput(string testAssembly, string args, string comment)
         {
-            return this.VerifyAssembly(testAssembly, comment);
+            return this.VerifyAssembly(testAssembly, args, comment);
         }
 
-        private Task VerifyAssembly(string testAssembly, string comment)
+        private Task VerifyAssembly(string testAssembly, string args, string comment)
         {
-            var settings = new VerifyTests.VerifySettings();
+            var settings = new VerifySettings();
             settings.UseDirectory(@"Snapshots\TestLoggerAcceptanceTests\VerifyTestRunOutput");
-            settings.UseFileName($"{testAssembly}{(comment.Length > 0 ? "-" + comment : string.Empty)}");
+            settings.UseFileName(
+                $"{testAssembly}" +
+                $"{(args.Length > 0 ? "-" + args : string.Empty)}" +
+                $"{(comment.Length > 0 ? "-" + comment : string.Empty)}");
 
             // Make any paths uniform regardless of OS.
             settings.ScrubLinesWithReplace(x =>
@@ -72,7 +76,7 @@ namespace TestLogger.AcceptanceTests
                 settings.ScrubLinesWithReplace(x => Regex.Replace(x, @"\[xUnit\.net [0-9:.]{11,}\]", "[xUnit.net _Timestamp_]"));
             }
 
-            DotnetTestFixture.Execute(testAssembly, out var resultsFile);
+            DotnetTestFixture.Execute(testAssembly, args, out var resultsFile);
             var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
 
             return this.Verify(testReport, settings);
