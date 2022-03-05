@@ -71,15 +71,10 @@ namespace TestLogger.AcceptanceTests
                 return x;
             });
 
-            if (testAssembly.Contains(".XUnit.", StringComparison.OrdinalIgnoreCase))
-            {
-                settings.ScrubLinesWithReplace(x => Regex.Replace(x, @"\[xUnit\.net [0-9:.]{11,}\]", "[xUnit.net _Timestamp_]"));
-            }
-
             DotnetTestFixture.Execute(testAssembly, args, out var resultsFile);
             var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
 
-            return this.Verify(testReport, settings);
+            return this.Verify(testReport.TestAssemblies, settings);
         }
     }
 }
