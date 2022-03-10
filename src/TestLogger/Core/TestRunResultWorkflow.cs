@@ -24,9 +24,9 @@ namespace Spekt.TestLogger.Core
 
             testRun.Store.Add(new TestResultInfo(
                 resultEvent.Result,
-                parsedName.NamespaceName,
-                parsedName.TypeName,
-                parsedName.MethodName));
+                parsedName.Namespace,
+                parsedName.Type,
+                parsedName.Method));
         }
     }
 }

@@ -7,15 +7,15 @@ namespace Spekt.TestLogger.Core
     {
         public ParsedName(string namespaceName, string typeName, string methodName)
         {
-            this.NamespaceName = namespaceName;
-            this.TypeName = typeName;
-            this.MethodName = methodName;
+            this.Namespace = namespaceName;
+            this.Type = typeName;
+            this.Method = methodName;
         }
 
-        public string NamespaceName { get; }
+        public string Namespace { get; }
 
-        public string TypeName { get; }
+        public string Type { get; }
 
-        public string MethodName { get; }
+        public string Method { get; }
     }
 }

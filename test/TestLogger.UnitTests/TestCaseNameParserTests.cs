@@ -87,9 +87,9 @@ namespace Spekt.TestLogger.UnitTests
                 Console.SetOut(sw);
                 var actual = new TestCaseNameParser().Parse(testCaseName);
 
-                Assert.AreEqual(expectedNamespace, actual.NamespaceName);
-                Assert.AreEqual(expectedType, actual.TypeName);
-                Assert.AreEqual(expectedMethod, actual.MethodName);
+                Assert.AreEqual(expectedNamespace, actual.Namespace);
+                Assert.AreEqual(expectedType, actual.Type);
+                Assert.AreEqual(expectedMethod, actual.Method);
                 Assert.AreEqual(0, sw.ToString().Length);
             }
         }
@@ -110,9 +110,9 @@ namespace Spekt.TestLogger.UnitTests
             Console.SetOut(sw);
             var actual = new TestCaseNameParser().Parse(testCaseName);
 
-            Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownNamespace, actual.NamespaceName);
-            Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownType, actual.TypeName);
-            Assert.AreEqual(testCaseName, actual.MethodName);
+            Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownNamespace, actual.Namespace);
+            Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownType, actual.Type);
+            Assert.AreEqual(testCaseName, actual.Method);
 
             // Remove the trailing new line before comparing.
             Assert.AreEqual(TestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));

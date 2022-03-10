@@ -52,9 +52,9 @@ namespace Spekt.TestLogger.UnitTests
                 Console.SetOut(sw);
                 var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
 
-                Assert.AreEqual(expectedNamespace, actual.NamespaceName);
-                Assert.AreEqual(expectedType, actual.TypeName);
-                Assert.AreEqual(expectedMethod, actual.MethodName);
+                Assert.AreEqual(expectedNamespace, actual.Namespace);
+                Assert.AreEqual(expectedType, actual.Type);
+                Assert.AreEqual(expectedMethod, actual.Method);
                 Assert.AreEqual(0, sw.ToString().Length);
             }
         }
@@ -75,9 +75,9 @@ namespace Spekt.TestLogger.UnitTests
             Console.SetOut(sw);
             var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
 
-            Assert.AreEqual(expectedNamespace, actual.NamespaceName);
-            Assert.AreEqual(expectedType, actual.TypeName);
-            Assert.AreEqual(expectedMethod, actual.MethodName);
+            Assert.AreEqual(expectedNamespace, actual.Namespace);
+            Assert.AreEqual(expectedType, actual.Type);
+            Assert.AreEqual(expectedMethod, actual.Method);
 
             // Remove the trailing new line before comparing.
             Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
@@ -111,9 +111,9 @@ namespace Spekt.TestLogger.UnitTests
             Console.SetOut(sw);
             var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
 
-            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, actual.NamespaceName);
-            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownType, actual.TypeName);
-            Assert.AreEqual(testCaseName, actual.MethodName);
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, actual.Namespace);
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownType, actual.Type);
+            Assert.AreEqual(testCaseName, actual.Method);
 
             // Remove the trailing new line before comparing.
             Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
