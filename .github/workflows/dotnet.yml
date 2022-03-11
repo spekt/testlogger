@@ -29,6 +29,15 @@ jobs:
       run: dotnet test -p:PackageVersion=$APP_BUILD_VERSION test/TestLogger.UnitTests/TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
     - name: Acceptance test
       run: dotnet test -p:PackageVersion=$APP_BUILD_VERSION test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj
+    - name: Upload Verification Files on Fail
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: Acceptance Test Failure
+        retention-days: 5
+        path: |
+          **/*.verified.txt
+          **/*.received.txt
     - name: Codecov
       uses: codecov/codecov-action@v1.2.1
       with:

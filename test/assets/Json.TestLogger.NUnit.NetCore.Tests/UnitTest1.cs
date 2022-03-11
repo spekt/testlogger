@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -224,6 +226,51 @@ namespace NUnit.Xml.TestLogger.NetFull.Tests
         {
             Assert.That(x, Is.Not.EqualTo(2), "failing for second case");
             Assert.That(s, Is.Not.Null);
+        }
+    }
+
+    public class Issue28_Examples
+    {
+        [TestCase('0')]
+        [TestCase('a')]
+        [TestCase('A')]
+        [TestCase('!')]
+        [TestCase('-')]
+        [TestCase('_')]
+        [TestCase('.')]
+        [TestCase('*')]
+        [TestCase('\'')]
+        [TestCase('(')]
+        [TestCase(')')]
+        [TestCase('/')]
+        public void ExampleTest3(char c)
+        {
+            Assert.IsNotNull(c);
+        }
+
+        [TestCaseSource(nameof(ExceptionTestCases))]
+        public void ExampleTest4(Exception e) => Assert.Pass();
+
+        private static readonly Exception[] ExceptionTestCases = 
+        {
+            new MyException1(),
+            new MyException2(),
+            new AggregateException(new MyException1()),
+            new AggregateException(new MyException2())
+        };
+
+        public class MyException1 : Exception { }
+        public class MyException2 : Exception { }
+
+        [TestCaseSource(nameof(MyTestCases))]
+        public void ExampleTest4(string b) => Assert.Pass();
+
+        private static IEnumerable<TestCaseData> MyTestCases()
+        {
+            yield return new TestCaseData("a").SetName("Testing. Input.");
+            yield return new TestCaseData("a").SetName("Testing. Input");
+            yield return new TestCaseData("a").SetName("Testing.");
+            yield return new TestCaseData("a").SetName("Testing");
         }
     }
 }

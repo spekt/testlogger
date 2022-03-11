@@ -1,4 +1,4 @@
-// Copyright (c) Spekt Contributors. All rights reserved.
+﻿// Copyright (c) Spekt Contributors. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace Spekt.TestLogger.UnitTests
@@ -9,7 +9,7 @@ namespace Spekt.TestLogger.UnitTests
     using Spekt.TestLogger.Core;
 
     [TestClass]
-    public class TestCaseNameParserTests
+    public class LegacyTestCaseNameParserTests
     {
         [DataTestMethod]
         [DataRow("z.a.b", "z", "a", "b")]
@@ -45,47 +45,12 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.y.x.ape.bar('.',False)", "z.y.x", "ape", "bar('.',False)")]
         [DataRow("z.y.x.ape.bar('\\'',False)", "z.y.x", "ape", "bar('\\'',False)")]
         [DataRow("z.y.x.ape.bar('\\\\',False)", "z.y.x", "ape", "bar('\\\\',False)")]
-
-        // Strip out any line breaks
-        [DataRow("z.y.x.ape.bar('aa\r\nbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
-        [DataRow("z.y.x.ape.bar('aa\nbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
-        [DataRow("z.y.x.ape.bar('aa\rbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
-
-        [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.8m,4.5m,(4.8, False))", "NetCore.Tests.NetCoreOnly", "Issue28_Examples", "ExampleTest2(True,4.8m,4.5m,(4.8, False))")]
-        [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples(asdf \".\\).ExampleTest2(True,4.8m,4.5m,(4.8, False))", "NetCore.Tests.NetCoreOnly", "Issue28_Examples(asdf \".\\)", "ExampleTest2(True,4.8m,4.5m,(4.8, False))")]
-        [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples(asdf \".\\).ExampleTest2", "NetCore.Tests.NetCoreOnly", "Issue28_Examples(asdf \".\\)", "ExampleTest2")]
-        [DataRow("z.y.X(x", "z", "y", "X(x")]
-        [DataRow("z.y.x(", "z", "y", "x(")]
-        [DataRow("z.y.X\"x", "z", "y", "X\"x")]
-        [DataRow("z.y.x\"", "z", "y", "x\"")]
-        [DataRow("z.y.X\\x", "z", "y", "X\\x")]
-        [DataRow("z.y.x\\", "z", "y", "x\\")]
-        [DataRow("z.y.X\\)", "z", "y", "X\\)")]
-        [DataRow("z.y.X\')", "z", "y", "X\')")]
-        [DataRow("z.y.\'x", "z", "y", "\'x")]
-        [DataRow("z.y.x))", "z", "y", "x))")]
-        [DataRow("z.y.x()x", "z", "y", "x()x")]
-        [DataRow("z.a.b((0,1)", "z", "a", "b((0,1)")]
-        [DataRow("z.a.b((0,1)))", "z", "a", "b((0,1)))")]
-        [DataRow("z.a.b((0,(0,1))", "z", "a", "b((0,(0,1))")]
-        [DataRow("z.a.b((0,(0,1))))", "z", "a", "b((0,(0,1))))")]
-        [DataRow("a.z.y.x.", "a.z", "y", "x.")]
-        [DataRow("z.a(0,1).b", "z", "a(0,1)", "b")]
-        [DataRow("z.a((0,1).b", "z", "a((0,1)", "b")]
-        [DataRow("z.a(0,1)).b", "z", "a(0,1))", "b")]
-        [DataRow("z.a(0.21).b", "z", "a(0.21)", "b")]
-
-        // These produce strange results but don't output errors.
-        // Will revisit these if users report errors.
-        [DataRow("z.y.x.", "z", "y", "x.")]
-        [DataRow("z.y.x.)", "z.y", "x", ")")]
-        [DataRow("z.y.x.\"\")", "z.y", "x", "\"\")")]
         public void Parse_ParsesAllParseableInputs_WithoutConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
         {
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                var actual = new TestCaseNameParser().Parse(testCaseName);
+                var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
 
                 Assert.AreEqual(expectedNamespace, actual.Namespace);
                 Assert.AreEqual(expectedType, actual.Type);
@@ -95,27 +60,63 @@ namespace Spekt.TestLogger.UnitTests
         }
 
         [DataTestMethod]
-        [DataRow("a.b")]
-        [DataRow("a.b(\"arg\",2)")]
-        [DataRow("a(\"arg\",2).b")]
-        [DataRow("a(\"arg\",2).b(\"arg\",2)")]
-        [DataRow("a.b(0.5f)")]
+        [DataRow("a.b", LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, "a", "b")]
+
+        // Cover all expected cases of different parenthesis locations, handling normal strings
+        [DataRow("a.b(\"arg\",2)", LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, "a", "b(\"arg\",2)")]
+        [DataRow("a(\"arg\",2).b", LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, "a(\"arg\",2)", "b")]
+        [DataRow("a(\"arg\",2).b(\"arg\",2)", LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, "a(\"arg\",2)", "b(\"arg\",2)")]
+
+        // Examples with period in non string
+        [DataRow("a.b(0.5f)", LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, "a", "b(0.5f)")]
+        public void Parse_ParsesAllParseableInputsWithoutNamespace_WithConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
+        {
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
+
+            Assert.AreEqual(expectedNamespace, actual.Namespace);
+            Assert.AreEqual(expectedType, actual.Type);
+            Assert.AreEqual(expectedMethod, actual.Method);
+
+            // Remove the trailing new line before comparing.
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
+        }
+
+        [DataTestMethod]
         [DataRow("x.()x()")]
         [DataRow("x")]
         [DataRow("..Z")]
+        [DataRow("z.y.X(x")]
+        [DataRow("z.y.x(")]
+        [DataRow("z.y.X\"x")]
+        [DataRow("z.y.x\"")]
+        [DataRow("z.y.X\\x")]
+        [DataRow("z.y.x\\")]
+        [DataRow("z.y.X\\)")]
+        [DataRow("z.y.X\')")]
+        [DataRow("z.y.\'x")]
+        [DataRow("z.y.x))")]
+        [DataRow("z.y.x()x")]
+        [DataRow("z.y.x.")]
+        [DataRow("z.y.x.)")]
+        [DataRow("z.y.x.\"\")")]
+        [DataRow("z.a.b((0,1)")]
+        [DataRow("z.a.b((0,1)))")]
+        [DataRow("z.a.b((0,(0,1))")]
+        [DataRow("z.a.b((0,(0,1))))")]
         public void Parse_FailsGracefullyOnNonParseableInputs_WithConsoleOutput(string testCaseName)
         {
             using var sw = new StringWriter();
-
             Console.SetOut(sw);
-            var actual = new TestCaseNameParser().Parse(testCaseName);
+            var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
 
-            Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownNamespace, actual.Namespace);
-            Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownType, actual.Type);
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, actual.Namespace);
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownType, actual.Type);
             Assert.AreEqual(testCaseName, actual.Method);
 
             // Remove the trailing new line before comparing.
-            Assert.AreEqual(TestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
         }
     }
 }

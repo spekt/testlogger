@@ -10,48 +10,14 @@ namespace TestLogger.AcceptanceTests
     public static class DotnetTestFixture
     {
         private const string NetcoreVersion = "netcoreapp3.1";
+        private const string ResultFile = "test-results.json";
 
-        public static string RootDirectory { get; } = Path.GetFullPath(
-                    Path.Combine(
-                        Environment.CurrentDirectory,
-                        "..",
-                        "..",
-                        "..",
-                        "..",
-                        "assets",
-                        "Json.TestLogger.NetCore.Tests"));
-
-        public static string TestAssemblyName { get; } = "Json.TestLogger.NetCore.Tests.dll";
-
-        public static string TestAssembly
+        public static void Execute(string assemblyName, string args, out string resultsFile)
         {
-            get
+            resultsFile = Path.Combine(GetAssemblyPath(assemblyName), "test-results.json");
+            if (File.Exists(resultsFile))
             {
-#if DEBUG
-                var config = "Debug";
-#else
-                var config = "Release";
-#endif
-                return Path.Combine(RootDirectory, "bin", config, NetcoreVersion, TestAssemblyName);
-            }
-        }
-
-        public static void Execute(string resultsFile)
-        {
-            var testProject = RootDirectory;
-            var testLogger = $"--logger:\"json;LogFilePath={resultsFile}\"";
-
-            // Delete stale results file
-            var testLogFile = Path.Combine(testProject, resultsFile);
-
-            // Strip out tokens
-            var sanitizedResultFile = System.Text.RegularExpressions.Regex.Replace(resultsFile, @"{.*}\.*", string.Empty);
-            foreach (var fileName in Directory.GetFiles(testProject))
-            {
-                if (fileName.Contains("test-results.json"))
-                {
-                    File.Delete(fileName);
-                }
+                File.Delete(resultsFile);
             }
 
             // Log the contents of test output directory. Useful to verify if the logger is copied
@@ -59,9 +25,9 @@ namespace TestLogger.AcceptanceTests
             Console.WriteLine("Contents of test output directory:");
 
             // Create directory so test does not fail under windows.
-            Directory.CreateDirectory(Path.Combine(testProject, $"bin/Debug/{NetcoreVersion}"));
+            Directory.CreateDirectory(Path.Combine(assemblyName, $"bin/Debug/{NetcoreVersion}"));
 
-            foreach (var f in Directory.GetFiles(Path.Combine(testProject, $"bin/Debug/{NetcoreVersion}")))
+            foreach (var f in Directory.GetFiles(Path.Combine(assemblyName, $"bin/Debug/{NetcoreVersion}")))
             {
                 Console.WriteLine("  " + f);
             }
@@ -76,7 +42,7 @@ namespace TestLogger.AcceptanceTests
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     FileName = "dotnet",
-                    Arguments = $"test --no-build {testLogger} {testProject}"
+                    Arguments = $"test --no-build --logger:\"json;LogFilePath={ResultFile}{args}\" {GetAssemblyPath(assemblyName)}\\{assemblyName}.csproj"
                 }
             };
             dotnet.Start();
@@ -89,5 +55,16 @@ namespace TestLogger.AcceptanceTests
             Console.WriteLine("dotnet output: " + output);
             Console.WriteLine("------------");
         }
+
+        private static string GetAssemblyPath(string assembly) =>
+            Path.GetFullPath(
+                Path.Combine(
+                    Environment.CurrentDirectory,
+                    "..",
+                    "..",
+                    "..",
+                    "..",
+                    "assets",
+                    assembly));
     }
 }

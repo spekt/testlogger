@@ -3,18 +3,30 @@
 
 namespace Spekt.TestLogger.Core
 {
+    using System;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
     public static class TestRunResultWorkflow
     {
+        // Parser instances exist per run so we can throttle error notifications to once per run.
+        private static readonly TestCaseNameParser Parser = new ();
+        private static readonly LegacyTestCaseNameParser LegacyParser = new ();
+
         public static void Result(this ITestRun testRun, TestResultEventArgs resultEvent)
         {
-            var parsedName = TestCaseNameParser.Parse(resultEvent.Result.TestCase.FullyQualifiedName);
+            var fqn = resultEvent.Result.TestCase.FullyQualifiedName;
+            testRun.LoggerConfiguration.Values.TryGetValue(LoggerConfiguration.ParserKey, out string parserVal);
+            var parsedName = parserVal switch
+            {
+                string x when x.Equals("Legacy", StringComparison.OrdinalIgnoreCase) => LegacyParser.Parse(fqn),
+                _ => Parser.Parse(fqn),
+            };
+
             testRun.Store.Add(new TestResultInfo(
                 resultEvent.Result,
-                parsedName.NamespaceName,
-                parsedName.TypeName,
-                parsedName.MethodName));
+                parsedName.Namespace,
+                parsedName.Type,
+                parsedName.Method));
         }
     }
 }

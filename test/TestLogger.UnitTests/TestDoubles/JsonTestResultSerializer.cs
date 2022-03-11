@@ -86,12 +86,16 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
         {
             return new ()
             {
-                Name = result.Method,
-                Result = result.Outcome.ToString()
+                FullyQualifiedName = result.TestCase.FullyQualifiedName,
+                DisplayName = result.TestCase.DisplayName,
+                Namespace = result.Namespace,
+                Type = result.Type,
+                Method = result.Method,
+                Result = result.Outcome.ToString(),
             };
         }
 
-        internal class TestReport
+        public class TestReport
         {
             public TestReport(IEnumerable<TestAssembly> testAssemblies, IEnumerable<TestMessageInfo> testMessages)
             {
@@ -104,23 +108,31 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
             public IEnumerable<TestMessageInfo> TestMessages { get; set; }
         }
 
-        internal class TestAssembly
+        public class TestAssembly
         {
             public string Name { get; set; }
 
             public IEnumerable<TestFixture> Fixtures { get; set; }
         }
 
-        internal class TestFixture
+        public class TestFixture
         {
             public string Name { get; set; }
 
             public IEnumerable<Test> Tests { get; set; }
         }
 
-        internal class Test
+        public class Test
         {
-            public string Name { get; set; }
+            public string FullyQualifiedName { get; set; }
+
+            public string DisplayName { get; set; }
+
+            public string Namespace { get; set; }
+
+            public string Type { get; set; }
+
+            public string Method { get; set; }
 
             public string Result { get; set; }
         }

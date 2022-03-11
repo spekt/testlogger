@@ -16,6 +16,7 @@ namespace Spekt.TestLogger.Core
     {
         public const string LogFilePathKey = "LogFilePath";
         public const string LogFileNameKey = "LogFileName";
+        public const string ParserKey = "Parser";
         private const string AssemblyToken = "{assembly}";
         private const string FrameworkToken = "{framework}";
 

@@ -3,29 +3,78 @@
 
 namespace TestLogger.AcceptanceTests
 {
+    using System;
     using System.IO;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Newtonsoft.Json;
+    using VerifyMSTest;
+    using VerifyTests;
+    using static Spekt.TestLogger.UnitTests.TestDoubles.JsonTestResultSerializer;
 
     [TestClass]
-    public class TestLoggerAcceptanceTests
+    public class TestLoggerAcceptanceTests : VerifyBase
     {
-        private static readonly string ResultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.json");
-
-        [ClassInitialize]
-        public static void SuiteInitialize(TestContext context)
+        public TestLoggerAcceptanceTests()
         {
-            if (File.Exists(ResultsFile))
-            {
-                File.Delete(ResultsFile);
-            }
-
-            DotnetTestFixture.Execute("test-results.json");
+            VerifierSettings.OmitContentFromException();
         }
 
         [TestMethod]
-        public void TestRunWithLoggerAndFilePathShouldCreateResultsFile()
+        [DataRow("Json.TestLogger.MSTest.NetCore.Tests", "", "")]
+        [DataRow("Json.TestLogger.NUnit.NetCore.Tests", "", "")]
+        [DataRow("Json.TestLogger.NUnit.NetCore.Tests", ";Parser=Legacy", "IncludesParserFailures")]
+        [DataRow("Json.TestLogger.XUnit.NetCore.Tests", "", "")]
+        [DataRow("Json.TestLogger.MSTest.NetMulti.Tests", "", "")]
+        [DataRow("Json.TestLogger.NUnit.NetMulti.Tests", "", "")]
+        [DataRow("Json.TestLogger.XUnit.NetMulti.Tests", "", "")]
+#if WINDOWS_OS
+        [DataRow("Json.TestLogger.MSTest.NetFull.Tests", "", "WindowsOnly")]
+        [DataRow("Json.TestLogger.NUnit.NetFull.Tests", "", "WindowsOnly")]
+        [DataRow("Json.TestLogger.XUnit.NetFull.Tests", "", "WindowsOnly")]
+#endif
+        public Task VerifyTestRunOutput(string testAssembly, string args, string comment)
         {
-            Assert.IsTrue(File.Exists(ResultsFile));
+            return this.VerifyAssembly(testAssembly, args, comment);
+        }
+
+        private Task VerifyAssembly(string testAssembly, string args, string comment)
+        {
+            var settings = new VerifySettings();
+            settings.UseDirectory(Path.Combine("Snapshots", "TestLoggerAcceptanceTests", "VerifyTestRunOutput"));
+            settings.UseFileName(
+                $"{testAssembly}" +
+                $"{(args.Length > 0 ? "-" + args : string.Empty)}" +
+                $"{(comment.Length > 0 ? "-" + comment : string.Empty)}");
+
+            // Make any paths uniform regardless of OS.
+            settings.ScrubLinesWithReplace(x =>
+            {
+                var options = RegexOptions.IgnoreCase | RegexOptions.Compiled;
+                var prefixedMatch = new Regex(@"^(.{0,}: )(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
+                var pathMatch = new Regex(@"^(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
+                if (prefixedMatch.IsMatch(x))
+                {
+                    var m = prefixedMatch.Match(x);
+                    var prefix = m.Groups[1].Captures[0].Value.Replace('\\', '/');
+                    var pathForwardSlashes = m.Groups[3].Captures[0].Value.Replace('\\', '/');
+                    x = prefix + "test/assets/Json.TestLogger" + pathForwardSlashes;
+                }
+                else if (pathMatch.IsMatch(x))
+                {
+                    var m = pathMatch.Match(x);
+                    var pathForwardSlashes = m.Groups[2].Captures[0].Value.Replace('\\', '/');
+                    x = "test/assets/Json.TestLogger" + pathForwardSlashes;
+                }
+
+                return x;
+            });
+
+            DotnetTestFixture.Execute(testAssembly, args, out var resultsFile);
+            var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
+
+            return this.Verify(testReport.TestAssemblies, settings);
         }
     }
 }

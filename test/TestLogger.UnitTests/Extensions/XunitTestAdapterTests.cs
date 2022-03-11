@@ -45,5 +45,26 @@ namespace Spekt.TestLogger.UnitTests.Extensions
             Assert.AreEqual("skipReason", transformedResults[1].Messages[0].Category);
             Assert.AreEqual("Dummy reason", transformedResults[1].Messages[0].Text);
         }
+
+        [TestMethod]
+        public void TransformShouldAddParameterData()
+        {
+            var results = new List<TestResultInfo>
+            {
+                new (new TestResult(new TestCase("N.C.M1", ExecutorUri, Source)) { DisplayName = "N.C.M1" },
+                    "N", "C", "M1"),
+                new (new TestResult(
+                    new TestCase("N.C.M2", ExecutorUri, Source)) { DisplayName = "N.C.M2(some args)" },
+                    "N", "C", "M2")
+            };
+            var messages = new List<TestMessageInfo>();
+            var xunit = new XunitTestAdapter();
+
+            var transformedResults = xunit.TransformResults(results, messages);
+
+            Assert.AreEqual(2, transformedResults.Count);
+            Assert.AreEqual(1, transformedResults.Count(x => x.Method == "M1"));
+            Assert.AreEqual(1, transformedResults.Count(x => x.Method == "M2(some args)"));
+        }
     }
 }

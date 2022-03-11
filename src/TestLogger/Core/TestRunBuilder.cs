@@ -17,7 +17,7 @@ namespace Spekt.TestLogger.Core
             this.testRun = new TestRun
             {
                 RunConfiguration = new TestRunConfiguration(),
-                AdapterFactory = new TestAdapterFactory()
+                AdapterFactory = new TestAdapterFactory(),
             };
         }
 
