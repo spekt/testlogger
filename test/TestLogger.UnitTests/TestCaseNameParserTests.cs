@@ -50,7 +50,6 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.y.x.ape.bar('aa\r\nbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
         [DataRow("z.y.x.ape.bar('aa\nbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
         [DataRow("z.y.x.ape.bar('aa\rbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
-
         [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.8m,4.5m,(4.8, False))", "NetCore.Tests.NetCoreOnly", "Issue28_Examples", "ExampleTest2(True,4.8m,4.5m,(4.8, False))")]
         [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples(asdf \".\\).ExampleTest2(True,4.8m,4.5m,(4.8, False))", "NetCore.Tests.NetCoreOnly", "Issue28_Examples(asdf \".\\)", "ExampleTest2(True,4.8m,4.5m,(4.8, False))")]
         [DataRow("NetCore.Tests.NetCoreOnly.Issue28_Examples(asdf \".\\).ExampleTest2", "NetCore.Tests.NetCoreOnly", "Issue28_Examples(asdf \".\\)", "ExampleTest2")]
@@ -74,6 +73,12 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.a((0,1).b", "z", "a((0,1)", "b")]
         [DataRow("z.a(0,1)).b", "z", "a(0,1))", "b")]
         [DataRow("z.a(0.21).b", "z", "a(0.21)", "b")]
+        [DataRow("z1234567890.a((0,1).b", "z1234567890", "a((0,1)", "b")]
+        [DataRow("1234567890z.a(0,1)).b", "1234567890z", "a(0,1))", "b")]
+        [DataRow("z.a1234567890(0,1)).b", "z", "a1234567890(0,1))", "b")]
+        [DataRow("z.1234567890a(0,1)).b", "z", "1234567890a(0,1))", "b")]
+        [DataRow("z.a(0.21).b1234567890", "z", "a(0.21)", "b1234567890")]
+        [DataRow("z.a(0.21).1234567890b", "z", "a(0.21)", "1234567890b")]
 
         // These produce strange results but don't output errors.
         // Will revisit these if users report errors.
