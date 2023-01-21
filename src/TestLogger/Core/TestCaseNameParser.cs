@@ -24,12 +24,12 @@ namespace Spekt.TestLogger.Core
         /// <summary>
         /// This one can handle standard formatting with or without method data.
         /// </summary>
-        private static readonly Regex MethodRegex = new (@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,})\.(.{1,})$", RegexOptions);
+        private static readonly Regex MethodRegex = new (@"^([a-z0-9_.]{1,})\.([a-z0-9_.]{1,})\.(.{1,})$", RegexOptions);
 
         /// <summary>
         /// Can handle standard formatting with class and method data.
         /// </summary>
-        private static readonly Regex ClassDataRegex = new (@"^([a-z1-9_.]{1,})\.([a-z1-9_.]{1,}\(.{0,}\))\.(.{1,})$", RegexOptions);
+        private static readonly Regex ClassDataRegex = new (@"^([a-z0-9_.]{1,})\.([a-z0-9_.]{1,}\(.{0,}\))\.(.{1,})$", RegexOptions);
 
         private bool parserErrorReported;
 
