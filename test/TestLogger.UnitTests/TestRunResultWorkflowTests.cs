@@ -11,6 +11,7 @@ namespace Spekt.TestLogger.UnitTests
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.UnitTests.TestDoubles;
     using TestResult = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult;
 
     [TestClass]
@@ -38,6 +39,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             var testRun = new TestRunBuilder()
                 .WithLoggerConfiguration(new LoggerConfiguration(BasicConfig()))
+                .WithSerializer(new JsonTestResultSerializer())
                 .WithStore(this.testResultStore).Build();
             var resultEvent = new TestResultEventArgs(new TestResult(this.dummyTestCase)
             {
@@ -76,6 +78,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             var testRun = new TestRunBuilder()
                 .WithLoggerConfiguration(new LoggerConfiguration(BasicConfig()))
+                .WithSerializer(new JsonTestResultSerializer())
                 .WithStore(this.testResultStore).Build();
             var resultEvent = new TestResultEventArgs(new TestResult(this.dummyTestCase));
             var tasks = new List<Task>();

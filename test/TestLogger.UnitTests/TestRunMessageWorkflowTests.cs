@@ -6,6 +6,7 @@ namespace Spekt.TestLogger.UnitTests
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.UnitTests.TestDoubles;
 
     [TestClass]
     public class TestRunMessageWorkflowTests
@@ -20,7 +21,9 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void MessageShouldStoreRunMessages()
         {
-            var testRun = new TestRunBuilder().WithStore(this.store).Build();
+            var testRun = new TestRunBuilder()
+                .WithSerializer(new JsonTestResultSerializer())
+                .WithStore(this.store).Build();
             var messageEvent = new TestRunMessageEventArgs(
                     TestMessageLevel.Informational,
                     "Dummy message");
