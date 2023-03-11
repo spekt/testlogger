@@ -45,6 +45,8 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
     /// </remarks>
     public class JsonTestResultSerializer : ITestResultSerializer
     {
+        public IInputSanitizer InputSanitizer { get; } = new InputSanitizerJson();
+
         public string Serialize(
             LoggerConfiguration loggerConfiguration,
             TestRunConfiguration runConfiguration,
