@@ -25,7 +25,7 @@ namespace Spekt.TestLogger.Core
             };
 
             var result = resultEvent.Result;
-            var sanitize = testRun.Serializer.InputSanitizer.Sanitize;
+            Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
 
             testRun.Store.Add(new TestResultInfo(
                 sanitize(parsedName.Namespace),
