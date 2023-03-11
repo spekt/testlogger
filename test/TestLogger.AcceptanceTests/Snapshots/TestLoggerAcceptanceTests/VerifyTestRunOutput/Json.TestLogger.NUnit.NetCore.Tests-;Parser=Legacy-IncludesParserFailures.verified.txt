@@ -151,15 +151,13 @@
         Name: UnknownType,
         Tests: [
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((",  )),
-            DisplayName: ExampleTest1_Tuples((",  )),
+            DisplayName: ExampleTest1_Tuples((\",  )),
             Namespace: UnknownNamespace,
             Type: UnknownType,
-            Method: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((",  )),
+            Method: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((\",  )),
             Result: Passed
           },
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(False,4.5m,4.6m,(4.5, False)),
             DisplayName: ExampleTest2(False,4.5m,4.6m,(4.5, False)),
             Namespace: UnknownNamespace,
             Type: UnknownType,
@@ -167,7 +165,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.1m,5.0m,(5.0, True)),
             DisplayName: ExampleTest2(True,4.1m,5.0m,(5.0, True)),
             Namespace: UnknownNamespace,
             Type: UnknownType,
@@ -175,7 +172,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.8m,4.5m,(4.8, False)),
             DisplayName: ExampleTest2(True,4.8m,4.5m,(4.8, False)),
             Namespace: UnknownNamespace,
             Type: UnknownType,
@@ -183,7 +179,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.5m,4.5m,(4.5, False)),
             DisplayName: ExampleTest2(True,4.5m,4.5m,(4.5, False)),
             Namespace: UnknownNamespace,
             Type: UnknownType,
@@ -191,41 +186,20 @@
             Result: Passed
           },
           {
-            FullyQualifiedName:
-NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.
-   --- End of inner exception stack trace ---),
-            DisplayName:
-ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.
-   --- End of inner exception stack trace ---),
+            DisplayName: ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)\r\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.\r\n   --- End of inner exception stack trace ---),
             Namespace: UnknownNamespace,
             Type: UnknownType,
-            Method:
-NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.
-   --- End of inner exception stack trace ---),
+            Method: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)\r\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.\r\n   --- End of inner exception stack trace ---),
             Result: Passed
           },
           {
-            FullyQualifiedName:
-NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.
-   --- End of inner exception stack trace ---),
-            DisplayName:
-ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.
-   --- End of inner exception stack trace ---),
+            DisplayName: ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)\r\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.\r\n   --- End of inner exception stack trace ---),
             Namespace: UnknownNamespace,
             Type: UnknownType,
-            Method:
-NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.
-   --- End of inner exception stack trace ---),
+            Method: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)\r\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.\r\n   --- End of inner exception stack trace ---),
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing. Input.,
             DisplayName: Testing. Input.,
             Namespace: UnknownNamespace,
             Type: UnknownType,
@@ -233,7 +207,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing.,
             DisplayName: Testing.,
             Namespace: UnknownNamespace,
             Type: UnknownType,
@@ -246,7 +219,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: ExampleTest2(False,null,4,
         Tests: [
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(False,null,4.5m,(, False)),
             DisplayName: ExampleTest2(False,null,4.5m,(, False)),
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples,
             Type: ExampleTest2(False,null,4,
@@ -259,7 +231,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: ExampleTest2(False,4,
         Tests: [
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(False,4.5m,null,(4.5, False)),
             DisplayName: ExampleTest2(False,4.5m,null,(4.5, False)),
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples,
             Type: ExampleTest2(False,4,
@@ -272,7 +243,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: ExampleTest2(True,4,
         Tests: [
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.3m,null,(4.3, False)),
             DisplayName: ExampleTest2(True,4.3m,null,(4.3, False)),
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples,
             Type: ExampleTest2(True,4,
@@ -285,7 +255,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: FailingOneTimeSetUp,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: FailingOneTimeSetUp,
@@ -293,7 +262,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: FailingOneTimeSetUp,
@@ -306,7 +274,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: FailingOneTimeTearDown,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: FailingOneTimeTearDown,
@@ -314,7 +281,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: FailingOneTimeTearDown,
@@ -327,7 +293,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: FailingTearDown,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.FailingTearDown.Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: FailingTearDown,
@@ -335,7 +300,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingTearDown.Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: FailingTearDown,
@@ -348,7 +312,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: FailingTestSetup,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.FailingTestSetup.Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: FailingTestSetup,
@@ -356,7 +319,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingTestSetup.Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: FailingTestSetup,
@@ -369,7 +331,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: Testing,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing. Input,
             DisplayName: Testing. Input,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples,
             Type: Testing,
@@ -379,42 +340,38 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         ]
       },
       {
-        Name: ParametrizedFixture("Answer",42),
+        Name: ParametrizedFixture(\"Answer\",42),
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture("Answer",42).Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
-            Type: ParametrizedFixture("Answer",42),
+            Type: ParametrizedFixture(\"Answer\",42),
             Method: Test,
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture("Answer",42).Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.Tests2,
-            Type: ParametrizedFixture("Answer",42),
+            Type: ParametrizedFixture(\"Answer\",42),
             Method: Test,
             Result: Passed
           }
         ]
       },
       {
-        Name: ParametrizedFixture("Question",1),
+        Name: ParametrizedFixture(\"Question\",1),
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture("Question",1).Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
-            Type: ParametrizedFixture("Question",1),
+            Type: ParametrizedFixture(\"Question\",1),
             Method: Test,
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture("Question",1).Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.Tests2,
-            Type: ParametrizedFixture("Question",1),
+            Type: ParametrizedFixture(\"Question\",1),
             Method: Test,
             Result: Passed
           }
@@ -424,67 +381,59 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: ParametrizedTestCases,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,"A"),
-            DisplayName: TestData(1,"A"),
+            DisplayName: TestData(1,\"A\"),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
-            Method: TestData(1,"A"),
+            Method: TestData(1,\"A\"),
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,"B"),
-            DisplayName: TestData(1,"B"),
+            DisplayName: TestData(1,\"B\"),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
-            Method: TestData(1,"B"),
+            Method: TestData(1,\"B\"),
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,"A"),
-            DisplayName: TestData(2,"A"),
+            DisplayName: TestData(2,\"A\"),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
-            Method: TestData(2,"A"),
+            Method: TestData(2,\"A\"),
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,"B"),
-            DisplayName: TestData(2,"B"),
+            DisplayName: TestData(2,\"B\"),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
-            Method: TestData(2,"B"),
+            Method: TestData(2,\"B\"),
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,"A"),
-            DisplayName: TestData(1,"A"),
+            DisplayName: TestData(1,\"A\"),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
-            Method: TestData(1,"A"),
+            Method: TestData(1,\"A\"),
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,"B"),
-            DisplayName: TestData(1,"B"),
+            DisplayName: TestData(1,\"B\"),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
-            Method: TestData(1,"B"),
+            Method: TestData(1,\"B\"),
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,"A"),
-            DisplayName: TestData(2,"A"),
+            DisplayName: TestData(2,\"A\"),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
-            Method: TestData(2,"A"),
+            Method: TestData(2,\"A\"),
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,"B"),
-            DisplayName: TestData(2,"B"),
+            DisplayName: TestData(2,\"B\"),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
-            Method: TestData(2,"B"),
+            Method: TestData(2,\"B\"),
             Result: Failed
           }
         ]
@@ -493,7 +442,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: SuccessAndInconclusiveFixture,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture.InconclusiveTest,
             DisplayName: InconclusiveTest,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: SuccessAndInconclusiveFixture,
@@ -501,7 +449,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture.SuccessTest,
             DisplayName: SuccessTest,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: SuccessAndInconclusiveFixture,
@@ -509,7 +456,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture.InconclusiveTest,
             DisplayName: InconclusiveTest,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: SuccessAndInconclusiveFixture,
@@ -517,7 +463,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture.SuccessTest,
             DisplayName: SuccessTest,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: SuccessAndInconclusiveFixture,
@@ -530,7 +475,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: SuccessFixture,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.SuccessFixture.SuccessTest,
             DisplayName: SuccessTest,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: SuccessFixture,
@@ -538,7 +482,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.SuccessFixture.SuccessTest,
             DisplayName: SuccessTest,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: SuccessFixture,
@@ -551,7 +494,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: UnitTest1,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.FailTest11,
             DisplayName: FailTest11,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
@@ -559,7 +501,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Ignored,
             DisplayName: Ignored,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
@@ -567,7 +508,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Inconclusive,
             DisplayName: Inconclusive,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
@@ -575,7 +515,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MultipleCategories,
             DisplayName: MultipleCategories,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
@@ -583,7 +522,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.NoProperty,
             DisplayName: NoProperty,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
@@ -591,7 +529,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.PassTest11,
             DisplayName: PassTest11,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
@@ -599,7 +536,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithCategory,
             DisplayName: WithCategory,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
@@ -607,7 +543,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithCategoryAndProperty,
             DisplayName: WithCategoryAndProperty,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
@@ -615,7 +550,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithProperties,
             DisplayName: WithProperties,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
@@ -623,7 +557,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithProperty,
             DisplayName: WithProperty,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
@@ -631,7 +564,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.FailTest11,
             DisplayName: FailTest11,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest1,
@@ -639,7 +571,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.Ignored,
             DisplayName: Ignored,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest1,
@@ -647,7 +578,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.Inconclusive,
             DisplayName: Inconclusive,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest1,
@@ -655,7 +585,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.PassTest11,
             DisplayName: PassTest11,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest1,
@@ -668,15 +597,13 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
         Name: UnitTest2,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.ExplicitTest,
             DisplayName: ExplicitTest,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
             Method: ExplicitTest,
-            Result: Skipped
+            Result: None
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.FailTest22,
             DisplayName: FailTest22,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
@@ -684,7 +611,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.IgnoredTest,
             DisplayName: IgnoredTest,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
@@ -692,7 +618,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.Inconclusive,
             DisplayName: Inconclusive,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
@@ -700,7 +625,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.PassTest21,
             DisplayName: PassTest21,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
@@ -708,7 +632,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.WarningTest,
             DisplayName: WarningTest,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
@@ -716,15 +639,13 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.ExplicitTest,
             DisplayName: ExplicitTest,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: ExplicitTest,
-            Result: Skipped
+            Result: None
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.FailTest22,
             DisplayName: FailTest22,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
@@ -732,7 +653,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.IgnoredTest,
             DisplayName: IgnoredTest,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
@@ -740,7 +660,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.Inconclusive,
             DisplayName: Inconclusive,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
@@ -748,7 +667,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.PassTest21,
             DisplayName: PassTest21,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
@@ -756,7 +674,6 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.WarningTest,
             DisplayName: WarningTest,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
