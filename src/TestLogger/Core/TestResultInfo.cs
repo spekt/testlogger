@@ -22,7 +22,7 @@ namespace Spekt.TestLogger.Core
             string errorMessage,
             string errorStackTrace,
             List<TestResultMessage> messages,
-            TraitCollection traits,
+            IReadOnlyCollection<Trait> traits,
             string executorUri)
         {
             this.Namespace = @namespace;
@@ -69,7 +69,7 @@ namespace Spekt.TestLogger.Core
 
         public List<TestResultMessage> Messages { get; }
 
-        public TraitCollection Traits { get; }
+        public IReadOnlyCollection<Trait> Traits { get; }
 
         public string ExecutorUri { get; }
 
@@ -101,7 +101,7 @@ namespace Spekt.TestLogger.Core
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.ErrorMessage);
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.ErrorStackTrace);
             hashCode = (hashCode * -1521134295) + EqualityComparer<IReadOnlyCollection<TestResultMessage>>.Default.GetHashCode(this.Messages);
-            hashCode = (hashCode * -1521134295) + EqualityComparer<TraitCollection>.Default.GetHashCode(this.Traits);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<IReadOnlyCollection<Trait>>.Default.GetHashCode(this.Traits);
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.ExecutorUri);
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.FullTypeName);
             return hashCode;
