@@ -16,6 +16,7 @@ namespace Spekt.TestLogger.UnitTests.Builders
         private TestOutcome outcome = TestOutcome.Passed;
         private IReadOnlyCollection<Trait> traits = new List<Trait>();
         private string errorMessage = string.Empty;
+        private string displayName = string.Empty;
 
         internal TestResultInfoBuilder()
         {
@@ -49,6 +50,12 @@ namespace Spekt.TestLogger.UnitTests.Builders
             return this;
         }
 
+        internal TestResultInfoBuilder WithDisplayName(string displayName)
+        {
+            this.displayName = displayName;
+            return this;
+        }
+
         internal TestResultInfo Build()
         {
             return new TestResultInfo(
@@ -56,7 +63,7 @@ namespace Spekt.TestLogger.UnitTests.Builders
                 this.type,
                 this.method,
                 this.outcome,
-                "a",
+                this.displayName,
                 "/tmp/test.dll",
                 DateTime.Parse("2023-01-02 03:04:05"),
                 DateTime.Parse("2023-01-02 03:04:06"),

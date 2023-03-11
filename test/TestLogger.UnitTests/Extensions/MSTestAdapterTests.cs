@@ -43,14 +43,9 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         [DataRow("    ")]
         public void TransformShouldNoitOverwriteMethodEmptyValues(string displayName)
         {
-            var result = new TestResult(new TestCase())
-            {
-                DisplayName = displayName,
-            };
-
             var testResults = new List<TestResultInfo>
             {
-                new TestResultInfoBuilder("namespace", "type", Method).Build(),
+                new TestResultInfoBuilder("namespace", "type", Method).WithDisplayName(displayName).Build(),
             };
 
             var sut = new MSTestAdapter();
