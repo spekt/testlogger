@@ -26,7 +26,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
 
             var testResults = new List<TestResultInfo>
             {
-                new TestResultInfoBuilder("namespace", "type", Method).Build(),
+                new TestResultInfoBuilder("namespace", "type", Method).WithDisplayName($"Method(\"{param}\")").Build(),
             };
 
             var sut = new MSTestAdapter();
