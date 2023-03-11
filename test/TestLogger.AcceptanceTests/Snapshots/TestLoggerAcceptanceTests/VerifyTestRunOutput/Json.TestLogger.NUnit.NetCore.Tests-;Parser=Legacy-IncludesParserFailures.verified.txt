@@ -6,7 +6,6 @@
         Name: Issue28_Examples,
         Tests: [
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((, )),
             DisplayName: ExampleTest1_Tuples((, )),
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
@@ -14,7 +13,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((test, test)),
             DisplayName: ExampleTest1_Tuples((test, test)),
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
@@ -22,15 +20,13 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((\, \\)),
-            DisplayName: ExampleTest1_Tuples((\, \\)),
+            DisplayName: ExampleTest1_Tuples((\\, \\\\)),
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
-            Method: ExampleTest1_Tuples((\, \\)),
+            Method: ExampleTest1_Tuples((\\, \\\\)),
             Result: Passed
           },
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples(([,  )),
             DisplayName: ExampleTest1_Tuples(([,  )),
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
@@ -38,7 +34,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((],  )),
             DisplayName: ExampleTest1_Tuples((],  )),
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
@@ -46,7 +41,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('0'),
             DisplayName: ExampleTest3('0'),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -54,7 +48,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('a'),
             DisplayName: ExampleTest3('a'),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -62,7 +55,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('A'),
             DisplayName: ExampleTest3('A'),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -70,7 +62,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('!'),
             DisplayName: ExampleTest3('!'),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -78,7 +69,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('-'),
             DisplayName: ExampleTest3('-'),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -86,7 +76,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('_'),
             DisplayName: ExampleTest3('_'),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -94,7 +83,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('.'),
             DisplayName: ExampleTest3('.'),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -102,7 +90,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('*'),
             DisplayName: ExampleTest3('*'),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -110,15 +97,13 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('\''),
-            DisplayName: ExampleTest3('\''),
+            DisplayName: ExampleTest3('\\''),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
-            Method: ExampleTest3('\''),
+            Method: ExampleTest3('\\''),
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('('),
             DisplayName: ExampleTest3('('),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -126,7 +111,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3(')'),
             DisplayName: ExampleTest3(')'),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -134,7 +118,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('/'),
             DisplayName: ExampleTest3('/'),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -142,7 +125,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.),
             DisplayName: ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -150,7 +132,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.),
             DisplayName: ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
@@ -158,7 +139,6 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing,
             DisplayName: Testing,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
