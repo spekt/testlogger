@@ -22,8 +22,8 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         {
             var results = new List<TestResultInfo>
             {
-                new TestResultInfoBuilder("N", "C", "M1").Build(),
-                new TestResultInfoBuilder("N", "C", "M2").Build(),
+                new TestResultInfoBuilder("N", "C", "M1").WithDisplayName("N.C.M1").Build(),
+                new TestResultInfoBuilder("N", "C", "M2").WithDisplayName("N.C.M2").Build(),
             };
             var messages = new List<TestMessageInfo>
             {
@@ -45,8 +45,8 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         {
             var results = new List<TestResultInfo>
             {
-                new TestResultInfoBuilder("N", "C", "M1").Build(),
-                new TestResultInfoBuilder("N", "C", "M2").Build(),
+                new TestResultInfoBuilder("N", "C", "M1").WithDisplayName("N.C.M1").Build(),
+                new TestResultInfoBuilder("N", "C", "M2").WithDisplayName("N.C.M2(some args)").Build(),
             };
             var messages = new List<TestMessageInfo>();
             var xunit = new XunitTestAdapter();
