@@ -67,7 +67,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         {
             var results = new List<TestResultInfo>
             {
-                new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod).WithOutcome(TestOutcome.None).Build(),
+                new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod).WithOutcome(TestOutcome.None).WithTraits(this.explicitTraits).Build(),
             };
 
             var modifiedResults = this.adapter.TransformResults(results, new ());
