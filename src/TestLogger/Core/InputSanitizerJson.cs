@@ -26,6 +26,11 @@ namespace Spekt.TestLogger.Core
         {
             var sb = new StringBuilder();
 
+            if (input is null)
+            {
+                return null;
+            }
+
             // Happy path if there's nothing to be escaped. IndexOfAny is highly optimized (and unmanaged)
             if (input.IndexOfAny(EscapeCharacters) == -1)
             {
