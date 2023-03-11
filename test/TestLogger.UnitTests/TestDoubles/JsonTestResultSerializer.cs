@@ -88,8 +88,8 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
         {
             return new ()
             {
-                FullyQualifiedName = result.TestCase.FullyQualifiedName,
-                DisplayName = result.TestCase.DisplayName,
+                ////FullyQualifiedName = result.TestCase.FullyQualifiedName,
+                DisplayName = result.DisplayName,
                 Namespace = result.Namespace,
                 Type = result.Type,
                 Method = result.Method,

@@ -11,25 +11,19 @@ namespace Spekt.TestLogger.UnitTests.Extensions
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.Extensions;
+    using Spekt.TestLogger.UnitTests.Builders;
     using TestResult = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult;
 
     [TestClass]
     public class XunitTestAdapterTests
     {
-        private const string Source = "/tmp/test.dll";
-        private static readonly Uri ExecutorUri = new ("executor://dummy");
-
         [TestMethod]
         public void TransformShouldAddReasonForSkippedTests()
         {
             var results = new List<TestResultInfo>
             {
-                new (new TestResult(
-                    new TestCase("N.C.M1", ExecutorUri, Source)),
-                    "N", "C", "M1"),
-                new (new TestResult(
-                    new TestCase("N.C.M2", ExecutorUri, Source)),
-                    "N", "C", "M2")
+                new TestResultInfoBuilder("N", "C", "M1").Build(),
+                new TestResultInfoBuilder("N", "C", "M2").Build(),
             };
             var messages = new List<TestMessageInfo>
             {
@@ -51,11 +45,8 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         {
             var results = new List<TestResultInfo>
             {
-                new (new TestResult(new TestCase("N.C.M1", ExecutorUri, Source)) { DisplayName = "N.C.M1" },
-                    "N", "C", "M1"),
-                new (new TestResult(
-                    new TestCase("N.C.M2", ExecutorUri, Source)) { DisplayName = "N.C.M2(some args)" },
-                    "N", "C", "M2")
+                new TestResultInfoBuilder("N", "C", "M1").Build(),
+                new TestResultInfoBuilder("N", "C", "M2").Build(),
             };
             var messages = new List<TestMessageInfo>();
             var xunit = new XunitTestAdapter();

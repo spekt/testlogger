@@ -5,7 +5,7 @@ namespace Spekt.TestLogger.UnitTests
 {
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.UnitTests.Builders;
     using TestResult = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult;
 
     [TestClass]
@@ -14,8 +14,7 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void GetHashCodeShouldReturnAnUniqueHash()
         {
-            var result = new TestResult(new TestCase());
-            var resultInfo = new TestResultInfo(result, string.Empty, string.Empty, string.Empty);
+            var resultInfo = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).Build();
 
             Assert.AreNotEqual(new TestResult(new TestCase()).GetHashCode(), resultInfo.GetHashCode());
         }
@@ -23,8 +22,7 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void EqualsShouldReturnFalseForNonTestResultInfoObject()
         {
-            var result = new TestResult(new TestCase());
-            var resultInfo = new TestResultInfo(result, string.Empty, string.Empty, string.Empty);
+            var resultInfo = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).Build();
 
             Assert.IsFalse(resultInfo.Equals(new ()));
         }
@@ -32,10 +30,8 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void EqualsShouldReturnFalseIfErrorMessageOrStackTraceDoNotMatch()
         {
-            var result1 = new TestResult(new TestCase()) { ErrorMessage = "error 1" };
-            var result2 = new TestResult(new TestCase()) { ErrorMessage = "error 2" };
-            var r1 = new TestResultInfo(result1, string.Empty, string.Empty, string.Empty);
-            var r2 = new TestResultInfo(result2, string.Empty, string.Empty, string.Empty);
+            var r1 = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).WithErrorMessage("error 1").Build();
+            var r2 = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).WithErrorMessage("error 1").Build();
 
             Assert.IsFalse(r1.Equals(r2));
         }
@@ -44,8 +40,8 @@ namespace Spekt.TestLogger.UnitTests
         public void EqualsShouldReturnTrueIfErrorMessageAndStackTraceMatch()
         {
             var result = new TestResult(new TestCase());
-            var r1 = new TestResultInfo(result, string.Empty, string.Empty, string.Empty);
-            var r2 = new TestResultInfo(result, "ns", "type", "method");
+            var r1 = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).Build();
+            var r2 = new TestResultInfoBuilder("ns", "type", "method").Build();
 
             Assert.IsFalse(r1 == r2);
             Assert.IsTrue(Equals(r1, r2));
