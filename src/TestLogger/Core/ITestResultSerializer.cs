@@ -7,6 +7,8 @@ namespace Spekt.TestLogger.Core
 
     public interface ITestResultSerializer
     {
+        IInputSanitizer InputSanitizer { get; }
+
         string Serialize(
             LoggerConfiguration loggerConfiguration,
             TestRunConfiguration runConfiguration,

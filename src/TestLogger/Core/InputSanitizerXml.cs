@@ -5,11 +5,11 @@ namespace Spekt.TestLogger.Core
 {
     using System.Text.RegularExpressions;
 
-    internal static class XmlSanitizer
+    public class InputSanitizerXml : IInputSanitizer
     {
-        internal static string RemoveInvalidXmlChar(string str)
+        public string Sanitize(string input)
         {
-            if (str == null)
+            if (input == null)
             {
                 return null;
             }
@@ -21,13 +21,13 @@ namespace Spekt.TestLogger.Core
             // because C# support unicode character in range \u0000 to \uFFFF
             var evaluator = new MatchEvaluator(ReplaceInvalidCharacterWithUniCodeEscapeSequence);
             var invalidChar = @"[^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD]";
-            return Regex.Replace(str, invalidChar, evaluator);
-        }
+            return Regex.Replace(input, invalidChar, evaluator);
 
-        private static string ReplaceInvalidCharacterWithUniCodeEscapeSequence(Match match)
-        {
-            char x = match.Value[0];
-            return $@"\u{(ushort)x:x4}";
+            static string ReplaceInvalidCharacterWithUniCodeEscapeSequence(Match match)
+            {
+                char x = match.Value[0];
+                return $@"\u{(ushort)x:x4}";
+            }
         }
     }
 }
