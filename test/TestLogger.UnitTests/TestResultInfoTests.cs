@@ -31,7 +31,7 @@ namespace Spekt.TestLogger.UnitTests
         public void EqualsShouldReturnFalseIfErrorMessageOrStackTraceDoNotMatch()
         {
             var r1 = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).WithErrorMessage("error 1").Build();
-            var r2 = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).WithErrorMessage("error 1").Build();
+            var r2 = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).WithErrorMessage("error 2").Build();
 
             Assert.IsFalse(r1.Equals(r2));
         }
