@@ -40,13 +40,13 @@ namespace Spekt.TestLogger.Extensions
 
             foreach (var result in results)
             {
-                if (skippedTestNamesWithReason.TryGetValue(result.Result.TestCase.DisplayName, out var skipReason))
+                if (skippedTestNamesWithReason.TryGetValue(result.DisplayName, out var skipReason))
                 {
                     // TODO: Defining a new category for now...
                     result.Messages.Add(new TestResultMessage("skipReason", skipReason));
                 }
 
-                string displayName = result.Result.DisplayName;
+                string displayName = result.DisplayName;
 
                 // Add parameters for theories.
                 if (string.IsNullOrWhiteSpace(displayName) == false &&

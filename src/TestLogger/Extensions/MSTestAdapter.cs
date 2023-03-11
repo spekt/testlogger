@@ -18,7 +18,7 @@ namespace Spekt.TestLogger.Extensions
             // So we use the DisplayName whenever it is available.
             foreach (var result in results)
             {
-                string displayName = result.Result.DisplayName;
+                string displayName = result.DisplayName;
                 string method = result.Method;
 
                 if (string.IsNullOrWhiteSpace(displayName))
