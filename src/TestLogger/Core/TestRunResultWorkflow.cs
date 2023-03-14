@@ -40,7 +40,7 @@ namespace Spekt.TestLogger.Core
                 sanitize(result.ErrorMessage),
                 sanitize(result.ErrorStackTrace),
                 result.Messages.Select(x => new TestResultMessage(sanitize(x.Category), sanitize(x.Text))).ToList(),
-                result.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList(),
+                result.TestCase.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList(),
                 result.TestCase.ExecutorUri?.ToString()));
         }
     }
