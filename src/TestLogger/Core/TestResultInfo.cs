@@ -75,17 +75,6 @@ namespace Spekt.TestLogger.Core
 
         public string FullTypeName => this.Namespace + "." + this.Type;
 
-        public override bool Equals(object obj)
-        {
-            if (obj is not TestResultInfo objectToCompare)
-            {
-                return false;
-            }
-
-            return string.Compare(this.ErrorMessage, objectToCompare.ErrorMessage, StringComparison.CurrentCulture) == 0
-                   && string.Compare(this.ErrorStackTrace, objectToCompare.ErrorStackTrace, StringComparison.CurrentCulture) == 0;
-        }
-
         public override int GetHashCode()
         {
             int hashCode = -33026708;
