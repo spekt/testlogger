@@ -59,16 +59,6 @@ namespace Spekt.TestLogger.Core
 
         public TestOutcome Outcome { get; set; }
 
-        /// <summary>
-        /// Gets value that originated at <see cref="TestResult.DisplayName"/>.
-        /// </summary>
-        public string TestResultDisplayName { get; }
-
-        /// <summary>
-        /// Gets value that originated at <see cref="TestCase.DisplayName"/>.
-        /// </summary>
-        public string TestCaseDisplayName { get; }
-
         public string AssemblyPath { get; }
 
         public string CodeFilePath { get; }
@@ -92,6 +82,20 @@ namespace Spekt.TestLogger.Core
         public string ExecutorUri { get; }
 
         public string FullTypeName => this.Namespace + "." + this.Type;
+
+        /// <summary>
+        /// Gets value that originated at <see cref="TestResult.DisplayName"/>. Intended for use within
+        /// this library by framework specific adapters, to ensure that <see cref="Method"/> has the
+        /// proper value.
+        /// </summary>
+        internal string TestResultDisplayName { get; }
+
+        /// <summary>
+        /// Gets value that originated at <see cref="TestCase.DisplayName"/>. Intended for use within
+        /// this library by framework specific adapters, to ensure that <see cref="Method"/> has the
+        /// proper value.
+        /// </summary>
+        internal string TestCaseDisplayName { get; }
 
         public override bool Equals(object obj)
         {
