@@ -52,11 +52,20 @@ namespace TestLogger.AcceptanceTests
             settings.ScrubLinesWithReplace(x =>
             {
                 var options = RegexOptions.IgnoreCase | RegexOptions.Compiled;
+                var inDebugFolderMatch = new Regex(@"^(.*: ).*([\/\\]*bin[\/\\]*Debug[\/\\]*.*)$", options);
                 var prefixedMatch = new Regex(@"^(.{0,}: )(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
                 var pathMatch = new Regex(@"^(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
-                var inDebugFolderMatch = new Regex(@"^(.*: ).*([\/\\]*bin[\/\\]*Debug[\/\\]*.*)$", options);
 
-                if (prefixedMatch.IsMatch(x))
+                if (inDebugFolderMatch.IsMatch(x))
+                {
+                    // Used to take something like '   Test: C:\\lsdkjf\sdf\bin\Debug\a\b\c.txt' => '   Test: /bin/Debug/a/b/c.txt' which helps with cross dev/platform comparison
+                    var m = inDebugFolderMatch.Match(x);
+                    var prefix = m.Groups[1].Captures[0].Value.Replace('\\', '/');
+                    var pathForwardSlashes = m.Groups[2].Captures[0].Value.Replace('\\', '/');
+                    x = prefix + pathForwardSlashes;
+                    x = x.Replace("//", "/");
+                }
+                else if (prefixedMatch.IsMatch(x))
                 {
                     var m = prefixedMatch.Match(x);
                     var prefix = m.Groups[1].Captures[0].Value.Replace('\\', '/');
@@ -68,15 +77,6 @@ namespace TestLogger.AcceptanceTests
                     var m = pathMatch.Match(x);
                     var pathForwardSlashes = m.Groups[2].Captures[0].Value.Replace('\\', '/');
                     x = "test/assets/Json.TestLogger" + pathForwardSlashes;
-                }
-                else if (inDebugFolderMatch.IsMatch(x))
-                {
-                    // Used to take something like '   Test: C:\\lsdkjf\sdf\bin\Debug\a\b\c.txt' => '   Test: /bin/Debug/a/b/c.txt' which helps with cross dev/platform comparison
-                    var m = inDebugFolderMatch.Match(x);
-                    var prefix = m.Groups[1].Captures[0].Value.Replace('\\', '/');
-                    var pathForwardSlashes = m.Groups[2].Captures[0].Value.Replace('\\', '/');
-                    x = prefix + pathForwardSlashes;
-                    x = x.Replace("//", "/");
                 }
 
                 return x;
