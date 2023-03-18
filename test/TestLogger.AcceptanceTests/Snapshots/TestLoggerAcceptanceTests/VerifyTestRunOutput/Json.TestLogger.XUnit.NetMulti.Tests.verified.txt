@@ -1,6 +1,6 @@
 ﻿[
   {
-    Name: test/assets/Json.TestLogger.XUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.XUnit.NetMulti.Tests.dll,
+    Name: bin/Debug/netcoreapp3.1/Json.TestLogger.XUnit.NetMulti.Tests.dll,
     Fixtures: [
       {
         Name: UnitTest1,

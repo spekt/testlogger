@@ -1,6 +1,6 @@
 ﻿[
   {
-    Name: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll,
+    Name: bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll,
     Fixtures: [
       {
         Name: FailingOneTimeSetUp,
