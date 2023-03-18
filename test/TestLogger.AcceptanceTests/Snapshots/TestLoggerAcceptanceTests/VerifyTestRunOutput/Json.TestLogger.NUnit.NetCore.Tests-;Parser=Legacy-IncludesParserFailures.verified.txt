@@ -527,7 +527,7 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
             Method: ExplicitTest,
-            Result: None
+            Result: Skipped
           },
           {
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
@@ -563,7 +563,7 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: ExplicitTest,
-            Result: None
+            Result: Skipped
           },
           {
             Namespace: NUnit.Xml.TestLogger.Tests2,
