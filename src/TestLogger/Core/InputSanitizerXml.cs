@@ -7,7 +7,7 @@ namespace Spekt.TestLogger.Core
 
     public class InputSanitizerXml : IInputSanitizer
     {
-        private static readonly Regex InvalidXmlChar = new (@"[^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD]", RegexOptions.Compiled);
+        private static readonly Regex InvalidXmlChar = new (@"([^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD]|[\u007F-\u0084\u0086-\u009F\uFDD0-\uFDEF])", RegexOptions.Compiled);
 
         public string Sanitize(string input)
         {
@@ -18,8 +18,9 @@ namespace Spekt.TestLogger.Core
 
             // From xml spec (http://www.w3.org/TR/xml/#charsets) valid chars:
             // #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
-
-            // we are handling only #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD]
+            // Following control charset are discouraged:
+            // [#x7F-#x84], [#x86-#x9F], [#xFDD0-#xFDEF],
+            // We are handling only #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD]
             // because C# support unicode character in range \u0000 to \uFFFF
             var evaluator = new MatchEvaluator(ReplaceInvalidCharacterWithUniCodeEscapeSequence);
             return InvalidXmlChar.Replace(input, evaluator);
