@@ -88,7 +88,7 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
         {
             return new ()
             {
-                DisplayName = result.DisplayName,
+                DisplayName = result.TestResultDisplayName,
                 Namespace = result.Namespace,
                 Type = result.Type,
                 Method = result.Method,

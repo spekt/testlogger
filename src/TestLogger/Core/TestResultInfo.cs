@@ -14,7 +14,7 @@ namespace Spekt.TestLogger.Core
             string type,
             string method,
             TestOutcome outcome,
-            string displayName,
+            string testResultDisplayName,
             string assemblyPath,
             DateTime startTime,
             DateTime endTime,
@@ -29,7 +29,7 @@ namespace Spekt.TestLogger.Core
             this.Type = type;
             this.Method = method;
             this.Outcome = outcome;
-            this.DisplayName = displayName;
+            this.TestResultDisplayName = testResultDisplayName;
             this.AssemblyPath = assemblyPath;
             this.StartTime = startTime;
             this.EndTime = endTime;
@@ -53,7 +53,10 @@ namespace Spekt.TestLogger.Core
 
         public TestOutcome Outcome { get; set; }
 
-        public string DisplayName { get; }
+        /// <summary>
+        /// Gets value that originated at <see cref="TestResult.DisplayName"/>.
+        /// </summary>
+        public string TestResultDisplayName { get; }
 
         public string AssemblyPath { get; }
 
@@ -82,7 +85,7 @@ namespace Spekt.TestLogger.Core
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Type);
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Method);
             hashCode = (hashCode * -1521134295) + this.Outcome.GetHashCode();
-            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.DisplayName);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.TestResultDisplayName);
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.AssemblyPath);
             hashCode = (hashCode * -1521134295) + this.StartTime.GetHashCode();
             hashCode = (hashCode * -1521134295) + this.EndTime.GetHashCode();
