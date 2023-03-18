@@ -6,49 +6,42 @@
         Name: UnitTest2,
         Tests: [
           {
-            DisplayName: ExampleFailure,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: ExampleFailure,
             Result: Failed
           },
           {
-            DisplayName: TestMethodDataRow (-1),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: TestMethodDataRow (-1),
             Result: Failed
           },
           {
-            DisplayName: TestMethodDataRow (0),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: TestMethodDataRow (0),
             Result: Passed
           },
           {
-            DisplayName: TestMethodDataRow (1),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: TestMethodDataRow (1),
             Result: Failed
           },
           {
-            DisplayName: DataTestMethodDataRow (-1),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: DataTestMethodDataRow (-1),
             Result: Failed
           },
           {
-            DisplayName: DataTestMethodDataRow (0),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: DataTestMethodDataRow (0),
             Result: Passed
           },
           {
-            DisplayName: DataTestMethodDataRow (1),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: DataTestMethodDataRow (1),
@@ -60,14 +53,12 @@
         Name: DataRowWithDisplayName,
         Tests: [
           {
-            DisplayName: When string is null,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: DataRowWithDisplayName,
             Method: When string is null,
             Result: Failed
           },
           {
-            DisplayName: When string is empty,
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: DataRowWithDisplayName,
             Method: When string is empty,
@@ -79,28 +70,24 @@
         Name: UnitTest1,
         Tests: [
           {
-            DisplayName: ExampleFailure,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: ExampleFailure,
             Result: Failed
           },
           {
-            DisplayName: Custom - Test_Add (1,1,2),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: Custom - Test_Add (1,1,2),
             Result: Failed
           },
           {
-            DisplayName: Custom - Test_Add (12,30,42),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: Custom - Test_Add (12,30,42),
             Result: Failed
           },
           {
-            DisplayName: Custom - Test_Add (14,1,15),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: Custom - Test_Add (14,1,15),
@@ -112,21 +99,18 @@
         Name: MathTests,
         Tests: [
           {
-            DisplayName: Test_Add_DynamicData_Property (1,1,2),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: MathTests,
             Method: Test_Add_DynamicData_Property (1,1,2),
             Result: Failed
           },
           {
-            DisplayName: Test_Add_DynamicData_Property (12,30,42),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: MathTests,
             Method: Test_Add_DynamicData_Property (12,30,42),
             Result: Failed
           },
           {
-            DisplayName: Test_Add_DynamicData_Property (14,1,15),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: MathTests,
             Method: Test_Add_DynamicData_Property (14,1,15),
