@@ -10,22 +10,6 @@ namespace Spekt.TestLogger.UnitTests.Utilities
      public class StringExtensionsTests
      {
          [TestMethod]
-         [DataRow(null)]
-         [DataRow("")]
-         public void ReplaceInvalidXmlCharShouldIgnoreEmptyOrNullInput(string input)
-         {
-             Assert.AreEqual(input, input.ReplaceInvalidXmlChar());
-         }
-
-         [TestMethod]
-         [DataRow("aa\0\vbb", @"aa\u0000\u000bbb")]
-         [DataRow("aa\u0080", @"aa\u0080")]
-         public void ReplaceInvalidXmlCharShouldReplaceInvalidXmlCharWithUnicode(string input, string output)
-         {
-             Assert.AreEqual(output, input.ReplaceInvalidXmlChar());
-         }
-
-         [TestMethod]
          public void SubstringAfterDotShouldSplitAndGetLastPartOfString()
          {
              Assert.AreEqual("c", "a.b.c".SubstringAfterDot());

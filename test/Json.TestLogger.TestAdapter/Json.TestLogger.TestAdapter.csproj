@@ -22,6 +22,9 @@
     <Compile Include="..\TestLogger.UnitTests\TestDoubles\JsonTestResultSerializer.cs">
       <Link>JsonTestResultSerializer.cs</Link>
     </Compile>
+	<Compile Include="..\TestLogger.UnitTests\TestDoubles\InputSanitizerJson.cs">
+	  <Link>InputSanitizerJson.cs</Link>
+	</Compile>
   </ItemGroup>
 
   <ItemGroup>

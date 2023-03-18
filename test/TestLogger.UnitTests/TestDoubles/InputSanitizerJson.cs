@@ -1,10 +1,14 @@
 ﻿// Copyright (c) Spekt Contributors. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-namespace Spekt.TestLogger.Core
+namespace Spekt.TestLogger.UnitTests.TestDoubles
 {
     using System.Text;
+    using Spekt.TestLogger.Core;
 
+    /// <summary>
+    /// Sanitizes JSON input. NOTE, this is not optimized code, so is currently appropriate for test use only.
+    /// </summary>
     public class InputSanitizerJson : IInputSanitizer
     {
         private static readonly char[] EscapeTable;
