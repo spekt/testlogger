@@ -35,6 +35,8 @@ namespace Spekt.TestLogger.Core
                 sanitize(result.DisplayName),
                 sanitize(result.TestCase.DisplayName),
                 sanitize(result.TestCase.Source),
+                sanitize(result.TestCase.CodeFilePath),
+                result.TestCase.LineNumber,
                 result.StartTime.UtcDateTime,
                 result.EndTime.UtcDateTime,
                 result.Duration,

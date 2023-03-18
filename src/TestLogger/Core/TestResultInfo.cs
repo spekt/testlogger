@@ -17,6 +17,8 @@ namespace Spekt.TestLogger.Core
             string testResultDisplayName,
             string testCaseDisplayName,
             string assemblyPath,
+            string codeFilePath,
+            int lineNumber,
             DateTime startTime,
             DateTime endTime,
             TimeSpan duration,
@@ -33,6 +35,8 @@ namespace Spekt.TestLogger.Core
             this.TestResultDisplayName = testResultDisplayName;
             this.TestCaseDisplayName = testCaseDisplayName;
             this.AssemblyPath = assemblyPath;
+            this.CodeFilePath = codeFilePath;
+            this.LineNumber = lineNumber;
             this.StartTime = startTime;
             this.EndTime = endTime;
             this.Duration = duration;
@@ -66,6 +70,10 @@ namespace Spekt.TestLogger.Core
         public string TestCaseDisplayName { get; }
 
         public string AssemblyPath { get; }
+
+        public string CodeFilePath { get; }
+
+        public int LineNumber { get; }
 
         public DateTime StartTime { get; }
 
