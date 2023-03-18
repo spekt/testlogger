@@ -33,6 +33,7 @@ namespace Spekt.TestLogger.Core
                 sanitize(parsedName.Method),
                 result.Outcome,
                 sanitize(result.DisplayName),
+                sanitize(result.TestCase.DisplayName),
                 sanitize(result.TestCase.Source),
                 result.StartTime.UtcDateTime,
                 result.EndTime.UtcDateTime,

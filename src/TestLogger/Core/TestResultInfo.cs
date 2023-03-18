@@ -15,6 +15,7 @@ namespace Spekt.TestLogger.Core
             string method,
             TestOutcome outcome,
             string testResultDisplayName,
+            string testCaseDisplayName,
             string assemblyPath,
             DateTime startTime,
             DateTime endTime,
@@ -30,6 +31,7 @@ namespace Spekt.TestLogger.Core
             this.Method = method;
             this.Outcome = outcome;
             this.TestResultDisplayName = testResultDisplayName;
+            this.TestCaseDisplayName = testCaseDisplayName;
             this.AssemblyPath = assemblyPath;
             this.StartTime = startTime;
             this.EndTime = endTime;
@@ -57,6 +59,11 @@ namespace Spekt.TestLogger.Core
         /// Gets value that originated at <see cref="TestResult.DisplayName"/>.
         /// </summary>
         public string TestResultDisplayName { get; }
+
+        /// <summary>
+        /// Gets value that originated at <see cref="TestCase.DisplayName"/>.
+        /// </summary>
+        public string TestCaseDisplayName { get; }
 
         public string AssemblyPath { get; }
 
