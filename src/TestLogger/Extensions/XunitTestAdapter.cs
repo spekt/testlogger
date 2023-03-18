@@ -40,7 +40,7 @@ namespace Spekt.TestLogger.Extensions
 
             foreach (var result in results)
             {
-                if (skippedTestNamesWithReason.TryGetValue(result.TestResultDisplayName, out var skipReason))
+                if (skippedTestNamesWithReason.TryGetValue(result.TestCaseDisplayName, out var skipReason))
                 {
                     // TODO: Defining a new category for now...
                     result.Messages.Add(new TestResultMessage("skipReason", skipReason));
