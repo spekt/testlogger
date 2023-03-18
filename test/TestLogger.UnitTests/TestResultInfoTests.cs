@@ -28,24 +28,12 @@ namespace Spekt.TestLogger.UnitTests
         }
 
         [TestMethod]
-        public void EqualsShouldReturnFalseIfErrorMessageOrStackTraceDoNotMatch()
+        public void EqualsShouldReturnFalseIfAnyValuesDoNotMatch()
         {
             var r1 = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).WithErrorMessage("error 1").Build();
             var r2 = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).WithErrorMessage("error 2").Build();
 
             Assert.IsFalse(r1.Equals(r2));
-        }
-
-        [TestMethod]
-        public void EqualsShouldReturnTrueIfErrorMessageAndStackTraceMatch()
-        {
-            var result = new TestResult(new TestCase());
-            var r1 = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).Build();
-            var r2 = new TestResultInfoBuilder("ns", "type", "method").Build();
-
-            Assert.IsFalse(r1 == r2);
-            Assert.IsTrue(Equals(r1, r2));
-            Assert.IsTrue(r1.Equals(r2));
         }
     }
 }
