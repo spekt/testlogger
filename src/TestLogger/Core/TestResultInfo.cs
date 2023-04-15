@@ -13,6 +13,7 @@ namespace Spekt.TestLogger.Core
             string @namespace,
             string type,
             string method,
+            string fullyQualifiedName,
             TestOutcome outcome,
             string testResultDisplayName,
             string testCaseDisplayName,
@@ -31,6 +32,7 @@ namespace Spekt.TestLogger.Core
             this.Namespace = @namespace;
             this.Type = type;
             this.Method = method;
+            this.FullyQualifiedName = fullyQualifiedName;
             this.Outcome = outcome;
             this.TestResultDisplayName = testResultDisplayName;
             this.TestCaseDisplayName = testCaseDisplayName;
@@ -96,6 +98,8 @@ namespace Spekt.TestLogger.Core
         /// proper value.
         /// </summary>
         internal string TestCaseDisplayName { get; }
+
+        internal string FullyQualifiedName { get; }
 
         public override bool Equals(object obj)
         {

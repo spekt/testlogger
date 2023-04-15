@@ -31,6 +31,7 @@ namespace Spekt.TestLogger.Core
                 sanitize(parsedName.Namespace),
                 sanitize(parsedName.Type),
                 sanitize(parsedName.Method),
+                sanitize(fqn),
                 result.Outcome,
                 sanitize(result.DisplayName),
                 sanitize(result.TestCase.DisplayName),
