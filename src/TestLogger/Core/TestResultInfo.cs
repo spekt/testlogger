@@ -107,6 +107,7 @@ namespace Spekt.TestLogger.Core
                    this.Namespace == info.Namespace &&
                    this.Type == info.Type &&
                    this.Method == info.Method &&
+                   this.FullyQualifiedName == info.FullyQualifiedName &&
                    this.Outcome == info.Outcome &&
                    this.TestResultDisplayName == info.TestResultDisplayName &&
                    this.TestCaseDisplayName == info.TestCaseDisplayName &&
@@ -130,6 +131,7 @@ namespace Spekt.TestLogger.Core
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Namespace);
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Type);
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.Method);
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.FullyQualifiedName);
             hashCode = (hashCode * -1521134295) + this.Outcome.GetHashCode();
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.TestResultDisplayName);
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(this.TestCaseDisplayName);
