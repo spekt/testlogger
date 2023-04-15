@@ -62,6 +62,7 @@ namespace Spekt.TestLogger.UnitTests.Builders
                 this.@namespace,
                 this.type,
                 this.method,
+                $"{this.@namespace}.{this.type}.{this.method}",
                 this.outcome,
                 this.displayName,
                 this.displayName,
