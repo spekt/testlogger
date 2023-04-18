@@ -21,7 +21,7 @@ namespace Spekt.TestLogger.Extensions
                 // is passed as a trait in the test platform. NUnit explicit attribute spec:
                 // https://docs.nunit.org/articles/nunit/writing-tests/attributes/explicit.html
                 if (result.Outcome == Microsoft.VisualStudio.TestPlatform.ObjectModel.TestOutcome.None &&
-                    result.TestCase.Traits.Any(trait => trait.Name.Equals(ExplicitLabel, StringComparison.OrdinalIgnoreCase)))
+                    result.Traits.Any(trait => trait.Name.Equals(ExplicitLabel, StringComparison.OrdinalIgnoreCase)))
                 {
                     result.Outcome = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestOutcome.Skipped;
                 }

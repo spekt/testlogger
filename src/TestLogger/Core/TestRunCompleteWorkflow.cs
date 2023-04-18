@@ -24,8 +24,7 @@ namespace Spekt.TestLogger.Core
             var transformedResults = results;
             if (transformedResults.Any())
             {
-                var executorUri = transformedResults[0]
-                    .TestCase.ExecutorUri?.ToString();
+                var executorUri = transformedResults[0].ExecutorUri;
                 var adapter = testRun.AdapterFactory.CreateTestAdapter(executorUri);
                 transformedResults = adapter.TransformResults(results, messages);
             }

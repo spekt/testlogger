@@ -45,6 +45,8 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
     /// </remarks>
     public class JsonTestResultSerializer : ITestResultSerializer
     {
+        public IInputSanitizer InputSanitizer { get; } = new InputSanitizerJson();
+
         public string Serialize(
             LoggerConfiguration loggerConfiguration,
             TestRunConfiguration runConfiguration,
@@ -86,8 +88,8 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
         {
             return new ()
             {
-                FullyQualifiedName = result.TestCase.FullyQualifiedName,
-                DisplayName = result.TestCase.DisplayName,
+                FullyQualifiedName = result.FullyQualifiedName,
+                DisplayName = result.TestCaseDisplayName,
                 Namespace = result.Namespace,
                 Type = result.Type,
                 Method = result.Method,

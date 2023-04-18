@@ -9,7 +9,10 @@ namespace Spekt.TestLogger.Core
     {
         public static void Message(this ITestRun testRun, TestRunMessageEventArgs messageEvent)
         {
-            testRun.Store.Add(new TestMessageInfo { Level = messageEvent.Level, Message = messageEvent.Message });
+            testRun.Store.Add(
+                new TestMessageInfo(
+                    messageEvent.Level,
+                    testRun.Serializer.InputSanitizer.Sanitize(messageEvent.Message)));
         }
     }
 }

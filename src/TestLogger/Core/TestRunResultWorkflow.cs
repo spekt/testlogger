@@ -4,6 +4,8 @@
 namespace Spekt.TestLogger.Core
 {
     using System;
+    using System.Linq;
+    using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
     public static class TestRunResultWorkflow
@@ -22,11 +24,28 @@ namespace Spekt.TestLogger.Core
                 _ => Parser.Parse(fqn),
             };
 
+            var result = resultEvent.Result;
+            Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
+
             testRun.Store.Add(new TestResultInfo(
-                resultEvent.Result,
-                parsedName.Namespace,
-                parsedName.Type,
-                parsedName.Method));
+                sanitize(parsedName.Namespace),
+                sanitize(parsedName.Type),
+                sanitize(parsedName.Method),
+                sanitize(fqn),
+                result.Outcome,
+                sanitize(result.DisplayName),
+                sanitize(result.TestCase.DisplayName),
+                sanitize(result.TestCase.Source),
+                sanitize(result.TestCase.CodeFilePath),
+                result.TestCase.LineNumber,
+                result.StartTime.UtcDateTime,
+                result.EndTime.UtcDateTime,
+                result.Duration,
+                sanitize(result.ErrorMessage),
+                sanitize(result.ErrorStackTrace),
+                result.Messages.Select(x => new TestResultMessage(sanitize(x.Category), sanitize(x.Text))).ToList(),
+                result.TestCase.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList(),
+                result.TestCase.ExecutorUri?.ToString()));
         }
     }
 }

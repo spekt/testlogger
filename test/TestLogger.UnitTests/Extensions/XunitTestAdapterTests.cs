@@ -11,31 +11,25 @@ namespace Spekt.TestLogger.UnitTests.Extensions
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.Extensions;
+    using Spekt.TestLogger.UnitTests.Builders;
     using TestResult = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult;
 
     [TestClass]
     public class XunitTestAdapterTests
     {
-        private const string Source = "/tmp/test.dll";
-        private static readonly Uri ExecutorUri = new ("executor://dummy");
-
         [TestMethod]
         public void TransformShouldAddReasonForSkippedTests()
         {
             var results = new List<TestResultInfo>
             {
-                new (new TestResult(
-                    new TestCase("N.C.M1", ExecutorUri, Source)),
-                    "N", "C", "M1"),
-                new (new TestResult(
-                    new TestCase("N.C.M2", ExecutorUri, Source)),
-                    "N", "C", "M2")
+                new TestResultInfoBuilder("N", "C", "M1").WithDisplayName("N.C.M1").Build(),
+                new TestResultInfoBuilder("N", "C", "M2").WithDisplayName("N.C.M2").Build(),
             };
             var messages = new List<TestMessageInfo>
             {
-                new () { Level = TestMessageLevel.Informational, Message = "[xUnit.net 00:00:00.6490537]     Other message" },
-                new () { Level = TestMessageLevel.Informational, Message = "[xUnit.net 00:00:00.6490557]     N.C.M2 [SKIP]" },
-                new () { Level = TestMessageLevel.Informational, Message = "[SKIP] Dummy reason" }
+                new (TestMessageLevel.Informational, "[xUnit.net 00:00:00.6490537]     Other message"),
+                new (TestMessageLevel.Informational, "[xUnit.net 00:00:00.6490557]     N.C.M2 [SKIP]"),
+                new (TestMessageLevel.Informational, "[SKIP] Dummy reason"),
             };
             var xunit = new XunitTestAdapter();
 
@@ -51,11 +45,8 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         {
             var results = new List<TestResultInfo>
             {
-                new (new TestResult(new TestCase("N.C.M1", ExecutorUri, Source)) { DisplayName = "N.C.M1" },
-                    "N", "C", "M1"),
-                new (new TestResult(
-                    new TestCase("N.C.M2", ExecutorUri, Source)) { DisplayName = "N.C.M2(some args)" },
-                    "N", "C", "M2")
+                new TestResultInfoBuilder("N", "C", "M1").WithDisplayName("N.C.M1").Build(),
+                new TestResultInfoBuilder("N", "C", "M2").WithDisplayName("N.C.M2(some args)").Build(),
             };
             var messages = new List<TestMessageInfo>();
             var xunit = new XunitTestAdapter();

@@ -1,6 +1,6 @@
 ﻿[
   {
-    Name: test/assets/Json.TestLogger.XUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.XUnit.NetCore.Tests.dll,
+    Name: bin/Debug/netcoreapp3.1/Json.TestLogger.XUnit.NetCore.Tests.dll,
     Fixtures: [
       {
         Name: UnitTest1,
@@ -26,7 +26,7 @@
             DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
-            Method: MemberDataTest2(test: ValidationTest2 { Value = "Foo" }),
+            Method: MemberDataTest2(test: ValidationTest2 { Value = \"Foo\" }),
             Result: Passed
           },
           {
@@ -34,15 +34,15 @@
             DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
-            Method: MemberDataTest2(test: ValidationTest2 { Value = "Bar" }),
+            Method: MemberDataTest2(test: ValidationTest2 { Value = \"Bar\" }),
             Result: Passed
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory,
-            DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(input: "foo"),
+            DisplayName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(input: \"foo\"),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
-            Method: MyTheory(input: "foo"),
+            Method: MyTheory(input: \"foo\"),
             Result: Passed
           },
           {

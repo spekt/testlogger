@@ -8,6 +8,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.Extensions;
+    using Spekt.TestLogger.UnitTests.Builders;
 
     [TestClass]
     public class NUnitTestAdapterTests
@@ -16,23 +17,17 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         private const string DummyType = "DummyType";
         private const string DummyMethod = "DummyMethod";
         private readonly NUnitTestAdapter adapter;
-        private readonly TestCase dummyTestCase;
-        private readonly TestCase explicitTestCase;
         private readonly TestResultInfo passTestResultInfo;
         private readonly TestResultInfo failTestResultInfo;
+        private List<Trait> explicitTraits = new List<Trait>();
 
         public NUnitTestAdapterTests()
         {
             this.adapter = new NUnitTestAdapter();
-            this.dummyTestCase = new TestCase();
-            this.explicitTestCase = new TestCase();
-            this.explicitTestCase.Traits.Add("Explicit", string.Empty);
+            this.explicitTraits.Add(new Trait("Explicit", string.Empty));
 
-            var passTestResult = new Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult(this.dummyTestCase) { Outcome = TestOutcome.Passed };
-            this.passTestResultInfo = new TestResultInfo(passTestResult, DummyNamespace, DummyType, DummyMethod);
-
-            var failTestResult = new Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult(this.dummyTestCase) { Outcome = TestOutcome.Failed };
-            this.failTestResultInfo = new TestResultInfo(failTestResult, DummyNamespace, DummyType, DummyMethod);
+            this.passTestResultInfo = new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod).WithOutcome(TestOutcome.Passed).Build();
+            this.failTestResultInfo = new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod).WithOutcome(TestOutcome.Failed).Build();
         }
 
         [DataTestMethod]
@@ -42,12 +37,10 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         [DataRow(TestOutcome.NotFound)]
         public void TransformResultsShouldNotModifyNonInclusiveTests(TestOutcome outcome)
         {
-            var result = new Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult(this.dummyTestCase) { Outcome = outcome };
-            var explicitResult = new Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult(this.explicitTestCase) { Outcome = outcome };
             var results = new List<TestResultInfo>
             {
-                new TestResultInfo(result, DummyNamespace, DummyType, DummyMethod),
-                new TestResultInfo(explicitResult, DummyNamespace, DummyType, DummyMethod)
+                new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod).WithOutcome(outcome).Build(),
+                new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod).WithOutcome(outcome).WithTraits(this.explicitTraits).Build(),
             };
 
             var modifiedResults = this.adapter.TransformResults(results, new ());
@@ -72,10 +65,9 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         [TestMethod]
         public void TransformResultShouldModifyTestWithExplicitAttributeAndNoOutcome()
         {
-            var explicitResult = new Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult(this.explicitTestCase) { Outcome = TestOutcome.None };
             var results = new List<TestResultInfo>
             {
-                new TestResultInfo(explicitResult, DummyNamespace, DummyType, DummyMethod)
+                new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod).WithOutcome(TestOutcome.None).WithTraits(this.explicitTraits).Build(),
             };
 
             var modifiedResults = this.adapter.TransformResults(results, new ());

@@ -11,6 +11,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.Extensions;
+    using Spekt.TestLogger.UnitTests.Builders;
     using TestResult = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult;
 
     [TestClass]
@@ -22,14 +23,10 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         public void TransformShouldOverwriteMethodWithNonEmptyValues()
         {
             var param = Guid.NewGuid().ToString();
-            var result = new TestResult(new TestCase())
-            {
-                DisplayName = $"Method(\"{param}\")",
-            };
 
             var testResults = new List<TestResultInfo>
             {
-                new TestResultInfo(result, "namespace", "type", Method),
+                new TestResultInfoBuilder("namespace", "type", Method).WithDisplayName($"Method(\"{param}\")").Build(),
             };
 
             var sut = new MSTestAdapter();
@@ -46,14 +43,9 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         [DataRow("    ")]
         public void TransformShouldNoitOverwriteMethodEmptyValues(string displayName)
         {
-            var result = new TestResult(new TestCase())
-            {
-                DisplayName = displayName,
-            };
-
             var testResults = new List<TestResultInfo>
             {
-                new TestResultInfo(result, "namespace", "type", Method),
+                new TestResultInfoBuilder("namespace", "type", Method).WithDisplayName(displayName).Build(),
             };
 
             var sut = new MSTestAdapter();

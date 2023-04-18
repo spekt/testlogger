@@ -1,6 +1,6 @@
 ﻿[
   {
-    Name: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll,
+    Name: bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll,
     Fixtures: [
       {
         Name: Issue28_Examples,
@@ -22,19 +22,19 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((\, \\)),
-            DisplayName: ExampleTest1_Tuples((\, \\)),
+            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((\\, \\\\)),
+            DisplayName: ExampleTest1_Tuples((\\, \\\\)),
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
-            Method: ExampleTest1_Tuples((\, \\)),
+            Method: ExampleTest1_Tuples((\\, \\\\)),
             Result: Passed
           },
           {
-            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((",  )),
-            DisplayName: ExampleTest1_Tuples((",  )),
+            FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((\",  )),
+            DisplayName: ExampleTest1_Tuples((\",  )),
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
-            Method: ExampleTest1_Tuples((",  )),
+            Method: ExampleTest1_Tuples((\",  )),
             Result: Passed
           },
           {
@@ -174,11 +174,11 @@
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('\''),
-            DisplayName: ExampleTest3('\''),
+            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('\\''),
+            DisplayName: ExampleTest3('\\''),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
-            Method: ExampleTest3('\''),
+            Method: ExampleTest3('\\''),
             Result: Passed
           },
           {
@@ -222,28 +222,16 @@
             Result: Passed
           },
           {
-            FullyQualifiedName:
-NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.
-   --- End of inner exception stack trace ---),
-            DisplayName:
-ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.
-   --- End of inner exception stack trace ---),
+            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.\n   --- End of inner exception stack trace ---),
+            DisplayName: ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.\n   --- End of inner exception stack trace ---),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.) ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.   --- End of inner exception stack trace ---),
             Result: Passed
           },
           {
-            FullyQualifiedName:
-NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.
-   --- End of inner exception stack trace ---),
-            DisplayName:
-ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.
-   --- End of inner exception stack trace ---),
+            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.\n   --- End of inner exception stack trace ---),
+            DisplayName: ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.\n   --- End of inner exception stack trace ---),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.) ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.   --- End of inner exception stack trace ---),
@@ -373,42 +361,42 @@ ExampleTest4(System.AggregateException: One or more errors occurred. (Exception 
         ]
       },
       {
-        Name: ParametrizedFixture("Answer",42),
+        Name: ParametrizedFixture(\"Answer\",42),
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture("Answer",42).Test,
+            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture(\"Answer\",42).Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
-            Type: ParametrizedFixture("Answer",42),
+            Type: ParametrizedFixture(\"Answer\",42),
             Method: Test,
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture("Answer",42).Test,
+            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture(\"Answer\",42).Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.Tests2,
-            Type: ParametrizedFixture("Answer",42),
+            Type: ParametrizedFixture(\"Answer\",42),
             Method: Test,
             Result: Passed
           }
         ]
       },
       {
-        Name: ParametrizedFixture("Question",1),
+        Name: ParametrizedFixture(\"Question\",1),
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture("Question",1).Test,
+            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture(\"Question\",1).Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
-            Type: ParametrizedFixture("Question",1),
+            Type: ParametrizedFixture(\"Question\",1),
             Method: Test,
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture("Question",1).Test,
+            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture(\"Question\",1).Test,
             DisplayName: Test,
             Namespace: NUnit.Xml.TestLogger.Tests2,
-            Type: ParametrizedFixture("Question",1),
+            Type: ParametrizedFixture(\"Question\",1),
             Method: Test,
             Result: Passed
           }
@@ -418,67 +406,67 @@ ExampleTest4(System.AggregateException: One or more errors occurred. (Exception 
         Name: ParametrizedTestCases,
         Tests: [
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,"A"),
-            DisplayName: TestData(1,"A"),
+            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,\"A\"),
+            DisplayName: TestData(1,\"A\"),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
-            Method: TestData(1,"A"),
+            Method: TestData(1,\"A\"),
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,"B"),
-            DisplayName: TestData(1,"B"),
+            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,\"B\"),
+            DisplayName: TestData(1,\"B\"),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
-            Method: TestData(1,"B"),
+            Method: TestData(1,\"B\"),
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,"A"),
-            DisplayName: TestData(2,"A"),
+            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,\"A\"),
+            DisplayName: TestData(2,\"A\"),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
-            Method: TestData(2,"A"),
+            Method: TestData(2,\"A\"),
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,"B"),
-            DisplayName: TestData(2,"B"),
+            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,\"B\"),
+            DisplayName: TestData(2,\"B\"),
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
-            Method: TestData(2,"B"),
+            Method: TestData(2,\"B\"),
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,"A"),
-            DisplayName: TestData(1,"A"),
+            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,\"A\"),
+            DisplayName: TestData(1,\"A\"),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
-            Method: TestData(1,"A"),
+            Method: TestData(1,\"A\"),
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,"B"),
-            DisplayName: TestData(1,"B"),
+            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,\"B\"),
+            DisplayName: TestData(1,\"B\"),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
-            Method: TestData(1,"B"),
+            Method: TestData(1,\"B\"),
             Result: Passed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,"A"),
-            DisplayName: TestData(2,"A"),
+            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,\"A\"),
+            DisplayName: TestData(2,\"A\"),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
-            Method: TestData(2,"A"),
+            Method: TestData(2,\"A\"),
             Result: Failed
           },
           {
-            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,"B"),
-            DisplayName: TestData(2,"B"),
+            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,\"B\"),
+            DisplayName: TestData(2,\"B\"),
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
-            Method: TestData(2,"B"),
+            Method: TestData(2,\"B\"),
             Result: Failed
           }
         ]

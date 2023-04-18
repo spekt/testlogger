@@ -3,6 +3,7 @@
 
 namespace Spekt.TestLogger.Core
 {
+    using System;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
     /// <summary>
@@ -10,8 +11,14 @@ namespace Spekt.TestLogger.Core
     /// </summary>
     public class TestMessageInfo
     {
-        public TestMessageLevel Level { get; set; }
+        public TestMessageInfo(TestMessageLevel level, string message)
+        {
+            this.Level = level;
+            this.Message = message ?? throw new ArgumentNullException(nameof(message));
+        }
 
-        public string Message { get; set; }
+        public TestMessageLevel Level { get; }
+
+        public string Message { get; }
     }
 }
