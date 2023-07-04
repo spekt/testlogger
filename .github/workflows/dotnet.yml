@@ -8,7 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     env:
       APP_BUILD_VERSION: ${{ format('3.0.{0}', github.run_number) }}
     steps:
@@ -43,7 +46,7 @@ jobs:
       with:
         files: test/TestLogger.UnitTests/coverage.opencover.xml
     - name: Publish packages
-      if: ${{ github.event_name == 'push' }}
+      if: ${{ github.event_name == 'push' && matrix.os == 'ubuntu-latest' }}
       run: |
         dotnet nuget push 'src/TestLogger/bin/Release/*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/spekt/index.json
         dotnet nuget push 'src/TestLogger/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json 
