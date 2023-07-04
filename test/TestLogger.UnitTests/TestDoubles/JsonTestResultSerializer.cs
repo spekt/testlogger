@@ -94,6 +94,8 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
                 Type = result.Type,
                 Method = result.Method,
                 Result = result.Outcome.ToString(),
+                Traits = result.Traits.Select(t => new KeyValuePair<string, string>(t.Name, t.Value)).ToList(),
+                Properties = result.Properties.Where(p => p.Key != "NUnit.Seed").ToList() // Skip seed since it changes
             };
         }
 
@@ -137,6 +139,10 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
             public string Method { get; set; }
 
             public string Result { get; set; }
+
+            public List<KeyValuePair<string, string>> Traits { get; set; }
+
+            public List<KeyValuePair<string, object>> Properties { get; set; }
         }
     }
 }

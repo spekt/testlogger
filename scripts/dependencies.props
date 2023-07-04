@@ -10,8 +10,8 @@
     <NETTestSdkMinimumVersion>15.0.0</NETTestSdkMinimumVersion>
     <XunitVersion>2.3.1</XunitVersion>
     <XunitTestAdapterVersion>2.3.1</XunitTestAdapterVersion>
-    <NUnitVersion>3.10.1</NUnitVersion>
-    <NUnitTestAdapterVersion>3.10.0</NUnitTestAdapterVersion>
+    <NUnitVersion>3.13.2</NUnitVersion>
+    <NUnitTestAdapterVersion>4.0.0</NUnitTestAdapterVersion>
 
     <!-- Only use stable versions of stylecop -->
     <StylecopVersion>1.1.118</StylecopVersion>

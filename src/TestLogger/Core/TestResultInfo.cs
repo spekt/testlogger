@@ -27,6 +27,7 @@ namespace Spekt.TestLogger.Core
             string errorStackTrace,
             List<TestResultMessage> messages,
             IReadOnlyCollection<Trait> traits,
+            IReadOnlyCollection<KeyValuePair<string, object>> properties,
             string executorUri)
         {
             this.Namespace = @namespace;
@@ -46,6 +47,7 @@ namespace Spekt.TestLogger.Core
             this.ErrorStackTrace = errorStackTrace;
             this.Messages = messages;
             this.Traits = traits;
+            this.Properties = properties;
             this.ExecutorUri = executorUri;
         }
 
@@ -80,6 +82,16 @@ namespace Spekt.TestLogger.Core
         public List<TestResultMessage> Messages { get; }
 
         public IReadOnlyCollection<Trait> Traits { get; }
+
+        /// <summary>
+        /// Gets the collection of properties set by the test adapter for the
+        /// test case.
+        /// </summary>
+        /// <remarks>
+        /// Used for NUnit results - NUnit.Seed and NUnit.TestCategory.
+        /// Value is an object, not necessarily a string, hence not sanitized.
+        /// </remarks>
+        public IReadOnlyCollection<KeyValuePair<string, object>> Properties { get; }
 
         public string ExecutorUri { get; }
 

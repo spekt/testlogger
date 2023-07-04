@@ -15,6 +15,7 @@ namespace Spekt.TestLogger.UnitTests.Builders
         private readonly string method = string.Empty;
         private TestOutcome outcome = TestOutcome.Passed;
         private IReadOnlyCollection<Trait> traits = new List<Trait>();
+        private IReadOnlyCollection<KeyValuePair<string, object>> properties = new List<KeyValuePair<string, object>>();
         private string errorMessage = string.Empty;
         private string displayName = string.Empty;
 
@@ -41,6 +42,12 @@ namespace Spekt.TestLogger.UnitTests.Builders
         internal TestResultInfoBuilder WithTraits(IReadOnlyCollection<Trait> traits)
         {
             this.traits = traits;
+            return this;
+        }
+
+        internal TestResultInfoBuilder WithProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        {
+            this.properties = properties;
             return this;
         }
 
@@ -76,6 +83,7 @@ namespace Spekt.TestLogger.UnitTests.Builders
                 string.Empty,
                 new (),
                 this.traits,
+                this.properties,
                 "executor://dummy");
         }
     }

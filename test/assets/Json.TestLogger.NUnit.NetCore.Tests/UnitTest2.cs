@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -188,4 +189,19 @@ namespace NUnit.Xml.TestLogger.Tests2
             Assert.That(s, Is.Not.Null);
         }
     }
+
+	[TestFixture]
+	public class RandomizerTests
+	{
+		[Test]
+		public void Sort_RandomData_IsSorted()
+		{
+			var random = TestContext.CurrentContext.Random;
+			var data = Enumerable.Range(0, 2).Select(i => random.Next()).ToArray();
+
+			Array.Sort(data);
+
+			Assert.That(data, Is.Ordered);
+		}
+	}
 }
