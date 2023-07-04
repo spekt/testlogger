@@ -11,7 +11,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: Example_Failure,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Failure
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_1
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Success,
@@ -19,7 +49,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: Example_Success,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Success
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Example_Success
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_2
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2,
@@ -27,7 +87,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: MemberDataTest2(test: ValidationTest2 { Value = \"Foo\" }),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_3
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2,
@@ -35,7 +125,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: MemberDataTest2(test: ValidationTest2 { Value = \"Bar\" }),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MemberDataTest2
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_3
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory,
@@ -43,7 +163,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: MyTheory(input: \"foo\"),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(input: "foo")
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_4
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory,
@@ -51,7 +201,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: MyTheory(input: null),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory(input: null)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MyTheory
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_5
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
@@ -59,7 +239,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly(test: ValidationTest { }),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_6
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly,
@@ -67,7 +277,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly(test: ValidationTest { }),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.When_ValidOrInvalidDataIsProvided_Then_ValidationErrorsOccurAccordingly
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_6
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -80,7 +320,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: TheoryClassData,
             Method: CanAddTheoryClassData(i: 1, j: 2, expected: 3),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(i: 1, j: 2, expected: 3)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_7
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData,
@@ -88,7 +358,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: TheoryClassData,
             Method: CanAddTheoryClassData(i: -4, j: -6, expected: -10),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(i: -4, j: -6, expected: -10)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_8
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData,
@@ -96,7 +396,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: TheoryClassData,
             Method: CanAddTheoryClassData(i: -2, j: 2, expected: 0),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(i: -2, j: 2, expected: 0)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_9
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData,
@@ -104,7 +434,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: TheoryClassData,
             Method: CanAddTheoryClassData(i: -2147483648, j: -1, expected: 2147483647),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData(i: -2147483648, j: -1, expected: 2147483647)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryClassData.CanAddTheoryClassData
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_10
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -117,7 +477,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: TheoryMemberData,
             Method: CanAddTheoryMemberDataMethod(i: 1, j: 2, expected: 3),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod(i: 1, j: 2, expected: 3)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_11
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod,
@@ -125,7 +515,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: TheoryMemberData,
             Method: CanAddTheoryMemberDataMethod(i: -4, j: -6, expected: -10),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod(i: -4, j: -6, expected: -10)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_12
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod,
@@ -133,7 +553,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: TheoryMemberData,
             Method: CanAddTheoryMemberDataMethod(i: -2, j: 2, expected: 0),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod(i: -2, j: 2, expected: 0)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.TheoryMemberData.CanAddTheoryMemberDataMethod
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_13
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -146,7 +596,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: Example_Failure,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.Example_Failure
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_14
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -159,7 +639,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: CollectionTest1,
             Method: CollectionAndInline(i: 2),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.CollectionTest1.CollectionAndInline(i: 2)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.CollectionTest1.CollectionAndInline
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_15
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.CollectionTest1.CollectionAndInline,
@@ -167,7 +677,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: CollectionTest1,
             Method: CollectionAndInline(i: 4),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.CollectionTest1.CollectionAndInline(i: 4)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.CollectionTest1.CollectionAndInline
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_16
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.CollectionTest1.CollectionOnly,
@@ -175,7 +715,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: CollectionTest1,
             Method: CollectionOnly,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NUnit.Xml.TestLogger.Tests2.CollectionTest1.CollectionOnly
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://xunit/VsTestRunner2/desktop_and_uap
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.CollectionTest1.CollectionOnly
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_17
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: -1
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.XUnit.NetFull.Tests/bin/Debug/net46/Json.TestLogger.XUnit.NetFull.Tests.dll
+              }
+            ]
           }
         ]
       }

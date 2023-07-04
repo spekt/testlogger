@@ -45,6 +45,9 @@ namespace TestLogger.AcceptanceTests
                     Arguments = $"test --no-build --logger:\"json;LogFilePath={ResultFile}{args}\" {GetAssemblyPath(assemblyName)}\\{assemblyName}.csproj"
                 }
             };
+
+            // Required to skip icu requirement for netcoreapp3.1 in linux
+            dotnet.StartInfo.EnvironmentVariables["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT"] = "1";
             dotnet.Start();
 
             Console.WriteLine("dotnet arguments: " + dotnet.StartInfo.Arguments);

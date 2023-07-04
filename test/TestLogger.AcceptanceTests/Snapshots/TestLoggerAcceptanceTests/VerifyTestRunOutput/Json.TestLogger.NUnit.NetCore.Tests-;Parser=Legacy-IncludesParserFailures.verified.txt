@@ -11,7 +11,37 @@
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
             Method: ExampleTest1_Tuples((, )),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest1_Tuples((, ))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((, ))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_1
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((test, test)),
@@ -19,7 +49,37 @@
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
             Method: ExampleTest1_Tuples((test, test)),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest1_Tuples((test, test))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((test, test))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_2
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((\\, \\\\)),
@@ -27,7 +87,37 @@
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
             Method: ExampleTest1_Tuples((\\, \\\\)),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest1_Tuples((\, \\))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((\, \\))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_3
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples(([,  )),
@@ -35,7 +125,37 @@
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
             Method: ExampleTest1_Tuples(([,  )),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest1_Tuples(([,  ))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples(([,  ))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_4
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((],  )),
@@ -43,7 +163,37 @@
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly,
             Type: Issue28_Examples,
             Method: ExampleTest1_Tuples((],  )),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest1_Tuples((],  ))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((],  ))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_5
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('0'),
@@ -51,7 +201,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('0'),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('0')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('0')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_6
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('a'),
@@ -59,7 +239,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('a'),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('a')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('a')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_7
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('A'),
@@ -67,7 +277,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('A'),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('A')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('A')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_8
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('!'),
@@ -75,7 +315,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('!'),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('!')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('!')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_9
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('-'),
@@ -83,7 +353,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('-'),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('-')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('-')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_10
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('_'),
@@ -91,7 +391,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('_'),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('_')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('_')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_11
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('.'),
@@ -99,7 +429,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('.'),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('.')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('.')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_12
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('*'),
@@ -107,7 +467,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('*'),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('*')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('*')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_13
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('\\''),
@@ -115,7 +505,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('\\''),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('\'')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('\'')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_14
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('('),
@@ -123,7 +543,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('('),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('(')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('(')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_15
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3(')'),
@@ -131,7 +581,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3(')'),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3(')')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3(')')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_16
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('/'),
@@ -139,7 +619,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest3('/'),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest3('/')
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('/')
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_17
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.),
@@ -147,7 +657,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_18
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.),
@@ -155,7 +695,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_19
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing,
@@ -163,7 +733,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: Issue28_Examples,
             Method: Testing,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Testing
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_20
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -176,7 +776,37 @@
             Namespace: UnknownNamespace,
             Type: UnknownType,
             Method: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((\",  )),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest1_Tuples((",  ))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest1_Tuples((",  ))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_21
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(False,4.5m,4.6m,(4.5, False)),
@@ -184,7 +814,37 @@
             Namespace: UnknownNamespace,
             Type: UnknownType,
             Method: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(False,4.5m,4.6m,(4.5, False)),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest2(False,4.5m,4.6m,(4.5, False))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(False,4.5m,4.6m,(4.5, False))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_22
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.1m,5.0m,(5.0, True)),
@@ -192,7 +852,37 @@
             Namespace: UnknownNamespace,
             Type: UnknownType,
             Method: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.1m,5.0m,(5.0, True)),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest2(True,4.1m,5.0m,(5.0, True))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.1m,5.0m,(5.0, True))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_23
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.8m,4.5m,(4.8, False)),
@@ -200,7 +890,37 @@
             Namespace: UnknownNamespace,
             Type: UnknownType,
             Method: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.8m,4.5m,(4.8, False)),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest2(True,4.8m,4.5m,(4.8, False))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.8m,4.5m,(4.8, False))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_24
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.5m,4.5m,(4.5, False)),
@@ -208,7 +928,37 @@
             Namespace: UnknownNamespace,
             Type: UnknownType,
             Method: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.5m,4.5m,(4.5, False)),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest2(True,4.5m,4.5m,(4.5, False))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.5m,4.5m,(4.5, False))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_25
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.\n   --- End of inner exception stack trace ---),
@@ -216,7 +966,43 @@
             Namespace: UnknownNamespace,
             Type: UnknownType,
             Method: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.\n   --- End of inner exception stack trace ---),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value:
+ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
+ ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.
+   --- End of inner exception stack trace ---)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value:
+NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
+ ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.
+   --- End of inner exception stack trace ---)
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_26
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.\n   --- End of inner exception stack trace ---),
@@ -224,7 +1010,43 @@
             Namespace: UnknownNamespace,
             Type: UnknownType,
             Method: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)\n ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.\n   --- End of inner exception stack trace ---),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value:
+ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
+ ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.
+   --- End of inner exception stack trace ---)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value:
+NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
+ ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.
+   --- End of inner exception stack trace ---)
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_27
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing. Input.,
@@ -232,7 +1054,37 @@
             Namespace: UnknownNamespace,
             Type: UnknownType,
             Method: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing. Input.,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Testing. Input.
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing. Input.
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_28
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing.,
@@ -240,7 +1092,37 @@
             Namespace: UnknownNamespace,
             Type: UnknownType,
             Method: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing.,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Testing.
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing.
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_29
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -253,7 +1135,37 @@
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples,
             Type: ExampleTest2(False,null,4,
             Method: 5m,(, False)),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest2(False,null,4.5m,(, False))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(False,null,4.5m,(, False))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_30
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -266,7 +1178,37 @@
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples,
             Type: ExampleTest2(False,4,
             Method: 5m,null,(4.5, False)),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest2(False,4.5m,null,(4.5, False))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(False,4.5m,null,(4.5, False))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_31
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -279,7 +1221,37 @@
             Namespace: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples,
             Type: ExampleTest2(True,4,
             Method: 3m,null,(4.3, False)),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleTest2(True,4.3m,null,(4.3, False))
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: Json.TestLogger.NUnit.NetCore.Tests.NetCoreOnly.Issue28_Examples.ExampleTest2(True,4.3m,null,(4.3, False))
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_32
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -292,7 +1264,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: FailingOneTimeSetUp,
             Method: Test,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_33
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.Test,
@@ -300,7 +1302,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: FailingOneTimeSetUp,
             Method: Test,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_34
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -313,7 +1345,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: FailingOneTimeTearDown,
             Method: Test,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_35
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.Test,
@@ -321,7 +1383,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: FailingOneTimeTearDown,
             Method: Test,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_36
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -334,7 +1426,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: FailingTearDown,
             Method: Test,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.FailingTearDown.Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_37
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingTearDown.Test,
@@ -342,7 +1464,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: FailingTearDown,
             Method: Test,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.FailingTearDown.Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_38
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -355,7 +1507,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: FailingTestSetup,
             Method: Test,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.FailingTestSetup.Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_39
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.FailingTestSetup.Test,
@@ -363,7 +1545,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: FailingTestSetup,
             Method: Test,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.FailingTestSetup.Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_40
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -376,7 +1588,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples,
             Type: Testing,
             Method:  Input,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Testing. Input
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing. Input
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_41
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -389,7 +1631,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedFixture(\"Answer\",42),
             Method: Test,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture("Answer",42).Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_42
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture(\"Answer\",42).Test,
@@ -397,7 +1669,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedFixture(\"Answer\",42),
             Method: Test,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture("Answer",42).Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_43
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -410,7 +1712,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedFixture(\"Question\",1),
             Method: Test,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture("Question",1).Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_44
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture(\"Question\",1).Test,
@@ -418,7 +1750,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedFixture(\"Question\",1),
             Method: Test,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture("Question",1).Test
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_45
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -431,7 +1793,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
             Method: TestData(1,\"A\"),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestData(1,"A")
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,"A")
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_46
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,\"B\"),
@@ -439,7 +1831,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
             Method: TestData(1,\"B\"),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestData(1,"B")
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,"B")
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_47
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,\"A\"),
@@ -447,7 +1869,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
             Method: TestData(2,\"A\"),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestData(2,"A")
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,"A")
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_48
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,\"B\"),
@@ -455,7 +1907,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: ParametrizedTestCases,
             Method: TestData(2,\"B\"),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestData(2,"B")
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,"B")
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_49
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,\"A\"),
@@ -463,7 +1945,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
             Method: TestData(1,\"A\"),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestData(1,"A")
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,"A")
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_50
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,\"B\"),
@@ -471,7 +1983,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
             Method: TestData(1,\"B\"),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestData(1,"B")
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,"B")
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_51
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,\"A\"),
@@ -479,7 +2021,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
             Method: TestData(2,\"A\"),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestData(2,"A")
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,"A")
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_52
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,\"B\"),
@@ -487,7 +2059,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: ParametrizedTestCases,
             Method: TestData(2,\"B\"),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestData(2,"B")
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,"B")
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_53
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -500,7 +2102,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: SuccessAndInconclusiveFixture,
             Method: InconclusiveTest,
-            Result: None
+            Result: None,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: InconclusiveTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture.InconclusiveTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_54
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture.SuccessTest,
@@ -508,7 +2140,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: SuccessAndInconclusiveFixture,
             Method: SuccessTest,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: SuccessTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture.SuccessTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_55
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture.InconclusiveTest,
@@ -516,7 +2178,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: SuccessAndInconclusiveFixture,
             Method: InconclusiveTest,
-            Result: None
+            Result: None,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: InconclusiveTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture.InconclusiveTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_56
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture.SuccessTest,
@@ -524,7 +2216,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: SuccessAndInconclusiveFixture,
             Method: SuccessTest,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: SuccessTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture.SuccessTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_57
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -537,7 +2259,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: SuccessFixture,
             Method: SuccessTest,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: SuccessTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.SuccessFixture.SuccessTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_58
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.SuccessFixture.SuccessTest,
@@ -545,7 +2297,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: SuccessFixture,
             Method: SuccessTest,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: SuccessTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.SuccessFixture.SuccessTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_59
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -558,7 +2340,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: FailTest11,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: FailTest11
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.FailTest11
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_60
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Ignored,
@@ -566,7 +2378,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: Ignored,
-            Result: Skipped
+            Result: Skipped,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Ignored
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Ignored
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_61
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Inconclusive,
@@ -574,7 +2416,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: Inconclusive,
-            Result: None
+            Result: None,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Inconclusive
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Inconclusive
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_62
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MultipleCategories,
@@ -582,7 +2454,44 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: MultipleCategories,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: MultipleCategories
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MultipleCategories
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_63
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: NUnit.TestCategory,
+                Value: [
+                  Category2,
+                  Category1
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.NoProperty,
@@ -590,7 +2499,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: NoProperty,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: NoProperty
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.NoProperty
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_64
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.PassTest11,
@@ -598,7 +2537,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: PassTest11,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: PassTest11
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.PassTest11
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_65
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithCategory,
@@ -606,7 +2575,43 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: WithCategory,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: WithCategory
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithCategory
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_66
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: NUnit.TestCategory,
+                Value: [
+                  Nunit Test Category
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithCategoryAndProperty,
@@ -614,7 +2619,58 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: WithCategoryAndProperty,
-            Result: Passed
+            Result: Passed,
+            Traits: [
+              {
+                Key: Property name,
+                Value: Property value
+              }
+            ],
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: WithCategoryAndProperty
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithCategoryAndProperty
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_67
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: TestObject.Traits,
+                Value: [
+                  {
+                    Key: Property name,
+                    Value: Property value
+                  }
+                ]
+              },
+              {
+                Key: NUnit.TestCategory,
+                Value: [
+                  NUnit Test Category
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithProperties,
@@ -622,7 +2678,60 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: WithProperties,
-            Result: Passed
+            Result: Passed,
+            Traits: [
+              {
+                Key: Property name,
+                Value: Property value 1
+              },
+              {
+                Key: Property name,
+                Value: Property value 2
+              }
+            ],
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: WithProperties
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithProperties
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_68
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: TestObject.Traits,
+                Value: [
+                  {
+                    Key: Property name,
+                    Value: Property value 1
+                  },
+                  {
+                    Key: Property name,
+                    Value: Property value 2
+                  }
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithProperty,
@@ -630,7 +2739,52 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: WithProperty,
-            Result: Passed
+            Result: Passed,
+            Traits: [
+              {
+                Key: Property name,
+                Value: Property value
+              }
+            ],
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: WithProperty
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithProperty
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_69
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: TestObject.Traits,
+                Value: [
+                  {
+                    Key: Property name,
+                    Value: Property value
+                  }
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.FailTest11,
@@ -638,7 +2792,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest1,
             Method: FailTest11,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: FailTest11
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest1.FailTest11
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_70
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.Ignored,
@@ -646,7 +2830,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest1,
             Method: Ignored,
-            Result: Skipped
+            Result: Skipped,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Ignored
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest1.Ignored
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_71
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.Inconclusive,
@@ -654,7 +2868,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest1,
             Method: Inconclusive,
-            Result: None
+            Result: None,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Inconclusive
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest1.Inconclusive
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_72
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest1.PassTest11,
@@ -662,7 +2906,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest1,
             Method: PassTest11,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: PassTest11
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest1.PassTest11
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_73
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       },
@@ -675,7 +2949,56 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
             Method: ExplicitTest,
-            Result: Skipped
+            Result: Skipped,
+            Traits: [
+              {
+                Key: Explicit,
+                Value: 
+              }
+            ],
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExplicitTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.ExplicitTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_74
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: TestObject.Traits,
+                Value: [
+                  {
+                    Key: Explicit,
+                    Value: 
+                  }
+                ]
+              },
+              {
+                Key: NUnit.Explicit,
+                Value: true
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.FailTest22,
@@ -683,7 +3006,43 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
             Method: FailTest22,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: FailTest22
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.FailTest22
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_75
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: NUnit.TestCategory,
+                Value: [
+                  failing category
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.IgnoredTest,
@@ -691,7 +3050,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
             Method: IgnoredTest,
-            Result: Skipped
+            Result: Skipped,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: IgnoredTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.IgnoredTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_76
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.Inconclusive,
@@ -699,7 +3088,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
             Method: Inconclusive,
-            Result: None
+            Result: None,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Inconclusive
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.Inconclusive
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_77
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.PassTest21,
@@ -707,7 +3126,43 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
             Method: PassTest21,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: PassTest21
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.PassTest21
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_78
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: NUnit.TestCategory,
+                Value: [
+                  passing category
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.WarningTest,
@@ -715,7 +3170,37 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest2,
             Method: WarningTest,
-            Result: Skipped
+            Result: Skipped,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: WarningTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.WarningTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_79
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.ExplicitTest,
@@ -723,7 +3208,56 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: ExplicitTest,
-            Result: Skipped
+            Result: Skipped,
+            Traits: [
+              {
+                Key: Explicit,
+                Value: 
+              }
+            ],
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExplicitTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.ExplicitTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_80
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: TestObject.Traits,
+                Value: [
+                  {
+                    Key: Explicit,
+                    Value: 
+                  }
+                ]
+              },
+              {
+                Key: NUnit.Explicit,
+                Value: true
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.FailTest22,
@@ -731,7 +3265,43 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: FailTest22,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: FailTest22
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.FailTest22
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_81
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: NUnit.TestCategory,
+                Value: [
+                  failing category
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.IgnoredTest,
@@ -739,7 +3309,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: IgnoredTest,
-            Result: Skipped
+            Result: Skipped,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: IgnoredTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.IgnoredTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_82
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.Inconclusive,
@@ -747,7 +3347,37 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: Inconclusive,
-            Result: None
+            Result: None,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Inconclusive
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.Inconclusive
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_83
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.PassTest21,
@@ -755,7 +3385,43 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: PassTest21,
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: PassTest21
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.PassTest21
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_84
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              },
+              {
+                Key: NUnit.TestCategory,
+                Value: [
+                  passing category
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.WarningTest,
@@ -763,7 +3429,80 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: WarningTest,
-            Result: Skipped
+            Result: Skipped,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: WarningTest
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.WarningTest
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_85
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
+          }
+        ]
+      },
+      {
+        Name: RandomizerTests,
+        Tests: [
+          {
+            FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.RandomizerTests.Sort_RandomData_IsSorted,
+            DisplayName: Sort_RandomData_IsSorted,
+            Namespace: NUnit.Xml.TestLogger.Tests2,
+            Type: RandomizerTests,
+            Method: Sort_RandomData_IsSorted,
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Sort_RandomData_IsSorted
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://NUnit3TestExecutor
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.RandomizerTests.Sort_RandomData_IsSorted
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_86
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.NUnit.NetCore.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll
+              }
+            ]
           }
         ]
       }

@@ -86,7 +86,7 @@ namespace Spekt.TestLogger.UnitTests
             this.testRun.Complete(this.testRunCompleteEvent);
 
             var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
-            var results = JsonSerializer.Deserialize<JsonTestResultSerializer.TestReport>(this.fileSystem.Read(logFilePath), null);
+            var results = JsonSerializer.Deserialize<JsonTestResultSerializer.TestReport>(this.fileSystem.Read(logFilePath));
             var assembly = results.TestAssemblies.First();
             Assert.AreEqual("/tmp/test.dll", assembly.Name);
             Assert.AreEqual("C", assembly.Fixtures.First().Name);
@@ -119,7 +119,7 @@ namespace Spekt.TestLogger.UnitTests
             this.testRun.Complete(this.testRunCompleteEvent);
 
             var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
-            var results = JsonSerializer.Deserialize<JsonTestResultSerializer.TestReport>(this.fileSystem.Read(logFilePath), null);
+            var results = JsonSerializer.Deserialize<JsonTestResultSerializer.TestReport>(this.fileSystem.Read(logFilePath));
             var expectedMessages = TestRunMessageEventArgs();
 
             Assert.AreEqual(expectedMessages.Count, results.TestMessages.Count());
@@ -134,10 +134,10 @@ namespace Spekt.TestLogger.UnitTests
             var executorUri = new Uri("executor://dummy");
             var passingResult =
                 new TestResult(new TestCase("NS.C.TM1", executorUri, source))
-                    { Outcome = TestOutcome.Passed };
+                { Outcome = TestOutcome.Passed };
             var failingResult =
                 new TestResult(new TestCase("NS.C.TM2", executorUri, source))
-                    { Outcome = TestOutcome.Failed };
+                { Outcome = TestOutcome.Failed };
             testRun.Result(new TestResultEventArgs(passingResult));
             testRun.Result(new TestResultEventArgs(failingResult));
             TestRunMessageEventArgs().ForEach(x => testRun.Message(x));

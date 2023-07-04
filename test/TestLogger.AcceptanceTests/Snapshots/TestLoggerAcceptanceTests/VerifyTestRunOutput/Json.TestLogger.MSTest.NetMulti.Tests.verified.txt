@@ -11,7 +11,60 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: ExampleFailure,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleFailure
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.ExampleFailure
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_1
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: ExampleFailure
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.Tests2,
+                  UnitTest2
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.TestMethodDataRow,
@@ -19,7 +72,71 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: TestMethodDataRow (-1),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestMethodDataRow (-1)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.TestMethodDataRow
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_2
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: TestMethodDataRow(System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.Tests2,
+                  UnitTest2
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  -1
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.TestMethodDataRow,
@@ -27,7 +144,71 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: TestMethodDataRow (0),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestMethodDataRow (0)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.TestMethodDataRow
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_3
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: TestMethodDataRow(System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.Tests2,
+                  UnitTest2
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  0
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.TestMethodDataRow,
@@ -35,7 +216,71 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: TestMethodDataRow (1),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: TestMethodDataRow (1)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.TestMethodDataRow
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_4
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: TestMethodDataRow(System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.Tests2,
+                  UnitTest2
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  1
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.DataTestMethodDataRow,
@@ -43,7 +288,71 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: DataTestMethodDataRow (-1),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: DataTestMethodDataRow (-1)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.DataTestMethodDataRow
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_5
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: DataTestMethodDataRow(System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.Tests2,
+                  UnitTest2
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  -1
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.DataTestMethodDataRow,
@@ -51,7 +360,71 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: DataTestMethodDataRow (0),
-            Result: Passed
+            Result: Passed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: DataTestMethodDataRow (0)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.DataTestMethodDataRow
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_6
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: DataTestMethodDataRow(System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.Tests2,
+                  UnitTest2
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  0
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.UnitTest2.DataTestMethodDataRow,
@@ -59,7 +432,71 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: UnitTest2,
             Method: DataTestMethodDataRow (1),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: DataTestMethodDataRow (1)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.DataTestMethodDataRow
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_7
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: DataTestMethodDataRow(System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.Tests2,
+                  UnitTest2
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  1
+                ]
+              }
+            ]
           }
         ]
       },
@@ -72,7 +509,75 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: DataRowWithDisplayName,
             Method: When string is null,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: When string is null
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.DataRowWithDisplayName.Substring
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_8
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.Tests2.DataRowWithDisplayName
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: Substring(System.String,System.Int32,System.String)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.Tests2.DataRowWithDisplayName
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.Tests2,
+                  DataRowWithDisplayName
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  "ABCDE",
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  3,
+                  null,
+                  null
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.Tests2.DataRowWithDisplayName.Substring,
@@ -80,7 +585,75 @@
             Namespace: NUnit.Xml.TestLogger.Tests2,
             Type: DataRowWithDisplayName,
             Method: When string is empty,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: When string is empty
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.Tests2.DataRowWithDisplayName.Substring
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_9
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.Tests2.DataRowWithDisplayName
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: Substring(System.String,System.Int32,System.String)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.Tests2.DataRowWithDisplayName
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.Tests2,
+                  DataRowWithDisplayName
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  "",
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  3,
+                  System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  ""
+                ]
+              }
+            ]
           }
         ]
       },
@@ -93,7 +666,60 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: ExampleFailure,
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: ExampleFailure
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.ExampleFailure
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_10
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: ExampleFailure
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.NetFull.Tests,
+                  UnitTest1
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Test_Add,
@@ -101,7 +727,75 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: Custom - Test_Add (1,1,2),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Custom - Test_Add (1,1,2)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Test_Add
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_11
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: Test_Add(System.Int32,System.Int32,System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.NetFull.Tests,
+                  UnitTest1
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  1,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  1,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  2
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Test_Add,
@@ -109,7 +803,75 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: Custom - Test_Add (12,30,42),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Custom - Test_Add (12,30,42)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Test_Add
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_12
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: Test_Add(System.Int32,System.Int32,System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.NetFull.Tests,
+                  UnitTest1
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  12,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  30,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  42
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Test_Add,
@@ -117,7 +879,75 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: UnitTest1,
             Method: Custom - Test_Add (14,1,15),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Custom - Test_Add (14,1,15)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Test_Add
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_13
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: Test_Add(System.Int32,System.Int32,System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.NetFull.Tests,
+                  UnitTest1
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  14,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  1,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  15
+                ]
+              }
+            ]
           }
         ]
       },
@@ -130,7 +960,75 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: MathTests,
             Method: Test_Add_DynamicData_Property (1,1,2),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test_Add_DynamicData_Property (1,1,2)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.MathTests.Test_Add_DynamicData_Property
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_14
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.MathTests
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: Test_Add_DynamicData_Property(System.Int32,System.Int32,System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.MathTests
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.NetFull.Tests,
+                  MathTests
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  1,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  1,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  2
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.MathTests.Test_Add_DynamicData_Property,
@@ -138,7 +1036,75 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: MathTests,
             Method: Test_Add_DynamicData_Property (12,30,42),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test_Add_DynamicData_Property (12,30,42)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.MathTests.Test_Add_DynamicData_Property
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_15
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.MathTests
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: Test_Add_DynamicData_Property(System.Int32,System.Int32,System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.MathTests
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.NetFull.Tests,
+                  MathTests
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  12,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  30,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  42
+                ]
+              }
+            ]
           },
           {
             FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.MathTests.Test_Add_DynamicData_Property,
@@ -146,7 +1112,75 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: MathTests,
             Method: Test_Add_DynamicData_Property (14,1,15),
-            Result: Failed
+            Result: Failed,
+            Properties: [
+              {
+                Key: TestCase.CodeFilePath,
+                Value: null
+              },
+              {
+                Key: TestCase.DisplayName,
+                Value: Test_Add_DynamicData_Property (14,1,15)
+              },
+              {
+                Key: TestCase.ExecutorUri,
+                Value: executor://MSTestAdapter/v2
+              },
+              {
+                Key: TestCase.FullyQualifiedName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.MathTests.Test_Add_DynamicData_Property
+              },
+              {
+                Key: TestCase.Id,
+                Value: Guid_16
+              },
+              {
+                Key: TestCase.LineNumber,
+                Value: 0
+              },
+              {
+                Key: TestCase.Source,
+                Value: test/assets/Json.TestLogger.MSTest.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll
+              },
+              {
+                Key: TestCase.ManagedType,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.MathTests
+              },
+              {
+                Key: TestCase.ManagedMethod,
+                Value: Test_Add_DynamicData_Property(System.Int32,System.Int32,System.Int32)
+              },
+              {
+                Key: MSTestDiscoverer.TestClassName,
+                Value: NUnit.Xml.TestLogger.NetFull.Tests.MathTests
+              },
+              {
+                Key: TestCase.Hierarchy,
+                Value: [
+                  NUnit.Xml.TestLogger.NetFull.Tests,
+                  MathTests
+                ]
+              },
+              {
+                Key: TestObject.Traits,
+                Value: []
+              },
+              {
+                Key: MSTest.DynamicDataType,
+                Value: 2
+              },
+              {
+                Key: MSTest.DynamicData,
+                Value: [
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  14,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  1,
+                  System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e,
+                  15
+                ]
+              }
+            ]
           }
         ]
       }

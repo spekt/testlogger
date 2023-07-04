@@ -21,6 +21,7 @@ namespace Spekt.TestLogger.UnitTests
         private static readonly Uri DummyAdapterUri = new ("adapter://Microsoft/TestPlatform/DummyTestAdapter");
         private readonly TestResultStore testResultStore;
         private readonly TestCase dummyTestCase;
+        private readonly ITestRun testRun;
 
         public TestRunResultWorkflowTests()
         {
@@ -29,6 +30,10 @@ namespace Spekt.TestLogger.UnitTests
                 "SampleNamespace.SampleClass.SampleTest",
                 DummyAdapterUri,
                 DummySourceFile);
+            this.testRun = new TestRunBuilder()
+                .WithLoggerConfiguration(new LoggerConfiguration(BasicConfig()))
+                .WithSerializer(new JsonTestResultSerializer())
+                .WithStore(this.testResultStore).Build();
         }
 
         [TestMethod]
@@ -37,21 +42,9 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow(TestOutcome.Skipped)]
         public void ResultShouldCaptureTestCaseAndResult(TestOutcome testOutcome)
         {
-            var testRun = new TestRunBuilder()
-                .WithLoggerConfiguration(new LoggerConfiguration(BasicConfig()))
-                .WithSerializer(new JsonTestResultSerializer())
-                .WithStore(this.testResultStore).Build();
-            var resultEvent = new TestResultEventArgs(new TestResult(this.dummyTestCase)
-            {
-                Outcome = testOutcome,
-                ErrorMessage = "Dummy error",
-                ErrorStackTrace = "Dummy stacktrace",
-                Duration = TimeSpan.FromSeconds(30),
-                StartTime = DateTimeOffset.MinValue,
-                EndTime = DateTimeOffset.MaxValue
-            });
+            var resultEvent = new TestResultEventArgs(CreateTestResult(this.dummyTestCase, testOutcome));
 
-            testRun.Result(resultEvent);
+            this.testRun.Result(resultEvent);
 
             this.testResultStore.Pop(out var results, out _);
             Assert.AreEqual(1, results.Count);
@@ -71,21 +64,18 @@ namespace Spekt.TestLogger.UnitTests
 
             Assert.AreEqual(0, results[0].Messages.Count);
             Assert.AreEqual(0, results[0].Traits.Count());
+            Assert.AreEqual(7, results[0].Properties.Count());
         }
 
         [TestMethod]
         public async Task ResultShouldCaptureTestCaseAndResultForParallelRun()
         {
-            var testRun = new TestRunBuilder()
-                .WithLoggerConfiguration(new LoggerConfiguration(BasicConfig()))
-                .WithSerializer(new JsonTestResultSerializer())
-                .WithStore(this.testResultStore).Build();
             var resultEvent = new TestResultEventArgs(new TestResult(this.dummyTestCase));
             var tasks = new List<Task>();
 
             for (var i = 0; i < 100; i++)
             {
-                tasks.Add(Task.Run(() => testRun.Result(resultEvent)));
+                tasks.Add(Task.Run(() => this.testRun.Result(resultEvent)));
             }
 
             await Task.WhenAll(tasks);
@@ -94,12 +84,40 @@ namespace Spekt.TestLogger.UnitTests
             Assert.AreEqual(100, results.Count);
         }
 
+        [TestMethod]
+        public void ResultShouldCaptureTestProperties()
+        {
+            var testproperty = TestProperty.Register("TestProperty", "TestLabel", typeof(string), typeof(TestCase));
+            this.dummyTestCase.SetPropertyValue(testproperty, "TestValue");
+            var resultEvent = new TestResultEventArgs(CreateTestResult(this.dummyTestCase, TestOutcome.Passed));
+
+            this.testRun.Result(resultEvent);
+
+            this.testResultStore.Pop(out var results, out _);
+            Assert.AreEqual(1, results.Count);
+            Assert.AreEqual(8, results[0].Properties.Count());
+            CollectionAssert.Contains(results[0].Properties.Select(p => p.Key).ToList(), "TestProperty");
+        }
+
         private static Dictionary<string, string> BasicConfig()
         {
             return new Dictionary<string, string>
             {
                 { DefaultLoggerParameterNames.TestRunDirectory, "dir" },
                 { LoggerConfiguration.LogFilePathKey, @"dir\results.json" }
+            };
+        }
+
+        private static TestResult CreateTestResult(TestCase testCase, TestOutcome outcome)
+        {
+            return new TestResult(testCase)
+            {
+                Outcome = outcome,
+                ErrorMessage = "Dummy error",
+                ErrorStackTrace = "Dummy stacktrace",
+                Duration = TimeSpan.FromSeconds(30),
+                StartTime = DateTimeOffset.MinValue,
+                EndTime = DateTimeOffset.MaxValue
             };
         }
     }
