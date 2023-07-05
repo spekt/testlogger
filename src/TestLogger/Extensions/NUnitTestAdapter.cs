@@ -7,6 +7,7 @@ namespace Spekt.TestLogger.Extensions
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Spekt.TestLogger.Core;
 
     public class NUnitTestAdapter : ITestAdapter
@@ -25,6 +26,22 @@ namespace Spekt.TestLogger.Extensions
                 {
                     result.Outcome = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestOutcome.Skipped;
                 }
+
+                // NUnit adapter uses Seed and TestCategory in TestCase Properties.
+                // Populate these properties if available.
+                var properties = new List<KeyValuePair<string, object>>();
+                foreach (var property in result.TestCase.Properties)
+                {
+                    switch (property.Id)
+                    {
+                        case "NUnit.Seed":
+                        case "NUnit.TestCategory":
+                            properties.Add(new KeyValuePair<string, object>(property.Id, result.TestCase.GetPropertyValue(property)));
+                            break;
+                    }
+                }
+
+                result.Properties = properties;
             }
 
             return results;

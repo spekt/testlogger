@@ -18,6 +18,7 @@ namespace Spekt.TestLogger.UnitTests.Builders
         private IReadOnlyCollection<KeyValuePair<string, object>> properties = new List<KeyValuePair<string, object>>();
         private string errorMessage = string.Empty;
         private string displayName = string.Empty;
+        private TestCase testCase = new TestCase();
 
         internal TestResultInfoBuilder()
         {
@@ -45,9 +46,10 @@ namespace Spekt.TestLogger.UnitTests.Builders
             return this;
         }
 
-        internal TestResultInfoBuilder WithProperties(IReadOnlyCollection<KeyValuePair<string, object>> properties)
+        internal TestResultInfoBuilder WithProperty(string name, object value)
         {
-            this.properties = properties;
+            var p = TestProperty.Register(name, "dummyLabel", value.GetType(), typeof(TestCase));
+            this.testCase.SetPropertyValue(p, value);
             return this;
         }
 
@@ -83,8 +85,8 @@ namespace Spekt.TestLogger.UnitTests.Builders
                 string.Empty,
                 new (),
                 this.traits,
-                this.properties,
-                "executor://dummy");
+                "executor://dummy",
+                this.testCase);
         }
     }
 }

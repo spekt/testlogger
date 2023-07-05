@@ -4,6 +4,7 @@
 namespace Spekt.TestLogger.UnitTests.Extensions
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
@@ -74,6 +75,27 @@ namespace Spekt.TestLogger.UnitTests.Extensions
 
             Assert.AreEqual(1, modifiedResults.Count);
             Assert.AreEqual(TestOutcome.Skipped, modifiedResults[0].Outcome);
+        }
+
+        [TestMethod]
+        public void TransformResultShouldAddPropertiesIfAvailable()
+        {
+            var results = new List<TestResultInfo>
+            {
+                new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod)
+                    .WithOutcome(TestOutcome.Passed)
+                    .WithProperty("NUnit.Seed", 1)
+                    .WithProperty("NUnit.TestCategory", new[] { "c1", "c2" })
+                    .WithProperty("NUnit.Unsupported", true)
+                    .Build()
+            };
+
+            var modifiedResults = this.adapter.TransformResults(results, new ());
+
+            Assert.AreEqual(1, modifiedResults.Count);
+            Assert.AreEqual(2, modifiedResults[0].Properties.Count);
+            Assert.AreEqual(1, modifiedResults[0].Properties.Where(p => p.Key == "NUnit.Seed").Single().Value);
+            CollectionAssert.AreEquivalent(new[] { "c1", "c2" }, (string[])modifiedResults[0].Properties.Where(p => p.Key == "NUnit.TestCategory").Single().Value);
         }
     }
 }

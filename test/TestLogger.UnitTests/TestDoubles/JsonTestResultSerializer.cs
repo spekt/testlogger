@@ -86,16 +86,20 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
 
         private Test CreateTest(TestResultInfo result)
         {
+            var props = result
+                .Properties
+                .Select(p => p.Key == "NUnit.Seed" ? new KeyValuePair<string, object>(p.Key, "1100") : p)
+                .ToList();
             return new ()
             {
                 FullyQualifiedName = result.FullyQualifiedName,
-                DisplayName = result.TestCaseDisplayName,
+                DisplayName = result.DisplayName,
                 Namespace = result.Namespace,
                 Type = result.Type,
                 Method = result.Method,
                 Result = result.Outcome.ToString(),
                 Traits = result.Traits.Select(t => new KeyValuePair<string, string>(t.Name, t.Value)).ToList(),
-                Properties = result.Properties.Where(p => p.Key != "NUnit.Seed").ToList() // Skip seed since it changes
+                Properties = props
             };
         }
 

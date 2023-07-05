@@ -14,32 +14,8 @@
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_1
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -52,32 +28,8 @@
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_2
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -95,32 +47,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_3
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -133,32 +61,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_4
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -176,32 +80,8 @@
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.FailingTearDown.Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_5
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -214,32 +94,8 @@
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.FailingTearDown.Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_6
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -257,32 +113,8 @@
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.FailingTestSetup.Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_7
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -295,32 +127,8 @@
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.FailingTestSetup.Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_8
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -338,32 +146,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('0')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('0')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_9
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -376,32 +160,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('a')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('a')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_10
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -414,32 +174,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('A')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('A')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_11
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -452,32 +188,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('!')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('!')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_12
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -490,32 +202,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('-')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('-')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_13
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -528,32 +216,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('_')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('_')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_14
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -566,32 +230,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('.')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('.')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_15
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -604,32 +244,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('*')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('*')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_16
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -642,32 +258,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('\'')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('\'')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_17
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -680,32 +272,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('(')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('(')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_18
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -718,32 +286,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3(')')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3(')')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_19
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -756,32 +300,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest3('/')
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest3('/')
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_20
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -794,32 +314,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_21
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -832,32 +328,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_22
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -870,38 +342,8 @@
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value:
-ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.
-   --- End of inner exception stack trace ---)
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value:
-NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException1' was thrown.
-   --- End of inner exception stack trace ---)
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_23
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -914,38 +356,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value:
-ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.
-   --- End of inner exception stack trace ---)
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value:
-NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.AggregateException: One or more errors occurred. (Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.)
- ---> NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2: Exception of type 'NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples+MyException2' was thrown.
-   --- End of inner exception stack trace ---)
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_24
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -958,32 +370,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Testing.
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing.
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_25
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -996,32 +384,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Testing
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_26
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -1039,32 +403,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Testing. Input.
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing. Input.
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_27
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1077,32 +417,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Testing. Input
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.Testing. Input
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_28
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -1120,32 +436,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture("Answer",42).Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_29
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1158,32 +450,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture("Answer",42).Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_30
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -1201,32 +469,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture("Question",1).Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_31
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1239,32 +483,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Test
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedFixture("Question",1).Test
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_32
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -1282,32 +502,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: TestData(1,"A")
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,"A")
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_33
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1320,32 +516,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: TestData(1,"B")
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(1,"B")
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_34
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1358,32 +530,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: TestData(2,"A")
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,"A")
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_35
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1396,32 +544,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: TestData(2,"B")
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(2,"B")
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_36
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1434,32 +558,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: TestData(1,"A")
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,"A")
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_37
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1472,32 +572,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: TestData(1,"B")
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(1,"B")
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_38
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1510,32 +586,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: TestData(2,"A")
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,"A")
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_39
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1548,32 +600,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: TestData(2,"B")
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(2,"B")
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_40
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -1591,32 +619,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: InconclusiveTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture.InconclusiveTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_41
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1629,32 +633,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: SuccessTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture.SuccessTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_42
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1667,32 +647,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: InconclusiveTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture.InconclusiveTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_43
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1705,32 +661,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: SuccessTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture.SuccessTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_44
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -1748,32 +680,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: SuccessTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.SuccessFixture.SuccessTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_45
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1786,32 +694,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: SuccessTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.SuccessFixture.SuccessTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_46
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -1829,32 +713,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: FailTest11
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.FailTest11
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_47
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1867,32 +727,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Ignored
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Ignored
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_48
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1905,32 +741,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Inconclusive
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.Inconclusive
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_49
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1943,39 +755,15 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: MultipleCategories
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.MultipleCategories
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_50
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
                 Key: NUnit.TestCategory,
                 Value: [
                   Category2,
                   Category1
                 ]
+              },
+              {
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -1988,32 +776,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: NoProperty
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.NoProperty
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_51
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2026,32 +790,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: PassTest11
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.PassTest11
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_52
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2064,38 +804,14 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: WithCategory
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithCategory
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_53
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
                 Key: NUnit.TestCategory,
                 Value: [
                   Nunit Test Category
                 ]
+              },
+              {
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2114,47 +830,14 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             ],
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: WithCategoryAndProperty
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithCategoryAndProperty
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_54
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
-                Key: TestObject.Traits,
-                Value: [
-                  {
-                    Key: Property name,
-                    Value: Property value
-                  }
-                ]
-              },
-              {
                 Key: NUnit.TestCategory,
                 Value: [
                   NUnit Test Category
                 ]
+              },
+              {
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2177,45 +860,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             ],
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: WithProperties
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithProperties
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_55
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
-                Key: TestObject.Traits,
-                Value: [
-                  {
-                    Key: Property name,
-                    Value: Property value 1
-                  },
-                  {
-                    Key: Property name,
-                    Value: Property value 2
-                  }
-                ]
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2234,41 +880,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             ],
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: WithProperty
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.WithProperty
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_56
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
-                Key: TestObject.Traits,
-                Value: [
-                  {
-                    Key: Property name,
-                    Value: Property value
-                  }
-                ]
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2281,32 +894,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: FailTest11
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.UnitTest1.FailTest11
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_57
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2319,32 +908,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Ignored
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.UnitTest1.Ignored
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_58
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2357,32 +922,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Inconclusive
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.UnitTest1.Inconclusive
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_59
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2395,32 +936,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: PassTest11
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.UnitTest1.PassTest11
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_60
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -2444,45 +961,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             ],
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExplicitTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.ExplicitTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_61
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
-                Key: TestObject.Traits,
-                Value: [
-                  {
-                    Key: Explicit,
-                    Value: 
-                  }
-                ]
-              },
-              {
-                Key: NUnit.Explicit,
-                Value: true
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2495,38 +975,14 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: FailTest22
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.FailTest22
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_62
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
                 Key: NUnit.TestCategory,
                 Value: [
                   failing category
                 ]
+              },
+              {
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2539,32 +995,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: IgnoredTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.IgnoredTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_63
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2577,32 +1009,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Inconclusive
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.Inconclusive
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_64
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2615,38 +1023,14 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: PassTest21
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.PassTest21
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_65
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
                 Key: NUnit.TestCategory,
                 Value: [
                   passing category
                 ]
+              },
+              {
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2659,32 +1043,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: WarningTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.WarningTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_66
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2703,45 +1063,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             ],
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: ExplicitTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.ExplicitTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_67
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
-                Key: TestObject.Traits,
-                Value: [
-                  {
-                    Key: Explicit,
-                    Value: 
-                  }
-                ]
-              },
-              {
-                Key: NUnit.Explicit,
-                Value: true
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2754,38 +1077,14 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Failed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: FailTest22
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.FailTest22
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_68
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
                 Key: NUnit.TestCategory,
                 Value: [
                   failing category
                 ]
+              },
+              {
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2798,32 +1097,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: IgnoredTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.IgnoredTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_69
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2836,32 +1111,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: None,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Inconclusive
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.Inconclusive
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_70
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2874,38 +1125,14 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: PassTest21
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.PassTest21
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_71
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
-              },
-              {
                 Key: NUnit.TestCategory,
                 Value: [
                   passing category
                 ]
+              },
+              {
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           },
@@ -2918,32 +1145,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Skipped,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: WarningTest
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.UnitTest2.WarningTest
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_72
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }
@@ -2961,32 +1164,8 @@ NUnit.Xml.TestLogger.NetFull.Tests.Issue28_Examples.ExampleTest4(System.Aggregat
             Result: Passed,
             Properties: [
               {
-                Key: TestCase.CodeFilePath,
-                Value: null
-              },
-              {
-                Key: TestCase.DisplayName,
-                Value: Sort_RandomData_IsSorted
-              },
-              {
-                Key: TestCase.ExecutorUri,
-                Value: executor://NUnit3TestExecutor
-              },
-              {
-                Key: TestCase.FullyQualifiedName,
-                Value: NUnit.Xml.TestLogger.Tests2.RandomizerTests.Sort_RandomData_IsSorted
-              },
-              {
-                Key: TestCase.Id,
-                Value: Guid_73
-              },
-              {
-                Key: TestCase.LineNumber,
-                Value: 0
-              },
-              {
-                Key: TestCase.Source,
-                Value: test/assets/Json.TestLogger.NUnit.NetMulti.Tests/bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetMulti.Tests.dll
+                Key: NUnit.Seed,
+                Value: 1100
               }
             ]
           }

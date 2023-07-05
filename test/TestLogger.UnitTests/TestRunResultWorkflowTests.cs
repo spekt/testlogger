@@ -52,6 +52,7 @@ namespace Spekt.TestLogger.UnitTests
             Assert.AreEqual("SampleClass", results[0].Type);
             Assert.AreEqual("SampleNamespace.SampleClass", results[0].FullTypeName);
             Assert.AreEqual("SampleTest", results[0].Method);
+            Assert.AreEqual("SampleNamespace.SampleClass.SampleTest", results[0].DisplayName);
             Assert.AreEqual(DummySourceFile, results[0].AssemblyPath);
 
             Assert.AreEqual(testOutcome, results[0].Outcome);
@@ -64,7 +65,7 @@ namespace Spekt.TestLogger.UnitTests
 
             Assert.AreEqual(0, results[0].Messages.Count);
             Assert.AreEqual(0, results[0].Traits.Count());
-            Assert.AreEqual(7, results[0].Properties.Count());
+            Assert.AreEqual(0, results[0].Properties.Count());
         }
 
         [TestMethod]
@@ -87,6 +88,7 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void ResultShouldCaptureTestProperties()
         {
+            // This property will be ignored.
             var testproperty = TestProperty.Register("TestProperty", "TestLabel", typeof(string), typeof(TestCase));
             this.dummyTestCase.SetPropertyValue(testproperty, "TestValue");
             var resultEvent = new TestResultEventArgs(CreateTestResult(this.dummyTestCase, TestOutcome.Passed));
@@ -95,8 +97,7 @@ namespace Spekt.TestLogger.UnitTests
 
             this.testResultStore.Pop(out var results, out _);
             Assert.AreEqual(1, results.Count);
-            Assert.AreEqual(8, results[0].Properties.Count());
-            CollectionAssert.Contains(results[0].Properties.Select(p => p.Key).ToList(), "TestProperty");
+            Assert.AreEqual(0, results[0].Properties.Count());
         }
 
         private static Dictionary<string, string> BasicConfig()

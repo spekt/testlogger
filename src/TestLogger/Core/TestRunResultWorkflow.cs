@@ -47,8 +47,8 @@ namespace Spekt.TestLogger.Core
                 sanitize(result.ErrorStackTrace),
                 result.Messages.Select(x => new TestResultMessage(sanitize(x.Category), sanitize(x.Text))).ToList(),
                 result.TestCase.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList(),
-                result.TestCase.Properties.Select(x => new KeyValuePair<string, object>(x.Id, result.TestCase.GetPropertyValue(x))).ToList(), // Cannot sanitize since the value is object (not always string)
-                result.TestCase.ExecutorUri?.ToString()));
+                result.TestCase.ExecutorUri?.ToString(),
+                result.TestCase));
         }
     }
 }
