@@ -27,8 +27,8 @@ namespace Spekt.TestLogger.Core
             string errorStackTrace,
             List<TestResultMessage> messages,
             IReadOnlyCollection<Trait> traits,
-            IReadOnlyCollection<KeyValuePair<string, object>> properties,
-            string executorUri)
+            string executorUri,
+            TestCase testCase)
         {
             this.Namespace = @namespace;
             this.Type = type;
@@ -47,12 +47,24 @@ namespace Spekt.TestLogger.Core
             this.ErrorStackTrace = errorStackTrace;
             this.Messages = messages;
             this.Traits = traits;
-            this.Properties = properties;
             this.ExecutorUri = executorUri;
+            this.TestCase = testCase;
+
+            // Use TestCaseDisplayName by default for reporting.
+            this.DisplayName = this.TestCaseDisplayName;
+
+            // Properties are only populated for specific adapters. See NUnitTestAdapter for example.
+            this.Properties = new List<KeyValuePair<string, object>>();
         }
 
+        /// <summary>
+        /// Gets the parsed namespace for the test source.
+        /// </summary>
         public string Namespace { get; }
 
+        /// <summary>
+        /// Gets the parsed type for the test source.
+        /// </summary>
         public string Type { get; }
 
         /// <summary>
@@ -60,6 +72,17 @@ namespace Spekt.TestLogger.Core
         /// the method. For example, `SomeMethod` or `SomeParameterizedMethod(true)`.
         /// </summary>
         public string Method { get; internal set; }
+
+        /// <summary>
+        /// Gets the display name for the test. This is used for reporting by various loggers.
+        /// </summary>
+        /// <remarks>
+        /// Default value: TestCaseDisplayName.
+        /// In future, extend this to support tokenized or custom DisplayName formats for loggers.
+        /// E.g., DisplayName = "{TestCaseDisplayName} {Method}".
+        /// See https://github.com/spekt/junit.testlogger/issues/57#issuecomment-1620547408.
+        /// </remarks>
+        public string DisplayName { get; internal set; }
 
         public TestOutcome Outcome { get; set; }
 
@@ -81,6 +104,13 @@ namespace Spekt.TestLogger.Core
 
         public List<TestResultMessage> Messages { get; }
 
+        /// <summary>
+        /// Gets the collection of traits associated with this result.
+        /// </summary>
+        /// <remarks>
+        /// Uses TestCase.Traits internally.
+        /// Breaking change: TestLogger version 3.0.114. Earlier versions used TestResult.Traits.
+        /// </remarks>
         public IReadOnlyCollection<Trait> Traits { get; }
 
         /// <summary>
@@ -90,8 +120,13 @@ namespace Spekt.TestLogger.Core
         /// <remarks>
         /// Used for NUnit results - NUnit.Seed and NUnit.TestCategory.
         /// Value is an object, not necessarily a string, hence not sanitized.
+        /// Introduced in TestLogger version 3.0.119.
         /// </remarks>
-        public IReadOnlyCollection<KeyValuePair<string, object>> Properties { get; }
+        public IReadOnlyCollection<KeyValuePair<string, object>> Properties
+        {
+            get;
+            internal set;
+        }
 
         public string ExecutorUri { get; }
 
@@ -112,6 +147,17 @@ namespace Spekt.TestLogger.Core
         internal string TestCaseDisplayName { get; }
 
         internal string FullyQualifiedName { get; }
+
+        /// <summary>
+        /// Gets the TestCase instance associated with this result.
+        /// </summary>
+        /// <remarks>
+        /// TestProperty store is maintained in TestCase, required for adapter
+        /// extensions to retrieve values.
+        /// Intended for internal usage only. Do not expose for consumer
+        /// loggers.
+        /// </remarks>
+        internal TestCase TestCase { get; }
 
         public override bool Equals(object obj)
         {
