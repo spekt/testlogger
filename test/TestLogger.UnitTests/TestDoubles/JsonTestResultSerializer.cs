@@ -91,8 +91,11 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
                 .Properties
                 .Select(p => p.Key == "NUnit.Seed" ? new KeyValuePair<string, object>(p.Key, "1100") : p)
                 .ToList();
+
+            // Attachments have diff path in Windows vs Linux.
+            // MSTest duplicates the path in description.
             var attachments = result.Attachments
-                .Select(a => new TestAttachmentInfo(Path.GetFileName(a.FilePath), a.Description))
+                .Select(a => new TestAttachmentInfo(Path.GetFileName(a.FilePath), "dummyDescription"))
                 .ToList();
             return new ()
             {

@@ -494,7 +494,7 @@
             Attachments: [
               {
                 FilePath: x.txt,
-                Description: x
+                Description: dummyDescription
               }
             ]
           }

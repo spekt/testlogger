@@ -81,7 +81,7 @@
             Attachments: [
               {
                 FilePath: x.txt,
-                Description: {TempPath}x.txt
+                Description: dummyDescription
               }
             ]
           }
