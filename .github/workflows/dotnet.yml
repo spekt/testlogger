@@ -13,7 +13,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     env:
-      APP_BUILD_VERSION: ${{ format('3.0.{0}', github.run_number) }}
+      APP_BUILD_VERSION: ${{ format('3.1.{0}', github.run_number) }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET 7.0
