@@ -22,7 +22,7 @@ namespace Spekt.TestLogger.UnitTests.Utilities
         [TestMethod]
         public void ToAttachmentsShouldConvertLocalPaths()
         {
-            this.attachmentSet.Attachments.Add(new UriDataAttachment(new Uri("/tmp/x.txt"), "x"));
+            this.attachmentSet.Attachments.Add(new UriDataAttachment(new Uri("file:///tmp/x.txt"), "x"));
 
             var attachments = this.attachmentSet.ToAttachments().ToArray();
 
