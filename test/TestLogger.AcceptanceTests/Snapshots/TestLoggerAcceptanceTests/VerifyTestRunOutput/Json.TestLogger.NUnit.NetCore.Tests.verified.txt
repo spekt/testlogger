@@ -450,11 +450,17 @@
             Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
             Type: AttachmentTest,
             Method: TestAddAttachment,
-            Result: Failed,
+            Result: Passed,
             Properties: [
               {
                 Key: NUnit.Seed,
                 Value: 1100
+              }
+            ],
+            Attachments: [
+              {
+                FilePath: x.txt,
+                Description: x
               }
             ]
           }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -12,7 +13,12 @@ namespace NUnit.Xml.TestLogger.NetFull.Tests
         [Test]
         public void TestAddAttachment()
         {
-            TestContext.AddTestAttachment("/tmp/x.txt", "/tmp/x.txt");
+            var filePath = Path.Combine(Path.GetTempPath(), "x.txt");
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath);
+            }
+            TestContext.AddTestAttachment(filePath, "x");
         }
     }
 }

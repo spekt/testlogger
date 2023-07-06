@@ -86,9 +86,13 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
 
         private Test CreateTest(TestResultInfo result)
         {
+            // Mangle output to ensure predictable report
             var props = result
                 .Properties
                 .Select(p => p.Key == "NUnit.Seed" ? new KeyValuePair<string, object>(p.Key, "1100") : p)
+                .ToList();
+            var attachments = result.Attachments
+                .Select(a => new TestAttachmentInfo(Path.GetFileName(a.FilePath), a.Description))
                 .ToList();
             return new ()
             {
@@ -100,7 +104,7 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
                 Result = result.Outcome.ToString(),
                 Traits = result.Traits.Select(t => new KeyValuePair<string, string>(t.Name, t.Value)).ToList(),
                 Properties = props,
-                Attachments = result.Attachments
+                Attachments = attachments
             };
         }
 

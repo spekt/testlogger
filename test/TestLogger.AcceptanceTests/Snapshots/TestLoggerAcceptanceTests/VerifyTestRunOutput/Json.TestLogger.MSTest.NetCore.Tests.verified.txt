@@ -80,7 +80,7 @@
             Result: Passed,
             Attachments: [
               {
-                FilePath: {TempPath}x.txt,
+                FilePath: x.txt,
                 Description: {TempPath}x.txt
               }
             ]
