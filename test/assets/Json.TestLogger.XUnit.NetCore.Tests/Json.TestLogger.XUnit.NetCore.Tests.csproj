@@ -13,13 +13,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(NETTestSdkMinimumVersion)" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(NETTestSdkVersion)" />
     <PackageReference Include="XUnit" Version="$(XunitVersion)" />
     <PackageReference Include="xunit.runner.visualstudio" Version="$(XunitTestAdapterVersion)" />
     <PackageReference Include="Json.TestLogger" Version="$(PackageVersion)" >
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Coverlet.Collector" Version="$(CoverletCollectorVersion)" />
   </ItemGroup>
 
 </Project>

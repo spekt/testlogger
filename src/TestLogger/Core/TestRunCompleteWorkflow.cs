@@ -7,15 +7,18 @@ namespace Spekt.TestLogger.Core
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Spekt.TestLogger.Platform;
+    using Spekt.TestLogger.Utilities;
 
     public static class TestRunCompleteWorkflow
     {
         public static void Complete(this ITestRun testRun, TestRunCompleteEventArgs completeEvent)
         {
-            // Update the test run complete timestamp
+            // Update the test run complete timestamp and run level attachments
             testRun.RunConfiguration.EndTime = DateTime.UtcNow;
+            testRun.RunConfiguration.Attachments = completeEvent.AttachmentSets.SelectMany(x => x.ToAttachments()).ToList();
 
             // Freeze and reset the test result store
             testRun.Store.Pop(out var results, out var messages);

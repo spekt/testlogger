@@ -26,6 +26,7 @@ namespace Spekt.TestLogger.Core
             string errorMessage,
             string errorStackTrace,
             List<TestResultMessage> messages,
+            List<TestAttachmentInfo> attachments,
             IReadOnlyCollection<Trait> traits,
             string executorUri,
             TestCase testCase)
@@ -46,6 +47,7 @@ namespace Spekt.TestLogger.Core
             this.ErrorMessage = errorMessage;
             this.ErrorStackTrace = errorStackTrace;
             this.Messages = messages;
+            this.Attachments = attachments;
             this.Traits = traits;
             this.ExecutorUri = executorUri;
             this.TestCase = testCase;
@@ -103,6 +105,8 @@ namespace Spekt.TestLogger.Core
         public string ErrorStackTrace { get; }
 
         public List<TestResultMessage> Messages { get; }
+
+        public List<TestAttachmentInfo> Attachments { get; }
 
         /// <summary>
         /// Gets the collection of traits associated with this result.

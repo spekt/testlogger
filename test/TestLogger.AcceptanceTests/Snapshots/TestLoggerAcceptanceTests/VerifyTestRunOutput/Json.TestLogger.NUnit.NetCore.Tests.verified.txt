@@ -442,6 +442,25 @@
         ]
       },
       {
+        Name: AttachmentTest,
+        Tests: [
+          {
+            FullyQualifiedName: NUnit.Xml.TestLogger.NetFull.Tests.AttachmentTest.TestAddAttachment,
+            DisplayName: TestAddAttachment,
+            Namespace: NUnit.Xml.TestLogger.NetFull.Tests,
+            Type: AttachmentTest,
+            Method: TestAddAttachment,
+            Result: Failed,
+            Properties: [
+              {
+                Key: NUnit.Seed,
+                Value: 1100
+              }
+            ]
+          }
+        ]
+      },
+      {
         Name: FailingOneTimeSetUp,
         Tests: [
           {

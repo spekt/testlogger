@@ -64,8 +64,9 @@ namespace Spekt.TestLogger.UnitTests
             Assert.AreEqual(DateTimeOffset.MaxValue, results[0].EndTime);
 
             Assert.AreEqual(0, results[0].Messages.Count);
-            Assert.AreEqual(0, results[0].Traits.Count());
-            Assert.AreEqual(0, results[0].Properties.Count());
+            Assert.AreEqual(0, results[0].Traits.Count);
+            Assert.AreEqual(0, results[0].Properties.Count);
+            Assert.AreEqual(0, results[0].Attachments.Count);
         }
 
         [TestMethod]
@@ -97,7 +98,7 @@ namespace Spekt.TestLogger.UnitTests
 
             this.testResultStore.Pop(out var results, out _);
             Assert.AreEqual(1, results.Count);
-            Assert.AreEqual(0, results[0].Properties.Count());
+            Assert.AreEqual(0, results[0].Properties.Count);
         }
 
         private static Dictionary<string, string> BasicConfig()

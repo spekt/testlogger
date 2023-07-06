@@ -15,10 +15,10 @@ namespace Spekt.TestLogger.UnitTests.Builders
         private readonly string method = string.Empty;
         private TestOutcome outcome = TestOutcome.Passed;
         private IReadOnlyCollection<Trait> traits = new List<Trait>();
-        private IReadOnlyCollection<KeyValuePair<string, object>> properties = new List<KeyValuePair<string, object>>();
         private string errorMessage = string.Empty;
         private string displayName = string.Empty;
         private TestCase testCase = new TestCase();
+        private List<TestAttachmentInfo> attachments = new ();
 
         internal TestResultInfoBuilder()
         {
@@ -65,6 +65,12 @@ namespace Spekt.TestLogger.UnitTests.Builders
             return this;
         }
 
+        internal TestResultInfoBuilder WithAttachment(TestAttachmentInfo attachment)
+        {
+            this.attachments.Add(attachment);
+            return this;
+        }
+
         internal TestResultInfo Build()
         {
             return new TestResultInfo(
@@ -84,6 +90,7 @@ namespace Spekt.TestLogger.UnitTests.Builders
                 this.errorMessage,
                 string.Empty,
                 new (),
+                this.attachments,
                 this.traits,
                 "executor://dummy",
                 this.testCase);

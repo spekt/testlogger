@@ -60,7 +60,7 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
                 select this.CreateAssembly(assemblies);
 
             var content = new StringBuilder();
-            new JsonSerializer().Serialize(new StringWriter(content), new TestReport(res, messages));
+            new JsonSerializer().Serialize(new StringWriter(content), new TestReport(res, messages, runConfiguration.Attachments));
             return content.ToString();
         }
 
@@ -99,21 +99,29 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
                 Method = result.Method,
                 Result = result.Outcome.ToString(),
                 Traits = result.Traits.Select(t => new KeyValuePair<string, string>(t.Name, t.Value)).ToList(),
-                Properties = props
+                Properties = props,
+                Attachments = result.Attachments
             };
         }
 
         public class TestReport
         {
-            public TestReport(IEnumerable<TestAssembly> testAssemblies, IEnumerable<TestMessageInfo> testMessages)
+            public TestReport(IEnumerable<TestAssembly> testAssemblies, IEnumerable<TestMessageInfo> testMessages, IReadOnlyCollection<TestAttachmentInfo> attachments)
             {
                 this.TestAssemblies = testAssemblies ?? throw new ArgumentNullException(nameof(testAssemblies));
                 this.TestMessages = testMessages ?? throw new ArgumentNullException(nameof(testMessages));
+
+                // Mangle attachments to predictable filepath
+                this.Attachments = attachments
+                    .Select(a => new TestAttachmentInfo(Path.GetFileName(a.FilePath), a.Description))
+                    .ToList();
             }
 
             public IEnumerable<TestAssembly> TestAssemblies { get; set; }
 
             public IEnumerable<TestMessageInfo> TestMessages { get; set; }
+
+            public IReadOnlyCollection<TestAttachmentInfo> Attachments { get; set; }
         }
 
         public class TestAssembly
@@ -147,6 +155,8 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
             public List<KeyValuePair<string, string>> Traits { get; set; }
 
             public List<KeyValuePair<string, object>> Properties { get; set; }
+
+            public List<TestAttachmentInfo> Attachments { get; set; }
         }
     }
 }

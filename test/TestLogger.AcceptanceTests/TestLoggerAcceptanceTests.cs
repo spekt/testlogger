@@ -83,7 +83,9 @@ namespace TestLogger.AcceptanceTests
                 return x;
             });
 
-            DotnetTestFixture.Execute(testAssembly, args, out var resultsFile);
+            // Collect coverage will attach a runlevel attachment.
+            var collectCoverage = testAssembly.Contains("XUnit.NetCore");
+            DotnetTestFixture.Execute(testAssembly, args, collectCoverage, out var resultsFile);
             var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
 
             return this.Verify(testReport.TestAssemblies, settings);
