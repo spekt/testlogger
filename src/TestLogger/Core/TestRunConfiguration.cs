@@ -4,6 +4,7 @@
 namespace Spekt.TestLogger.Core
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Configuration for the Test Run.
@@ -27,5 +28,10 @@ namespace Spekt.TestLogger.Core
         /// Gets the end timestamp of test run (test run complete event) in UTC.
         /// </summary>
         public DateTime EndTime { get; internal set; }
+
+        /// <summary>
+        /// Gets the set of run level attachments. E.g., code coverage etc.
+        /// </summary>
+        public IReadOnlyCollection<TestAttachmentInfo> Attachments { get; internal set; }
     }
 }

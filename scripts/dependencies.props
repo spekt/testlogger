@@ -5,6 +5,7 @@
     <NETTestSdkVersion>16.7.1</NETTestSdkVersion>
     <MoqVersion>4.9.0</MoqVersion>
     <CoverletVersion>2.7.0</CoverletVersion>
+    <CoverletCollectorVersion>3.2.0</CoverletCollectorVersion>
 
     <!-- Test Assets use the minimum supported versions -->
     <NETTestSdkMinimumVersion>15.0.0</NETTestSdkMinimumVersion>

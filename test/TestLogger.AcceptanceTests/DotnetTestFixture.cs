@@ -12,7 +12,7 @@ namespace TestLogger.AcceptanceTests
         private const string NetcoreVersion = "netcoreapp3.1";
         private const string ResultFile = "test-results.json";
 
-        public static void Execute(string assemblyName, string args, out string resultsFile)
+        public static void Execute(string assemblyName, string args, bool collectCoverage, out string resultsFile)
         {
             resultsFile = Path.Combine(GetAssemblyPath(assemblyName), "test-results.json");
             if (File.Exists(resultsFile))
@@ -45,6 +45,12 @@ namespace TestLogger.AcceptanceTests
                     Arguments = $"test --no-build --logger:\"json;LogFilePath={ResultFile}{args}\" {GetAssemblyPath(assemblyName)}\\{assemblyName}.csproj"
                 }
             };
+
+            // Add coverage arg if required
+            if (collectCoverage)
+            {
+                dotnet.StartInfo.Arguments += " --collect:\"XPlat Code Coverage\" --settings coverlet.runsettings";
+            }
 
             // Required to skip icu requirement for netcoreapp3.1 in linux
             dotnet.StartInfo.EnvironmentVariables["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT"] = "1";

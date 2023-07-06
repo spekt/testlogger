@@ -51,4 +51,9 @@
     <ItemGroup>
         <ProjectReference Include="..\Json.TestLogger.TestAdapter\Json.TestLogger.TestAdapter.csproj" />
     </ItemGroup>
+    <ItemGroup>
+        <Content Include="coverlet.runsettings">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>  
+    </ItemGroup>
 </Project>

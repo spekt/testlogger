@@ -9,6 +9,7 @@ namespace Spekt.TestLogger.Core
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Spekt.TestLogger.Extensions;
+    using Spekt.TestLogger.Utilities;
 
     public static class TestRunResultWorkflow
     {
@@ -46,6 +47,7 @@ namespace Spekt.TestLogger.Core
                 sanitize(result.ErrorMessage),
                 sanitize(result.ErrorStackTrace),
                 result.Messages.Select(x => new TestResultMessage(sanitize(x.Category), sanitize(x.Text))).ToList(),
+                result.Attachments.SelectMany(x => x.ToAttachments()).ToList(),
                 result.TestCase.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList(),
                 result.TestCase.ExecutorUri?.ToString(),
                 result.TestCase));
