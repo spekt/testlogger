@@ -30,5 +30,17 @@ namespace Spekt.TestLogger.UnitTests.Utilities
             Assert.AreEqual("/tmp/x.txt", attachments[0].FilePath);
             Assert.AreEqual("x", attachments[0].Description);
         }
+
+        [TestMethod]
+        public void ToAttachmentsShouldReturnOriginalStringIfPathIsNotWellformed()
+        {
+            this.attachmentSet.Attachments.Add(new UriDataAttachment(new Uri("/tmp/x.txt", UriKind.Relative), "x"));
+
+            var attachments = this.attachmentSet.ToAttachments().ToArray();
+
+            Assert.AreEqual(1, attachments.Length);
+            Assert.AreEqual("/tmp/x.txt", attachments[0].FilePath);
+            Assert.AreEqual("x", attachments[0].Description);
+        }
     }
 }
