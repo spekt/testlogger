@@ -3,7 +3,7 @@ ForEach ($local in $($locals -split "`r`n"))
 {
     $local = $local.Substring($local.IndexOf(":") + 2)
     "Deleting from $local"
-    dotnet nuget delete Json.TestLogger 3.0.0-dev --force-english-output --non-interactive -s $local
+    dotnet nuget delete Json.TestLogger 3.1.0-dev --force-english-output --non-interactive -s $local
 }
 
 Remove-Item .\test\package\bin\ -Recurse
