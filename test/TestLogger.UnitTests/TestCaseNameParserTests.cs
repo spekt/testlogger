@@ -46,6 +46,9 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.y.x.ape.bar('\\'',False)", "z.y.x", "ape", "bar('\\'',False)")]
         [DataRow("z.y.x.ape.bar('\\\\',False)", "z.y.x", "ape", "bar('\\\\',False)")]
 
+        // See xunit.testlogger #48
+        [DataRow("z.y+a.x", "z", "y+a", "x")]
+
         // Strip out any line breaks
         [DataRow("z.y.x.ape.bar('aa\r\nbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
         [DataRow("z.y.x.ape.bar('aa\nbb',False)", "z.y.x", "ape", "bar('aabb',False)")]
