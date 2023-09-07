@@ -42,7 +42,7 @@ namespace TestLogger.AcceptanceTests
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     FileName = "dotnet",
-                    Arguments = $"test --no-build --logger:\"json;LogFilePath={ResultFile}{args}\" {GetAssemblyPath(assemblyName)}\\{assemblyName}.csproj"
+                    Arguments = $"test --no-build --logger:\"json;LogFilePath={ResultFile}{args}\" \"{GetAssemblyPath(assemblyName)}\\{assemblyName}.csproj\""
                 }
             };
 
