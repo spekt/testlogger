@@ -962,15 +962,15 @@
             Result: Passed,
             Properties: [
               {
+                Key: NUnit.Seed,
+                Value: 1100
+              },
+              {
                 Key: NUnit.TestCategory,
                 Value: [
                   Category2,
                   Category1
                 ]
-              },
-              {
-                Key: NUnit.Seed,
-                Value: 1100
               }
             ]
           },
@@ -1011,14 +1011,14 @@
             Result: Passed,
             Properties: [
               {
+                Key: NUnit.Seed,
+                Value: 1100
+              },
+              {
                 Key: NUnit.TestCategory,
                 Value: [
                   Nunit Test Category
                 ]
-              },
-              {
-                Key: NUnit.Seed,
-                Value: 1100
               }
             ]
           },
@@ -1037,14 +1037,14 @@
             ],
             Properties: [
               {
+                Key: NUnit.Seed,
+                Value: 1100
+              },
+              {
                 Key: NUnit.TestCategory,
                 Value: [
                   NUnit Test Category
                 ]
-              },
-              {
-                Key: NUnit.Seed,
-                Value: 1100
               }
             ]
           },
@@ -1182,14 +1182,14 @@
             Result: Failed,
             Properties: [
               {
+                Key: NUnit.Seed,
+                Value: 1100
+              },
+              {
                 Key: NUnit.TestCategory,
                 Value: [
                   failing category
                 ]
-              },
-              {
-                Key: NUnit.Seed,
-                Value: 1100
               }
             ]
           },
@@ -1230,14 +1230,14 @@
             Result: Passed,
             Properties: [
               {
+                Key: NUnit.Seed,
+                Value: 1100
+              },
+              {
                 Key: NUnit.TestCategory,
                 Value: [
                   passing category
                 ]
-              },
-              {
-                Key: NUnit.Seed,
-                Value: 1100
               }
             ]
           },
@@ -1284,14 +1284,14 @@
             Result: Failed,
             Properties: [
               {
+                Key: NUnit.Seed,
+                Value: 1100
+              },
+              {
                 Key: NUnit.TestCategory,
                 Value: [
                   failing category
                 ]
-              },
-              {
-                Key: NUnit.Seed,
-                Value: 1100
               }
             ]
           },
@@ -1332,14 +1332,14 @@
             Result: Passed,
             Properties: [
               {
+                Key: NUnit.Seed,
+                Value: 1100
+              },
+              {
                 Key: NUnit.TestCategory,
                 Value: [
                   passing category
                 ]
-              },
-              {
-                Key: NUnit.Seed,
-                Value: 1100
               }
             ]
           },

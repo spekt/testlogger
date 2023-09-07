@@ -90,6 +90,7 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
             var props = result
                 .Properties
                 .Select(p => p.Key == "NUnit.Seed" ? new KeyValuePair<string, object>(p.Key, "1100") : p)
+                .OrderBy(p => p.Key)
                 .ToList();
 
             // Attachments have diff path in Windows vs Linux.
