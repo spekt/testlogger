@@ -25,5 +25,9 @@ If acceptance tests are failing, try running this command to see detailed output
 > dotnet test --no-build --logger:"json;LogFilePath=test-results.json" test/assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj
 ```
 
+## Wiki
+
+See <https://github.com/spekt/testlogger/wiki> for [Logger Configuration](https://github.com/spekt/testlogger/wiki/Logger-Configuration) and troubleshooting.
+  
 ## License
 MIT
