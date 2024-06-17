@@ -7,7 +7,7 @@
     <Import Project="$(SourceRoot)scripts/settings.targets" />
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <WarningsAsErrors>true</WarningsAsErrors>
         <EnableCodeAnalysis>true</EnableCodeAnalysis>
         <IsPackable>false</IsPackable>
@@ -17,9 +17,16 @@
         <DefineConstants Condition="$([MSBuild]::IsOSPlatform('Windows'))">WINDOWS_OS</DefineConstants>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="MSTest.TestFramework" Version="3.4.3" />
+        <PackageReference Include="MSTest.TestAdapter" Version="3.4.3" />
+        <PackageReference Include="Moq" Version="4.9.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    </ItemGroup>
+
     <!-- Build test assets for acceptance tests -->
     <PropertyGroup>
-        <TestRestoreConfig>"$(MSBuildThisFileDirectory)../assets/NuGet.$(Configuration).config"</TestRestoreConfig>
+        <TestRestoreConfig>"$(MSBuildThisFileDirectory)../assets/NuGet.Release.config"</TestRestoreConfig>
         
         <MSTestTestFullProject>"$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetFull.Tests/Json.TestLogger.MSTest.NetFull.Tests.csproj"</MSTestTestFullProject>
         <MSTestTestCoreProject>"$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj"</MSTestTestCoreProject>

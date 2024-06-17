@@ -13,13 +13,13 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     env:
-      APP_BUILD_VERSION: ${{ format('3.1.{0}', github.run_number) }}
+      APP_BUILD_VERSION: ${{ format('4.0.{0}', github.run_number) }}
     steps:
       - uses: actions/checkout@v2
-      - name: Setup .NET 7.0
+      - name: Setup .NET 8.0
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.x
       - name: Setup .NET 3.1.x
         uses: actions/setup-dotnet@v1
         with:
@@ -29,9 +29,14 @@ jobs:
       - name: Package (release)
         run: dotnet pack -c Release -p:PackageVersion=${{ env.APP_BUILD_VERSION }}
       - name: Unit test
-        run: dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.UnitTests/TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
+        run: |
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.UnitTests/TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/NUnit.Xml.TestLogger.UnitTests/NUnit.Xml.TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
       - name: Acceptance test
-        run: dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj
+        run: |
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj
       - name: Upload Verification Files on Fail
         if: ${{ failure() }}
         uses: actions/upload-artifact@v2
@@ -48,5 +53,6 @@ jobs:
       - name: Publish packages
         if: ${{ github.event_name == 'push' && matrix.os == 'ubuntu-latest' }}
         run: |
-          dotnet nuget push 'src/TestLogger/bin/Release/*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/spekt/index.json
           dotnet nuget push 'src/TestLogger/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
+          dotnet nuget push 'src/Xunit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
+          dotnet nuget push 'src/NUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json

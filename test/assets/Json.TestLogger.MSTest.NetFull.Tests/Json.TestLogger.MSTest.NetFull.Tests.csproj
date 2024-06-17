@@ -6,7 +6,7 @@
   <Import Project="$(SourceRoot)scripts/settings.targets" />
 
   <PropertyGroup>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <FrameworkPathOverride Condition="'$(OS)' != 'Windows_NT'">/usr/lib/mono/4.5/</FrameworkPathOverride>
 
     <!-- Disable stylecop for test assets -->
@@ -14,10 +14,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../Json.TestLogger/Json.TestLogger.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(NETTestSdkMinimumVersion)" />
     <PackageReference Include="MSTest.TestAdapter" Version="$(MSTestVersion)" />
     <PackageReference Include="MSTest.TestFramework" Version="$(MSTestVersion)" />
-    <PackageReference Include="Json.TestLogger" Version="$(PackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
