@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <SourceRoot Condition="$(SourceRoot) == ''">..\..\</SourceRoot>
+    <PackageIcon>packageIcon.png</PackageIcon>
+  </PropertyGroup>
+  <Import Project="$(SourceRoot)scripts/settings.targets" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.5</TargetFramework>
+    <Version>$(PackageVersion)</Version>
+    <AssemblyName>JUnitXml.TestLogger</AssemblyName>
+
+    <!-- This isn't an assembly -->
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
+
+    <!-- Don't create outputs during build or publish -->
+    <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
+    <CopyBuildOutputToPublishDirectory>false</CopyBuildOutputToPublishDirectory>
+    <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    
+    <!-- Disable warning that there are no source files. It is intentional. -->
+    <NoWarn>$(NoWarn);2008;NU5127</NoWarn>
+
+    <!-- Nuget pack configuration -->
+    <NuspecFile>bin\$(Configuration)\$(TargetFramework)\JUnitXml.TestLogger.nuspec</NuspecFile>
+    <NuspecProperties>version=$(Version)</NuspecProperties>
+    <IncludeContentInPack>false</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JUnit.Xml.TestLogger\JUnit.Xml.TestLogger.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="JUnitXml.TestLogger.props">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JUnitXml.TestLogger.nuspec">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="packageIcon.png" Pack="true" PackagePath="">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <!--<Target Name="AfterBuild">-->
+    <!--<Copy SourceFiles="JUnitXml.TestLogger.props" DestinationFolder="build\netstandard1.0" SkipUnchangedFiles="true" />-->
+    <!--<Copy SourceFiles="JUnitXml.TestLogger.props" DestinationFolder="build\net45" SkipUnchangedFiles="true" />-->
+  <!--</Target>-->
+
+  <!-- Prevent Csc from being called -->
+  <Target Name="CoreCompile" />
+</Project>
