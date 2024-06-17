@@ -6,7 +6,7 @@
   <Import Project="$(SourceRoot)scripts/settings.targets" />
 
   <PropertyGroup>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <FrameworkPathOverride Condition="'$(OS)' != 'Windows_NT'">/usr/lib/mono/4.5/</FrameworkPathOverride>
 
     <!-- Disable stylecop for test assets -->
@@ -14,10 +14,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../../src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(NETTestSdkMinimumVersion)" />
     <PackageReference Include="NUnit" Version="$(NUnitVersion)" />
     <PackageReference Include="NUnit3TestAdapter" Version="$(NUnitTestAdapterVersion)" />
-    <PackageReference Include="JunitXml.TestLogger" Version="$(PackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
