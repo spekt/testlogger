@@ -10,11 +10,11 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
     [TestClass]
     public class NUnitTestLoggerPathTests
     {
-        private static readonly string[] ExpectedResultsFiles =
-        [
+        private static readonly string[] ExpectedResultsFiles = new string[]
+        {
             "NUnit.Xml.TestLogger.NetMulti.Tests.NETFramework461.test-results.xml",
             "NUnit.Xml.TestLogger.NetMulti.Tests.NETCoreApp31.test-results.xml"
-        ];
+        };
 
         public NUnitTestLoggerPathTests()
         {
