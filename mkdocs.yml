@@ -1,0 +1,10 @@
+site_name: Spekt - community tools for testing!
+
+pages:
+  - Spekt: 'index.md'
+
+theme:
+  name: "material"
+  palette:
+    primary: 'light blue'
+    accent: 'deep orange'

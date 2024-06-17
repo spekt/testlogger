@@ -338,6 +338,9 @@ ASALocalRun/
 # VSTest logs
 log*.txt
 
+# Mkdocs
+site
+
 .vscode/settings.json
 
 *.received.txt

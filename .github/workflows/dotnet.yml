@@ -32,11 +32,13 @@ jobs:
         run: |
           dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.UnitTests/TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
           dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/NUnit.Xml.TestLogger.UnitTests/NUnit.Xml.TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/JUnit.Xml.TestLogger.UnitTests/JUnit.Xml.TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
       - name: Acceptance test
         run: |
           dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj
           dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj
           dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/JUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj
       - name: Upload Verification Files on Fail
         if: ${{ failure() }}
         uses: actions/upload-artifact@v2
@@ -56,3 +58,4 @@ jobs:
           dotnet nuget push 'src/TestLogger/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/Xunit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/NUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
+          dotnet nuget push 'src/JUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
