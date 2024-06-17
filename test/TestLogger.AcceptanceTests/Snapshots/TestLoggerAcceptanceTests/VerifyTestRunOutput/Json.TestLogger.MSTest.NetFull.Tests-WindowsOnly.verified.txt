@@ -1,6 +1,6 @@
 ﻿[
   {
-    Name: bin/Debug/net46/Json.TestLogger.MSTest.NetFull.Tests.dll,
+    Name: bin/Debug/net462/Json.TestLogger.MSTest.NetFull.Tests.dll,
     Fixtures: [
       {
         Name: UnitTest2,

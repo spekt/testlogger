@@ -25,7 +25,7 @@ bld/
 [Ll]og/
 
 # Test results
-**/test-results.xml
+**/*test-results.xml
 **/test-results.json
 
 # Visual Studio 2015/2017 cache/options directory
@@ -334,6 +334,9 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder
 .mfractor/
+
+# VSTest logs
+log*.txt
 
 .vscode/settings.json
 

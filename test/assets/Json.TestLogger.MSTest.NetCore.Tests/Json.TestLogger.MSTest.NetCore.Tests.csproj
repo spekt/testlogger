@@ -13,10 +13,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../Json.TestLogger/Json.TestLogger.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(NETTestSdkMinimumVersion)" />
     <PackageReference Include="MSTest.TestAdapter" Version="$(MSTestVersion)" />
     <PackageReference Include="MSTest.TestFramework" Version="$(MSTestVersion)" />
-    <PackageReference Include="Json.TestLogger" Version="$(PackageVersion)" />
   </ItemGroup>
 
 </Project>

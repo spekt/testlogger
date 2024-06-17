@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SourceRoot Condition="$(SourceRoot) == ''">$(MSBuildThisFileDirectory)../../</SourceRoot>
-    <SourcePrefix>3.1.0</SourcePrefix>
+    <SourcePrefix>4.0.0</SourcePrefix>
   </PropertyGroup>
   <PropertyGroup>
     <!-- Versioning is defined from the build script. Use a default dev build if it's not defined.
@@ -39,8 +39,6 @@
     <DefineConstants>$(DefineConstants);CODE_ANALYSIS</DefineConstants>
   </PropertyGroup>
 
-  <Import Project="$(MSBuildThisFileDirectory)dependencies.props" />
-
   <!-- Common dependencies for all projects -->
   <ItemGroup>
     <AdditionalFiles Include="$(SourceRoot)scripts\stylecop.json">
@@ -51,26 +49,6 @@
       <Version>$(StylecopVersion)</Version>
     </PackageReference>
   </ItemGroup>
-
-  <!-- Test project settings -->
-  <Choose>
-    <When Condition="$(TestProject) == 'true'">
-      <ItemGroup>
-        <PackageReference Include="MSTest.TestFramework">
-          <Version>$(MSTestVersion)</Version>
-        </PackageReference>
-        <PackageReference Include="MSTest.TestAdapter">
-          <Version>$(MSTestVersion)</Version>
-        </PackageReference>
-        <PackageReference Include="Moq">
-          <Version>$(MoqVersion)</Version>
-        </PackageReference>
-        <PackageReference Include="Microsoft.NET.Test.Sdk">
-          <Version>$(NETTestSdkVersion)</Version>
-        </PackageReference>
-      </ItemGroup>
-    </When>
-  </Choose>
 
   <!-- Code analysis settings -->
   <PropertyGroup>

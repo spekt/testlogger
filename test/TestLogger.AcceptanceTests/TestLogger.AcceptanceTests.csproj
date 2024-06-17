@@ -17,6 +17,13 @@
         <DefineConstants Condition="$([MSBuild]::IsOSPlatform('Windows'))">WINDOWS_OS</DefineConstants>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="MSTest.TestFramework" Version="3.4.3" />
+        <PackageReference Include="MSTest.TestAdapter" Version="3.4.3" />
+        <PackageReference Include="Moq" Version="4.9.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    </ItemGroup>
+
     <!-- Build test assets for acceptance tests -->
     <PropertyGroup>
         <TestRestoreConfig>"$(MSBuildThisFileDirectory)../assets/NuGet.$(Configuration).config"</TestRestoreConfig>
