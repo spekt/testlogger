@@ -1,8 +1,6 @@
 # Xunit Test Logger
 Xunit logger extensions for [Visual Studio Test Platform](https://github.com/microsoft/vstest).
 
-[![Build Status](https://travis-ci.com/spekt/xunit.testlogger.svg?branch=master)](https://travis-ci.com/spekt/xunit.testlogger)
-[![Build status](https://ci.appveyor.com/api/projects/status/73iw12g89lhlr9ir?svg=true)](https://ci.appveyor.com/project/spekt/xunit-testlogger)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/XunitXml.TestLogger)](https://www.nuget.org/packages/XunitXml.TestLogger/)
 
 ## Packages
@@ -10,10 +8,7 @@ Xunit logger extensions for [Visual Studio Test Platform](https://github.com/mic
 | ------ | -------------- | ------------------- |
 | Xunit | [![NuGet](https://img.shields.io/nuget/v/XunitXml.TestLogger.svg)](https://www.nuget.org/packages/XunitXml.TestLogger/) | [![MyGet Pre Release](https://img.shields.io/myget/spekt/vpre/xunitxml.testlogger.svg)](https://www.myget.org/feed/spekt/package/nuget/XunitXml.TestLogger) |
 
-If you're looking for `nunit`, `junit` or `appveyor` loggers, visit following repositories:
-* <https://github.com/spekt/nunit.testlogger>
-* <https://github.com/spekt/junit.testlogger>
-* <https://github.com/spekt/appveyor.testlogger>
+If you're looking for `nunit` or `junit`, please see <https://github.com/spekt/testlogger>.
 
 ## Usage
 Xunit logger can generate xml reports in the xunit v2 format (https://xunit.net/docs/format-xml-v2).

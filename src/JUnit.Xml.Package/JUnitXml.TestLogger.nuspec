@@ -21,6 +21,8 @@
     <!-- Desktop -->
     <file src="JunitXml.TestLogger.props" target="build\net46\" />
 
+    <file src="README.md" target="docs\" />
+    <file src="CHANGELOG.md" target="docs\" />
     <file src="packageIcon.png" target="\" />
   </files>
 </package>
