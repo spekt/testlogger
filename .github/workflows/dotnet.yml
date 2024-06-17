@@ -13,7 +13,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     env:
-      APP_BUILD_VERSION: ${{ format('3.1.{0}', github.run_number) }}
+      APP_BUILD_VERSION: ${{ format('4.0.{0}', github.run_number) }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET 7.0
@@ -29,9 +29,14 @@ jobs:
       - name: Package (release)
         run: dotnet pack -c Release -p:PackageVersion=${{ env.APP_BUILD_VERSION }}
       - name: Unit test
-        run: dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.UnitTests/TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
+        run: |
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.UnitTests/TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/NUnit.Xml.TestLogger.UnitTests/NUnit.Xml.TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
       - name: Acceptance test
-        run: dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj
+        run: |
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj
       - name: Upload Verification Files on Fail
         if: ${{ failure() }}
         uses: actions/upload-artifact@v2
