@@ -7,7 +7,7 @@
   <Import Project="$(SourceRoot)scripts/settings.targets" />
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <WarningsAsErrors>true</WarningsAsErrors>
     <EnableCodeAnalysis>true</EnableCodeAnalysis>
     <IsPackable>false</IsPackable>
@@ -22,10 +22,11 @@
 
   <!-- Build test assets for acceptance tests -->
   <PropertyGroup>
-    <TestRestoreConfig>$(MSBuildThisFileDirectory)../assets/NuGet.$(Configuration).config</TestRestoreConfig>
+    <TestRestoreConfig>$(MSBuildThisFileDirectory)../assets/NuGet.Release.config</TestRestoreConfig>
     <TestFullProject>$(MSBuildThisFileDirectory)../assets/NUnit.Xml.TestLogger.NetFull.Tests/NUnit.Xml.TestLogger.NetFull.Tests.csproj</TestFullProject>
     <TestCoreProject>$(MSBuildThisFileDirectory)../assets/NUnit.Xml.TestLogger.NetCore.Tests/NUnit.Xml.TestLogger.NetCore.Tests.csproj</TestCoreProject>
     <TestMultiProject>$(MSBuildThisFileDirectory)../assets/NUnit.Xml.TestLogger.NetMulti.Tests/NUnit.Xml.TestLogger.NetMulti.Tests.csproj</TestMultiProject>
+    <TestPackageProject>$(MSBuildThisFileDirectory)../assets/NUnit.Xml.PackageTest/NUnit.Xml.PackageTest.csproj</TestPackageProject>
   </PropertyGroup>
   <Target Name="TestTarget" AfterTargets="Build">
     <Message Importance="High" Text="... Building test assets" />
@@ -33,6 +34,7 @@
     <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestCoreProject)" />
     <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestFullProject)" />
     <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestMultiProject)" />
+    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestPackageProject)" />
     <Message Importance="High" Text="... Completed" />
   </Target>
 </Project>

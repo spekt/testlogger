@@ -7,7 +7,7 @@
     <Import Project="$(SourceRoot)scripts/settings.targets" />
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <WarningsAsErrors>true</WarningsAsErrors>
         <EnableCodeAnalysis>true</EnableCodeAnalysis>
         <IsPackable>false</IsPackable>
@@ -26,7 +26,7 @@
 
     <!-- Build test assets for acceptance tests -->
     <PropertyGroup>
-        <TestRestoreConfig>"$(MSBuildThisFileDirectory)../assets/NuGet.$(Configuration).config"</TestRestoreConfig>
+        <TestRestoreConfig>"$(MSBuildThisFileDirectory)../assets/NuGet.Release.config"</TestRestoreConfig>
         
         <MSTestTestFullProject>"$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetFull.Tests/Json.TestLogger.MSTest.NetFull.Tests.csproj"</MSTestTestFullProject>
         <MSTestTestCoreProject>"$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj"</MSTestTestCoreProject>
