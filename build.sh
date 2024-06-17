@@ -8,4 +8,4 @@ dotnet test test/JUnit.Xml.TestLogger.UnitTests/JUnit.Xml.TestLogger.UnitTests.c
 dotnet test test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj &&\
 dotnet test test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj &&\
 dotnet test test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj &&\
-dotnet test test/NUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj
+dotnet test test/JUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj
