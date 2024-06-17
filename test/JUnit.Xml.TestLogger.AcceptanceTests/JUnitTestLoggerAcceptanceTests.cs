@@ -57,8 +57,8 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             Assert.AreEqual("JUnit.Xml.TestLogger.NetCore.Tests.dll", node.Attribute(XName.Get("name")).Value);
             Assert.AreEqual(Environment.MachineName, node.Attribute(XName.Get("hostname")).Value);
 
-            Assert.AreEqual("52", node.Attribute(XName.Get("tests")).Value);
-            Assert.AreEqual("14", node.Attribute(XName.Get("failures")).Value);
+            Assert.AreEqual("53", node.Attribute(XName.Get("tests")).Value);
+            Assert.AreEqual("15", node.Attribute(XName.Get("failures")).Value);
             Assert.AreEqual("8", node.Attribute(XName.Get("skipped")).Value);
 
             // Errors is zero becasue we don't get errors as a test outcome from .net
@@ -76,7 +76,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             // Check all test cases
             Assert.IsNotNull(node);
-            Assert.AreEqual(52, testcases.Count());
+            Assert.AreEqual(53, testcases.Count());
             Assert.IsTrue(testcases.All(x => double.TryParse(x.Attribute("time").Value, out _)));
 
             // Check failures
@@ -84,7 +84,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 .Where(x => x.Descendants().Any(y => y.Name.LocalName == "failure"))
                 .ToList();
 
-            Assert.AreEqual(14, failures.Count());
+            Assert.AreEqual(15, failures.Count());
             Assert.IsTrue(failures.All(x => x.Descendants().Count() == 1));
             Assert.IsTrue(failures.All(x => x.Descendants().First().Attribute("type").Value == "failure"));
 

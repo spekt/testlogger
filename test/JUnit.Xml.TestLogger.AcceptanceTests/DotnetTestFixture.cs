@@ -71,9 +71,12 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 p.StartInfo.RedirectStandardOutput = true;
                 p.StartInfo.FileName = "dotnet";
                 p.StartInfo.Arguments = $"test --no-build {testLogger} {testProject}";
-                p.Start();
 
                 Console.WriteLine("dotnet arguments: " + p.StartInfo.Arguments);
+
+                // Required to skip icu requirement for netcoreapp3.1 in linux
+                p.StartInfo.EnvironmentVariables["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT"] = "1";
+                p.Start();
 
                 // To avoid deadlocks, always read the output stream first and then wait.
                 string output = p.StandardOutput.ReadToEnd();
