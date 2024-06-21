@@ -1,0 +1,20 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@5.0
+
+workflows:
+  package-test:
+    jobs:
+      - build
+
+jobs:
+  build:
+    executor:
+      name: win/server-2022
+      shell: powershell.exe
+    steps:
+      - checkout
+      - run: powershell ./package-test.ps1
+      - store_test_results:
+          path: test/assets/JUnit.Xml.PackageTest/TestResults/
