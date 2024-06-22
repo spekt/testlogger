@@ -52,17 +52,16 @@ namespace TestLogger.AcceptanceTests
             settings.ScrubLinesWithReplace(x =>
             {
                 var options = RegexOptions.IgnoreCase | RegexOptions.Compiled;
-                var nameInDebugFolderMatch = new Regex(@"^(    Name: ).*([\/\\]*bin[\/\\]*Debug[\/\\]*.*)$", options);
+                var nameInDebugFolderMatch = new Regex(@".*([\/\\]*bin[\/\\]*Debug[\/\\]*.*)$", options);
                 var prefixedMatch = new Regex(@"^(.{0,}: )(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
                 var pathMatch = new Regex(@"^(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
 
                 if (nameInDebugFolderMatch.IsMatch(x))
                 {
-                    // Used to take something like '   Name: C:\\lsdkjf\sdf\bin\Debug\a\b\c.txt' => '   Name: /bin/Debug/a/b/c.txt' which helps with cross dev/platform comparison
+                    // Used to take something like 'C:\\lsdkjf\sdf\bin\Debug\a\b\c.txt' => '/bin/Debug/a/b/c.txt' which helps with cross dev/platform comparison
                     var m = nameInDebugFolderMatch.Match(x);
-                    var prefix = m.Groups[1].Captures[0].Value.Replace('\\', '/');
-                    var pathForwardSlashes = m.Groups[2].Captures[0].Value.Replace('\\', '/');
-                    x = prefix + pathForwardSlashes;
+                    var pathForwardSlashes = m.Groups[1].Captures[0].Value.Replace('\\', '/');
+                    x = pathForwardSlashes;
                     x = x.Replace("//", "/");
                 }
                 else if (prefixedMatch.IsMatch(x))
@@ -88,7 +87,9 @@ namespace TestLogger.AcceptanceTests
             DotnetTestFixture.Execute(testAssembly, args, collectCoverage, out var resultsFile);
             var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
 
-            return this.Verify(testReport.TestAssemblies, settings);
+            // Using VerifyJson with serialized JSON to avoid incompatibility in object serialization
+            // between NewtonSoft.Json and Argon (the JSON serializer used by Verify)
+            return this.VerifyJson(JsonConvert.SerializeObject(testReport.TestAssemblies), settings);
         }
     }
 }
