@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased (v3.1.x)
+## Unreleased (v4.0.x)
 
 ## v3.1.20 - 2024/02/10
 
