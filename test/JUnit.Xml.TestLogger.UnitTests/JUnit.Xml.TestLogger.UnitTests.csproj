@@ -1,15 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <SourceRoot Condition="$(SourceRoot) == ''">..\..\</SourceRoot>
-    <TestProject>true</TestProject>
-  </PropertyGroup>
-  <Import Project="$(SourceRoot)scripts/settings.targets" />
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <WarningsAsErrors>true</WarningsAsErrors>
     <EnableCodeAnalysis>true</EnableCodeAnalysis>
     <IsPackable>false</IsPackable>
+    <TestProject>true</TestProject>
   </PropertyGroup>
 
   <ItemGroup>

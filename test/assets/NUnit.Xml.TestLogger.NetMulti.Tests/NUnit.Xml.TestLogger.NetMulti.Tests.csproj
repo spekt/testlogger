@@ -1,11 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <SourceRoot Condition="$(SourceRoot) == ''">..\..\..\</SourceRoot>
-  </PropertyGroup>
-  <Import Project="$(SourceRoot)scripts/settings.targets" />
-
-  <PropertyGroup>
     <TargetFrameworks>net461;netcoreapp3.1</TargetFrameworks>
     <FrameworkPathOverride Condition="'$(OS)' != 'Windows_NT'">/usr/lib/mono/4.5/</FrameworkPathOverride>
   </PropertyGroup>
