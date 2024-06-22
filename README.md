@@ -25,6 +25,11 @@ If acceptance tests are failing, try running this command to see detailed output
 > dotnet test --no-build --logger:"json;LogFilePath=test-results.json" test/assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj
 ```
 
+### CI/CD Integration Tests
+
+- [Sample Gitlab pipeline](https://gitlab.com/codito/sample-junit-test/-/pipelines) picks the latest pre-release Junit logger in Gitlab CI.
+- [Sample Circle CI pipeline](https://app.circleci.com/pipelines/circleci/GA6zAWSpZy4izQcaCFyvJP/CRQra9Zg7NR4ZYZk2vsmEX) runs on every PR via webhook.
+
 ## Wiki
 
 See <https://github.com/spekt/testlogger/wiki> for [Logger Configuration](https://github.com/spekt/testlogger/wiki/Logger-Configuration) and troubleshooting.
