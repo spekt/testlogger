@@ -8,6 +8,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     using System.Linq;
     using System.Xml.Linq;
     using System.Xml.XPath;
+    using global::TestLogger.Fixtures;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
 
@@ -22,18 +23,23 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     [TestClass]
     public class JUnitTestLoggerFormatOptionsAcceptanceTests
     {
+        private const string AssetName = "JUnit.Xml.TestLogger.NetCore.Tests";
+
         [TestMethod]
         public void FailureBodyFormat_Default_ShouldntStartWithMessage()
         {
-            DotnetTestFixture.Execute("failure-default-test-results.xml;FailureBodyFormat=Default");
-            string resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "failure-default-test-results.xml");
-            XDocument resultsXml = XDocument.Load(resultsFile);
+            var loggerArgs = "junit;LogFilePath=failure-default-test-results.xml;FailureBodyFormat=Default";
 
+            var resultsFile = DotnetTestFixture
+                                .Create()
+                                .WithBuild()
+                                .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "failure-default-test-results.xml");
+
+            XDocument resultsXml = XDocument.Load(resultsFile);
             var failures = resultsXml.XPathSelectElements("/testsuites/testsuite")
                 .Descendants()
                 .Where(x => x.Name.LocalName == "failure")
                 .ToList();
-
             foreach (var failure in failures)
             {
                 // Strip new line and carrige return. These may be inconsistent depending on
@@ -50,15 +56,18 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         [TestMethod]
         public void FailureBodyFormat_Verbose_ShouldNotContainConsoleOut()
         {
-            DotnetTestFixture.Execute("failure-verbose-test-results.xml;FailureBodyFormat=Default");
-            string resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "failure-verbose-test-results.xml");
-            XDocument resultsXml = XDocument.Load(resultsFile);
+            var loggerArgs = "junit;LogFilePath=failure-verbose-test-results.xml;FailureBodyFormat=Default";
 
+            var resultsFile = DotnetTestFixture
+                                .Create()
+                                .WithBuild()
+                                .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "failure-verbose-test-results.xml");
+
+            XDocument resultsXml = XDocument.Load(resultsFile);
             var failures = resultsXml.XPathSelectElements("/testsuites/testsuite")
                 .Descendants()
                 .Where(x => x.Name.LocalName == "failure")
                 .ToList();
-
             Assert.AreEqual(0, failures.Count(x => x.Value.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}")));
             Assert.AreEqual(0, failures.Count(x => x.Value.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}")));
             Assert.IsTrue(new JunitXmlValidator().IsValid(resultsXml));
@@ -67,15 +76,18 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         [TestMethod]
         public void FailureBodyFormat_Verbose_ShouldStartWithMessage()
         {
-            DotnetTestFixture.Execute("failure-verbose-test-results.xml;FailureBodyFormat=Verbose");
-            string resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "failure-verbose-test-results.xml");
-            XDocument resultsXml = XDocument.Load(resultsFile);
+            var loggerArgs = "junit;LogFilePath=failure-verbose-test-results.xml;FailureBodyFormat=Verbose";
 
+            var resultsFile = DotnetTestFixture
+                                .Create()
+                                .WithBuild()
+                                .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "failure-verbose-test-results.xml");
+
+            XDocument resultsXml = XDocument.Load(resultsFile);
             var failures = resultsXml.XPathSelectElements("/testsuites/testsuite")
                 .Descendants()
                 .Where(x => x.Name.LocalName == "failure")
                 .ToList();
-
             foreach (var failure in failures)
             {
                 // Strip new line and carrige return. These may be inconsistent depending on
@@ -92,15 +104,18 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         [TestMethod]
         public void FailureBodyFormat_Verbose_ShouldContainConsoleOut()
         {
-            DotnetTestFixture.Execute("failure-verbose-test-results.xml;FailureBodyFormat=Verbose");
-            string resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "failure-verbose-test-results.xml");
-            XDocument resultsXml = XDocument.Load(resultsFile);
+            var loggerArgs = "junit;LogFilePath=failure-verbose-test-results.xml;FailureBodyFormat=Verbose";
 
+            var resultsFile = DotnetTestFixture
+                                .Create()
+                                .WithBuild()
+                                .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "failure-verbose-test-results.xml");
+
+            XDocument resultsXml = XDocument.Load(resultsFile);
             var failures = resultsXml.XPathSelectElements("/testsuites/testsuite")
                 .Descendants()
                 .Where(x => x.Name.LocalName == "failure")
                 .ToList();
-
             Assert.AreEqual(1, failures.Count(x => x.Value.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}")));
             Assert.AreEqual(1, failures.Count(x => x.Value.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}")));
             Assert.IsTrue(new JunitXmlValidator().IsValid(resultsXml));
@@ -109,15 +124,18 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         [TestMethod]
         public void MethodFormat_Default_ShouldBeOnlyTheMethod()
         {
-            DotnetTestFixture.Execute("method-default-test-results.xml;MethodFormat=Default");
-            string resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "method-default-test-results.xml");
-            XDocument resultsXml = XDocument.Load(resultsFile);
+            var loggerArgs = "junit;LogFilePath=method-default-test-results.xml;MethodFormat=Default";
 
+            var resultsFile = DotnetTestFixture
+                                .Create()
+                                .WithBuild()
+                                .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "method-default-test-results.xml");
+
+            XDocument resultsXml = XDocument.Load(resultsFile);
             var testcases = resultsXml.XPathSelectElements("/testsuites/testsuite")
                 .Descendants()
                 .Where(x => x.Name.LocalName == "testcase")
                 .ToList();
-
             foreach (var testcase in testcases)
             {
                 var parsedName = new TestCaseNameParser().Parse(testcase.Attribute("name").Value);
@@ -132,15 +150,18 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         [TestMethod]
         public void MethodFormat_Class_ShouldIncludeClass()
         {
-            DotnetTestFixture.Execute("method-class-test-results.xml;MethodFormat=Class");
-            string resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "method-class-test-results.xml");
-            XDocument resultsXml = XDocument.Load(resultsFile);
+            var loggerArgs = "junit;LogFilePath=method-class-test-results.xml;MethodFormat=Class";
 
+            var resultsFile = DotnetTestFixture
+                                .Create()
+                                .WithBuild()
+                                .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "method-class-test-results.xml");
+
+            XDocument resultsXml = XDocument.Load(resultsFile);
             var testcases = resultsXml.XPathSelectElements("/testsuites/testsuite")
                 .Descendants()
                 .Where(x => x.Name.LocalName == "testcase")
                 .ToList();
-
             foreach (var testcase in testcases)
             {
                 // Note the new parser can't handle the names with just class.method
@@ -157,15 +178,18 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         [TestMethod]
         public void MethodFormat_Full_ShouldIncludeNamespaceAndClass()
         {
-            DotnetTestFixture.Execute("method-full-test-results.xml;MethodFormat=Full");
-            string resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "method-full-test-results.xml");
-            XDocument resultsXml = XDocument.Load(resultsFile);
+            var loggerArgs = "junit;LogFilePath=method-full-test-results.xml;MethodFormat=Full";
 
+            var resultsFile = DotnetTestFixture
+                                .Create()
+                                .WithBuild()
+                                .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "method-full-test-results.xml");
+
+            XDocument resultsXml = XDocument.Load(resultsFile);
             var testcases = resultsXml.XPathSelectElements("/testsuites/testsuite")
                 .Descendants()
                 .Where(x => x.Name.LocalName == "testcase")
                 .ToList();
-
             foreach (var testcase in testcases)
             {
                 var parsedName = new TestCaseNameParser().Parse(testcase.Attribute("name").Value);

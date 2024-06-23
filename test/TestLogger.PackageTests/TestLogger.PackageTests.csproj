@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <WarningsAsErrors>true</WarningsAsErrors>
+        <EnableCodeAnalysis>true</EnableCodeAnalysis>
+        <IsPackable>false</IsPackable>
+        <TestProject>true</TestProject>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <DefineConstants Condition="$([MSBuild]::IsOSPlatform('Windows'))">WINDOWS_OS</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MSTest.TestFramework" Version="3.4.3" />
+        <PackageReference Include="MSTest.TestAdapter" Version="3.4.3" />
+        <PackageReference Include="Moq" Version="4.9.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    </ItemGroup>
+
+    <!-- Build test assets for acceptance tests -->
+    <ItemGroup>
+        <TestAssets Include="$(MSBuildThisFileDirectory)../assets/NUnit.Xml.PackageTest/NUnit.Xml.PackageTest.csproj" />
+        <TestAssets Include="$(MSBuildThisFileDirectory)../assets/JUnit.Xml.PackageTest/JUnit.Xml.PackageTest.csproj" />
+        <TestAssets Include="$(MSBuildThisFileDirectory)../assets/Xunit.Xml.PackageTest/Xunit.Xml.PackageTest.csproj" />
+    </ItemGroup>
+    <PropertyGroup>
+        <TestRestoreConfig>$(MSBuildThisFileDirectory)../assets/NuGet.Release.config</TestRestoreConfig>
+    </PropertyGroup>
+    <Target Name="TestTarget" BeforeTargets="Build">
+        <Message Importance="High" Text="... Remove existing testloggers" />
+        <RemoveDir Directories="$(NuGetPackageRoot)/nunitxml.testlogger" />
+        <RemoveDir Directories="$(NuGetPackageRoot)/junitxml.testlogger" />
+        <RemoveDir Directories="$(NuGetPackageRoot)/xunitxml.testlogger" />
+        <Message Importance="High" Text="... Completed" />
+
+        <Message Importance="High" Text="... Restore test assets" />
+        <MSBuild Projects="@(TestAssets)" Properties="Configuration=$(Configuration);PackageVersion=$(PackageVersion);RestoreConfigFile=$(TestRestoreConfig);RestoreNoCache=true" Targets="Restore" />
+        <Message Importance="High" Text="... Completed" />
+    </Target>
+    <ItemGroup>
+        <PackageReference Include="Verify.MSTest" Version="25.0.3" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../TestLogger.Fixtures/TestLogger.Fixtures.csproj" />
+    </ItemGroup>
+</Project>

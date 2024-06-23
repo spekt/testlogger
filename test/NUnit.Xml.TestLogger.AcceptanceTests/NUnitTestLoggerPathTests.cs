@@ -5,6 +5,8 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
 {
     using System;
     using System.IO;
+    using System.Linq;
+    using global::TestLogger.Fixtures;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -16,32 +18,25 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
             "NUnit.Xml.TestLogger.NetMulti.Tests.NETCoreApp31.test-results.xml"
         };
 
-        public NUnitTestLoggerPathTests()
-        {
-        }
-
-        [ClassInitialize]
-        public static void SuiteInitialize(TestContext context)
-        {
-            DotnetTestFixture.RootDirectory = Path.GetFullPath(
-                Path.Combine(
-                    Environment.CurrentDirectory,
-                    "..",
-                    "..",
-                    "..",
-                    "..",
-                    "assets",
-                    "NUnit.Xml.TestLogger.NetMulti.Tests"));
-            DotnetTestFixture.TestAssemblyName = "NUnit.Xml.TestLogger.NetMulti.Tests.dll";
-            DotnetTestFixture.Execute("{assembly}.{framework}.test-results.xml");
-        }
-
         [TestMethod]
         public void TestRunWithLoggerAndFilePathShouldCreateResultsFile()
         {
-            foreach (string resultsFile in ExpectedResultsFiles)
+            var assetDir = "NUnit.Xml.TestLogger.NetMulti.Tests".ToAssetDirectoryPath();
+            var testResultFiles = ExpectedResultsFiles.Select(x => Path.Combine(assetDir, x)).ToArray();
+            var loggerArgs = "nunit;LogFilePath={assembly}.{framework}.test-results.xml";
+            foreach (var f in testResultFiles.Where(File.Exists))
             {
-                Assert.IsTrue(File.Exists(Path.Combine(DotnetTestFixture.RootDirectory, resultsFile)), $"{resultsFile} does not exist.");
+                File.Delete(f);
+            }
+
+            _ = DotnetTestFixture
+                    .Create()
+                    .WithBuild()
+                    .Execute("NUnit.Xml.TestLogger.NetMulti.Tests", loggerArgs, collectCoverage: false, "test-results.xml");
+
+            foreach (string resultFile in testResultFiles)
+            {
+                Assert.IsTrue(File.Exists(resultFile), $"{resultFile} does not exist.");
             }
         }
     }

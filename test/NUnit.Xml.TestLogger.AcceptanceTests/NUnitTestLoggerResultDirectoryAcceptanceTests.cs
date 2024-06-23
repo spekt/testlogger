@@ -3,35 +3,25 @@
 
 namespace NUnit.Xml.TestLogger.AcceptanceTests
 {
-    using System;
     using System.IO;
+    using global::TestLogger.Fixtures;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class NUnitTestLoggerResultDirectoryAcceptanceTests
     {
-        [ClassInitialize]
-        public static void SuiteInitialize(TestContext context)
-        {
-            DotnetTestFixture.RootDirectory = Path.GetFullPath(
-                    Path.Combine(
-                        Environment.CurrentDirectory,
-                        "..",
-                        "..",
-                        "..",
-                        "..",
-                        "assets",
-                        "NUnit.Xml.TestLogger.NetCore.Tests"));
-            DotnetTestFixture.TestAssemblyName = "NUnit.Xml.TestLogger.NetCore.Tests.dll";
-            var testResultsPath = Path.Combine(DotnetTestFixture.RootDirectory, "artifacts");
-            DotnetTestFixture.Execute("test-results.xml", testResultsPath);
-        }
-
         [TestMethod]
         public void TestRunWithResultDirectoryAndFileNameShouldCreateResultsFile()
         {
-            var expectedResultsPath = Path.Combine(DotnetTestFixture.RootDirectory, "artifacts", "test-results.xml");
-            Assert.IsTrue(File.Exists(expectedResultsPath), $"Results file at '{expectedResultsPath}' not found.");
+            var loggerArgs = "nunit;LogFileName=test-results.xml";
+
+            var resultsFile = DotnetTestFixture
+                                .Create()
+                                .WithBuild()
+                                .WithResultsDirectory("artifacts")
+                                .Execute("NUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "test-results.xml");
+
+            Assert.IsTrue(File.Exists(resultsFile), $"Results file at '{resultsFile}' not found.");
         }
     }
 }

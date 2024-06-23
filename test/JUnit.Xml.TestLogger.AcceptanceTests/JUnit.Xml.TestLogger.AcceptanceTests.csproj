@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../TestLogger.Fixtures/TestLogger.Fixtures.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MSTest.TestFramework" Version="3.4.3" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.4.3" />
     <PackageReference Include="Moq" Version="4.9.0" />
@@ -16,20 +20,18 @@
   </ItemGroup>
 
   <!-- Build test assets for acceptance tests -->
-  <PropertyGroup>
-    <TestRestoreConfig>$(MSBuildThisFileDirectory)../assets/NuGet.Release.config</TestRestoreConfig>
-    <TestFullProject>$(MSBuildThisFileDirectory)../assets/JUnit.Xml.TestLogger.NetFull.Tests/JUnit.Xml.TestLogger.NetFull.Tests.csproj</TestFullProject>
-    <TestCoreProject>$(MSBuildThisFileDirectory)../assets/JUnit.Xml.TestLogger.NetCore.Tests/JUnit.Xml.TestLogger.NetCore.Tests.csproj</TestCoreProject>
-    <TestMultiProject>$(MSBuildThisFileDirectory)../assets/JUnit.Xml.TestLogger.NetMulti.Tests/JUnit.Xml.TestLogger.NetMulti.Tests.csproj</TestMultiProject>
-    <TestPackageProject>$(MSBuildThisFileDirectory)../assets/JUnit.Xml.PackageTest/JUnit.Xml.PackageTest.csproj</TestPackageProject>
-  </PropertyGroup>
-  <Target Name="TestTarget" AfterTargets="Build">
+  <ItemGroup>
+    <TestAssets Condition="$([MSBuild]::IsOSPlatform('Windows'))" Include="$(MSBuildThisFileDirectory)../assets/JUnit.Xml.TestLogger.NetFull.Tests/JUnit.Xml.TestLogger.NetFull.Tests.csproj" />
+
+    <TestAssets Include="$(MSBuildThisFileDirectory)../assets/JUnit.Xml.TestLogger.NetCore.Tests/JUnit.Xml.TestLogger.NetCore.Tests.csproj" />
+    <TestAssets Include="$(MSBuildThisFileDirectory)../assets/JUnit.Xml.TestLogger.NetMulti.Tests/JUnit.Xml.TestLogger.NetMulti.Tests.csproj" />
+  </ItemGroup>
+  <Target Name="TestTarget" BeforeTargets="Build">
     <Message Importance="High" Text="... Building test assets" />
+
     <RemoveDir Directories="$(NuGetPackageRoot)/junitxml.testlogger" />
-    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestCoreProject)" />
-    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestFullProject)" />
-    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestMultiProject)" />
-    <Exec ContinueOnError="False" Command="dotnet build -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreIgnoreFailedSources=true -p:RestoreNoCache=true $(TestPackageProject)" />
+    <MSBuild Projects="@(TestAssets)" Properties="Configuration=$(Configuration)" Targets="Restore" />
+
     <Message Importance="High" Text="... Completed" />
   </Target>
   <ItemGroup>

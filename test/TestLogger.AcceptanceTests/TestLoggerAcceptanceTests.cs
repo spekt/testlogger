@@ -9,6 +9,7 @@ namespace TestLogger.AcceptanceTests
     using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
+    using TestLogger.Fixtures;
     using VerifyMSTest;
     using VerifyTests;
     using static Spekt.TestLogger.UnitTests.TestDoubles.JsonTestResultSerializer;
@@ -34,18 +35,20 @@ namespace TestLogger.AcceptanceTests
         [DataRow("Json.TestLogger.NUnit.NetFull.Tests", "", "WindowsOnly")]
         [DataRow("Json.TestLogger.XUnit.NetFull.Tests", "", "WindowsOnly")]
 #endif
-        public Task VerifyTestRunOutput(string testAssembly, string args, string comment)
+        public Task VerifyTestRunOutput(string testAssembly, string additionalArgs, string comment)
         {
-            return this.VerifyAssembly(testAssembly, args, comment);
+            // Logger arguments are passed as it is for the test process: dotnet test --logger:<loggerArgs>
+            var loggerArgs = $"json;LogFilePath=test-results.json{additionalArgs}";
+            return this.VerifyAssembly(testAssembly, loggerArgs, additionalArgs, comment);
         }
 
-        private Task VerifyAssembly(string testAssembly, string args, string comment)
+        private Task VerifyAssembly(string testAssembly, string loggerArgs, string additionalArgs, string comment)
         {
             var settings = new VerifySettings();
             settings.UseDirectory(Path.Combine("Snapshots", "TestLoggerAcceptanceTests", "VerifyTestRunOutput"));
             settings.UseFileName(
                 $"{testAssembly}" +
-                $"{(args.Length > 0 ? "-" + args : string.Empty)}" +
+                $"{(additionalArgs.Length > 0 ? "-" + additionalArgs : string.Empty)}" +
                 $"{(comment.Length > 0 ? "-" + comment : string.Empty)}");
 
             // Make any paths uniform regardless of OS.
@@ -84,7 +87,7 @@ namespace TestLogger.AcceptanceTests
 
             // Collect coverage will attach a runlevel attachment.
             var collectCoverage = testAssembly.Contains("XUnit.NetCore");
-            DotnetTestFixture.Execute(testAssembly, args, collectCoverage, out var resultsFile);
+            var resultsFile = DotnetTestFixture.Create().WithBuild().Execute(testAssembly, loggerArgs, collectCoverage, "test-results.json");
             var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
 
             // Using VerifyJson with serialized JSON to avoid incompatibility in object serialization
