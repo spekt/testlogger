@@ -8,6 +8,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     using System.Linq;
     using System.Xml.Linq;
     using System.Xml.XPath;
+    using global::TestLogger.Fixtures;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
@@ -19,19 +20,26 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     [TestClass]
     public class JUnitTestLoggerAcceptanceTests
     {
+        private const string AssetName = "JUnit.Xml.TestLogger.NetCore.Tests";
         private readonly string resultsFile;
         private readonly XDocument resultsXml;
 
         public JUnitTestLoggerAcceptanceTests()
         {
-            this.resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.xml");
+            this.resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), "test-results.xml");
             this.resultsXml = XDocument.Load(this.resultsFile);
         }
 
         [ClassInitialize]
         public static void SuiteInitialize(TestContext context)
         {
-            DotnetTestFixture.Execute("test-results.xml");
+            var loggerArgs = "junit;LogFilePath=test-results.xml";
+
+            // Enable reporting of internal properties in the adapter using runsettings
+            _ = DotnetTestFixture
+                    .Create()
+                    .WithBuild()
+                    .Execute(AssetName, loggerArgs, collectCoverage: false, "test-results.xml");
         }
 
         [TestMethod]

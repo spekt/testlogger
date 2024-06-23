@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Json.TestLogger.TestAdapter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLogger.AcceptanceTests", "test\TestLogger.AcceptanceTests\TestLogger.AcceptanceTests.csproj", "{5053C762-1C92-4171-BD8E-B93E5A3F7205}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "package", "test\package\package.csproj", "{8E53A1B1-C0C9-41C6-93B0-19D86F077919}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "package", "test\Json.TestLogger.Package\Json.TestLogger.Package.csproj", "{8E53A1B1-C0C9-41C6-93B0-19D86F077919}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xunit.Xml.TestLogger", "src\Xunit.Xml.TestLogger\Xunit.Xml.TestLogger.csproj", "{6E121950-CE08-4D90-A917-8D19D824F9DF}"
 EndProject

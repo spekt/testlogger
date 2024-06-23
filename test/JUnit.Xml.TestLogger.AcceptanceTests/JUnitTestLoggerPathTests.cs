@@ -3,11 +3,9 @@
 
 namespace JUnit.Xml.TestLogger.AcceptanceTests
 {
-    using System;
     using System.IO;
     using System.Linq;
-    using System.Xml.Linq;
-    using System.Xml.XPath;
+    using global::TestLogger.Fixtures;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
@@ -19,37 +17,31 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     [TestClass]
     public class JUnitTestLoggerPathTests
     {
-        public JUnitTestLoggerPathTests()
+        private static readonly string[] ExpectedResultsFiles = new string[]
         {
-        }
-
-        [ClassInitialize]
-        public static void SuiteInitialize(TestContext context)
-        {
-            DotnetTestFixture.RootDirectory = Path.GetFullPath(
-                Path.Combine(
-                    Environment.CurrentDirectory,
-                    "..",
-                    "..",
-                    "..",
-                    "..",
-                    "assets",
-                    "JUnit.Xml.TestLogger.NetMulti.Tests"));
-            DotnetTestFixture.TestAssemblyName = "JUnit.Xml.TestLogger.NetMulti.Tests.dll";
-            DotnetTestFixture.Execute("{assembly}.{framework}.test-results.xml");
-        }
+            "JUnit.Xml.TestLogger.NetMulti.Tests.NETFramework461.test-results.xml",
+            "JUnit.Xml.TestLogger.NetMulti.Tests.NETCoreApp31.test-results.xml"
+        };
 
         [TestMethod]
         public void TestRunWithLoggerAndFilePathShouldCreateResultsFile()
         {
-            string[] expectedResultsFiles = new string[]
+            var assetDir = "JUnit.Xml.TestLogger.NetMulti.Tests".ToAssetDirectoryPath();
+            var testResultFiles = ExpectedResultsFiles.Select(x => Path.Combine(assetDir, x)).ToArray();
+            var loggerArgs = "junit;LogFilePath={assembly}.{framework}.test-results.xml";
+            foreach (var f in testResultFiles.Where(File.Exists))
             {
-                Path.Combine(DotnetTestFixture.RootDirectory, "JUnit.Xml.TestLogger.NetMulti.Tests.NETFramework461.test-results.xml"),
-                Path.Combine(DotnetTestFixture.RootDirectory, "JUnit.Xml.TestLogger.NetMulti.Tests.NETCoreApp31.test-results.xml")
-            };
-            foreach (string resultsFile in expectedResultsFiles)
+                File.Delete(f);
+            }
+
+            _ = DotnetTestFixture
+                    .Create()
+                    .WithBuild()
+                    .Execute("JUnit.Xml.TestLogger.NetMulti.Tests", loggerArgs, collectCoverage: false, "test-results.xml");
+
+            foreach (string resultFile in testResultFiles)
             {
-                Assert.IsTrue(File.Exists(resultsFile), $"{resultsFile} does not exist.");
+                Assert.IsTrue(File.Exists(resultFile), $"{resultFile} does not exist.");
             }
         }
     }

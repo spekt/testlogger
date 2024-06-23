@@ -9,11 +9,13 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
     using System.Linq;
     using System.Xml.Linq;
     using System.Xml.XPath;
+    using global::TestLogger.Fixtures;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class NUnitTestLoggerAcceptanceTests
     {
+        private const string AssetName = "NUnit.Xml.TestLogger.NetCore.Tests";
         private const string ExpectedTestCaseCount = "54";
         private const string ExpectedTestCasePassedCount = "26";
 
@@ -22,14 +24,21 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
 
         public NUnitTestLoggerAcceptanceTests()
         {
-            this.resultsFile = Path.Combine(DotnetTestFixture.RootDirectory, "test-results.xml");
+            this.resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), "test-results.xml");
             this.resultsXml = XDocument.Load(this.resultsFile);
         }
 
         [ClassInitialize]
         public static void SuiteInitialize(TestContext context)
         {
-            DotnetTestFixture.Execute("test-results.xml");
+            var loggerArgs = "nunit;LogFilePath=test-results.xml";
+
+            // Enable reporting of internal properties in the adapter using runsettings
+            _ = DotnetTestFixture
+                    .Create()
+                    .WithBuild()
+                    .WithRunSettings("-- NUnit.ShowInternalProperties=true")
+                    .Execute(AssetName, loggerArgs, collectCoverage: false, "test-results.xml");
         }
 
         [TestMethod]
@@ -69,7 +78,7 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
             Assert.AreEqual("8", node.Attribute(XName.Get("skipped")).Value);
             Assert.AreEqual("Failed", node.Attribute(XName.Get("result")).Value);
             Assert.AreEqual("NUnit.Xml.TestLogger.NetCore.Tests.dll", node.Attribute(XName.Get("name")).Value);
-            Assert.AreEqual(DotnetTestFixture.TestAssembly, node.Attribute(XName.Get("fullname")).Value);
+            Assert.AreEqual(AssetName.ToAssetAssemblyPath("netcoreapp3.1"), node.Attribute(XName.Get("fullname")).Value);
 
             var startTimeStr = node.Attribute(XName.Get("start-time"))?.Value;
             var endTimeStr = node.Attribute(XName.Get("end-time"))?.Value;
