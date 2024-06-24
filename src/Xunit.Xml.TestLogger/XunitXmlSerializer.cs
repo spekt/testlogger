@@ -93,13 +93,13 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger
 
             foreach (var collection in collections)
             {
-                total += collection.total;
-                passed += collection.passed;
-                failed += collection.failed;
-                skipped += collection.skipped;
-                errors += collection.error;
+                total += collection.Total;
+                passed += collection.Passed;
+                failed += collection.Failed;
+                skipped += collection.Skipped;
+                errors += collection.Error;
 
-                element.Add(collection.element);
+                element.Add(collection.Element);
             }
 
             // Handle errors
@@ -175,7 +175,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger
             return failureElement;
         }
 
-        private static (XElement element, int total, int passed, int failed, int skipped, int error, TimeSpan time) CreateCollection(IGrouping<string, TestResultInfo> resultsByType, List<TestResultInfo> testResultAsError)
+        private static TestCollection CreateCollection(IGrouping<string, TestResultInfo> resultsByType, List<TestResultInfo> testResultAsError)
         {
             var element = new XElement("collection");
 
@@ -227,7 +227,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger
             element.SetAttributeValue("name", $"Test collection for {resultsByType.Key}");
             element.SetAttributeValue("time", time.TotalSeconds.ToString("F3", CultureInfo.InvariantCulture));
 
-            return (element, total, passed, failed, skipped, error, time);
+            return new TestCollection { Element = element, Total = total, Passed = passed, Failed = failed, Skipped = skipped, Error = error, Time = time };
         }
 
         private static bool IsError(TestResultInfo result)
@@ -317,6 +317,23 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger
                 default:
                     return "Unknown";
             }
+        }
+
+        private class TestCollection
+        {
+            public XElement Element { get; set; }
+
+            public int Total { get; set; }
+
+            public int Passed { get; set; }
+
+            public int Failed { get; set; }
+
+            public int Skipped { get; set; }
+
+            public int Error { get; set; }
+
+            public TimeSpan Time { get; set; }
         }
     }
 }
