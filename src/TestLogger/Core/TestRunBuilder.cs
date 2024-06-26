@@ -50,9 +50,9 @@ namespace Spekt.TestLogger.Core
             {
                 this.testRun.RunConfiguration = this.testRun.Start(eventArgs);
             };
-            loggerEvents.TestRunMessage += (_, eventArgs) => this.testRun.Message(eventArgs);
-            loggerEvents.TestResult += (_, eventArgs) => this.testRun.Result(eventArgs);
-            loggerEvents.TestRunComplete += (_, eventArgs) => this.testRun.Complete(eventArgs);
+            loggerEvents.TestRunMessage += (_, eventArgs) => this.TraceAndThrow(() => this.testRun.Message(eventArgs), "TestRunMessage");
+            loggerEvents.TestResult += (_, eventArgs) => this.TraceAndThrow(() => this.testRun.Result(eventArgs), "TestResult");
+            loggerEvents.TestRunComplete += (_, eventArgs) => this.TraceAndThrow(() => this.testRun.Complete(eventArgs), "TestRunComplete");
 
             return this;
         }
@@ -72,6 +72,19 @@ namespace Spekt.TestLogger.Core
         public ITestRun Build()
         {
             return this.testRun;
+        }
+
+        private void TraceAndThrow(Action action, string source)
+        {
+            try
+            {
+                action();
+            }
+            catch (Exception)
+            {
+                this.testRun.ConsoleOutput?.WriteError($"Test Logger: Unexpected error in {source} workflow. Please rerun with `dotnet test --diag:log.txt` to see the stacktrace and report the issue at https://github.com/spekt/testlogger/issues/new.");
+                throw;
+            }
         }
     }
 }
