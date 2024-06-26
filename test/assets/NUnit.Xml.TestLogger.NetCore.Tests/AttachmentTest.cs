@@ -18,5 +18,16 @@ namespace NUnit.Xml.TestLogger.NetFull.Tests
             }
             TestContext.AddTestAttachment(file, "description");
         }
+
+        [Test]
+        public void TestAddAttachmentWithoutDescription()
+        {
+            var file = Path.Combine(Path.GetTempPath(), "x.txt");
+            if (!File.Exists(file))
+            {
+                File.Create(file);
+            }
+            TestContext.AddTestAttachment(file);
+        }
     }
 }

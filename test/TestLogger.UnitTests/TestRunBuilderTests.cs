@@ -4,9 +4,14 @@
 namespace Spekt.TestLogger.UnitTests
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
+    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.UnitTests.TestDoubles;
 
     [TestClass]
     public class TestRunBuilderTests
@@ -37,7 +42,7 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void WithLoggerConfigurationShouldSetTestLoggerConfiguration()
         {
-            var config = new LoggerConfiguration(new ()
+            var config = new LoggerConfiguration(new Dictionary<string, string>()
             {
                 { LoggerConfiguration.LogFilePathKey, "/tmp/results.json" },
                 { DefaultLoggerParameterNames.TestRunDirectory, "/tmp" }
@@ -64,6 +69,24 @@ namespace Spekt.TestLogger.UnitTests
         public void SubscribeShouldThrowForNullLoggerEvents()
         {
             Assert.ThrowsException<ArgumentNullException>(() => this.testRunBuilder.Subscribe(null));
+        }
+
+        [TestMethod]
+        public void SubscribeShouldSetupTraceAndThrowExceptionForEvents()
+        {
+            var testEvents = new MockTestLoggerEvents();
+            var consoleOutput = new FakeConsoleOutput();
+
+            this.testRunBuilder.WithConsoleOutput(consoleOutput).Subscribe(testEvents);
+
+            Assert.ThrowsException<NullReferenceException>(() => testEvents.RaiseTestRunMessage(TestMessageLevel.Error, "dummy message"));
+            Assert.ThrowsException<NullReferenceException>(() => testEvents.RaiseTestResult(new Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult(new TestCase())));
+            Assert.ThrowsException<NullReferenceException>(() => testEvents.RaiseTestRunComplete(null));
+            Assert.AreEqual(3, consoleOutput.Messages.Count);
+            Assert.IsTrue(consoleOutput.Messages.All(x => x.Item1 == "stderr"));
+            StringAssert.Contains(consoleOutput.Messages[0].Item2, "Unexpected error in TestRunMessage workflow");
+            StringAssert.Contains(consoleOutput.Messages[1].Item2, "Unexpected error in TestResult workflow");
+            StringAssert.Contains(consoleOutput.Messages[2].Item2, "Unexpected error in TestRunComplete workflow");
         }
 
         [TestMethod]

@@ -20,7 +20,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.NUnit.Xml.TestLogger
         private const string ResultStatusPassed = "Passed";
         private const string ResultStatusFailed = "Failed";
 
-        public IInputSanitizer InputSanitizer { get;  } = new InputSanitizerXml();
+        public IInputSanitizer InputSanitizer { get; } = new InputSanitizerXml();
 
         public static IEnumerable<TestSuite> GroupTestSuites(IEnumerable<TestSuite> suites)
         {
@@ -285,10 +285,15 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.NUnit.Xml.TestLogger
                 var attachmentElement = new XElement("attachments");
                 foreach (var attachment in result.Attachments)
                 {
-                    attachmentElement.Add(new XElement(
-                                "attachment",
-                                new XElement("filePath", attachment.FilePath),
-                                new XElement("description", new XCData(attachment.Description))));
+                    var attachmentContent = new List<XElement> { new XElement("filePath", attachment.FilePath) };
+
+                    if (!string.IsNullOrEmpty(attachment.Description))
+                    {
+                        // Description is optional, add if available
+                        attachmentContent.Add(new XElement("description", new XCData(attachment.Description)));
+                    }
+
+                    attachmentElement.Add(new XElement("attachment", attachmentContent));
                 }
 
                 element.Add(attachmentElement);

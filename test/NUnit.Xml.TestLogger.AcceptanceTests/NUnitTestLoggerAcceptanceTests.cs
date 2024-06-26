@@ -16,8 +16,8 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
     public class NUnitTestLoggerAcceptanceTests
     {
         private const string AssetName = "NUnit.Xml.TestLogger.NetCore.Tests";
-        private const string ExpectedTestCaseCount = "54";
-        private const string ExpectedTestCasePassedCount = "26";
+        private const string ExpectedTestCaseCount = "55";
+        private const string ExpectedTestCasePassedCount = "27";
 
         private readonly string resultsFile;
         private readonly XDocument resultsXml;
@@ -99,8 +99,8 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
             var node = this.resultsXml.XPathSelectElement(query);
 
             Assert.IsNotNull(node);
-            Assert.AreEqual("30", node.Attribute(XName.Get("total")).Value);
-            Assert.AreEqual("16", node.Attribute(XName.Get("passed")).Value);
+            Assert.AreEqual("31", node.Attribute(XName.Get("total")).Value);
+            Assert.AreEqual("17", node.Attribute(XName.Get("passed")).Value);
             Assert.AreEqual("7", node.Attribute(XName.Get("failed")).Value);
             Assert.AreEqual("3", node.Attribute(XName.Get("inconclusive")).Value);
             Assert.AreEqual("4", node.Attribute(XName.Get("skipped")).Value);
