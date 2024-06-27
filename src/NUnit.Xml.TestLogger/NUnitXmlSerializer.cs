@@ -16,7 +16,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.NUnit.Xml.TestLogger
 
     public class NUnitXmlSerializer : ITestResultSerializer
     {
-        private const string DateFormat = "yyyy-MM-ddT HH:mm:ssZ";
+        private const string DateFormat = "yyyy-MM-ddTHH:mm:ssZ";
         private const string ResultStatusPassed = "Passed";
         private const string ResultStatusFailed = "Failed";
 
