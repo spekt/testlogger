@@ -177,7 +177,7 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
             Assert.IsNotNull(startTimeStr);
             Assert.IsNotNull(endTimeStr);
 
-            string dateFormat = "yyyy-MM-ddT HH:mm:ssZ";
+            string dateFormat = "yyyy-MM-ddTHH:mm:ssZ";
             var startTime = DateTime.ParseExact(startTimeStr, dateFormat, CultureInfo.InvariantCulture);
             var endTime = DateTime.ParseExact(endTimeStr, dateFormat, CultureInfo.InvariantCulture);
 
