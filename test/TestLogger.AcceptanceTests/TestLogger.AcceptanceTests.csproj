@@ -40,7 +40,7 @@
     </Target>
 
     <ItemGroup>
-        <PackageReference Include="Verify.MSTest" Version="25.0.3" />
+        <PackageReference Include="Verify.MSTest" Version="25.0.4" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Json.TestLogger\Json.TestLogger.csproj" />
