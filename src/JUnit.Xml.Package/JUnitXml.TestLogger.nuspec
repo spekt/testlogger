@@ -4,9 +4,9 @@
     <id>JunitXml.TestLogger</id>
     <version>$version$</version>
     <title>JunitXml.TestLogger</title>
-    <authors>Siphonophora,codito,faizan2304,smadala,lahma</authors>
-    <owners>Siphonophora,codito,faizan2304,smadala</owners>
-    <projectUrl>https://github.com/spekt/junit.testlogger</projectUrl>
+    <authors>Siphonophora,codito</authors>
+    <owners>Siphonophora,codito</owners>
+    <projectUrl>https://github.com/spekt/testlogger</projectUrl>
     <description>Xml logger for JUnit v5 compliant xml report when test is running with "dotnet test" or "dotnet vstest".</description>
     <license type="expression">MIT</license>
     <readme>docs/README.md</readme>
