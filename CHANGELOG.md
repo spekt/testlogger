@@ -3,7 +3,9 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
-## Unreleased (v4.0.x)
+## Unreleased (v4.1.x)
+
+## v4.0.254 - 2024/07/28
 
 - Fix: [nunit logger]: standardize start and end times. See #88 and https://github.com/spekt/nunit.testlogger/issues/105.
 - Fix: [nunit logger]: make attachment description optional. See #87 and https://github.com/spekt/nunit.testlogger/issues/106.
