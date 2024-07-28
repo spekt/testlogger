@@ -6,7 +6,7 @@
     <title>XunitXml.TestLogger</title>
     <authors>spekt</authors>
     <owners>spekt</owners>
-    <projectUrl>https://github.com/spekt/xunit.testlogger</projectUrl>
+    <projectUrl>https://github.com/spekt/testlogger</projectUrl>
     <description>Xml logger for xunit when test is running with "dotnet test" or "dotnet vstest".</description>
     <license type="expression">MIT</license>
     <readme>docs/README.md</readme>
