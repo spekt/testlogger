@@ -21,6 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="XunitXml.TestLogger" Version="$(PackageVersion)" />
+    <PackageReference Update="Stylecop.Analyzers" Version="1.1.118" />
   </ItemGroup>
 
 </Project>

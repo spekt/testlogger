@@ -1,4 +1,5 @@
 # .NET test loggers
+
 Junit, NUnit and Xunit logger extensions for [Visual Studio Test Platform](https://github.com/microsoft/vstest). Connect your test reports to Circle CI, Gitlab and others from `dotnet test`.
 
 [![Build Status](https://github.com/spekt/testlogger/workflows/.NET/badge.svg)](https://github.com/spekt/testlogger/actions?query=workflow%3A.NET)
@@ -6,11 +7,13 @@ Junit, NUnit and Xunit logger extensions for [Visual Studio Test Platform](https
 
 ## Packages
 
-| Logger | Stable Package | Pre-release Package | Usage | Release Notes |
-| ------ | -------------- | ------------------- | ------------- | ------------- |
-| JUnit | [![NuGet](https://img.shields.io/nuget/v/JUnitXml.TestLogger.svg)](https://www.nuget.org/packages/JUnitXml.TestLogger/) | [![MyGet Pre Release](https://img.shields.io/myget/spekt/vpre/junitxml.testlogger.svg)](https://www.myget.org/feed/spekt/package/nuget/JunitXml.TestLogger) | [README](src/JUnit.Xml.Package/README.md) | [CHANGELOG](src/JUnit.Xml.Package/CHANGELOG.md) |
-| NUnit | [![NuGet](https://img.shields.io/nuget/v/NUnitXml.TestLogger.svg)](https://www.nuget.org/packages/NUnitXml.TestLogger/) | [![MyGet Pre Release](https://img.shields.io/myget/spekt/vpre/nunitxml.testlogger.svg)](https://www.myget.org/feed/spekt/package/nuget/NunitXml.TestLogger) | [README](src/NUnit.Xml.Package/README.md) | [CHANGELOG](src/NUnit.Xml.Package/CHANGELOG.md) |
-| Xunit | [![NuGet](https://img.shields.io/nuget/v/XunitXml.TestLogger.svg)](https://www.nuget.org/packages/XunitXml.TestLogger/) | [![MyGet Pre Release](https://img.shields.io/myget/spekt/vpre/xunitxml.testlogger.svg)](https://www.myget.org/feed/spekt/package/nuget/XunitXml.TestLogger) | [README](src/Xunit.Xml.Package/README.md) | [CHANGELOG](src/Xunit.Xml.Package/CHANGELOG.md) |
+| Logger | Stable Package                                                                                                          | Pre-release Package                                                                                                                                         | Usage                                     |
+| ------ | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| JUnit  | [![NuGet](https://img.shields.io/nuget/v/JUnitXml.TestLogger.svg)](https://www.nuget.org/packages/JUnitXml.TestLogger/) | [![MyGet Pre Release](https://img.shields.io/myget/spekt/vpre/junitxml.testlogger.svg)](https://www.myget.org/feed/spekt/package/nuget/JunitXml.TestLogger) | [README](src/JUnit.Xml.Package/README.md) |
+| NUnit  | [![NuGet](https://img.shields.io/nuget/v/NUnitXml.TestLogger.svg)](https://www.nuget.org/packages/NUnitXml.TestLogger/) | [![MyGet Pre Release](https://img.shields.io/myget/spekt/vpre/nunitxml.testlogger.svg)](https://www.myget.org/feed/spekt/package/nuget/NunitXml.TestLogger) | [README](src/NUnit.Xml.Package/README.md) |
+| Xunit  | [![NuGet](https://img.shields.io/nuget/v/XunitXml.TestLogger.svg)](https://www.nuget.org/packages/XunitXml.TestLogger/) | [![MyGet Pre Release](https://img.shields.io/myget/spekt/vpre/xunitxml.testlogger.svg)](https://www.myget.org/feed/spekt/package/nuget/XunitXml.TestLogger) | [README](src/Xunit.Xml.Package/README.md) |
+
+Release notes for all loggers are in the [CHANGELOG](./CHANGELOG.md).
 
 ## Contribution Guide
 
@@ -33,6 +36,7 @@ If acceptance tests are failing, try running this command to see detailed output
 ## Wiki
 
 See <https://github.com/spekt/testlogger/wiki> for [Logger Configuration](https://github.com/spekt/testlogger/wiki/Logger-Configuration) and troubleshooting.
-  
+
 ## License
+
 MIT

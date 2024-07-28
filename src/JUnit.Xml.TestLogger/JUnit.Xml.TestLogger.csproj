@@ -15,6 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="15.5.0" />
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" />
   </ItemGroup>
 </Project>
