@@ -6,7 +6,7 @@
     <title>NunitXml.TestLogger</title>
     <authors>spekt</authors>
     <owners>spekt</owners>
-    <projectUrl>https://github.com/spekt/nunit.testlogger</projectUrl>
+    <projectUrl>https://github.com/spekt/testlogger</projectUrl>
     <description>Xml logger for NUnit v3 compliant xml report when test is running with "dotnet test" or "dotnet vstest".</description>
     <license type="expression">MIT</license>
     <readme>docs/README.md</readme>
