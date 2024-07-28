@@ -13,10 +13,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MSTest.TestFramework" Version="3.4.3" />
-        <PackageReference Include="MSTest.TestAdapter" Version="3.4.3" />
-        <PackageReference Include="Moq" Version="4.20.70" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+        <PackageReference Include="MSTest.TestFramework" />
+        <PackageReference Include="MSTest.TestAdapter" />
+        <PackageReference Include="Moq" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="Verify.MSTest" />
     </ItemGroup>
 
     <!-- Build test assets for acceptance tests -->
@@ -39,9 +40,6 @@
         <Message Importance="High" Text="... Completed" />
     </Target>
 
-    <ItemGroup>
-        <PackageReference Include="Verify.MSTest" Version="25.3.0" />
-    </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Json.TestLogger\Json.TestLogger.csproj" />
         <ProjectReference Include="..\TestLogger.Fixtures\TestLogger.Fixtures.csproj" />

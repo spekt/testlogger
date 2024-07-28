@@ -9,6 +9,7 @@
     <projectUrl>https://github.com/spekt/xunit.testlogger</projectUrl>
     <description>Xml logger for xunit when test is running with "dotnet test" or "dotnet vstest".</description>
     <license type="expression">MIT</license>
+    <readme>docs/README.md</readme>
     <icon>packageIcon.png</icon>
   </metadata>
   <files>

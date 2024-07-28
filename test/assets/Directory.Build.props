@@ -3,5 +3,8 @@
   <PropertyGroup>
     <RunAnalyzers>false</RunAnalyzers>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Update="Stylecop.Analyzers" Version="1.1.118" />
+  </ItemGroup>
 </Project>
 <!-- vim: set ft=xml : -->
