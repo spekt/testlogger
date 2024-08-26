@@ -4,7 +4,7 @@
         <CentralPackageTransitivePinningEnabled>false</CentralPackageTransitivePinningEnabled>
     </PropertyGroup>
     <ItemGroup>
-        <PackageVersion Include="Microsoft.TestPlatform.ObjectModel" Version="15.5.0" />
+        <PackageVersion Include="Microsoft.TestPlatform.ObjectModel" Version="17.11.0" />
         <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
 
         <PackageVersion Include="Stylecop.Analyzers" Version="1.1.118" />
