@@ -22,6 +22,8 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
 
         public const string FailureBodyFormatKey = "FailureBodyFormat";
 
+        public const string StoreConsoleOutputKey = "StoreConsoleOutput";
+
         private const string ResultStatusPassed = "Passed";
         private const string ResultStatusFailed = "Failed";
 
@@ -61,6 +63,8 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
         public MethodFormat MethodFormatOption { get; private set; } = MethodFormat.Default;
 
         public FailureBodyFormat FailureBodyFormatOption { get; private set; } = FailureBodyFormat.Default;
+
+        public bool StoreConsoleOutputOption { get; private set; } = true;
 
         public static IEnumerable<TestSuite> GroupTestSuites(IEnumerable<TestSuite> suites)
         {
@@ -229,8 +233,8 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
                 "testsuite",
                 new XElement("properties"),
                 testCaseElements,
-                new XElement("system-out", stdOut.ToString()),
-                new XElement("system-err", stdErr.ToString()));
+                new XElement("system-out", this.StoreConsoleOutputOption ? stdOut.ToString() : string.Empty),
+                new XElement("system-err", this.StoreConsoleOutputOption ? stdErr.ToString() : string.Empty));
 
             element.SetAttributeValue("name", Path.GetFileName(results.First().AssemblyPath));
 
@@ -352,6 +356,22 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
                 else
                 {
                     Console.WriteLine($"JunitXML Logger: The provided Failure Body Format '{failureFormat}' is not a recognized option. Using default");
+                }
+            }
+
+            if (loggerConfiguration.Values.TryGetValue(StoreConsoleOutputKey, out string storeOutputValue))
+            {
+                if (string.Equals(storeOutputValue.Trim(), "true", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.StoreConsoleOutputOption = true;
+                }
+                else if (string.Equals(storeOutputValue.Trim(), "false", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.StoreConsoleOutputOption = false;
+                }
+                else
+                {
+                    Console.WriteLine($"JunitXML Logger: The provided Store Console Output '{storeOutputValue}' is not a recognized option. Using default");
                 }
             }
         }
