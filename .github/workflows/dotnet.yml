@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [master]
 
+# Required by release-please action
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build:
     strategy:
@@ -59,3 +64,11 @@ jobs:
           dotnet nuget push 'src/Xunit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/NUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/JUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
+            - uses: google-github-actions/release-please-action@v3
+      - name: Create release 
+        if: ${{ github.event_name == 'push' && matrix.os == 'ubuntu-latest' }}
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: simple
+          package-name: testlogger
