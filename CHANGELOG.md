@@ -5,6 +5,13 @@ simplicity. For v3.x changelogs, refer to the end of this document.
 
 ## Unreleased (v4.1.x)
 
+## [4.1.0](https://github.com/spekt/testlogger/compare/v4.0.254...v4.1.0) (2024-10-12)
+
+
+### Features
+
+* [JUnit] added StoreConsoleOutput option ([#115](https://github.com/spekt/testlogger/issues/115)) ([63fc58f](https://github.com/spekt/testlogger/commit/63fc58fecb2f48d60335b85b190e30fb7450e443))
+
 ## v4.0.254 - 2024/07/28
 
 - Fix: [nunit logger]: standardize start and end times. See #88 and https://github.com/spekt/nunit.testlogger/issues/105.
