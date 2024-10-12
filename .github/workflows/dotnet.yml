@@ -5,7 +5,6 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
-    types: [closed]
 
 # Required by release-please
 permissions:
@@ -13,31 +12,41 @@ permissions:
   pull-requests: write
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+  version:
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: googleapis/release-please-action@v4
         id: release
         if: github.ref == 'refs/heads/master'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: simple
-      - name: Default build version
+      - name: Set default build number
         run: |
           # https://stackoverflow.com/questions/8653126/how-to-increment-version-number-in-a-shell-script
           BUILD_VERSION=$(cat version.txt | awk -F. -v OFS=. '{$NF=$NF+1;print}')-pre.${{ github.run_number }}
           echo "APP_BUILD_VERSION=${BUILD_VERSION}" >> $GITHUB_ENV
-      - name: Release build version
+      - name: Update build number
         if: ${{ steps.release.outputs.release_created }}
         run: |
           RELEASE_VERSION=${{ steps.release.outputs.tag_name }}
           echo "APP_BUILD_VERSION=${RELEASE_VERSION#v}" >> $GITHUB_ENV
-      - name: Show build version
+      - name: Final build version
         run: |
           echo ${{ env.APP_BUILD_VERSION }}
+    outputs:
+      build_version: ${{ env.APP_BUILD_VERSION }}
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    needs: [version]
+    env:
+      APP_BUILD_VERSION: ${{ needs.version.build_version }}
+    steps:
+      - uses: actions/checkout@v4
       - name: Setup .NET 8.0
         uses: actions/setup-dotnet@v1
         with:
