@@ -5,6 +5,12 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+    types: [closed]
+
+# Required by release-please
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   build:
@@ -12,10 +18,26 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
-    env:
-      APP_BUILD_VERSION: ${{ format('4.0.{0}', github.run_number) }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: googleapis/release-please-action@v4
+        id: release
+        if: github.ref == 'refs/heads/master'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: simple
+      - name: Default build version
+        run: |
+          # https://stackoverflow.com/questions/8653126/how-to-increment-version-number-in-a-shell-script
+          BUILD_VERSION=$(cat version.txt | awk -F. -v OFS=. '{$NF=$NF+1;print}')-pre.${{ github.run_number }}
+          echo "APP_BUILD_VERSION=${BUILD_VERSION}" >> $GITHUB_ENV
+      - name: Release build version
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          RELEASE_VERSION=${{ steps.release.outputs.tag_name }}
+          echo "APP_BUILD_VERSION=${RELEASE_VERSION#v}" >> $GITHUB_ENV
+      - name: Show build version
+        run: |
+          echo ${{ env.APP_BUILD_VERSION }}
       - name: Setup .NET 8.0
         uses: actions/setup-dotnet@v1
         with:
@@ -59,15 +81,3 @@ jobs:
           dotnet nuget push 'src/Xunit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/NUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/JUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
-  changelog:
-    # creates a changelog PR if needed and keeps it up to date, see release.yml for the release creation
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-    permissions:
-      contents: write
-      pull-requests: write
-    steps:
-      - uses: google-github-actions/release-please-action@v4     
-        id: release
-        with:
-          skip-github-release: true
