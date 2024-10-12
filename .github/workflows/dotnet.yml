@@ -44,7 +44,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: [version]
     env:
-      APP_BUILD_VERSION: ${{ needs.version.build_version }}
+      APP_BUILD_VERSION: ${{ needs.version.outputs.build_version }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET 8.0
