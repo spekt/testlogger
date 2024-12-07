@@ -8,7 +8,7 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
 
     public class TestRunFixture : IDisposable
     {
-        private const string DotnetVersion = "netcoreapp3.1";
+        private const string DotnetVersion = "net8.0";
 
         public TestRunFixture()
         {

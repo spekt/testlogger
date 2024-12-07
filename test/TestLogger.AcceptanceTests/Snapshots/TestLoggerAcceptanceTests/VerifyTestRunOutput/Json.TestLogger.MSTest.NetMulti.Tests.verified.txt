@@ -1,6 +1,6 @@
 ﻿[
   {
-    Name: bin/Debug/netcoreapp3.1/Json.TestLogger.MSTest.NetMulti.Tests.dll,
+    Name: bin/Debug/net8.0/Json.TestLogger.MSTest.NetMulti.Tests.dll,
     Fixtures: [
       {
         Name: UnitTest2,

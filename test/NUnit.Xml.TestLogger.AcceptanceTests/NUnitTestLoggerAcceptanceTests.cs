@@ -78,7 +78,7 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
             Assert.AreEqual("8", node.Attribute(XName.Get("skipped")).Value);
             Assert.AreEqual("Failed", node.Attribute(XName.Get("result")).Value);
             Assert.AreEqual("NUnit.Xml.TestLogger.NetCore.Tests.dll", node.Attribute(XName.Get("name")).Value);
-            Assert.AreEqual(AssetName.ToAssetAssemblyPath("netcoreapp3.1"), node.Attribute(XName.Get("fullname")).Value);
+            Assert.AreEqual(AssetName.ToAssetAssemblyPath("net8.0"), node.Attribute(XName.Get("fullname")).Value);
 
             var startTimeStr = node.Attribute(XName.Get("start-time"))?.Value;
             var endTimeStr = node.Attribute(XName.Get("end-time"))?.Value;

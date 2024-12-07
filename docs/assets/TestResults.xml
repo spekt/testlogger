@@ -104,7 +104,7 @@
 
 Test Framework Informational Messages:
 NUnit Adapter 3.10.0.21: Test execution started
-Running all tests in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\bin\Debug\netcoreapp3.1\JUnit.Xml.TestLogger.NetCore.Tests.dll
+Running all tests in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\bin\Debug\net8.0\JUnit.Xml.TestLogger.NetCore.Tests.dll
 NUnit3TestExecutor converted 52 of 52 NUnit test cases
 NUnit Adapter 3.10.0.21: Test execution complete
 </system-out>

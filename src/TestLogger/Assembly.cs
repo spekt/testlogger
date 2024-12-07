@@ -13,8 +13,3 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("TestLogger.UnitTests")]
 [assembly: ExcludeFromCodeCoverage]
 
-namespace System.Diagnostics.CodeAnalysis
-{
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Constructor | AttributeTargets.Event | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Struct, AllowMultiple = false, Inherited = false)]
-    internal sealed class ExcludeFromCodeCoverageAttribute : Attribute { }
-}

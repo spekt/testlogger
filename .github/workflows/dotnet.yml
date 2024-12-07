@@ -51,10 +51,6 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 8.x
-      - name: Setup .NET 3.1.x
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: "3.1.x"
       - name: Package (debug)
         run: dotnet pack -p:PackageVersion=${{ env.APP_BUILD_VERSION }}
       - name: Package (release)

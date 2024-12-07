@@ -1,6 +1,6 @@
 ﻿[
   {
-    Name: bin/Debug/netcoreapp3.1/Json.TestLogger.NUnit.NetCore.Tests.dll,
+    Name: bin/Debug/net8.0/Json.TestLogger.NUnit.NetCore.Tests.dll,
     Fixtures: [
       {
         Name: Issue28_Examples,
