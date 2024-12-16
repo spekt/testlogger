@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.csproj" />
+    <ProjectReference Include="../../src/TestLogger/TestLogger.csproj" />
   </ItemGroup>
 
 </Project>
