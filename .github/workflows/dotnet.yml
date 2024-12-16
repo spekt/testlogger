@@ -6,16 +6,47 @@ on:
   pull_request:
     branches: [master]
 
+# Required by release-please
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: googleapis/release-please-action@v4
+        id: release
+        if: github.ref == 'refs/heads/master'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: simple
+      - name: Set default build number
+        run: |
+          # https://stackoverflow.com/questions/8653126/how-to-increment-version-number-in-a-shell-script
+          BUILD_VERSION=$(cat version.txt | awk -F. -v OFS=. '{$NF=$NF+1;print}')-pre.${{ github.run_number }}
+          echo "APP_BUILD_VERSION=${BUILD_VERSION}" >> $GITHUB_ENV
+      - name: Update build number
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          RELEASE_VERSION=${{ steps.release.outputs.tag_name }}
+          echo "APP_BUILD_VERSION=${RELEASE_VERSION#v}" >> $GITHUB_ENV
+      - name: Final build version
+        run: |
+          echo ${{ env.APP_BUILD_VERSION }}
+    outputs:
+      build_version: ${{ env.APP_BUILD_VERSION }}
   build:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    needs: [version]
     env:
-      APP_BUILD_VERSION: ${{ format('4.0.{0}', github.run_number) }}
+      APP_BUILD_VERSION: ${{ needs.version.outputs.build_version }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Setup .NET 8.0
         uses: actions/setup-dotnet@v1
         with:
@@ -41,7 +72,7 @@ jobs:
           dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/JUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj
       - name: Upload Verification Files on Fail
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Acceptance Test Failure
           retention-days: 5
