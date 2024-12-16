@@ -10,7 +10,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     using System.Xml.XPath;
     using global::TestLogger.Fixtures;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Spekt.TestLogger.Core;
 
     /// <summary>
     /// Acceptance tests evaluate the most recent output of the build.ps1 script, NOT the most
