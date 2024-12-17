@@ -41,6 +41,8 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             Assert.IsTrue(node.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
             Assert.IsTrue(node.Value.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}"));
             Assert.IsTrue(node.Value.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}"));
+
+            this.TestCaseShouldHaveStdoutAndAttachment(resultsXml, "PassTest11");
         }
 
         [TestMethod]
@@ -77,6 +79,8 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             Assert.IsTrue(node.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
             Assert.IsTrue(node.Value.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}"));
             Assert.IsTrue(node.Value.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}"));
+
+            this.TestCaseShouldHaveStdoutAndAttachment(resultsXml, "PassTest11");
         }
 
         [TestMethod]
@@ -110,6 +114,8 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             var node = resultsXml.XPathSelectElement("/testsuites/testsuite/system-out");
 
             Assert.IsTrue(node.Value.Equals(string.Empty));
+
+            this.TestCaseShouldHaveStdoutAndAttachment(resultsXml, "PassTest11");
         }
 
         [TestMethod]
@@ -126,6 +132,13 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             var node = resultsXml.XPathSelectElement("/testsuites/testsuite/system-err");
 
             Assert.IsTrue(node.Value.Equals(string.Empty));
+        }
+
+        private void TestCaseShouldHaveStdoutAndAttachment(XDocument resultsXml, string testcaseName)
+        {
+            var node = resultsXml.XPathSelectElement($"/testsuites/testsuite/*[@name='{testcaseName}']/system-out");
+
+            Assert.IsTrue(node.Value.Contains("[[ATTACHMENT|"));
         }
     }
 }
