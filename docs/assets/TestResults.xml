@@ -1,129 +1,177 @@
 ﻿<testsuites>
-  <testsuite name="JUnit.Xml.TestLogger.NetCore.Tests.dll" tests="52" skipped="6" failures="14" errors="0" time="0.87068" timestamp="2021-04-04T16:42:06" hostname="REDACTED" id="0" package="JUnit.Xml.TestLogger.NetCore.Tests.dll">
+  <testsuite name="JUnit.Xml.TestLogger.NetCore.Tests.dll" tests="53" skipped="8" failures="15" errors="0" time="0.8835968" timestamp="2024-12-17T14:48:15" hostname="REDACTED" id="0" package="JUnit.Xml.TestLogger.NetCore.Tests.dll">
     <properties />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp" name="TestA" time="0.0000001">
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp" name="TestA" time="0.0122820">
       <failure type="failure" message="OneTimeSetUp: System.InvalidOperationException : Operation is not valid due to the current state of the object."></failure>
     </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown" name="TestD" time="0.0021950" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.FailingTearDown" name="TestC" time="0.0011090">
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown" name="TestD" time="0.0024510" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.FailingTearDown" name="TestC" time="0.0010930">
       <failure type="failure" message="TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.">--TearDown
-   at JUnit.Xml.TestLogger.NetFull.Tests.FailingTearDown.TearDown() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 182</failure>
+   at JUnit.Xml.TestLogger.NetFull.Tests.FailingTearDown.TearDown() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest1.cs:line 191</failure>
     </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.FailingTestSetup" name="TestB" time="0.0007420">
-      <failure type="failure" message="System.InvalidOperationException : Operation is not valid due to the current state of the object.">at JUnit.Xml.TestLogger.NetFull.Tests.FailingTestSetup.SetUp() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 167</failure>
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.FailingTestSetup" name="TestB" time="0.0004850">
+      <failure type="failure" message="System.InvalidOperationException : Operation is not valid due to the current state of the object.">at JUnit.Xml.TestLogger.NetFull.Tests.FailingTestSetup.SetUp() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest1.cs:line 176</failure>
     </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture(&quot;Answer&quot;,42)" name="TestE" time="0.0000890" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture(&quot;Question&quot;,1)" name="TestE" time="0.0000280" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases" name="TestData(1,&quot;A&quot;)" time="0.0116820" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases" name="TestData(1,&quot;B&quot;)" time="0.0001490" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases" name="TestData(2,&quot;A&quot;)" time="0.0205739">
-      <failure type="failure" message="  failing for second case&#xD;&#xA;  Expected: not equal to 2&#xD;&#xA;  But was:  2&#xD;&#xA;">at JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(Int32 x, String s) in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 232</failure>
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture(&quot;Answer&quot;,42)" name="TestE" time="0.0000620" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedFixture(&quot;Question&quot;,1)" name="TestE" time="0.0000220" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases" name="TestData(1,&quot;A&quot;)" time="0.0111200" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases" name="TestData(1,&quot;B&quot;)" time="0.0001620" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases" name="TestData(2,&quot;A&quot;)" time="0.0269310">
+      <failure type="failure" message="  failing for second case&#xA;  Expected: not equal to 2&#xA;  But was:  2&#xA;">at JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(Int32 x, String s) in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest1.cs:line 241</failure>
     </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases" name="TestData(2,&quot;B&quot;)" time="0.0005820">
-      <failure type="failure" message="  failing for second case&#xD;&#xA;  Expected: not equal to 2&#xD;&#xA;  But was:  2&#xD;&#xA;">at JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(Int32 x, String s) in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 232</failure>
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases" name="TestData(2,&quot;B&quot;)" time="0.0005680">
+      <failure type="failure" message="  failing for second case&#xA;  Expected: not equal to 2&#xA;  But was:  2&#xA;">at JUnit.Xml.TestLogger.NetFull.Tests.ParametrizedTestCases.TestData(Int32 x, String s) in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest1.cs:line 241</failure>
     </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture" name="InconclusiveTest" time="0.0007200" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture" name="SuccessTest" time="0.0000960" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.SuccessFixture" name="SuccessTest" time="0.0000830" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="FailTest11" time="0.0017970">
-      <failure type="failure" message="  Expected: False&#xD;&#xA;  But was:  True&#xD;&#xA;">at JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.FailTest11() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 27</failure>
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="Ignored" time="0.0002950">
-      <skipped />
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="Inconclusive" time="0.0005260" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="MultipleCategories" time="0.0001060" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="NoProperty" time="0.0001160" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="PassTest11" time="0.4068620" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="WithCategory" time="0.0002610" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="WithCategoryAndProperty" time="0.0001150" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="WithProperties" time="0.0001040" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="WithProperty" time="0.0000960" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="ExplicitTest" time="0.0000550" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="FailTest22" time="0.0009650">
-      <failure type="failure" message="  Expected: False&#xD;&#xA;  But was:  True&#xD;&#xA;">at JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.FailTest22() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 94</failure>
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="IgnoredTest" time="0.0000110">
-      <skipped />
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="Inconclusive" time="0.0004410" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="PassTest21" time="0.0003100" />
-    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="WarningTest" time="0.0003070">
-      <skipped />
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp" name="TestA" time="0.0000001">
-      <failure type="failure" message="OneTimeSetUp: System.InvalidOperationException : Operation is not valid due to the current state of the object."></failure>
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown" name="TestD" time="0.0000820" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.FailingTearDown" name="TestC" time="0.0004980">
-      <failure type="failure" message="TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.">--TearDown
-   at JUnit.Xml.TestLogger.Tests2.FailingTearDown.TearDown() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest2.cs:line 137</failure>
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.FailingTestSetup" name="TestB" time="0.0004740">
-      <failure type="failure" message="System.InvalidOperationException : Operation is not valid due to the current state of the object.">at JUnit.Xml.TestLogger.Tests2.FailingTestSetup.SetUp() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest2.cs:line 122</failure>
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedFixture(&quot;Answer&quot;,42)" name="TestE" time="0.0001290" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedFixture(&quot;Question&quot;,1)" name="TestE" time="0.0000280" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases" name="TestData(1,&quot;A&quot;)" time="0.0002150" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases" name="TestData(1,&quot;B&quot;)" time="0.0000400" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases" name="TestData(2,&quot;A&quot;)" time="0.0005419">
-      <failure type="failure" message="  failing for second case&#xD;&#xA;  Expected: not equal to 2&#xD;&#xA;  But was:  2&#xD;&#xA;">at JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(Int32 x, String s) in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest2.cs:line 187</failure>
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases" name="TestData(2,&quot;B&quot;)" time="0.0004890">
-      <failure type="failure" message="  failing for second case&#xD;&#xA;  Expected: not equal to 2&#xD;&#xA;  But was:  2&#xD;&#xA;">at JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(Int32 x, String s) in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest2.cs:line 187</failure>
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture" name="InconclusiveTest" time="0.0004310" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture" name="SuccessTest" time="0.0000860" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.SuccessFixture" name="SuccessTest" time="0.0000810" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest1" name="FailTest11" time="0.0005720">
-      <failure type="failure" message="  Expected: False&#xD;&#xA;  But was:  True&#xD;&#xA;">at JUnit.Xml.TestLogger.Tests2.UnitTest1.FailTest11() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest2.cs:line 20</failure>
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest1" name="Ignored" time="0.0000110">
-      <skipped />
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest1" name="Inconclusive" time="0.0004320" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest1" name="PassTest11" time="0.4104580" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="ExplicitTest" time="0.0000410" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="FailTest22" time="0.0035250">
-      <failure type="failure" message="  Expected: False&#xD;&#xA;  But was:  True&#xD;&#xA;">at JUnit.Xml.TestLogger.Tests2.UnitTest2.FailTest22() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest2.cs:line 49</failure>
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="IgnoredTest" time="0.0000310">
-      <skipped />
-    </testcase>
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="Inconclusive" time="0.0009130" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="PassTest21" time="0.0005760" />
-    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="WarningTest" time="0.0006100">
-      <skipped />
-    </testcase>
-    <system-out>{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture" name="InconclusiveTest" time="0.0005370" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.SuccessAndInconclusiveFixture" name="SuccessTest" time="0.0000649" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.SuccessFixture" name="SuccessTest" time="0.0000780" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="FailTest11" time="0.0016270">
+      <failure type="failure" message="  Expected: False&#xA;  But was:  True&#xA;">at JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1.FailTest11() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest1.cs:line 36</failure>
+      <system-out><![CDATA[{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}
 {C33FF4B5-75E1-4882-B968-DF9608BFE7C2}
 
+]]></system-out>
+      <system-err><![CDATA[{D46DFA10-EEDD-49E5-804D-FE43051331A7}
+
+{33F5FD22-6F40-499D-98E4-481D87FAEAA1}
+
+]]></system-err>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="Ignored" time="0.0003760">
+      <skipped />
+      <system-out><![CDATA[ignore reason
+]]></system-out>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="Inconclusive" time="0.0003610">
+      <system-out><![CDATA[test inconclusive
+]]></system-out>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="MultipleCategories" time="0.0000800" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="NoProperty" time="0.0000610" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="PassTest11" time="0.4046719">
+      <system-out><![CDATA[{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}
+{998AC9EC-7429-42CD-AD55-72037E7AF3D8}
+
+[[ATTACHMENT|/tmp/y.txt]]
+]]></system-out>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="WithCategory" time="0.0003150" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="WithCategoryAndProperty" time="0.0001240" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="WithProperties" time="0.0000740" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" name="WithProperty" time="0.0000680" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="ExplicitTest" time="0.0001200">
+      <skipped />
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="FailTest22" time="0.0012550">
+      <failure type="failure" message="  Expected: False&#xA;  But was:  True&#xA;">at JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2.FailTest22() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest1.cs:line 103</failure>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="IgnoredTest" time="0.0000200">
+      <skipped />
+      <system-out><![CDATA[ignore reason
+]]></system-out>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="Inconclusive" time="0.0003280" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="PassTest21" time="0.0003030" />
+    <testcase classname="JUnit.Xml.TestLogger.NetFull.Tests.UnitTest2" name="WarningTest" time="0.0004510">
+      <skipped />
+      <system-out><![CDATA[Warning
+]]></system-out>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp" name="TestA" time="0.0003600">
+      <failure type="failure" message="OneTimeSetUp: System.InvalidOperationException : Operation is not valid due to the current state of the object."></failure>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown" name="TestD" time="0.0000620" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.FailingTearDown" name="TestC" time="0.0002950">
+      <failure type="failure" message="TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.">--TearDown
+   at JUnit.Xml.TestLogger.Tests2.FailingTearDown.TearDown() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest2.cs:line 137</failure>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.FailingTestSetup" name="TestB" time="0.0003240">
+      <failure type="failure" message="System.InvalidOperationException : Operation is not valid due to the current state of the object.">at JUnit.Xml.TestLogger.Tests2.FailingTestSetup.SetUp() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest2.cs:line 122</failure>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedFixture(&quot;Answer&quot;,42)" name="TestE" time="0.0000690" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedFixture(&quot;Question&quot;,1)" name="TestE" time="0.0000220" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases" name="TestData(1,&quot;A&quot;)" time="0.0002140" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases" name="TestData(1,&quot;B&quot;)" time="0.0000410" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases" name="TestData(2,&quot;A&quot;)" time="0.0006290">
+      <failure type="failure" message="  failing for second case&#xA;  Expected: not equal to 2&#xA;  But was:  2&#xA;">at JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(Int32 x, String s) in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest2.cs:line 187</failure>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases" name="TestData(2,&quot;B&quot;)" time="0.0004470">
+      <failure type="failure" message="  failing for second case&#xA;  Expected: not equal to 2&#xA;  But was:  2&#xA;">at JUnit.Xml.TestLogger.Tests2.ParametrizedTestCases.TestData(Int32 x, String s) in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest2.cs:line 187</failure>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture" name="InconclusiveTest" time="0.0002920" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.SuccessAndInconclusiveFixture" name="SuccessTest" time="0.0000630" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.SuccessFixture" name="SuccessTest" time="0.0000600" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest1" name="FailTest11" time="0.0004880">
+      <failure type="failure" message="  Expected: False&#xA;  But was:  True&#xA;">at JUnit.Xml.TestLogger.Tests2.UnitTest1.FailTest11() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest2.cs:line 20</failure>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest1" name="Ignored" time="0.0000150">
+      <skipped />
+      <system-out><![CDATA[ignore reason
+]]></system-out>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest1" name="Inconclusive" time="0.0002950">
+      <system-out><![CDATA[test inconclusive
+]]></system-out>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest1" name="PassTest11" time="0.4022320" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="ExplicitTest" time="0.0001990">
+      <skipped />
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="FailTest22" time="0.0086770">
+      <failure type="failure" message="  Expected: False&#xA;  But was:  True&#xA;">at JUnit.Xml.TestLogger.Tests2.UnitTest2.FailTest22() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest2.cs:line 49</failure>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="IgnoredTest" time="0.0001280">
+      <skipped />
+      <system-out><![CDATA[ignore reason
+]]></system-out>
+    </testcase>
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="Inconclusive" time="0.0010940" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="PassTest21" time="0.0003700" />
+    <testcase classname="JUnit.Xml.TestLogger.Tests2.UnitTest2" name="WarningTest" time="0.0003730">
+      <skipped />
+      <system-out><![CDATA[Warning
+]]></system-out>
+    </testcase>
+    <testcase classname="UnitTests.Domain.Orders.Checkout.CreateCheckoutOrderTests+TheHandler" name="RebuildsManifestIfAnyPromotionHasLimitedUse" time="0.0007570">
+      <failure type="failure" message="  Expected: False&#xA;  But was:  True&#xA;">at UnitTests.Domain.Orders.Checkout.CreateCheckoutOrderTests.TheHandler.RebuildsManifestIfAnyPromotionHasLimitedUse() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest3.cs:line 16</failure>
+    </testcase>
+    <system-out>
+Test Framework Informational Messages:
+NUnit Adapter 4.0.0.0: Test execution started
+Running all tests in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/bin/Debug/netcoreapp3.1/JUnit.Xml.TestLogger.NetCore.Tests.dll
+   NUnit3TestExecutor discovered 53 of 53 NUnit test cases using Current Discovery mode, Non-Explicit run
+{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}
+{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}
+
+Ignored: ignore reason
+Inconclusive: test inconclusive
 {2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}
 {998AC9EC-7429-42CD-AD55-72037E7AF3D8}
 
-
-Test Framework Informational Messages:
-NUnit Adapter 3.10.0.21: Test execution started
-Running all tests in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\bin\Debug\netcoreapp3.1\JUnit.Xml.TestLogger.NetCore.Tests.dll
-NUnit3TestExecutor converted 52 of 52 NUnit test cases
-NUnit Adapter 3.10.0.21: Test execution complete
+IgnoredTest: ignore reason
+WarningTest: Warning
+Ignored: ignore reason
+Inconclusive: test inconclusive
+IgnoredTest: ignore reason
+WarningTest: Warning
+NUnit Adapter 4.0.0.0: Test execution complete
 </system-out>
-    <system-err>Warning - SetUp failed for test fixture JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp
+    <system-err>Warning - Setup failed for test fixture JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp
 Warning - System.InvalidOperationException : Operation is not valid due to the current state of the object.
-Warning -    at JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.OneTimeSetUp() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 152
+StackTrace:    at JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeSetUp.OneTimeSetUp() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest1.cs:line 161
 Warning - TearDown failed for test fixture JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown
 Warning - TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.
-Warning - --TearDown
-   at JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.OneTimeTearDown() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs:line 197
+StackTrace: --TearDown
+   at JUnit.Xml.TestLogger.NetFull.Tests.FailingOneTimeTearDown.OneTimeTearDown() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest1.cs:line 206
 Warning - {D46DFA10-EEDD-49E5-804D-FE43051331A7}
 Warning - {33F5FD22-6F40-499D-98E4-481D87FAEAA1}
-Warning - SetUp failed for test fixture JUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp
+Warning - Setup failed for test fixture JUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp
 Warning - System.InvalidOperationException : Operation is not valid due to the current state of the object.
-Warning -    at JUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.OneTimeSetUp() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest2.cs:line 107
+StackTrace:    at JUnit.Xml.TestLogger.Tests2.FailingOneTimeSetUp.OneTimeSetUp() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest2.cs:line 107
 Warning - TearDown failed for test fixture JUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown
 Warning - TearDown : System.InvalidOperationException : Operation is not valid due to the current state of the object.
-Warning - --TearDown
-   at JUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.OneTimeTearDown() in C:\Users\REDACTED\Documents\GitHub\junit.testlogger\test\assets\JUnit.Xml.TestLogger.NetCore.Tests\UnitTest2.cs:line 152
+StackTrace: --TearDown
+   at JUnit.Xml.TestLogger.Tests2.FailingOneTimeTearDown.OneTimeTearDown() in /mnt/docs/src/spekt/testlogger/test/assets/JUnit.Xml.TestLogger.NetCore.Tests/UnitTest2.cs:line 152
 </system-err>
   </testsuite>
 </testsuites>

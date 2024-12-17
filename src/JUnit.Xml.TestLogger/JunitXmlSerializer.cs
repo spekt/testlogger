@@ -200,14 +200,6 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
             var testCaseElements = results.Select(a => this.CreateTestCaseElement(a));
 
             StringBuilder stdOut = new StringBuilder();
-            foreach (var m in results.SelectMany(x => x.Messages))
-            {
-                if (TestResultMessage.StandardOutCategory.Equals(m.Category, StringComparison.OrdinalIgnoreCase))
-                {
-                    stdOut.AppendLine(m.Text);
-                }
-            }
-
             var frameworkInfo = messages.Where(x => x.Level == TestMessageLevel.Informational);
             if (frameworkInfo.Any())
             {
@@ -312,6 +304,43 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
                 var skippedElement = new XElement("skipped");
 
                 testcaseElement.Add(skippedElement);
+            }
+
+            // Add stdout and stderr to the testcase element
+            StringBuilder stdOut = new StringBuilder();
+            StringBuilder stdErr = new StringBuilder();
+            if (this.StoreConsoleOutputOption)
+            {
+                // Store the system-out and system-err only if store console output is enabled
+                foreach (var m in result.Messages)
+                {
+                    if (TestResultMessage.StandardOutCategory.Equals(m.Category, StringComparison.OrdinalIgnoreCase))
+                    {
+                        stdOut.AppendLine(m.Text);
+                    }
+                    else if (TestResultMessage.StandardErrorCategory.Equals(m.Category, StringComparison.OrdinalIgnoreCase))
+                    {
+                        stdErr.AppendLine(m.Text);
+                    }
+                }
+            }
+
+            // Attachments are always included in system-out irrespective of the StoreConsoleOutput option.
+            // See attachments spec here: https://plugins.jenkins.io/junit-attachments/
+            foreach (var attachment in result.Attachments)
+            {
+                // Ignore Attachment descriptions, it is not clear if CI systems use it.
+                stdOut.AppendLine($"[[ATTACHMENT|{attachment.FilePath}]]");
+            }
+
+            if (!string.IsNullOrWhiteSpace(stdOut.ToString()))
+            {
+                testcaseElement.Add(new XElement("system-out", new XCData(stdOut.ToString())));
+            }
+
+            if (!string.IsNullOrWhiteSpace(stdErr.ToString()))
+            {
+                testcaseElement.Add(new XElement("system-err", new XCData(stdErr.ToString())));
             }
 
             return testcaseElement;

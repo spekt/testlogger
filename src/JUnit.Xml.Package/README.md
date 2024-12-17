@@ -6,9 +6,9 @@ JUnit xml report extension for [Visual Studio Test Platform](https://github.com/
 
 ## Packages
 
-| Logger | Stable Package | Pre-release Package |
-| ------ | -------------- | ------------------- |
-| JUnit | [![NuGet](https://img.shields.io/nuget/v/JUnitXml.TestLogger.svg)](https://www.nuget.org/packages/JUnitXml.TestLogger/) | [![MyGet Pre Release](https://img.shields.io/myget/spekt/vpre/junitxml.testlogger.svg)](https://www.myget.org/feed/spekt/package/nuget/JunitXml.TestLogger) |
+| Logger | Stable Package                                                                                                          | Pre-release Package                                                                                                                                         |
+| ------ | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| JUnit  | [![NuGet](https://img.shields.io/nuget/v/JUnitXml.TestLogger.svg)](https://www.nuget.org/packages/JUnitXml.TestLogger/) | [![MyGet Pre Release](https://img.shields.io/myget/spekt/vpre/junitxml.testlogger.svg)](https://www.myget.org/feed/spekt/package/nuget/JunitXml.TestLogger) |
 
 If you're looking for `Nunit` or `Xunit` loggers, please see <https://github.com/spekt/testlogger>.
 
@@ -55,7 +55,7 @@ Platform Specific Recommendations:
 - [Jenkins Recommendation](/docs/jenkins-recommendation.md)
 - [CircleCI Recommendation](/docs/circleci-recommendation.md)
 
-After the logger name, command line arguments are provided as key/value pairs with the following general format. **Note** the quotes are required and key names are case sensitive.
+After the logger name, command line arguments are provided as key/value pairs with the following general format. **Note** the quotes are required, and key names are case-sensitive.
 
 ```none
 > dotnet test --test-adapter-path:. --logger:"junit;key1=value1;key2=value2"
@@ -83,6 +83,30 @@ We recommend this option for [GitLab](/docs/gitlab-recommendation.md) and [Circl
 
 - FailureBodyFormat=Default
 - FailureBodyFormat=Verbose
+
+#### StoreConsoleOutput
+
+You can use `StoreConsoleOutput` option to disable any `system-out` and `system-err` logs in both `testsuite`
+and `testcase` elements. By default, all console outputs are captured. Example usage:
+
+`dotnet test --logger:"junit;StoreConsoleOutput=false"`
+
+NOTE: test attachments are always emitted in `system-out` even when above option is false.
+
+**v5.x and later behavior**
+
+In v5.x and later, `system-out` and `system-err` logs are reported at a per `testcase` element in the report. Because each test
+adapter determines to also emit the console output and errors at test suite level, there may be some duplication for the messages.
+
+**v4.x and earlier behavior**
+
+Prior to v5.x, console stdout and stderr was reported only in the `system-out` and `system-err` elements at `testsuite` level. This
+would concatenate messages from all test results and information messages from adapter.
+
+##### Allowed Values
+
+- StoreConsoleOutput=true (default)
+- StoreConsoleOutput=false
 
 ## License
 
