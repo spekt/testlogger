@@ -4,13 +4,13 @@
 
 ```yml
 - run:
-   name: Run Tests
-   command: |
-     dotnet test ... --logger:"junit;LogFilePath=TestResults/test-result.xml;FailureBodyFormat=Verbose;MethodFormat=Class"
+    name: Run Tests
+    command: |
+      dotnet test ... --logger:"junit;LogFilePath=TestResults/test-result.xml;FailureBodyFormat=Verbose;MethodFormat=Class"
 - store_test_results:
-   path: TestResults/
+    path: TestResults/
 - store_artifacts:
-   path: TestResults/
+    path: TestResults/
 ```
 
 See also: [this sample repository][circleci-windows-project-example].
@@ -75,7 +75,7 @@ the files must be stored using the
 
 ```yml
 - store_test_results:
-   path: TestResults/
+    path: TestResults/
 ```
 
 ### Store Artifacts
@@ -88,7 +88,7 @@ which is useful where the user requires information from the file that CircleCI 
 
 ```yml
 - store_artifacts:
-   path: TestResults/
+    path: TestResults/
 ```
 
 ### Test Splitting
@@ -102,7 +102,7 @@ This technique reduces the total (elapsed-time) duration of the tests and thus p
 For an example of a CircleCI Windows project that demonstrates parallel test execution, take a look at
 [this sample repository][circleci-windows-project-example].
 
------
+---
 
 ## Footnote
 
@@ -112,7 +112,6 @@ As of July 20 2023:
   - e.g. `<system-out>` from within a `<testcase>` is shown.
 - Data outside of a `<testcase>` element is not interpreted by CircleCI.
 - The `<properties>` from a `<testcase>` aren't interpreted by CircleCI.
-- By default, the logger only puts console text (`<system-out>` and `<system-err>`) in elements at the `<testsuite>` level (not into `<testcase>`) so CircleCI  does not interpret it.
 
 e.g.
 

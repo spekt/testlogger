@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -13,6 +14,14 @@ namespace JUnit.Xml.TestLogger.NetFull.Tests
         {
             Console.WriteLine("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}");
             Console.WriteLine("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}");
+
+            var file = Path.Combine(Path.GetTempPath(), "y.txt");
+            if (!File.Exists(file))
+            {
+                File.Create(file);
+            }
+            TestContext.AddTestAttachment(file, "description");
+
             await Task.Delay(TimeSpan.FromMilliseconds(400));
         }
 
@@ -23,7 +32,7 @@ namespace JUnit.Xml.TestLogger.NetFull.Tests
             Console.WriteLine("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}");
             Console.Error.WriteLine("{D46DFA10-EEDD-49E5-804D-FE43051331A7}");
             Console.Error.WriteLine("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}");
-         
+
             Assert.False(true);
         }
 

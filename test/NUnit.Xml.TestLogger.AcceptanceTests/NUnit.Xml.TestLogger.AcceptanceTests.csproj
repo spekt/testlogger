@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../TestLogger.Fixtures/TestLogger.Fixtures.csproj" />
+    <ProjectReference Include="../../src/TestLogger/TestLogger.csproj" />
   </ItemGroup>
 
   <ItemGroup>

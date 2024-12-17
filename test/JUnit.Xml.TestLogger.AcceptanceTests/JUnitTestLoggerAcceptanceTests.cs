@@ -93,7 +93,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 .ToList();
 
             Assert.AreEqual(15, failures.Count());
-            Assert.IsTrue(failures.All(x => x.Descendants().Count() == 1));
             Assert.IsTrue(failures.All(x => x.Descendants().First().Attribute("type").Value == "failure"));
 
             // Check failures
