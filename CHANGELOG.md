@@ -5,6 +5,18 @@ simplicity. For v3.x changelogs, refer to the end of this document.
 
 ## Unreleased (v4.1.x)
 
+## [5.0.0](https://github.com/spekt/testlogger/compare/v4.1.0...v5.0.0) (2024-12-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* [junit] add testcase system-out and system-err along with attachment support. ([#136](https://github.com/spekt/testlogger/issues/136))
+
+### Features
+
+* [junit] add testcase system-out and system-err along with attachment support. ([#136](https://github.com/spekt/testlogger/issues/136)) ([dff18d6](https://github.com/spekt/testlogger/commit/dff18d6379009656fc622fe15e9a5f2708e72f33))
+* update junit xsd to allow test case level outputs. ([#134](https://github.com/spekt/testlogger/issues/134)) ([1a37110](https://github.com/spekt/testlogger/commit/1a37110a8be5e4e20896826b2ed5db28b5dd4a06))
+
 ## [4.1.0](https://github.com/spekt/testlogger/compare/v4.0.254...v4.1.0) (2024-10-12)
 
 
