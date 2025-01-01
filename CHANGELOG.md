@@ -3,8 +3,6 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
-## Unreleased (v4.1.x)
-
 ## [5.0.0](https://github.com/spekt/testlogger/compare/v4.1.0...v5.0.0) (2024-12-19)
 
 
