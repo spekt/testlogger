@@ -98,7 +98,8 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 Assert.IsTrue(body.Trim().StartsWith(message.Trim()));
             }
 
-            Assert.IsTrue(new JunitXmlValidator().IsValid(resultsXml));
+            var validator = new JunitXmlValidator();
+            Assert.IsTrue(validator.IsValid(resultsXml));
         }
 
         [TestMethod]

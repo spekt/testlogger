@@ -124,20 +124,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         }
 
         [TestMethod]
-        public void TestResultFileShouldContainXUnitTraitAsProperty()
-        {
-            var properties = this.resultsXml.XPathSelectElement(
-                "/testsuites/testsuite//testcase[@classname=\"NUnit.Xml.TestLogger.Tests2.ApiTest\"]/properties");
-            Assert.IsNotNull(properties);
-            Assert.AreEqual(1, properties.Nodes().Count());
-
-            var firstProperty = properties.Nodes().First() as XElement;
-            Assert.IsNotNull(firstProperty);
-            Assert.AreEqual("SomeProp", firstProperty.Attribute("name").Value);
-            Assert.AreEqual("SomeVal", firstProperty.Attribute("value").Value);
-        }
-
-        [TestMethod]
         public void TestResultFileShouldContainNUnitCategoryAsProperty()
         {
             var tesuites = this.resultsXml.XPathSelectElement("/testsuites/testsuite");

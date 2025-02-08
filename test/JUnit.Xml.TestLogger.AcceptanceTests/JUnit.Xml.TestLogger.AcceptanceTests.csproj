@@ -27,6 +27,7 @@
 
     <TestAssets Include="$(MSBuildThisFileDirectory)../assets/JUnit.Xml.TestLogger.NetCore.Tests/JUnit.Xml.TestLogger.NetCore.Tests.csproj" />
     <TestAssets Include="$(MSBuildThisFileDirectory)../assets/JUnit.Xml.TestLogger.NetMulti.Tests/JUnit.Xml.TestLogger.NetMulti.Tests.csproj" />
+    <TestAssets Include="$(MSBuildThisFileDirectory)../assets/JUnit.Xml.TestLogger.XUnit.NetCore.Tests/JUnit.Xml.TestLogger.XUnit.NetCore.Tests.csproj" />
   </ItemGroup>
   <Target Name="TestTarget" BeforeTargets="Build">
     <Message Importance="High" Text="... Building test assets" />
