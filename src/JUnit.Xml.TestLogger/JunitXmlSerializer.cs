@@ -176,14 +176,67 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
                     $"{Environment.NewLine}{indent}",
                     messages.SelectMany(m =>
                         m.Text.Split(new string[] { "\r", "\n" }, StringSplitOptions.None)
-                              .Where(x => !string.IsNullOrWhiteSpace(x))
-                              .Select(x => x.Trim())));
+                            .Where(x => !string.IsNullOrWhiteSpace(x))
+                            .Select(x => x.Trim())));
         }
 
-        private XElement CreateTestSuitesElement(
-            List<TestResultInfo> results,
-            TestRunConfiguration runConfiguration,
-            List<TestMessageInfo> messages)
+        private static IEnumerable<XElement> CreatePropertyElement(string name, params string[] values)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("message", nameof(name));
+            }
+
+            foreach (var value in values)
+            {
+                yield return new XElement(
+                    "property",
+                    new XAttribute("name", name),
+                    new XAttribute("value", value));
+            }
+        }
+
+        private static XElement CreatePropertyElement(Trait trait)
+        {
+            return CreatePropertyElement(trait.Name, trait.Value).Single();
+        }
+
+        private static XElement CreatePropertiesElement(TestResultInfo result)
+        {
+            var propertyElements = new HashSet<XNode>(result.Traits.Select(CreatePropertyElement));
+
+#pragma warning disable CS0618 // Type or member is obsolete
+
+            // Required since TestCase.Properties is a superset of TestCase.Traits
+            // Unfortunately not all NUnit properties are available as traits
+            var traitProperties = result.Properties;
+
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            foreach (var traitProperty in traitProperties)
+            {
+                if (traitProperty.Key != "CustomProperty")
+                {
+                    continue;
+                }
+
+                var propertyDef = traitProperty.Value as string[];
+                if (propertyDef == null || propertyDef.Length != 2)
+                {
+                    continue;
+                }
+
+                var propertyElement = CreatePropertyElement(propertyDef[0], propertyDef[1]);
+                foreach (var element in propertyElement)
+                {
+                    propertyElements.Add(element);
+                }
+            }
+
+            return propertyElements.Any() ? new XElement("properties", propertyElements.Distinct()) : null;
+        }
+
+        private XElement CreateTestSuitesElement(List<TestResultInfo> results, TestRunConfiguration runConfiguration, List<TestMessageInfo> messages)
         {
             var assemblies = results.Select(x => x.AssemblyPath).Distinct().ToList();
             var testsuiteElements = assemblies
@@ -266,9 +319,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
 
             // Ensure time value is never zero because gitlab treats 0 like its null. 0.1 micro
             // seconds should be low enough it won't interfere with anyone monitoring test duration.
-            testcaseElement.SetAttributeValue(
-                "time",
-                Math.Max(0.0000001f, result.Duration.TotalSeconds).ToString("0.0000000", CultureInfo.InvariantCulture));
+            testcaseElement.SetAttributeValue("time", Math.Max(0.0000001f, result.Duration.TotalSeconds).ToString("0.0000000", CultureInfo.InvariantCulture));
 
             if (result.Outcome == TestOutcome.Failed)
             {
@@ -342,6 +393,8 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
             {
                 testcaseElement.Add(new XElement("system-err", new XCData(stdErr.ToString())));
             }
+
+            testcaseElement.Add(CreatePropertiesElement(result));
 
             return testcaseElement;
         }
