@@ -45,6 +45,9 @@ jobs:
     needs: [version]
     env:
       APP_BUILD_VERSION: ${{ needs.version.outputs.build_version }}
+      # force color output for dotnet
+      DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: "1"
+      TERM: "xterm"
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET 8.0
