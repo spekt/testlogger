@@ -38,6 +38,9 @@ namespace Spekt.TestLogger.Extensions
                         case "NUnit.TestCategory":
                             properties.Add(new KeyValuePair<string, object>(property.Id, result.TestCase.GetPropertyValue(property)));
                             break;
+                        case "NUnit.Category":
+                            properties.Add(new KeyValuePair<string, object>("CustomProperty", result.TestCase.GetPropertyValue(property)));
+                            break;
                     }
                 }
 

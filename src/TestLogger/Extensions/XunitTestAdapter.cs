@@ -56,6 +56,23 @@ namespace Spekt.TestLogger.Extensions
                     result.Method += displayName.Substring(i);
                 }
 
+                var properties = new List<KeyValuePair<string, object>>();
+
+                // Parse test traits via Trait decorator
+                foreach (var property in result.TestCase.Properties)
+                {
+                    switch (property.Id)
+                    {
+                        case "Xunit.Trait":
+                            var propertyValue = result.TestCase.GetPropertyValue(property) as string[];
+
+                            properties.Add(new KeyValuePair<string, object>("CustomProperty", propertyValue));
+                            break;
+                    }
+                }
+
+                result.Properties = properties;
+
                 transformedResults.Add(result);
             }
 

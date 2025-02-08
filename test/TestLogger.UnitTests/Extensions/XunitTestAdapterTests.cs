@@ -57,5 +57,29 @@ namespace Spekt.TestLogger.UnitTests.Extensions
             Assert.AreEqual(1, transformedResults.Count(x => x.Method == "M1"));
             Assert.AreEqual(1, transformedResults.Count(x => x.Method == "M2(some args)"));
         }
+
+        [TestMethod]
+        public void TransformResultShouldAddProperties()
+        {
+            var results = new List<TestResultInfo>
+            {
+                new TestResultInfoBuilder("N", "C", "M1")
+                    .WithOutcome(TestOutcome.Passed)
+                    .WithTraits([new Trait("traitKey", "traitVal")])
+                    .WithProperty("Xunit.Trait", new string[] { "key", "val" })
+                    .Build()
+            };
+
+            var messages = new List<TestMessageInfo>();
+            var xunit = new XunitTestAdapter();
+
+            var transformedResults = xunit.TransformResults(results, messages);
+            Assert.AreEqual(1, transformedResults.Count);
+            Assert.AreEqual(1, transformedResults.Count(x => x.Method == "M1"));
+
+            var parsedProperty = transformedResults[0].Properties.First();
+            Assert.AreEqual("CustomProperty", parsedProperty.Key);
+            CollectionAssert.AreEquivalent(parsedProperty.Value as string[], new[] { "key", "val" });
+        }
     }
 }
