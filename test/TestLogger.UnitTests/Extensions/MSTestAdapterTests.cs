@@ -55,5 +55,25 @@ namespace Spekt.TestLogger.UnitTests.Extensions
             Assert.AreEqual(1, transformedResults.Count);
             Assert.AreEqual(Method, transformedResults.Single().Method);
         }
+
+        [TestMethod]
+        public void TransformResultShouldAddProperties()
+        {
+            var testResults = new List<TestResultInfo>
+            {
+                new TestResultInfoBuilder("namespace", "type", Method)
+                    .WithProperty("Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestProperty", new[] { "c1", "c2" })
+                    .Build(),
+            };
+
+            var sut = new MSTestAdapter();
+
+            var transformedResults = sut.TransformResults(testResults, new List<TestMessageInfo>());
+
+            Assert.AreEqual(1, transformedResults.Count);
+            Assert.AreEqual(1, transformedResults[0].Properties.Count);
+            Assert.AreEqual(Method, transformedResults.Single().Method);
+            CollectionAssert.AreEquivalent(new[] { "c1", "c2" }, (string[])transformedResults[0].Properties.Single(p => p.Key == "CustomProperty").Value);
+        }
     }
 }

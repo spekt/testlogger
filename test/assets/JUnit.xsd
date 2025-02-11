@@ -27,9 +27,11 @@
  ********************************************************************************
 
 Modifications to original xsd for this repo:
-1. 2024/12: Allow `property` with minOccurs = 0.
+1. 2024/12 @codito: Allow `property` with minOccurs = 0.
+2. 2025/02 @timo-reymann: Allow elements in `properties` to have mixed order
+3. 2025/05 @timo-reymann: Add `properties` to test case element
 
- -->
+-->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <xs:element name="failure">
@@ -67,13 +69,14 @@ Modifications to original xsd for this repo:
 
     <xs:element name="testcase">
         <xs:complexType>
-            <xs:sequence>
+            <xs:all>
                 <xs:element ref="skipped" minOccurs="0" maxOccurs="1"/>
-                <xs:element ref="error" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element ref="failure" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element ref="system-out" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element ref="system-err" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
+                <xs:element ref="properties" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="error" minOccurs="0" />
+                <xs:element ref="failure" minOccurs="0" />
+                <xs:element ref="system-out" minOccurs="0"/>
+                <xs:element ref="system-err" minOccurs="0"/>
+            </xs:all>
             <xs:attribute name="name" type="xs:string" use="required"/>
             <xs:attribute name="assertions" type="xs:string" use="optional"/>
             <xs:attribute name="time" type="xs:string" use="optional"/>

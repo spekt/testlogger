@@ -37,9 +37,9 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             // Enable reporting of internal properties in the adapter using runsettings
             _ = DotnetTestFixture
-                    .Create()
-                    .WithBuild()
-                    .Execute(AssetName, loggerArgs, collectCoverage: false, "test-results.xml");
+                .Create()
+                .WithBuild()
+                .Execute(AssetName, loggerArgs, collectCoverage: false, "test-results.xml");
         }
 
         [TestMethod]
@@ -121,6 +121,31 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             Assert.IsTrue(node.Value.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}"));
             Assert.IsTrue(node.Value.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}"));
+        }
+
+        [TestMethod]
+        public void TestResultFileShouldContainNUnitCategoryAsProperty()
+        {
+            var tesuites = this.resultsXml.XPathSelectElement("/testsuites/testsuite");
+            var testcase = tesuites
+                .Nodes()
+                .FirstOrDefault(n =>
+                {
+                    var element = n as XElement;
+                    return element.Attribute("classname")?.Value == "JUnit.Xml.TestLogger.NetFull.Tests.UnitTest1" &&
+                           element.Attribute("name")?.Value == "WithProperties";
+                });
+            Assert.IsNotNull(testcase);
+
+            var properties = (testcase as XElement)
+                .Nodes()
+                .FirstOrDefault(n => (n as XElement)?.Name == "properties") as XElement;
+            Assert.IsNotNull(properties);
+            Assert.AreEqual(2, properties.Nodes().Count());
+            var propertyElements = properties.Nodes().ToList();
+
+            Assert.AreEqual("Property name", (propertyElements[0] as XElement).Attribute("name").Value);
+            Assert.AreEqual("Property value 1", (propertyElements[0] as XElement).Attribute("value").Value);
         }
 
         [TestMethod]

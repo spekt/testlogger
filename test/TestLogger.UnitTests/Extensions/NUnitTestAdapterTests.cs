@@ -97,5 +97,23 @@ namespace Spekt.TestLogger.UnitTests.Extensions
             Assert.AreEqual(1, modifiedResults[0].Properties.Where(p => p.Key == "NUnit.Seed").Single().Value);
             CollectionAssert.AreEquivalent(new[] { "c1", "c2" }, (string[])modifiedResults[0].Properties.Where(p => p.Key == "NUnit.TestCategory").Single().Value);
         }
+
+        [TestMethod]
+        public void TransformResultShouldAddProperties()
+        {
+            var results = new List<TestResultInfo>
+            {
+                new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod)
+                    .WithOutcome(TestOutcome.Passed)
+                    .WithProperty("NUnit.Category", new[] { "c1", "c2" })
+                    .Build()
+            };
+
+            var modifiedResults = this.adapter.TransformResults(results, new ());
+
+            Assert.AreEqual(1, modifiedResults.Count);
+            Assert.AreEqual(1, modifiedResults[0].Properties.Count);
+            CollectionAssert.AreEquivalent(new[] { "c1", "c2" }, (string[])modifiedResults[0].Properties.Single(p => p.Key == "CustomProperty").Value);
+        }
     }
 }

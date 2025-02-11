@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <!-- Disable stylecop for test assets -->
+    <StylecopEnabled>false</StylecopEnabled>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(NETTestSdkMinimumVersion)" />
+    <PackageReference Include="xunit" Version="$(XunitVersion)" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="$(XunitTestAdapterVersion)" /> 
+  </ItemGroup>
+
+</Project>

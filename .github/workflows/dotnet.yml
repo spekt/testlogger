@@ -45,6 +45,9 @@ jobs:
     needs: [version]
     env:
       APP_BUILD_VERSION: ${{ needs.version.outputs.build_version }}
+      # force color output for dotnet
+      DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: "1"
+      TERM: "xterm"
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET 8.0
@@ -55,6 +58,13 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "3.1.x"
+      - name: Configure NuGet cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
       - name: Package (debug)
         run: dotnet pack -p:PackageVersion=${{ env.APP_BUILD_VERSION }}
       - name: Package (release)
