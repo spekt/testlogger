@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <SourceRoot Condition="$(SourceRoot) == ''">$(MSBuildThisFileDirectory)</SourceRoot>
-    <SourcePrefix>4.0.0</SourcePrefix>
+    <SourcePrefix>6.0.0</SourcePrefix>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -29,9 +29,6 @@
 
     <!-- Use C# 9.0 -->
     <LangVersion>latest</LangVersion>
-
-    <!-- Do not warn for netstandard1.x usage -->
-    <CheckNotRecommendedTargetFramework>false</CheckNotRecommendedTargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
