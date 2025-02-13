@@ -3,6 +3,19 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
+## [6.0.0](https://github.com/spekt/testlogger/compare/v5.0.0...v6.0.0) (2025-02-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* move to netstandard2.1 and drop .NET full support ([#158](https://github.com/spekt/testlogger/issues/158))
+* [junit] #153 Add properties support on test case level for test logger ([#154](https://github.com/spekt/testlogger/issues/154))
+
+### Features
+
+* [junit] [#153](https://github.com/spekt/testlogger/issues/153) Add properties support on test case level for test logger ([#154](https://github.com/spekt/testlogger/issues/154)) ([f555322](https://github.com/spekt/testlogger/commit/f555322cdb8c593a633b9707c289957b80110fab))
+* move to netstandard2.1 and drop .NET full support ([#158](https://github.com/spekt/testlogger/issues/158)) ([4a00352](https://github.com/spekt/testlogger/commit/4a0035288ccddd02551b88ef3fd68124841f2116))
+
 ## [5.0.0](https://github.com/spekt/testlogger/compare/v4.1.0...v5.0.0) (2024-12-19)
 
 
