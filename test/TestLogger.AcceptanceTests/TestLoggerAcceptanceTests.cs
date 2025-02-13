@@ -27,14 +27,6 @@ namespace TestLogger.AcceptanceTests
         [DataRow("Json.TestLogger.NUnit.NetCore.Tests", "", "")]
         [DataRow("Json.TestLogger.NUnit.NetCore.Tests", ";Parser=Legacy", "IncludesParserFailures")]
         [DataRow("Json.TestLogger.XUnit.NetCore.Tests", "", "")]
-        [DataRow("Json.TestLogger.MSTest.NetMulti.Tests", "", "")]
-        [DataRow("Json.TestLogger.NUnit.NetMulti.Tests", "", "")]
-        [DataRow("Json.TestLogger.XUnit.NetMulti.Tests", "", "")]
-#if WINDOWS_OS
-        [DataRow("Json.TestLogger.MSTest.NetFull.Tests", "", "WindowsOnly")]
-        [DataRow("Json.TestLogger.NUnit.NetFull.Tests", "", "WindowsOnly")]
-        [DataRow("Json.TestLogger.XUnit.NetFull.Tests", "", "WindowsOnly")]
-#endif
         public Task VerifyTestRunOutput(string testAssembly, string additionalArgs, string comment)
         {
             // Logger arguments are passed as it is for the test process: dotnet test --logger:<loggerArgs>

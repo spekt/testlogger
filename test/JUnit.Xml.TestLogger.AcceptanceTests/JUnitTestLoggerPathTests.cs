@@ -19,7 +19,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     {
         private static readonly string[] ExpectedResultsFiles = new string[]
         {
-            "JUnit.Xml.TestLogger.NetMulti.Tests.NETFramework461.test-results.xml",
+            "JUnit.Xml.TestLogger.NetMulti.Tests.NETCoreApp90.test-results.xml",
             "JUnit.Xml.TestLogger.NetMulti.Tests.NETCoreApp31.test-results.xml"
         };
 
