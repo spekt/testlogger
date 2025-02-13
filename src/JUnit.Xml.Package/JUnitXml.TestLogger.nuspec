@@ -16,11 +16,7 @@
     <file src="Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger.dll" target="build\_common\" />
     <file src="Spekt.TestLogger.dll" target="build\_common\" />
 
-    <!-- Net Core -->
-    <file src="JunitXml.TestLogger.props" target="build\netstandard1.5\" />
-
-    <!-- Desktop -->
-    <file src="JunitXml.TestLogger.props" target="build\net46\" />
+    <file src="JunitXml.TestLogger.props" target="build\netstandard2.1\" />
 
     <file src="README.md" target="docs\" />
     <file src="CHANGELOG.md" target="docs\" />
