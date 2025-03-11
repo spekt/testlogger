@@ -18,11 +18,9 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
     public class JunitXmlSerializer : ITestResultSerializer
     {
         // Dicionary keys for command line arguments.
-        public const string MethodFormatKey = "MethodFormat";
-
-        public const string FailureBodyFormatKey = "FailureBodyFormat";
-
-        public const string StoreConsoleOutputKey = "StoreConsoleOutput";
+        private const string MethodFormatKey = "MethodFormat";
+        private const string FailureBodyFormatKey = "FailureBodyFormat";
+        private const string StoreConsoleOutputKey = "StoreConsoleOutput";
 
         private const string ResultStatusPassed = "Passed";
         private const string ResultStatusFailed = "Failed";
@@ -58,13 +56,36 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
             Verbose,
         }
 
+        public enum StoreConsoleOutputConfiguration
+        {
+            /// <summary>
+            /// Console output will be stored at both test suite and test case level.
+            /// </summary>
+            Both,
+
+            /// <summary>
+            /// No console output will be stored.
+            /// </summary>
+            None,
+
+            /// <summary>
+            /// Console output will be stored at test case level only.
+            /// </summary>
+            TestCase,
+
+            /// <summary>
+            /// Console output will be stored at test suite level only.
+            /// </summary>
+            TestSuite
+        }
+
         public IInputSanitizer InputSanitizer { get; } = new InputSanitizerXml();
 
         public MethodFormat MethodFormatOption { get; private set; } = MethodFormat.Default;
 
         public FailureBodyFormat FailureBodyFormatOption { get; private set; } = FailureBodyFormat.Default;
 
-        public bool StoreConsoleOutputOption { get; private set; } = true;
+        public StoreConsoleOutputConfiguration StoreConsoleOutputOption { get; private set; } = StoreConsoleOutputConfiguration.Both;
 
         public static IEnumerable<TestSuite> GroupTestSuites(IEnumerable<TestSuite> suites)
         {
@@ -252,34 +273,37 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
         {
             var testCaseElements = results.Select(a => this.CreateTestCaseElement(a));
 
-            StringBuilder stdOut = new StringBuilder();
-            var frameworkInfo = messages.Where(x => x.Level == TestMessageLevel.Informational);
-            if (frameworkInfo.Any())
+            var stdOut = new StringBuilder();
+            var stdErr = new StringBuilder();
+            if (this.StoreConsoleOutputOption is StoreConsoleOutputConfiguration.Both or StoreConsoleOutputConfiguration.TestSuite)
             {
-                stdOut.AppendLine(string.Empty);
-                stdOut.AppendLine("Test Framework Informational Messages:");
-
-                foreach (var m in frameworkInfo)
+                var frameworkInfo = messages.Where(x => x.Level == TestMessageLevel.Informational);
+                if (frameworkInfo.Any())
                 {
-                    stdOut.AppendLine(m.Message);
+                    stdOut.AppendLine(string.Empty);
+                    stdOut.AppendLine("Test Framework Informational Messages:");
+
+                    foreach (var m in frameworkInfo)
+                    {
+                        stdOut.AppendLine(m.Message);
+                    }
+                }
+
+                foreach (var m in messages.Where(x => x.Level != TestMessageLevel.Informational))
+                {
+                    stdErr.AppendLine($"{m.Level} - {m.Message}");
                 }
             }
 
-            StringBuilder stdErr = new StringBuilder();
-            foreach (var m in messages.Where(x => x.Level != TestMessageLevel.Informational))
-            {
-                stdErr.AppendLine($"{m.Level} - {m.Message}");
-            }
-
             // Adding required properties, system-out, and system-err elements in the correct
-            // positions as required by the xsd. In system-out collapse consequtive newlines to a
+            // positions as required by the xsd. In system-out collapse consecutive newlines to a
             // single newline.
             var element = new XElement(
                 "testsuite",
                 new XElement("properties"),
                 testCaseElements,
-                new XElement("system-out", this.StoreConsoleOutputOption ? stdOut.ToString() : string.Empty),
-                new XElement("system-err", this.StoreConsoleOutputOption ? stdErr.ToString() : string.Empty));
+                new XElement("system-out", stdOut.ToString()),
+                new XElement("system-err", stdErr.ToString()));
 
             element.SetAttributeValue("name", Path.GetFileName(results.First().AssemblyPath));
 
@@ -358,9 +382,9 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
             }
 
             // Add stdout and stderr to the testcase element
-            StringBuilder stdOut = new StringBuilder();
-            StringBuilder stdErr = new StringBuilder();
-            if (this.StoreConsoleOutputOption)
+            var stdOut = new StringBuilder();
+            var stdErr = new StringBuilder();
+            if (this.StoreConsoleOutputOption is StoreConsoleOutputConfiguration.Both or StoreConsoleOutputConfiguration.TestCase)
             {
                 // Store the system-out and system-err only if store console output is enabled
                 foreach (var m in result.Messages)
@@ -443,13 +467,22 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
 
             if (loggerConfiguration.Values.TryGetValue(StoreConsoleOutputKey, out string storeOutputValue))
             {
-                if (string.Equals(storeOutputValue.Trim(), "true", StringComparison.OrdinalIgnoreCase))
+                storeOutputValue = storeOutputValue.Trim();
+                if (string.Equals(storeOutputValue, "true", StringComparison.OrdinalIgnoreCase))
                 {
-                    this.StoreConsoleOutputOption = true;
+                    this.StoreConsoleOutputOption = StoreConsoleOutputConfiguration.Both;
                 }
-                else if (string.Equals(storeOutputValue.Trim(), "false", StringComparison.OrdinalIgnoreCase))
+                else if (string.Equals(storeOutputValue, "false", StringComparison.OrdinalIgnoreCase))
                 {
-                    this.StoreConsoleOutputOption = false;
+                    this.StoreConsoleOutputOption = StoreConsoleOutputConfiguration.None;
+                }
+                else if (string.Equals(storeOutputValue, "testcase", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.StoreConsoleOutputOption = StoreConsoleOutputConfiguration.TestCase;
+                }
+                else if (string.Equals(storeOutputValue, "testsuite", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.StoreConsoleOutputOption = StoreConsoleOutputConfiguration.TestSuite;
                 }
                 else
                 {
