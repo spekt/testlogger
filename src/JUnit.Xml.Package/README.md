@@ -86,12 +86,11 @@ We recommend this option for [GitLab](/docs/gitlab-recommendation.md) and [Circl
 
 #### StoreConsoleOutput
 
-You can use `StoreConsoleOutput` option to disable any `system-out` and `system-err` logs in both `testsuite`
-and `testcase` elements. By default, all console outputs are captured. Example usage:
+You can use `StoreConsoleOutput` option to disable any `system-out` and `system-err` logs in either `testsuite` or `testcase` elements or both. By default, all console outputs are captured. Example usage:
 
 `dotnet test --logger:"junit;StoreConsoleOutput=false"`
 
-NOTE: test attachments are always emitted in `system-out` even when above option is false.
+NOTE: test attachments are always emitted in `system-out` for tests cases even when above option is `false` or `testsuite`.
 
 **v5.x and later behavior**
 
@@ -107,6 +106,8 @@ would concatenate messages from all test results and information messages from a
 
 - StoreConsoleOutput=true (default)
 - StoreConsoleOutput=false
+- StoreConsoleOutput=testsuite
+- StoreConsoleOutput=testcase
 
 ## License
 
