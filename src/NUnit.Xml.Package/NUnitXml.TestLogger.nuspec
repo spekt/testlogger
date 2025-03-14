@@ -19,10 +19,6 @@
     <file src="CHANGELOG.md" target="docs\" />
     <file src="packageIcon.png" target="\" />
 
-    <!-- Net Core -->
-    <file src="NunitXml.TestLogger.props" target="build\netstandard1.0\" />
-
-    <!-- Desktop -->
-    <file src="NunitXml.TestLogger.props" target="build\net45\" />
+    <file src="NunitXml.TestLogger.props" target="build\netstandard2.0\" />
   </files>
 </package>

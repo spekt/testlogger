@@ -8,10 +8,6 @@
     <TestProject>true</TestProject>
   </PropertyGroup>
 
-  <PropertyGroup>
-      <DefineConstants Condition="$([MSBuild]::IsOSPlatform('Windows'))">WINDOWS_OS</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="../TestLogger.Fixtures/TestLogger.Fixtures.csproj" />
     <ProjectReference Include="../../src/TestLogger/TestLogger.csproj" />
