@@ -20,9 +20,10 @@
 
     CS1573: Parameter 'parameter' has no matching param tag in the XML comment for 'parameter' (but other parameters do)
     CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
+    CS0436: Type conflicts with imported type. Disabled to allow override of ExcludeFromCodeCoverage with assembly level target.
     -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn),1573,1591,1712</NoWarn>
+    <NoWarn>$(NoWarn),1573,1591,1712,0436</NoWarn>
 
     <!-- Show full paths for the warnings and errors -->
     <GenerateFullPaths>true</GenerateFullPaths>
