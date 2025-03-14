@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger</AssemblyName>
     <Version>$(PackageVersion)</Version>
     <IsPackable>false</IsPackable>
