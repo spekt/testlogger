@@ -1,10 +1,10 @@
 // Copyright (c) Spekt Contributors. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-namespace JUnit.Xml.TestLogger.AcceptanceTests
+namespace Xunit.Xml.TestLogger.AcceptanceTests
 {
+    using System;
     using System.IO;
-    using System.Linq;
     using System.Runtime.InteropServices;
     using System.Xml.Linq;
     using System.Xml.XPath;
@@ -19,12 +19,12 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     /// when running using the xUnit vstest runner.
     /// </summary>
     [TestClass]
-    public class JUnitTestLoggerNetFullAcceptanceTests
+    public class XunitTestLoggerNetFullAcceptanceTests
     {
-        private const string AssetName = "JUnit.Xml.TestLogger.NetFull.Tests";
+        private const string AssetName = "Xunit.Xml.TestLogger.NetFull.Tests";
         private readonly string resultsFile;
 
-        public JUnitTestLoggerNetFullAcceptanceTests()
+        public XunitTestLoggerNetFullAcceptanceTests()
         {
             this.resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), "test-results.xml");
         }
@@ -37,7 +37,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 return;
             }
 
-            var loggerArgs = "junit;LogFilePath=test-results.xml";
+            var loggerArgs = "xunit;LogFilePath=test-results.xml";
 
             // Enable reporting of internal properties in the adapter using runsettings
             _ = DotnetTestFixture
@@ -47,21 +47,18 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         }
 
         [TestMethod]
-        public void NetFullLoggedXmlValidatesAgainstXsdSchema()
+        public void NetFullTestsAreRun()
         {
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 return;
             }
 
-            var validator = new JunitXmlValidator();
-            var result = validator.IsValid(File.ReadAllText(this.resultsFile));
-            Assert.IsTrue(result);
-
             var resultsXml = XDocument.Load(this.resultsFile);
-            var node = resultsXml.XPathSelectElements("/testsuites/testsuite").Descendants();
-            var testcases = node.Where(x => x.Name.LocalName == "testcase").ToList();
-            Assert.IsTrue(testcases.Any());
+
+            var node = resultsXml.XPathSelectElement(@"/assemblies/assembly");
+            Assert.IsNotNull(node);
+            Assert.IsTrue(Convert.ToInt32(node.Attribute(XName.Get("total")).Value) > 0);
         }
     }
 }
