@@ -8,7 +8,7 @@ namespace Spekt.TestReporter.NUnit
 
     public static class NUnitTestReporterExtensions
     {
-        public static void AddGitHubReportProvider(this ITestApplicationBuilder testApplicationBuilder)
+        public static void AddNUnitReportProvider(this ITestApplicationBuilder testApplicationBuilder)
         {
             var extension = new NUnitTestReporterExtension();
             var compositeExtension = new CompositeExtensionFactory<NUnitTestReporter>(serviceProvider =>

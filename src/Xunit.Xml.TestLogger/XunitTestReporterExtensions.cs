@@ -8,7 +8,7 @@ namespace Spekt.TestReporter.Xunit
 
     public static class XunitTestReporterExtensions
     {
-        public static void AddGitHubReportProvider(this ITestApplicationBuilder testApplicationBuilder)
+        public static void AddXunitReportProvider(this ITestApplicationBuilder testApplicationBuilder)
         {
             var extension = new XunitTestReporterExtension();
             var compositeExtension = new CompositeExtensionFactory<XunitTestReporter>(serviceProvider =>
