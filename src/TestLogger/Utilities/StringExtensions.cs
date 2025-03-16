@@ -3,9 +3,7 @@
 
 namespace Spekt.TestLogger.Utilities
 {
-     using System.Text.RegularExpressions;
-
-     public static class StringExtensions
+    public static class StringExtensions
      {
          public static string SubstringAfterDot(this string name)
          {

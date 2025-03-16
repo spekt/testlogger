@@ -7,7 +7,6 @@ namespace Spekt.TestLogger.Core
     using System.Globalization;
     using System.IO;
     using System.Linq;
-    using System.Security.Cryptography.X509Certificates;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Spekt.TestLogger.Platform;
     using Spekt.TestLogger.Utilities;
