@@ -4,11 +4,9 @@
 namespace Spekt.TestLogger.Core
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
-    using Spekt.TestLogger.Extensions;
     using Spekt.TestLogger.Utilities;
 
     public static class TestRunResultWorkflow

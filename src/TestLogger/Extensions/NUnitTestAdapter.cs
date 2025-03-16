@@ -6,8 +6,6 @@ namespace Spekt.TestLogger.Extensions
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Spekt.TestLogger.Core;
 
     public class NUnitTestAdapter : ITestAdapter
