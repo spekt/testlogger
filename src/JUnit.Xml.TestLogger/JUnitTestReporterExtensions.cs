@@ -8,7 +8,7 @@ namespace Spekt.TestReporter.JUnit
 
     public static class JUnitTestReporterExtensions
     {
-        public static void AddGitHubReportProvider(this ITestApplicationBuilder testApplicationBuilder)
+        public static void AddJUnitReportProvider(this ITestApplicationBuilder testApplicationBuilder)
         {
             var extension = new JUnitTestReporterExtension();
             var compositeExtension = new CompositeExtensionFactory<JUnitTestReporter>(serviceProvider =>
