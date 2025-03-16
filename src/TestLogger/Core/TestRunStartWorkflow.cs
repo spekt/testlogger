@@ -23,10 +23,15 @@ namespace Spekt.TestLogger.Core
                 .GetElementsByTagName("TargetFrameworkVersion")[0]
                 .InnerText;
 
+            return Start(testRun, assemblyPath, framework);
+        }
+
+        public static TestRunConfiguration Start(this ITestRun testRun, string assemblyPath, string targetFramework)
+        {
             return new TestRunConfiguration
             {
                 AssemblyPath = assemblyPath,
-                TargetFramework = framework,
+                TargetFramework = targetFramework,
                 StartTime = DateTime.UtcNow
             };
         }

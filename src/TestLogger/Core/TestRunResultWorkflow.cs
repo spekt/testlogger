@@ -15,9 +15,9 @@ namespace Spekt.TestLogger.Core
         private static readonly TestCaseNameParser Parser = new ();
         private static readonly LegacyTestCaseNameParser LegacyParser = new ();
 
-        public static void Result(this ITestRun testRun, TestResultEventArgs resultEvent)
+        public static void Result(this ITestRun testRun, TestResult result)
         {
-            var fqn = resultEvent.Result.TestCase.FullyQualifiedName;
+            var fqn = result.TestCase.FullyQualifiedName;
             testRun.LoggerConfiguration.Values.TryGetValue(LoggerConfiguration.ParserKey, out string parserVal);
             var parsedName = parserVal switch
             {
@@ -25,7 +25,6 @@ namespace Spekt.TestLogger.Core
                 _ => Parser.Parse(fqn),
             };
 
-            var result = resultEvent.Result;
             Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
 
             testRun.Store.Add(new TestResultInfo(
