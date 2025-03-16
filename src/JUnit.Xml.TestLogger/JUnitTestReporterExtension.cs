@@ -1,4 +1,4 @@
-﻿namespace Spekt.TestLogger
+﻿namespace Spekt.TestReporter.JUnit
 {
     using System.Threading.Tasks;
     using Microsoft.Testing.Platform.Extensions;
