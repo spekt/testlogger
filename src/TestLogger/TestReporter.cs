@@ -26,6 +26,7 @@ namespace Spekt.TestReporter
         private readonly ITestRun testRun;
         private readonly IExtension extension;
         private readonly List<TestAttachmentInfo> testAttachmentInfos = new List<TestAttachmentInfo>();
+        private readonly Dictionary<TestNodeUid, List<TestNodeFileArtifact>> testAttachmentsByTestNode = new Dictionary<TestNodeUid, List<TestNodeFileArtifact>>();
 
         protected TestReporter(IServiceProvider serviceProvider, IExtension extension)
         {
@@ -49,20 +50,26 @@ namespace Spekt.TestReporter
         {
             switch (value)
             {
-                // TODO: Are testAttachmentInfos expected to be all
-                // attachments (i.e, those associated with specific test runs and those associated with the test session)?
-                // Or are there only the session attachments?
-                case SessionFileArtifact artifact:
-                    this.testAttachmentInfos.Add(new TestAttachmentInfo(artifact.FileInfo.FullName, artifact.Description));
+                case TestNodeFileArtifact testNodeFileArtifact:
+                    var uid = testNodeFileArtifact.TestNode.Uid;
+                    if (this.testAttachmentsByTestNode.TryGetValue(uid, out var list))
+                    {
+                        list.Add(testNodeFileArtifact);
+                    }
+                    else
+                    {
+                        this.testAttachmentsByTestNode.Add(uid, new List<TestNodeFileArtifact> { testNodeFileArtifact });
+                    }
+
+                    break;
+
+                case SessionFileArtifact sessionFileArtifact:
+                    this.testAttachmentInfos.Add(new TestAttachmentInfo(sessionFileArtifact.FileInfo.FullName, sessionFileArtifact.Description));
                     break;
 
                 // TODO: When to call this.testRun.Message ?
                 case TestNodeUpdateMessage testNodeUpdateMessage:
-                    if (testNodeUpdateMessage.Properties.SingleOrDefault<TestNodeStateProperty>() is { } state)
-                    {
-                        // TODO:
-                        this.testRun.Result();
-                    }
+                    this.testRun.Result(testNodeUpdateMessage, this.testAttachmentsByTestNode);
 
                     break;
             }
