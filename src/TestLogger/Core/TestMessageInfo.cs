@@ -17,6 +17,8 @@ namespace Spekt.TestLogger.Core
             this.Message = message ?? throw new ArgumentNullException(nameof(message));
         }
 
+        // TODO: Should TestMessageInfo be platform-agnostic?
+        // TestMessageLevel is VSTest-specific API.
         public TestMessageLevel Level { get; }
 
         public string Message { get; }
