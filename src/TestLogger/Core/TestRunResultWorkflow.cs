@@ -48,6 +48,18 @@ namespace Spekt.TestLogger.Core
             };
 
             TestFileLocationProperty testFileLocationProperty = testNodeUpdateMessage.TestNode.Properties.SingleOrDefault<TestFileLocationProperty>();
+            var messages = new List<TestResultMessage>();
+#pragma warning disable TPEXP // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+            if (testNodeUpdateMessage.TestNode.Properties.SingleOrDefault<StandardOutputProperty>() is { } stdOut)
+            {
+                messages.Add(new TestResultMessage(TestResultMessage.StandardOutCategory, stdOut.StandardOutput));
+            }
+
+            if (testNodeUpdateMessage.TestNode.Properties.SingleOrDefault<StandardErrorProperty>() is { } stdErr)
+            {
+                messages.Add(new TestResultMessage(TestResultMessage.StandardErrorCategory, stdErr.StandardError));
+            }
+#pragma warning restore TPEXP // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
             testRun.Store.Add(new TestResultInfo(
                 sanitize(parsedName.Namespace),
@@ -65,7 +77,7 @@ namespace Spekt.TestLogger.Core
                 timingProperty?.GlobalTiming.Duration ?? default,
                 sanitize(errorMessage),
                 sanitize(errorStackTrace),
-                result.Messages.Select(x => new TestResultMessage(sanitize(x.Category), sanitize(x.Text))).ToList(),
+                messages,
                 attachments,
                 result.TestCase.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList(),
                 result.TestCase.ExecutorUri?.ToString(),
