@@ -8,7 +8,6 @@ namespace Spekt.TestLogger.Core
     using System.Linq;
     using Microsoft.Testing.Platform.Extensions.Messages;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Spekt.TestLogger.Utilities;
 
     public static class TestRunResultWorkflow
@@ -25,6 +24,8 @@ namespace Spekt.TestLogger.Core
                 return;
             }
 
+            var timingProperty = testNodeUpdateMessage.Properties.SingleOrDefault<TimingProperty>();
+
             var fqn = testNodeUpdateMessage.TestNode.DisplayName;
             testRun.LoggerConfiguration.Values.TryGetValue(LoggerConfiguration.ParserKey, out string parserVal);
             var parsedName = parserVal switch
@@ -35,24 +36,37 @@ namespace Spekt.TestLogger.Core
 
             Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
 
+            var attachments = testAttachmentsByTestNode.TryGetValue(testNodeUpdateMessage.TestNode.Uid, out var artifacts)
+                ? artifacts.Select(x => new TestAttachmentInfo(x.FileInfo.FullName, x.Description)).ToList()
+                : new List<TestAttachmentInfo>();
+
+            var (errorMessage, errorStackTrace) = state switch
+            {
+                FailedTestNodeStateProperty failed => (failed.Exception.Message ?? failed.Explanation, failed.Exception.StackTrace),
+                ErrorTestNodeStateProperty error => (error.Exception.Message ?? error.Explanation, error.Exception.StackTrace),
+                _ => (string.Empty, string.Empty),
+            };
+
+            TestFileLocationProperty testFileLocationProperty = testNodeUpdateMessage.TestNode.Properties.SingleOrDefault<TestFileLocationProperty>();
+
             testRun.Store.Add(new TestResultInfo(
                 sanitize(parsedName.Namespace),
                 sanitize(parsedName.Type),
                 sanitize(parsedName.Method),
                 sanitize(fqn),
                 GetOutcome(state),
-                sanitize(result.DisplayName),
-                sanitize(result.TestCase.DisplayName),
-                sanitize(result.TestCase.Source),
-                sanitize(result.TestCase.CodeFilePath),
-                result.TestCase.LineNumber,
-                result.StartTime.UtcDateTime,
-                result.EndTime.UtcDateTime,
-                result.Duration,
-                sanitize(result.ErrorMessage),
-                sanitize(result.ErrorStackTrace),
+                sanitize(testNodeUpdateMessage.TestNode.DisplayName),
+                sanitize(testNodeUpdateMessage.TestNode.DisplayName),
+                sanitize(string.Empty),
+                sanitize(testFileLocationProperty?.FilePath),
+                lineNumber: testFileLocationProperty?.LineSpan.Start.Line ?? -1,
+                timingProperty?.GlobalTiming.StartTime.UtcDateTime ?? default,
+                timingProperty?.GlobalTiming.EndTime.UtcDateTime ?? default,
+                timingProperty?.GlobalTiming.Duration ?? default,
+                sanitize(errorMessage),
+                sanitize(errorStackTrace),
                 result.Messages.Select(x => new TestResultMessage(sanitize(x.Category), sanitize(x.Text))).ToList(),
-                result.Attachments.SelectMany(x => x.ToAttachments()).ToList(),
+                attachments,
                 result.TestCase.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList(),
                 result.TestCase.ExecutorUri?.ToString(),
                 result.TestCase));
