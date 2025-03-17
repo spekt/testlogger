@@ -36,8 +36,13 @@ namespace TestLogger.Fixtures
             return this;
         }
 
-        public string Execute(string assemblyName, string loggerArgs, bool collectCoverage, string resultsFileName)
+        public string Execute(string assemblyName, string loggerArgs, bool collectCoverage, string resultsFileName, bool isMTP = false)
         {
+            if (!isMTP)
+            {
+                loggerArgs = $"--logger:\"{loggerArgs}\"";
+            }
+
             var resultsDirectory = Path.Combine(assemblyName.ToAssetDirectoryPath(), this.relativeResultsDirectory);
             var resultsFile = Path.Combine(resultsDirectory, resultsFileName);
             if (File.Exists(resultsFile))
@@ -47,8 +52,14 @@ namespace TestLogger.Fixtures
 
             // Run dotnet test with logger
             var buildArgs = this.buildProject ? string.Empty : "--no-build";
+            if (isMTP)
+            {
+                buildArgs += " -p:IsMTP=true";
+            }
+
             var resultDirectoryArgs = string.IsNullOrEmpty(this.relativeResultsDirectory) ? string.Empty : $"--results-directory \"{resultsDirectory}\"";
-            var commandlineSuffix = string.IsNullOrEmpty(this.runSettingsSuffix) ? string.Empty : $"-- {this.runSettingsSuffix}";
+
+            var commandlineSuffix = string.IsNullOrEmpty(this.runSettingsSuffix) ? string.Empty : $"--{(isMTP ? "test-parameter" : string.Empty)} {this.runSettingsSuffix}";
             using var dotnet = new Process
             {
                 StartInfo =
@@ -56,13 +67,19 @@ namespace TestLogger.Fixtures
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     FileName = "dotnet",
-                    Arguments = $"test {buildArgs} --logger:\"{loggerArgs}\" \"{assemblyName.ToAssetDirectoryPath()}\\{assemblyName}.csproj\" {resultDirectoryArgs} {commandlineSuffix}"
+                    Arguments = $"test \"{assemblyName.ToAssetDirectoryPath()}\\{assemblyName}.csproj\" {buildArgs}{(isMTP ? " --" : string.Empty)} {loggerArgs} {resultDirectoryArgs} {commandlineSuffix}"
                 }
             };
 
             // Add coverage arg if required
             if (collectCoverage)
             {
+                if (isMTP)
+                {
+                    // https://github.com/coverlet-coverage/coverlet/issues/1715
+                    throw new NotSupportedException("Coverlet isn't supported with MTP yet.");
+                }
+
                 dotnet.StartInfo.Arguments += " --collect:\"XPlat Code Coverage\" --settings coverlet.runsettings";
             }
 
