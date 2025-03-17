@@ -42,9 +42,9 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow(TestOutcome.Skipped)]
         public void ResultShouldCaptureTestCaseAndResult(TestOutcome testOutcome)
         {
-            var resultEvent = new TestResultEventArgs(CreateTestResult(this.dummyTestCase, testOutcome));
+            var testResult = CreateTestResult(this.dummyTestCase, testOutcome);
 
-            this.testRun.Result(resultEvent);
+            this.testRun.Result(testResult);
 
             this.testResultStore.Pop(out var results, out _);
             Assert.AreEqual(1, results.Count);
@@ -72,12 +72,12 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public async Task ResultShouldCaptureTestCaseAndResultForParallelRun()
         {
-            var resultEvent = new TestResultEventArgs(new TestResult(this.dummyTestCase));
+            var testResult = new TestResult(this.dummyTestCase);
             var tasks = new List<Task>();
 
             for (var i = 0; i < 100; i++)
             {
-                tasks.Add(Task.Run(() => this.testRun.Result(resultEvent)));
+                tasks.Add(Task.Run(() => this.testRun.Result(testResult)));
             }
 
             await Task.WhenAll(tasks);
@@ -92,9 +92,9 @@ namespace Spekt.TestLogger.UnitTests
             // This property will be ignored.
             var testproperty = TestProperty.Register("TestProperty", "TestLabel", typeof(string), typeof(TestCase));
             this.dummyTestCase.SetPropertyValue(testproperty, "TestValue");
-            var resultEvent = new TestResultEventArgs(CreateTestResult(this.dummyTestCase, TestOutcome.Passed));
+            var testResult = CreateTestResult(this.dummyTestCase, TestOutcome.Passed);
 
-            this.testRun.Result(resultEvent);
+            this.testRun.Result(testResult);
 
             this.testResultStore.Pop(out var results, out _);
             Assert.AreEqual(1, results.Count);

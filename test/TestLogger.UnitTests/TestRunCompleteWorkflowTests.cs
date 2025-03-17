@@ -46,7 +46,7 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void CompleteShouldUpdateTestRunCompleteTimestamp()
         {
-            this.testRun.Result(new TestResultEventArgs(new TestResult(new TestCase())));
+            this.testRun.Result(new TestResult(new TestCase()));
             this.testRun.Message(new TestRunMessageEventArgs(TestMessageLevel.Informational, "dummy message"));
 
             this.testRun.Complete(this.testRunCompleteEvent);
@@ -57,7 +57,7 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void CompleteShouldFreezeAndResetResultStore()
         {
-            this.testRun.Result(new TestResultEventArgs(new TestResult(new TestCase())));
+            this.testRun.Result(new TestResult(new TestCase()));
             this.testRun.Message(new TestRunMessageEventArgs(TestMessageLevel.Informational, "dummy message"));
 
             this.testRun.Complete(this.testRunCompleteEvent);
@@ -138,8 +138,8 @@ namespace Spekt.TestLogger.UnitTests
             var failingResult =
                 new TestResult(new TestCase("NS.C.TM2", executorUri, source))
                 { Outcome = TestOutcome.Failed };
-            testRun.Result(new TestResultEventArgs(passingResult));
-            testRun.Result(new TestResultEventArgs(failingResult));
+            testRun.Result(passingResult);
+            testRun.Result(failingResult);
             TestRunMessageEventArgs().ForEach(x => testRun.Message(x));
         }
 
