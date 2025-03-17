@@ -18,6 +18,7 @@
 
   <PropertyGroup Condition="'$(IsMTP)' == 'true'">
     <UsesXunit3>true</UsesXunit3>
+    <DefineConstants>$(DefineConstants);USES_XUNIT3</DefineConstants>
     <EnableMSTestRunner>true</EnableMSTestRunner>
     <EnableNUnitRunner>true</EnableNUnitRunner>
     <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
