@@ -55,14 +55,5 @@
     <CodeAnalysisRuleSet Condition="$(TestProject) == 'true'">$(SourceRoot)scripts/stylecop.test.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <!-- Test Assets use the minimum supported versions -->
-    <NETTestSdkMinimumVersion>16.5.0</NETTestSdkMinimumVersion>
-    <XunitVersion>2.3.1</XunitVersion>
-    <XunitTestAdapterVersion>2.3.1</XunitTestAdapterVersion>
-    <NUnitVersion>3.13.2</NUnitVersion>
-    <NUnitTestAdapterVersion>4.0.0</NUnitTestAdapterVersion>
-    <MSTestVersion>3.4.3</MSTestVersion>
-  </PropertyGroup>
 </Project>
 <!-- vim: set ft=xml : -->

@@ -3,6 +3,31 @@
   <PropertyGroup>
     <RunAnalyzers>false</RunAnalyzers>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Test Assets use the minimum supported versions -->
+    <NETTestSdkMinimumVersion>16.5.0</NETTestSdkMinimumVersion>
+    <XunitVersion>2.3.1</XunitVersion>
+    <XunitTestAdapterVersion>2.3.1</XunitTestAdapterVersion>
+    <XunitV3Version>2.0.0</XunitV3Version>
+    <XunitV3TestAdapterVersion>3.0.2</XunitV3TestAdapterVersion>
+    <NUnitVersion>3.13.2</NUnitVersion>
+    <NUnitTestAdapterVersion>4.0.0</NUnitTestAdapterVersion>
+    <MSTestVersion>3.4.3</MSTestVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsMTP)' == 'true'">
+    <UsesXunit3>true</UsesXunit3>
+    <EnableMSTestRunner>true</EnableMSTestRunner>
+    <EnableNUnitRunner>true</EnableNUnitRunner>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <TestingPlatformCaptureOutput>false</TestingPlatformCaptureOutput>
+
+    <NUnitTestAdapterVersion>5.0.0</NUnitTestAdapterVersion>
+    <MSTestVersion>3.8.2</MSTestVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Update="Stylecop.Analyzers" Version="1.1.118" />
   </ItemGroup>
