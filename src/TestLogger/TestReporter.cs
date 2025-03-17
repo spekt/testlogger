@@ -11,6 +11,7 @@ namespace Spekt.TestReporter
     using System.Threading.Tasks;
     using Microsoft.Testing.Platform.Extensions;
     using Microsoft.Testing.Platform.Extensions.Messages;
+    using Microsoft.Testing.Platform.Extensions.TestFramework;
     using Microsoft.Testing.Platform.Extensions.TestHost;
     using Microsoft.Testing.Platform.Services;
     using Microsoft.Testing.Platform.TestHost;
@@ -23,15 +24,17 @@ namespace Spekt.TestReporter
     /// </summary>
     public abstract class TestReporter : IDataConsumer, ITestSessionLifetimeHandler
     {
-        private readonly ITestRun testRun;
+        private readonly IServiceProvider serviceProvider;
         private readonly IExtension extension;
+        private readonly ITestRun testRun;
         private readonly List<TestAttachmentInfo> testAttachmentInfos = new List<TestAttachmentInfo>();
         private readonly Dictionary<TestNodeUid, List<TestNodeFileArtifact>> testAttachmentsByTestNode = new Dictionary<TestNodeUid, List<TestNodeFileArtifact>>();
 
         protected TestReporter(IServiceProvider serviceProvider, IExtension extension)
         {
-            this.testRun = this.CreateTestRun(serviceProvider);
+            this.serviceProvider = serviceProvider;
             this.extension = extension;
+            this.testRun = this.CreateTestRun(serviceProvider);
         }
 
         public Type[] DataTypesConsumed { get; } = new[] { typeof(TestNodeUpdateMessage), typeof(SessionFileArtifact) };
@@ -69,7 +72,7 @@ namespace Spekt.TestReporter
 
                 // TODO: When to call this.testRun.Message ?
                 case TestNodeUpdateMessage testNodeUpdateMessage:
-                    this.testRun.Result(testNodeUpdateMessage, this.testAttachmentsByTestNode);
+                    this.testRun.Result(testNodeUpdateMessage, this.testAttachmentsByTestNode, this.serviceProvider.GetService<ITestFramework>());
 
                     break;
             }

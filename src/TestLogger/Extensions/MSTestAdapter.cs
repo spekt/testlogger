@@ -26,23 +26,33 @@ namespace Spekt.TestLogger.Extensions
                     result.Method = displayName;
                 }
 
-                // Parse property traits
-                var properties = new List<KeyValuePair<string, object>>();
-                foreach (var property in result.TestCase.Properties)
-                {
-                    switch (property.Id)
-                    {
-                        case "Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestProperty":
-                            var propertyValue = result.TestCase.GetPropertyValue(property) as string[];
-                            properties.Add(new KeyValuePair<string, object>("CustomProperty", propertyValue));
-                            break;
-                    }
-                }
-
-                result.Properties = properties;
+                CreateProperties(result);
             }
 
             return results;
+        }
+
+        private static void CreateProperties(TestResultInfo result)
+        {
+            if (result.TestCase is not { } testCase)
+            {
+                return;
+            }
+
+            // Parse property traits
+            var properties = new List<KeyValuePair<string, object>>();
+            foreach (var property in testCase.Properties)
+            {
+                switch (property.Id)
+                {
+                    case "Microsoft.VisualStudio.TestTools.UnitTesting.TestContext.TestProperty":
+                        var propertyValue = testCase.GetPropertyValue(property) as string[];
+                        properties.Add(new KeyValuePair<string, object>("CustomProperty", propertyValue));
+                        break;
+                }
+            }
+
+            result.Properties = properties;
         }
     }
 }

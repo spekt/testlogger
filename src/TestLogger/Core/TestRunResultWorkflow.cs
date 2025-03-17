@@ -7,6 +7,7 @@ namespace Spekt.TestLogger.Core
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.Testing.Platform.Extensions.Messages;
+    using Microsoft.Testing.Platform.Extensions.TestFramework;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Spekt.TestLogger.Utilities;
 
@@ -16,15 +17,13 @@ namespace Spekt.TestLogger.Core
         private static readonly TestCaseNameParser Parser = new ();
         private static readonly LegacyTestCaseNameParser LegacyParser = new ();
 
-        public static void Result(this ITestRun testRun, TestNodeUpdateMessage testNodeUpdateMessage, Dictionary<TestNodeUid, List<TestNodeFileArtifact>> testAttachmentsByTestNode)
+        public static void Result(this ITestRun testRun, TestNodeUpdateMessage testNodeUpdateMessage, Dictionary<TestNodeUid, List<TestNodeFileArtifact>> testAttachmentsByTestNode, ITestFramework testFramework)
         {
             if (testNodeUpdateMessage.Properties.SingleOrDefault<TestNodeStateProperty>() is not { } state ||
                 state is InProgressTestNodeStateProperty)
             {
                 return;
             }
-
-            var timingProperty = testNodeUpdateMessage.Properties.SingleOrDefault<TimingProperty>();
 
             var fqn = testNodeUpdateMessage.TestNode.DisplayName;
             testRun.LoggerConfiguration.Values.TryGetValue(LoggerConfiguration.ParserKey, out string parserVal);
@@ -33,6 +32,10 @@ namespace Spekt.TestLogger.Core
                 string x when x.Equals("Legacy", StringComparison.OrdinalIgnoreCase) => LegacyParser.Parse(fqn),
                 _ => Parser.Parse(fqn),
             };
+
+            var @namespace = parsedName.Namespace;
+            var type = parsedName.Type;
+            var method = parsedName.Method;
 
             Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
 
@@ -47,41 +50,74 @@ namespace Spekt.TestLogger.Core
                 _ => (string.Empty, string.Empty),
             };
 
-            TestFileLocationProperty testFileLocationProperty = testNodeUpdateMessage.TestNode.Properties.SingleOrDefault<TestFileLocationProperty>();
+            string filePath = null;
+            int lineNumber = -1;
+            var traits = new List<Trait>();
             var messages = new List<TestResultMessage>();
-#pragma warning disable TPEXP // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
-            if (testNodeUpdateMessage.TestNode.Properties.SingleOrDefault<StandardOutputProperty>() is { } stdOut)
-            {
-                messages.Add(new TestResultMessage(TestResultMessage.StandardOutCategory, stdOut.StandardOutput));
-            }
+            DateTime startTime = default;
+            DateTime endTime = default;
+            TimeSpan duration = default;
 
-            if (testNodeUpdateMessage.TestNode.Properties.SingleOrDefault<StandardErrorProperty>() is { } stdErr)
+            foreach (var property in testNodeUpdateMessage.TestNode.Properties)
             {
-                messages.Add(new TestResultMessage(TestResultMessage.StandardErrorCategory, stdErr.StandardError));
-            }
+                if (property is TestFileLocationProperty testFileLocation)
+                {
+                    filePath = testFileLocation.FilePath;
+                    lineNumber = testFileLocation.LineSpan.Start.Line;
+                }
+                else if (property is KeyValuePairStringProperty keyValuePairString)
+                {
+                    traits.Add(new Trait(keyValuePairString.Key, keyValuePairString.Value));
+                }
+#pragma warning disable TPEXP // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+                else if (property is StandardErrorProperty stdErr)
+                {
+                    messages.Add(new TestResultMessage(TestResultMessage.StandardErrorCategory, stdErr.StandardError));
+                }
+                else if (property is StandardOutputProperty stdOut)
+                {
+                    messages.Add(new TestResultMessage(TestResultMessage.StandardOutCategory, stdOut.StandardOutput));
+                }
 #pragma warning restore TPEXP // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+                else if (property is TestMetadataProperty metadata)
+                {
+                    traits.Add(new Trait(metadata.Key, metadata.Value));
+                }
+                else if (property is TestMethodIdentifierProperty methodIdentifier)
+                {
+                    @namespace = methodIdentifier.Namespace;
+                    type = methodIdentifier.TypeName;
+                    method = methodIdentifier.MethodName;
+                }
+                else if (property is TimingProperty timing)
+                {
+                    startTime = timing.GlobalTiming.StartTime.UtcDateTime;
+                    endTime = timing.GlobalTiming.EndTime.UtcDateTime;
+                    duration = timing.GlobalTiming.Duration;
+                }
+            }
 
             testRun.Store.Add(new TestResultInfo(
-                sanitize(parsedName.Namespace),
-                sanitize(parsedName.Type),
-                sanitize(parsedName.Method),
+                sanitize(@namespace),
+                sanitize(type),
+                sanitize(method),
                 sanitize(fqn),
                 GetOutcome(state),
                 sanitize(testNodeUpdateMessage.TestNode.DisplayName),
                 sanitize(testNodeUpdateMessage.TestNode.DisplayName),
-                sanitize(string.Empty),
-                sanitize(testFileLocationProperty?.FilePath),
-                lineNumber: testFileLocationProperty?.LineSpan.Start.Line ?? -1,
-                timingProperty?.GlobalTiming.StartTime.UtcDateTime ?? default,
-                timingProperty?.GlobalTiming.EndTime.UtcDateTime ?? default,
-                timingProperty?.GlobalTiming.Duration ?? default,
+                sanitize(string.Empty), // TODO
+                sanitize(filePath),
+                lineNumber: lineNumber,
+                startTime,
+                endTime,
+                duration,
                 sanitize(errorMessage),
                 sanitize(errorStackTrace),
                 messages,
                 attachments,
-                result.TestCase.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList(),
-                result.TestCase.ExecutorUri?.ToString(),
-                result.TestCase));
+                traits,
+                testFramework.DisplayName,
+                null)); // TODO: This ends up being used in ITestAdapter implementations. The usage should be revised to better understand how to fix it.
 
             static TestOutcome GetOutcome(TestNodeStateProperty state)
             {
@@ -90,7 +126,7 @@ namespace Spekt.TestLogger.Core
                     PassedTestNodeStateProperty => TestOutcome.Passed,
                     FailedTestNodeStateProperty or ErrorTestNodeStateProperty or TimeoutTestNodeStateProperty or CancelledTestNodeStateProperty => TestOutcome.Failed,
                     SkippedTestNodeStateProperty => TestOutcome.Skipped,
-                    _ => TestOutcome.None,
+                    _ => TestOutcome.None, // TODO: Should this throw?
                 };
             }
         }

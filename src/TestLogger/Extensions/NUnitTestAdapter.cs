@@ -25,27 +25,37 @@ namespace Spekt.TestLogger.Extensions
                     result.Outcome = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestOutcome.Skipped;
                 }
 
-                // NUnit adapter uses Seed and TestCategory in TestCase Properties.
-                // Populate these properties if available.
-                var properties = new List<KeyValuePair<string, object>>();
-                foreach (var property in result.TestCase.Properties)
-                {
-                    switch (property.Id)
-                    {
-                        case "NUnit.Seed":
-                        case "NUnit.TestCategory":
-                            properties.Add(new KeyValuePair<string, object>(property.Id, result.TestCase.GetPropertyValue(property)));
-                            break;
-                        case "NUnit.Category":
-                            properties.Add(new KeyValuePair<string, object>("CustomProperty", result.TestCase.GetPropertyValue(property)));
-                            break;
-                    }
-                }
-
-                result.Properties = properties;
+                CreateProperties(result);
             }
 
             return results;
+        }
+
+        private static void CreateProperties(TestResultInfo result)
+        {
+            if (result.TestCase is not { } testCase)
+            {
+                return;
+            }
+
+            // NUnit adapter uses Seed and TestCategory in TestCase Properties.
+            // Populate these properties if available.
+            var properties = new List<KeyValuePair<string, object>>();
+            foreach (var property in testCase.Properties)
+            {
+                switch (property.Id)
+                {
+                    case "NUnit.Seed":
+                    case "NUnit.TestCategory":
+                        properties.Add(new KeyValuePair<string, object>(property.Id, testCase.GetPropertyValue(property)));
+                        break;
+                    case "NUnit.Category":
+                        properties.Add(new KeyValuePair<string, object>("CustomProperty", testCase.GetPropertyValue(property)));
+                        break;
+                }
+            }
+
+            result.Properties = properties;
         }
     }
 }
