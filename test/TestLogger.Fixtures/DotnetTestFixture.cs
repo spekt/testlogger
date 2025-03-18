@@ -58,6 +58,10 @@ namespace TestLogger.Fixtures
             }
 
             var resultDirectoryArgs = string.IsNullOrEmpty(this.relativeResultsDirectory) ? string.Empty : $"--results-directory \"{resultsDirectory}\"";
+            if (isMTP && resultDirectoryArgs.Length == 0)
+            {
+                resultDirectoryArgs = $"--results-directory \"{resultsDirectory}\"";
+            }
 
             var commandlineSuffix = string.IsNullOrEmpty(this.runSettingsSuffix) ? string.Empty : $"--{(isMTP ? "test-parameter" : string.Empty)} {this.runSettingsSuffix}";
             using var dotnet = new Process
