@@ -2,6 +2,9 @@
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)..\'))" />
   <PropertyGroup>
     <RunAnalyzers>false</RunAnalyzers>
+
+    <!-- https://github.com/dotnet/sdk/issues/37636 -->
+    <NoWarn>$(NoWarn);NETSDK1188</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -30,7 +33,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Update="Stylecop.Analyzers" Version="1.1.118" />
+    <PackageReference Update="Stylecop.Analyzers" Version="1.2.0-beta.556" />
   </ItemGroup>
 </Project>
 <!-- vim: set ft=xml : -->

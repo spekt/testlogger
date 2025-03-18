@@ -7,7 +7,7 @@ namespace Spekt.TestLogger.Core
 
     public class InputSanitizerXml : IInputSanitizer
     {
-        private static readonly Regex InvalidXmlChar = new (@"([^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD]|[\u007F-\u0084\u0086-\u009F\uFDD0-\uFDEF])", RegexOptions.Compiled);
+        private static readonly Regex InvalidXmlChar = new(@"([^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD]|[\u007F-\u0084\u0086-\u009F\uFDD0-\uFDEF])", RegexOptions.Compiled);
 
         public string Sanitize(string input)
         {
