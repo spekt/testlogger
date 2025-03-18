@@ -14,8 +14,8 @@ namespace Spekt.TestLogger.Core
     public static class TestRunResultWorkflow
     {
         // Parser instances exist per run so we can throttle error notifications to once per run.
-        private static readonly TestCaseNameParser Parser = new ();
-        private static readonly LegacyTestCaseNameParser LegacyParser = new ();
+        private static readonly TestCaseNameParser Parser = new();
+        private static readonly LegacyTestCaseNameParser LegacyParser = new();
 
         public static void Result(this ITestRun testRun, TestNodeUpdateMessage testNodeUpdateMessage, Dictionary<TestNodeUid, List<TestNodeFileArtifact>> testAttachmentsByTestNode, ITestFramework testFramework)
         {
