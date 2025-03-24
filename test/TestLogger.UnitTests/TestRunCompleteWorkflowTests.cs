@@ -28,7 +28,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             this.fileSystem = new FakeFileSystem();
             this.testRun = new TestRunBuilder()
-                .WithLoggerConfiguration(new LoggerConfiguration(new () { { LoggerConfiguration.LogFilePathKey, "/tmp/results.json" } }))
+                .WithLoggerConfiguration(new LoggerConfiguration(new() { { LoggerConfiguration.LogFilePathKey, "/tmp/results.json" } }))
                 .WithFileSystem(this.fileSystem)
                 .WithConsoleOutput(new FakeConsoleOutput())
                 .WithStore(new TestResultStore())
@@ -97,7 +97,7 @@ namespace Spekt.TestLogger.UnitTests
         public void CompleteShouldWriteTestResultsForRelativeLogFilePath()
         {
             var relativePathTestRun = new TestRunBuilder()
-                .WithLoggerConfiguration(new LoggerConfiguration(new () { { LoggerConfiguration.LogFilePathKey, "results.json" } }))
+                .WithLoggerConfiguration(new LoggerConfiguration(new() { { LoggerConfiguration.LogFilePathKey, "results.json" } }))
                 .WithFileSystem(this.fileSystem)
                 .WithConsoleOutput(new FakeConsoleOutput())
                 .WithStore(new TestResultStore())
@@ -145,14 +145,14 @@ namespace Spekt.TestLogger.UnitTests
 
         private static List<TestRunMessageEventArgs> TestRunMessageEventArgs()
         {
-            return new ()
+            return new()
             {
-                new (TestMessageLevel.Informational, "9CB2F5CB-0B24-48F6-9FBC-17E794FF589D"),
-                new (TestMessageLevel.Informational, "9A87B0DF-60F3-45A3-A662-59527EC2B114"),
-                new (TestMessageLevel.Warning, "A0DE6354-C727-4F5F-9D29-ECE75B533424"),
-                new (TestMessageLevel.Warning, "73D2D4B1-A513-4D9C-B876-9B16202F0BCB"),
-                new (TestMessageLevel.Error, "18E79A95-528E-428C-BCCF-BBC1B53CB46C"),
-                new (TestMessageLevel.Error, "E6FB8071-0745-4A9C-A685-8BC5E9E6FE32"),
+                new(TestMessageLevel.Informational, "9CB2F5CB-0B24-48F6-9FBC-17E794FF589D"),
+                new(TestMessageLevel.Informational, "9A87B0DF-60F3-45A3-A662-59527EC2B114"),
+                new(TestMessageLevel.Warning, "A0DE6354-C727-4F5F-9D29-ECE75B533424"),
+                new(TestMessageLevel.Warning, "73D2D4B1-A513-4D9C-B876-9B16202F0BCB"),
+                new(TestMessageLevel.Error, "18E79A95-528E-428C-BCCF-BBC1B53CB46C"),
+                new(TestMessageLevel.Error, "E6FB8071-0745-4A9C-A685-8BC5E9E6FE32"),
             };
         }
     }

@@ -18,7 +18,7 @@ namespace Spekt.TestLogger.UnitTests.Builders
         private string errorMessage = string.Empty;
         private string displayName = string.Empty;
         private TestCase testCase = new TestCase();
-        private List<TestAttachmentInfo> attachments = new ();
+        private List<TestAttachmentInfo> attachments = new();
 
         internal TestResultInfoBuilder()
         {
@@ -89,7 +89,7 @@ namespace Spekt.TestLogger.UnitTests.Builders
                 TimeSpan.FromSeconds(1),
                 this.errorMessage,
                 string.Empty,
-                new (),
+                new(),
                 this.attachments,
                 this.traits,
                 "executor://dummy",
