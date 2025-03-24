@@ -24,7 +24,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             var resultInfo = new TestResultInfoBuilder(string.Empty, string.Empty, string.Empty).Build();
 
-            Assert.IsFalse(resultInfo.Equals(new ()));
+            Assert.IsFalse(resultInfo.Equals(new()));
         }
 
         [TestMethod]

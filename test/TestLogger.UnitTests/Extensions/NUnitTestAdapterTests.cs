@@ -44,7 +44,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
                 new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod).WithOutcome(outcome).WithTraits(this.explicitTraits).Build(),
             };
 
-            var modifiedResults = this.adapter.TransformResults(results, new ());
+            var modifiedResults = this.adapter.TransformResults(results, new());
 
             Assert.AreEqual(2, modifiedResults.Count);
             Assert.AreEqual(outcome, modifiedResults[0].Outcome);
@@ -56,7 +56,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
         {
             var results = new List<TestResultInfo> { this.passTestResultInfo, this.failTestResultInfo };
 
-            var modifiedResults = this.adapter.TransformResults(results, new ());
+            var modifiedResults = this.adapter.TransformResults(results, new());
 
             Assert.AreEqual(2, modifiedResults.Count);
             Assert.AreEqual(TestOutcome.Passed, modifiedResults[0].Outcome);
@@ -71,7 +71,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
                 new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod).WithOutcome(TestOutcome.None).WithTraits(this.explicitTraits).Build(),
             };
 
-            var modifiedResults = this.adapter.TransformResults(results, new ());
+            var modifiedResults = this.adapter.TransformResults(results, new());
 
             Assert.AreEqual(1, modifiedResults.Count);
             Assert.AreEqual(TestOutcome.Skipped, modifiedResults[0].Outcome);
@@ -90,7 +90,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
                     .Build()
             };
 
-            var modifiedResults = this.adapter.TransformResults(results, new ());
+            var modifiedResults = this.adapter.TransformResults(results, new());
 
             Assert.AreEqual(1, modifiedResults.Count);
             Assert.AreEqual(2, modifiedResults[0].Properties.Count);
@@ -109,7 +109,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
                     .Build()
             };
 
-            var modifiedResults = this.adapter.TransformResults(results, new ());
+            var modifiedResults = this.adapter.TransformResults(results, new());
 
             Assert.AreEqual(1, modifiedResults.Count);
             Assert.AreEqual(1, modifiedResults[0].Properties.Count);
