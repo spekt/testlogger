@@ -10,7 +10,9 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
     {
         public FakeConsoleOutput() => this.Messages = new List<(string, string)>();
 
+#pragma warning disable SA1414 // Tuple types in signatures should have element names
         public List<(string, string)> Messages { get; private set; }
+#pragma warning restore SA1414 // Tuple types in signatures should have element names
 
         public void WriteMessage(string message)
         {

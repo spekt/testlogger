@@ -5,6 +5,8 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 {
     using System.IO;
     using System.Linq;
+    using System.Reflection;
+    using System.Runtime.CompilerServices;
     using System.Xml.Linq;
     using System.Xml.XPath;
     using global::TestLogger.Fixtures;
@@ -17,29 +19,31 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     /// These acceptance tests look at the specific structure and contents of the produced Xml,
     /// when running using the xUnit vstest runner.
     /// </summary>
-    [TestClass]
-    public class JUnitTestLoggerXunitAcceptanceTests
+    public abstract class JUnitTestLoggerXunitAcceptanceTests
     {
         private const string AssetName = "JUnit.Xml.TestLogger.XUnit.NetCore.Tests";
         private readonly string resultsFile;
         private readonly XDocument resultsXml;
 
-        public JUnitTestLoggerXunitAcceptanceTests()
+        protected JUnitTestLoggerXunitAcceptanceTests()
         {
             this.resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), "test-results.xml");
             this.resultsXml = XDocument.Load(this.resultsFile);
         }
 
-        [ClassInitialize]
+        [ClassInitialize(InheritanceBehavior.BeforeEachDerivedClass)]
         public static void SuiteInitialize(TestContext context)
         {
-            var loggerArgs = "junit;LogFilePath=test-results.xml";
+            bool isMTP = context.IsMTP(typeof(JUnitTestLoggerXunitAcceptanceTests));
+            var loggerArgs = isMTP
+                ? "--report-junit --report-junit-filename test-results.xml"
+                : "junit;LogFilePath=test-results.xml";
 
             // Enable reporting of internal properties in the adapter using runsettings
             _ = DotnetTestFixture
                 .Create()
                 .WithBuild()
-                .Execute(AssetName, loggerArgs, collectCoverage: false, "test-results.xml");
+                .Execute(AssetName, loggerArgs, collectCoverage: false, "test-results.xml", isMTP: isMTP);
         }
 
         [TestMethod]
@@ -73,6 +77,17 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                     Assert.Fail($"Unexpted property found");
                 }
             }
+        }
+
+        [TestClass]
+        [TestProperty("IsMTP", "true")]
+        public sealed class MTPJUnitTestLoggerXunitAcceptanceTests : JUnitTestLoggerXunitAcceptanceTests
+        {
+        }
+
+        [TestClass]
+        public sealed class VSTestJUnitTestLoggerXunitAcceptanceTests : JUnitTestLoggerXunitAcceptanceTests
+        {
         }
     }
 }
