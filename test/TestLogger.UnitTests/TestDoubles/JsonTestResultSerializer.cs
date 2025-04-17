@@ -67,7 +67,7 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
         private TestAssembly CreateAssembly(
             IGrouping<string, TestResultInfo> resultsByAssembly)
         {
-            return new ()
+            return new()
             {
                 Name = resultsByAssembly.Key,
                 Fixtures = resultsByAssembly.GroupBy(a => a.Type).Select(this.CreateFixture)
@@ -77,7 +77,7 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
         private TestFixture CreateFixture(
             IGrouping<string, TestResultInfo> resultsByType)
         {
-            return new ()
+            return new()
             {
                 Name = resultsByType.Key,
                 Tests = resultsByType.Select(this.CreateTest)
@@ -98,7 +98,7 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
             var attachments = result.Attachments
                 .Select(a => new TestAttachmentInfo(Path.GetFileName(a.FilePath), "dummyDescription"))
                 .ToList();
-            return new ()
+            return new()
             {
                 FullyQualifiedName = result.FullyQualifiedName,
                 DisplayName = result.DisplayName,

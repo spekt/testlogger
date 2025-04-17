@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Sdk;
-using Xunit.Abstractions;
 
 namespace NUnit.Xml.TestLogger.Tests2
 {

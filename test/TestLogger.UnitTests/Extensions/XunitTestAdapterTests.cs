@@ -27,9 +27,9 @@ namespace Spekt.TestLogger.UnitTests.Extensions
             };
             var messages = new List<TestMessageInfo>
             {
-                new (TestMessageLevel.Informational, "[xUnit.net 00:00:00.6490537]     Other message"),
-                new (TestMessageLevel.Informational, "[xUnit.net 00:00:00.6490557]     N.C.M2 [SKIP]"),
-                new (TestMessageLevel.Informational, "[SKIP] Dummy reason"),
+                new(TestMessageLevel.Informational, "[xUnit.net 00:00:00.6490537]     Other message"),
+                new(TestMessageLevel.Informational, "[xUnit.net 00:00:00.6490557]     N.C.M2 [SKIP]"),
+                new(TestMessageLevel.Informational, "[SKIP] Dummy reason"),
             };
             var xunit = new XunitTestAdapter();
 

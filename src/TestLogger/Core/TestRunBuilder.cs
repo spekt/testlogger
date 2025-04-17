@@ -51,7 +51,7 @@ namespace Spekt.TestLogger.Core
                 this.testRun.RunConfiguration = this.testRun.Start(eventArgs);
             };
             loggerEvents.TestRunMessage += (_, eventArgs) => this.TraceAndThrow(() => this.testRun.Message(eventArgs), "TestRunMessage");
-            loggerEvents.TestResult += (_, eventArgs) => this.TraceAndThrow(() => this.testRun.Result(eventArgs), "TestResult");
+            loggerEvents.TestResult += (_, eventArgs) => this.TraceAndThrow(() => this.testRun.Result(eventArgs.Result), "TestResult");
             loggerEvents.TestRunComplete += (_, eventArgs) => this.TraceAndThrow(() => this.testRun.Complete(eventArgs), "TestRunComplete");
 
             return this;

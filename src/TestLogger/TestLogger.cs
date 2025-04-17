@@ -13,6 +13,8 @@ namespace Spekt.TestLogger
 
     /// <summary>
     /// Base test logger implementation.
+    /// This implementation is VSTest-specific.
+    /// The Microsoft.Testing.Platform implementation is <see cref="TestReporter"/>.
     /// </summary>
     public abstract class TestLogger : ITestLoggerWithParameters
     {
