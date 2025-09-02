@@ -26,14 +26,14 @@ namespace Spekt.TestReporter
     {
         private readonly IServiceProvider serviceProvider;
         private readonly IExtension extension;
-        private readonly ITestRun testRun;
         private readonly List<TestAttachmentInfo> testAttachmentInfos = new List<TestAttachmentInfo>();
+
+        private ITestRun testRun;
 
         protected TestReporter(IServiceProvider serviceProvider, IExtension extension)
         {
             this.serviceProvider = serviceProvider;
             this.extension = extension;
-            this.testRun = this.CreateTestRun(serviceProvider);
         }
 
         public Type[] DataTypesConsumed { get; } = new[] { typeof(TestNodeUpdateMessage), typeof(SessionFileArtifact) };
@@ -47,6 +47,8 @@ namespace Spekt.TestReporter
         public string Description => this.extension.Description;
 
         protected abstract string FileNameOption { get; }
+
+        protected abstract string ReportOption { get; }
 
         public Task ConsumeAsync(IDataProducer dataProducer, IData value, CancellationToken cancellationToken)
         {
@@ -68,7 +70,13 @@ namespace Spekt.TestReporter
 
         public Task<bool> IsEnabledAsync()
         {
-            throw new NotImplementedException();
+            var isEnabled = this.serviceProvider.GetCommandLineOptions().IsOptionSet(this.ReportOption);
+            if (isEnabled)
+            {
+                this.testRun = this.CreateTestRun(this.serviceProvider);
+            }
+
+            return Task.FromResult(isEnabled);
         }
 
         public Task OnTestSessionStartingAsync(SessionUid sessionUid, CancellationToken cancellationToken)

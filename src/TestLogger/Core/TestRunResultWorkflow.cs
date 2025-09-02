@@ -6,6 +6,7 @@ namespace Spekt.TestLogger.Core
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using Microsoft.Testing.Platform.Extensions.Messages;
     using Microsoft.Testing.Platform.Extensions.TestFramework;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
@@ -26,17 +27,7 @@ namespace Spekt.TestLogger.Core
                 return;
             }
 
-            var fqn = testNodeUpdateMessage.TestNode.DisplayName;
             testRun.LoggerConfiguration.Values.TryGetValue(LoggerConfiguration.ParserKey, out string parserVal);
-            var parsedName = parserVal switch
-            {
-                string x when x.Equals("Legacy", StringComparison.OrdinalIgnoreCase) => LegacyParser.Parse(fqn),
-                _ => Parser.Parse(fqn),
-            };
-
-            var @namespace = parsedName.Namespace;
-            var type = parsedName.Type;
-            var method = parsedName.Method;
 
             Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
 
@@ -57,6 +48,10 @@ namespace Spekt.TestLogger.Core
             DateTime endTime = default;
             TimeSpan duration = default;
 
+            string @namespace = string.Empty;
+            string type = string.Empty;
+            string method = string.Empty;
+            bool hasTestMethodIdentifier = false;
             foreach (var property in testNodeUpdateMessage.TestNode.Properties)
             {
                 if (property is TestFileLocationProperty testFileLocation)
@@ -83,6 +78,7 @@ namespace Spekt.TestLogger.Core
                     @namespace = methodIdentifier.Namespace;
                     type = methodIdentifier.TypeName;
                     method = methodIdentifier.MethodName;
+                    hasTestMethodIdentifier = true;
                 }
                 else if (property is TimingProperty timing)
                 {
@@ -90,6 +86,27 @@ namespace Spekt.TestLogger.Core
                     endTime = timing.GlobalTiming.EndTime.UtcDateTime;
                     duration = timing.GlobalTiming.Duration;
                 }
+            }
+
+            string fqn;
+            if (hasTestMethodIdentifier)
+            {
+                fqn = string.IsNullOrEmpty(@namespace)
+                    ? $"{type}.{method}"
+                    : $"{@namespace}.{type}.{method}";
+            }
+            else
+            {
+                fqn = "UnknownFullyQualifiedName";
+                @namespace = "UnknownNamespace";
+                type = "UnknownType";
+                method = "UnknownMethod";
+            }
+
+            var assemblyPath = Assembly.GetEntryAssembly()?.Location;
+            if (string.IsNullOrEmpty(assemblyPath))
+            {
+                assemblyPath = "UnknownAssembly";
             }
 
             testRun.Store.Add(new TestResultInfo(
@@ -100,7 +117,7 @@ namespace Spekt.TestLogger.Core
                 GetOutcome(state),
                 sanitize(testNodeUpdateMessage.TestNode.DisplayName),
                 sanitize(testNodeUpdateMessage.TestNode.DisplayName),
-                sanitize(string.Empty), // TODO
+                sanitize(assemblyPath),
                 sanitize(filePath),
                 lineNumber: lineNumber,
                 startTime,

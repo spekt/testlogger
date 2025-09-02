@@ -16,6 +16,8 @@ namespace Spekt.TestReporter.JUnit
 
         protected override string FileNameOption => JUnitReporterCommandLineOptionsProvider.ReportJUnitFileNameOption;
 
+        protected override string ReportOption => JUnitReporterCommandLineOptionsProvider.ReportJUnitOption;
+
         protected override ITestResultSerializer CreateTestResultSerializer()
             => new JunitXmlSerializer();
     }
