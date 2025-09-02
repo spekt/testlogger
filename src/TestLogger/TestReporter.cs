@@ -81,9 +81,8 @@ namespace Spekt.TestReporter
 
         public Task OnTestSessionStartingAsync(SessionUid sessionUid, CancellationToken cancellationToken)
         {
-            // TODO: Verify if this gets the target framework correctly.
             var assembly = Assembly.GetEntryAssembly();
-            this.testRun.Start(assembly.Location, assembly.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName ?? "unknown-targetframework");
+            ((TestRun)this.testRun).RunConfiguration = this.testRun.Start(assembly.Location, assembly.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName ?? "unknown-targetframework");
             return Task.CompletedTask;
         }
 
