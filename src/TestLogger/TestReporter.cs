@@ -83,7 +83,7 @@ namespace Spekt.TestReporter
         {
             // TODO: Verify if this gets the target framework correctly.
             var assembly = Assembly.GetEntryAssembly();
-            this.testRun.Start(assembly.Location, assembly.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName);
+            this.testRun.Start(assembly.Location, assembly.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName ?? "unknown-targetframework");
             return Task.CompletedTask;
         }
 
