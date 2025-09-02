@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
+  <ItemGroup Condition="'$(IsTestingPlatformApplication)'!='true'">
     <Content Include="$(MSBuildThisFileDirectory)..\_common\Microsoft.VisualStudio.TestPlatform.Extension.JUnit.Xml.TestLogger.dll">
       <Link>Microsoft.VisualStudio.TestPlatform.Extension.JUnit.Xml.TestLogger.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -10,6 +10,16 @@
       <Link>Spekt.TestLogger.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>False</Visible>
-    </Content>    
+    </Content>
   </ItemGroup>
+  <ItemGroup Condition="'$(IsTestingPlatformApplication)'=='true'">
+    <Reference Include="$(MSBuildThisFileDirectory)..\_common\Microsoft.VisualStudio.TestPlatform.Extension.JUnit.Xml.TestLogger.dll" />
+    <Reference Include="$(MSBuildThisFileDirectory)..\_common\Spekt.TestLogger.dll" />
+
+    <TestingPlatformBuilderHook Include="9D52251D-D1A2-42BC-AC7A-F44DEA2DAC63">
+      <DisplayName>JUnitXml.TestLogger</DisplayName>
+      <TypeFullName>Spekt.TestReporter.JUnit.TestingPlatformBuilderHook</TypeFullName>
+    </TestingPlatformBuilderHook>
+  </ItemGroup>
+
 </Project>
