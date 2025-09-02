@@ -17,9 +17,10 @@ namespace Spekt.TestLogger.Core
         private static readonly TestCaseNameParser Parser = new();
         private static readonly LegacyTestCaseNameParser LegacyParser = new();
 
-        public static void Result(this ITestRun testRun, TestNodeUpdateMessage testNodeUpdateMessage, Dictionary<TestNodeUid, List<TestNodeFileArtifact>> testAttachmentsByTestNode, ITestFramework testFramework)
+        // This is only reachable for MTP.
+        public static void Result(this ITestRun testRun, TestNodeUpdateMessage testNodeUpdateMessage, ITestFramework testFramework)
         {
-            if (testNodeUpdateMessage.Properties.SingleOrDefault<TestNodeStateProperty>() is not { } state ||
+            if (testNodeUpdateMessage.TestNode.Properties.SingleOrDefault<TestNodeStateProperty>() is not { } state ||
                 state is InProgressTestNodeStateProperty)
             {
                 return;
@@ -39,9 +40,7 @@ namespace Spekt.TestLogger.Core
 
             Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
 
-            var attachments = testAttachmentsByTestNode.TryGetValue(testNodeUpdateMessage.TestNode.Uid, out var artifacts)
-                ? artifacts.Select(x => new TestAttachmentInfo(x.FileInfo.FullName, x.Description)).ToList()
-                : new List<TestAttachmentInfo>();
+            var attachments = testNodeUpdateMessage.TestNode.Properties.OfType<FileArtifactProperty>().Select(p => new TestAttachmentInfo(p.FileInfo.FullName, p.Description)).ToList();
 
             var (errorMessage, errorStackTrace) = state switch
             {
@@ -64,10 +63,6 @@ namespace Spekt.TestLogger.Core
                 {
                     filePath = testFileLocation.FilePath;
                     lineNumber = testFileLocation.LineSpan.Start.Line;
-                }
-                else if (property is KeyValuePairStringProperty keyValuePairString)
-                {
-                    traits.Add(new Trait(keyValuePairString.Key, keyValuePairString.Value));
                 }
 #pragma warning disable TPEXP // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
                 else if (property is StandardErrorProperty stdErr)
@@ -131,6 +126,7 @@ namespace Spekt.TestLogger.Core
             }
         }
 
+        // This is reachable only for VSTest.
         public static void Result(this ITestRun testRun, TestResult result)
         {
             var fqn = result.TestCase.FullyQualifiedName;

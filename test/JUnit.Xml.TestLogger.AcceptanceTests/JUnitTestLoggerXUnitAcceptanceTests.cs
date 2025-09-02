@@ -81,6 +81,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
         [TestClass]
         [TestProperty("IsMTP", "true")]
+        [Ignore("XUnit+MTP is not supported because xUnit already provide --report-junit")]
         public sealed class MTPJUnitTestLoggerXunitAcceptanceTests : JUnitTestLoggerXunitAcceptanceTests
         {
         }

@@ -28,7 +28,6 @@ namespace Spekt.TestReporter
         private readonly IExtension extension;
         private readonly ITestRun testRun;
         private readonly List<TestAttachmentInfo> testAttachmentInfos = new List<TestAttachmentInfo>();
-        private readonly Dictionary<TestNodeUid, List<TestNodeFileArtifact>> testAttachmentsByTestNode = new Dictionary<TestNodeUid, List<TestNodeFileArtifact>>();
 
         protected TestReporter(IServiceProvider serviceProvider, IExtension extension)
         {
@@ -53,26 +52,13 @@ namespace Spekt.TestReporter
         {
             switch (value)
             {
-                case TestNodeFileArtifact testNodeFileArtifact:
-                    var uid = testNodeFileArtifact.TestNode.Uid;
-                    if (this.testAttachmentsByTestNode.TryGetValue(uid, out var list))
-                    {
-                        list.Add(testNodeFileArtifact);
-                    }
-                    else
-                    {
-                        this.testAttachmentsByTestNode.Add(uid, new List<TestNodeFileArtifact> { testNodeFileArtifact });
-                    }
-
-                    break;
-
                 case SessionFileArtifact sessionFileArtifact:
                     this.testAttachmentInfos.Add(new TestAttachmentInfo(sessionFileArtifact.FileInfo.FullName, sessionFileArtifact.Description));
                     break;
 
                 // TODO: When to call this.testRun.Message ?
                 case TestNodeUpdateMessage testNodeUpdateMessage:
-                    this.testRun.Result(testNodeUpdateMessage, this.testAttachmentsByTestNode, this.serviceProvider.GetService<ITestFramework>());
+                    this.testRun.Result(testNodeUpdateMessage, this.serviceProvider.GetService<ITestFramework>());
 
                     break;
             }
