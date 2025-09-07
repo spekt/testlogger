@@ -3,6 +3,13 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
+## [6.2.0](https://github.com/spekt/testlogger/compare/v6.1.0...v6.2.0) (2025-09-07)
+
+
+### Features
+
+* add support for Microsoft.Testing.Platform ([#172](https://github.com/spekt/testlogger/issues/172)) ([b6d9a23](https://github.com/spekt/testlogger/commit/b6d9a233a5a599a09eff884d7887008ca2cf98c9))
+
 ## [6.1.0](https://github.com/spekt/testlogger/compare/v6.0.0...v6.1.0) (2025-03-15)
 
 
