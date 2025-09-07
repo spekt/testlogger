@@ -27,6 +27,7 @@
 
   <!-- Build test assets for acceptance tests -->
   <ItemGroup>
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" />
     <TestAssets Condition="$([MSBuild]::IsOSPlatform('Windows'))" Include="$(MSBuildThisFileDirectory)../assets/Xunit.Xml.TestLogger.NetFull.Tests/Xunit.Xml.TestLogger.NetFull.Tests.csproj" />
     <TestAssets Include="$(MSBuildThisFileDirectory)../assets/Xunit.Xml.TestLogger.NetCore.Tests/Xunit.Xml.TestLogger.NetCore.Tests.csproj" />
   </ItemGroup>
