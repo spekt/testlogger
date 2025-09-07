@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework Condition="'$(UsesXunit3)'=='true'">net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,8 +11,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
-    <PackageReference Include="xunit" Version="2.2.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+    <PackageReference Include="xunit" Version="2.2.0" Condition="'$(UsesXunit3)' != 'true'"/>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" Condition="'$(UsesXunit3)' != 'true'" />
+
+    <PackageReference Condition="'$(UsesXunit3)' == 'true'" Include="xunit.v3" Version="$(XunitV3Version)" />
+    <PackageReference Condition="'$(UsesXunit3)' == 'true'" Include="xunit.runner.visualstudio" Version="$(XunitV3TestAdapterVersion)" />
   </ItemGroup>
 
   <ItemGroup>

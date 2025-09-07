@@ -8,11 +8,14 @@ namespace Spekt.TestLogger.Core
     public static class TestRunMessageWorkflow
     {
         public static void Message(this ITestRun testRun, TestRunMessageEventArgs messageEvent)
+            => Message(testRun, messageEvent.Level, messageEvent.Message);
+
+        public static void Message(this ITestRun testRun, TestMessageLevel messageLevel, string message)
         {
             testRun.Store.Add(
                 new TestMessageInfo(
-                    messageEvent.Level,
-                    testRun.Serializer.InputSanitizer.Sanitize(messageEvent.Message)));
+                    messageLevel,
+                    testRun.Serializer.InputSanitizer.Sanitize(message)));
         }
     }
 }

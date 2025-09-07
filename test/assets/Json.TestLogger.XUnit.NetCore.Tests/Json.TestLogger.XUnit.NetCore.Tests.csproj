@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
+    <TargetFramework Condition="'$(UsesXunit3)'=='true'">net8.0</TargetFramework>
     <!-- Disable stylecop for test assets -->
     <StylecopEnabled>false</StylecopEnabled>
   </PropertyGroup>
@@ -13,8 +13,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(NETTestSdkMinimumVersion)" />
-    <PackageReference Include="XUnit" Version="$(XunitVersion)" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="$(XunitTestAdapterVersion)" />
+    <PackageReference Include="XUnit" Version="$(XunitVersion)" Condition="'$(UsesXunit3)' != 'true'"/>
+	<PackageReference Include="xunit.runner.visualstudio" Version="$(XunitTestAdapterVersion)" Condition="'$(UsesXunit3)' != 'true'" />
+
+    <PackageReference Include="xunit.v3" Version="$(XunitV3Version)" Condition="'$(UsesXunit3)' == 'true'" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="$(XunitV3TestAdapterVersion)" Condition="'$(UsesXunit3)' == 'true'" />
     <PackageReference Include="Coverlet.Collector" Version="3.2.0" />
   </ItemGroup>
 

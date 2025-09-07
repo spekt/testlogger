@@ -28,17 +28,17 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
         public enum MethodFormat
         {
             /// <summary>
-            /// The method format will be the method only (i.e. Class.Method())
+            /// The method format will be the method only (i.e. Class.Method()).
             /// </summary>
             Default,
 
             /// <summary>
-            /// The method format will include the class and method name (i.e. Class.Method())
+            /// The method format will include the class and method name (i.e. Class.Method()).
             /// </summary>
             Class,
 
             /// <summary>
-            /// The method format will include the namespace, class and method (i.e. Namespace.Class.Method())
+            /// The method format will include the namespace, class and method (i.e. Namespace.Class.Method()).
             /// </summary>
             Full,
         }

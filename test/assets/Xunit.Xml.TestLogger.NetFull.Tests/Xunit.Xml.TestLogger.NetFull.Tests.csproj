@@ -11,8 +11,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
-    <PackageReference Include="xunit" Version="2.2.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+	<PackageReference Include="xunit" Version="2.2.0" Condition="'$(UsesXunit3)' != 'true'"/>
+	<PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" Condition="'$(UsesXunit3)' != 'true'" />
+    <PackageReference Include="xunit.v3" Version="$(XunitV3Version)" Condition="'$(UsesXunit3)' == 'true'" />
+	<PackageReference Include="xunit.runner.visualstudio" Version="$(XunitV3TestAdapterVersion)" Condition="'$(UsesXunit3)' == 'true'" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
-# .NET test loggers
+# .NET test loggers/reporters
 
-Junit, NUnit and Xunit logger extensions for [Visual Studio Test Platform](https://github.com/microsoft/vstest). Connect your test reports to Circle CI, Gitlab and others from `dotnet test`.
+Junit, NUnit and Xunit logger/reporter extensions for [Visual Studio Test Platform (VSTest)](https://github.com/microsoft/vstest) and [Microsoft.Testing.Platform (MTP)](https://aka.ms/mtp-overview). Connect your test reports to Circle CI, Gitlab and others from `dotnet test`.
 
 [![Build Status](https://github.com/spekt/testlogger/workflows/.NET/badge.svg)](https://github.com/spekt/testlogger/actions?query=workflow%3A.NET)
 [![Code coverage](https://codecov.io/gh/spekt/testlogger/branch/master/graph/badge.svg)](https://codecov.io/gh/spekt/testlogger)
