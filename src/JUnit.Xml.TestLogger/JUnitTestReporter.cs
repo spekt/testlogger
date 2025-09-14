@@ -14,9 +14,11 @@ namespace Spekt.TestReporter.JUnit
         {
         }
 
-        protected override string FileNameOption => JUnitReporterCommandLineOptionsProvider.ReportJUnitFileNameOption;
+        protected override string FileNameOption => "report-junit-filename";
 
-        protected override string ReportOption => JUnitReporterCommandLineOptionsProvider.ReportJUnitOption;
+        protected override string ReportOption => "report-junit";
+
+        protected override string ReportConfigOption => "report-junit-config";
 
         protected override ITestResultSerializer CreateTestResultSerializer()
             => new JunitXmlSerializer();

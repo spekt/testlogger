@@ -14,9 +14,11 @@ namespace Spekt.TestReporter.Xunit
         {
         }
 
-        protected override string FileNameOption => XunitReporterCommandLineOptionsProvider.ReportXunitFileNameOption;
+        protected override string FileNameOption => "report-xunit-filename";
 
-        protected override string ReportOption => XunitReporterCommandLineOptionsProvider.ReportXunitOption;
+        protected override string ReportOption => "report-xunit";
+
+        protected override string ReportConfigOption => "report-xunit-config";
 
         protected override ITestResultSerializer CreateTestResultSerializer()
             => new XunitXmlSerializer();

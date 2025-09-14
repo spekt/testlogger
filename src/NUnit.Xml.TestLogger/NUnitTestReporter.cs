@@ -14,9 +14,11 @@ namespace Spekt.TestReporter.NUnit
         {
         }
 
-        protected override string FileNameOption => NUnitReporterCommandLineOptionsProvider.ReportNUnitFileNameOption;
+        protected override string FileNameOption => "report-nunit-filename";
 
-        protected override string ReportOption => NUnitReporterCommandLineOptionsProvider.ReportNUnitOption;
+        protected override string ReportOption => "report-nunit";
+
+        protected override string ReportConfigOption => "report-nunit-config";
 
         protected override ITestResultSerializer CreateTestResultSerializer()
             => new NUnitXmlSerializer();

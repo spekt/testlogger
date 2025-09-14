@@ -50,6 +50,8 @@ namespace Spekt.TestReporter
 
         protected abstract string ReportOption { get; }
 
+        protected abstract string ReportConfigOption { get; }
+
         public Task ConsumeAsync(IDataProducer dataProducer, IData value, CancellationToken cancellationToken)
         {
             switch (value)
@@ -94,7 +96,7 @@ namespace Spekt.TestReporter
 
         protected abstract ITestResultSerializer CreateTestResultSerializer();
 
-        private ITestRun CreateTestRun(IServiceProvider serviceProvider)
+        protected ITestRun CreateTestRun(IServiceProvider serviceProvider)
         {
             var commandLineOptions = serviceProvider.GetCommandLineOptions();
             var configDictionary = new Dictionary<string, string>
@@ -102,12 +104,34 @@ namespace Spekt.TestReporter
                 { DefaultLoggerParameterNames.TestRunDirectory, serviceProvider.GetConfiguration()["platformOptions:resultDirectory"] }
             };
 
-            if (commandLineOptions.TryGetOptionArgumentList(this.FileNameOption, out var arguments))
+            if (commandLineOptions.TryGetOptionArgumentList(this.FileNameOption, out var fileNameArguments))
             {
-                configDictionary.Add(LoggerConfiguration.LogFileNameKey, arguments[0]);
+                configDictionary.Add(LoggerConfiguration.LogFileNameKey, fileNameArguments[0]);
             }
 
-            // TODO: Results directory?
+            // Handle config option - parse key-value pairs
+            if (commandLineOptions.TryGetOptionArgumentList(this.ReportConfigOption, out var configArguments))
+            {
+                var configValue = configArguments[0];
+                if (!string.IsNullOrEmpty(configValue))
+                {
+                    var pairs = configValue.Split(';');
+                    foreach (var pair in pairs)
+                    {
+                        var keyValue = pair.Split(new[] { '=' }, 2);
+                        if (keyValue.Length == 2)
+                        {
+                            var key = keyValue[0].Trim();
+                            var value = keyValue[1].Trim();
+                            if (!string.IsNullOrEmpty(key) && !configDictionary.ContainsKey(key))
+                            {
+                                configDictionary.Add(key, value);
+                            }
+                        }
+                    }
+                }
+            }
+
             var loggerConfiguration = new LoggerConfiguration(configDictionary);
 
             return new TestRunBuilder()

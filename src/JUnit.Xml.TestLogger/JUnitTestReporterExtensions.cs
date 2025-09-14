@@ -16,7 +16,7 @@ namespace Spekt.TestReporter.JUnit
             testApplicationBuilder.TestHost.AddDataConsumer(compositeExtension);
             testApplicationBuilder.TestHost.AddTestSessionLifetimeHandle(compositeExtension);
 
-            testApplicationBuilder.CommandLine.AddProvider(() => new JUnitReporterCommandLineOptionsProvider(extension));
+            testApplicationBuilder.CommandLine.AddProvider(() => new TestReporterCommandLineProvider(extension, "junit"));
         }
     }
 }
