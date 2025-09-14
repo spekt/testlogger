@@ -10,15 +10,11 @@ namespace Spekt.TestReporter.NUnit
     internal sealed class NUnitTestReporter : TestReporter
     {
         public NUnitTestReporter(NUnitTestReporterExtension extension, IServiceProvider serviceProvider)
-            : base(serviceProvider, extension)
+            : base(serviceProvider, extension, "nunit")
         {
         }
 
-        protected override string FileNameOption => "report-nunit-filename";
-
-        protected override string ReportOption => "report-nunit";
-
-        protected override string ReportConfigOption => "report-nunit-config";
+        protected override string DefaultFileName => "TestResults.xml";
 
         protected override ITestResultSerializer CreateTestResultSerializer()
             => new NUnitXmlSerializer();

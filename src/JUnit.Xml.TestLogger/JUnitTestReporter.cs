@@ -10,15 +10,11 @@ namespace Spekt.TestReporter.JUnit
     internal sealed class JUnitTestReporter : TestReporter
     {
         public JUnitTestReporter(JUnitTestReporterExtension extension, IServiceProvider serviceProvider)
-            : base(serviceProvider, extension)
+            : base(serviceProvider, extension, "junit")
         {
         }
 
-        protected override string FileNameOption => "report-junit-filename";
-
-        protected override string ReportOption => "report-junit";
-
-        protected override string ReportConfigOption => "report-junit-config";
+        protected override string DefaultFileName => "TestResults.xml";
 
         protected override ITestResultSerializer CreateTestResultSerializer()
             => new JunitXmlSerializer();

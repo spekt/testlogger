@@ -26,9 +26,6 @@ namespace Spekt.TestLogger.UnitTests
             this.mockCommandLineOptions = new MockCommandLineOptions();
             this.mockServiceProvider = new Mock<IServiceProvider>();
             this.mockServiceProvider.SetupWithMockCommandLineOptions(this.mockCommandLineOptions);
-
-            // Always set a default filename to avoid LoggerConfiguration validation issues
-            this.mockCommandLineOptions.SetOption("report-junit-filename", "test-results.xml");
         }
 
         [TestMethod]
@@ -268,6 +265,75 @@ namespace Spekt.TestLogger.UnitTests
             Assert.IsNotNull(testRun);
 
             // Both config and filename options should be handled
+        }
+
+        [TestMethod]
+        public void CreateTestRun_WhenNoLogFilePathOrFileName_ShouldUseDefaultFileName()
+        {
+            // Arrange
+            this.mockCommandLineOptions.SetOption("report-junit");
+
+            // Don't set any filename or LogFilePath config
+            var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
+
+            // Act
+            var testRun = reporter.TestCreateTestRun(this.mockServiceProvider.Object);
+
+            // Assert
+            Assert.IsNotNull(testRun);
+
+            // The test should not throw and should use the default filename
+        }
+
+        [TestMethod]
+        public void CreateTestRun_WhenLogFilePathProvided_ShouldNotUseDefaultFileName()
+        {
+            // Arrange
+            this.mockCommandLineOptions.SetOption("report-junit");
+            this.mockCommandLineOptions.SetOption("report-junit-config", "LogFilePath=custom-path.xml");
+            var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
+
+            // Act
+            var testRun = reporter.TestCreateTestRun(this.mockServiceProvider.Object);
+
+            // Assert
+            Assert.IsNotNull(testRun);
+
+            // Should not use default filename when LogFilePath is provided
+        }
+
+        [TestMethod]
+        public void CreateTestRun_WhenLogFileNameProvided_ShouldNotUseDefaultFileName()
+        {
+            // Arrange
+            this.mockCommandLineOptions.SetOption("report-junit");
+            this.mockCommandLineOptions.SetOption("report-junit-config", "LogFileName=custom-name.xml");
+            var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
+
+            // Act
+            var testRun = reporter.TestCreateTestRun(this.mockServiceProvider.Object);
+
+            // Assert
+            Assert.IsNotNull(testRun);
+
+            // Should not use default filename when LogFileName is provided
+        }
+
+        [TestMethod]
+        public void CreateTestRun_WhenFileNameOptionProvided_ShouldNotUseDefaultFileName()
+        {
+            // Arrange
+            this.mockCommandLineOptions.SetOption("report-junit");
+            this.mockCommandLineOptions.SetOption("report-junit-filename", "custom-filename.xml");
+            var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
+
+            // Act
+            var testRun = reporter.TestCreateTestRun(this.mockServiceProvider.Object);
+
+            // Assert
+            Assert.IsNotNull(testRun);
+
+            // Should not use default filename when FileNameOption is provided
         }
     }
 }

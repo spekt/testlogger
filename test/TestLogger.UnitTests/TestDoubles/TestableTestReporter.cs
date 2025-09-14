@@ -14,15 +14,11 @@ namespace Spekt.TestLogger.UnitTests.TestDoubles
     public class TestableTestReporter : Spekt.TestReporter.TestReporter
     {
         public TestableTestReporter(IServiceProvider serviceProvider, IExtension extension)
-            : base(serviceProvider, extension)
+            : base(serviceProvider, extension, "junit")
         {
         }
 
-        protected override string FileNameOption => "report-junit-filename";
-
-        protected override string ReportOption => "report-junit";
-
-        protected override string ReportConfigOption => "report-junit-config";
+        protected override string DefaultFileName => "TestResults.xml";
 
         public ITestRun TestCreateTestRun(IServiceProvider serviceProvider)
         {
