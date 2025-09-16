@@ -59,10 +59,12 @@ namespace Spekt.TestReporter
                     this.testAttachmentInfos.Add(new TestAttachmentInfo(sessionFileArtifact.FileInfo.FullName, sessionFileArtifact.Description));
                     break;
 
-                // TODO: When to call this.testRun.Message ?
                 case TestNodeUpdateMessage testNodeUpdateMessage:
-                    this.testRun.Result(testNodeUpdateMessage, this.serviceProvider.GetService<ITestFramework>());
+                    // Capture standard output and error messages at test run level
+                    this.testRun.Message(testNodeUpdateMessage);
 
+                    // Process the test node update message for other updates (e.g., test results)
+                    this.testRun.Result(testNodeUpdateMessage, this.serviceProvider.GetService<ITestFramework>());
                     break;
             }
 

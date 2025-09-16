@@ -56,19 +56,19 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void WithStoreShouldThrowForNullTestResultStore()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.testRunBuilder.WithStore(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.testRunBuilder.WithStore(null));
         }
 
         [TestMethod]
         public void WithSerializerShouldThrowForNullTestResultSerializer()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.testRunBuilder.WithSerializer(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.testRunBuilder.WithSerializer(null));
         }
 
         [TestMethod]
         public void SubscribeShouldThrowForNullLoggerEvents()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.testRunBuilder.Subscribe(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.testRunBuilder.Subscribe(null));
         }
 
         [TestMethod]
@@ -79,9 +79,9 @@ namespace Spekt.TestLogger.UnitTests
 
             this.testRunBuilder.WithConsoleOutput(consoleOutput).Subscribe(testEvents);
 
-            Assert.ThrowsException<NullReferenceException>(() => testEvents.RaiseTestRunMessage(TestMessageLevel.Error, "dummy message"));
-            Assert.ThrowsException<NullReferenceException>(() => testEvents.RaiseTestResult(new Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult(new TestCase())));
-            Assert.ThrowsException<NullReferenceException>(() => testEvents.RaiseTestRunComplete(null));
+            Assert.ThrowsExactly<NullReferenceException>(() => testEvents.RaiseTestRunMessage(TestMessageLevel.Error, "dummy message"));
+            Assert.ThrowsExactly<NullReferenceException>(() => testEvents.RaiseTestResult(new Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult(new TestCase())));
+            Assert.ThrowsExactly<NullReferenceException>(() => testEvents.RaiseTestRunComplete(null));
             Assert.AreEqual(3, consoleOutput.Messages.Count);
             Assert.IsTrue(consoleOutput.Messages.All(x => x.Item1 == "stderr"));
             StringAssert.Contains(consoleOutput.Messages[0].Item2, "Unexpected error in TestRunMessage workflow");
@@ -92,13 +92,13 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void WithFileSystemShouldThrowForNullFileSystem()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.testRunBuilder.WithFileSystem(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.testRunBuilder.WithFileSystem(null));
         }
 
         [TestMethod]
         public void WithConsoleOutputShouldThrowForNullConsoleImplementation()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.testRunBuilder.WithConsoleOutput(null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.testRunBuilder.WithConsoleOutput(null));
         }
     }
 }

@@ -5,13 +5,15 @@ namespace Spekt.TestLogger.UnitTests
 {
     using System;
     using System.IO;
+    using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.UnitTests.TestDoubles;
 
     [TestClass]
     public class LegacyTestCaseNameParserTests
     {
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("z.a.b", "z", "a", "b")]
 
         // Cover all expected cases of different parenthesis locations, handling normal strings
@@ -50,7 +52,7 @@ namespace Spekt.TestLogger.UnitTests
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
+                var actual = new LegacyTestCaseNameParser(new FakeConsoleOutput()).Parse(testCaseName);
 
                 Assert.AreEqual(expectedNamespace, actual.Namespace);
                 Assert.AreEqual(expectedType, actual.Type);
@@ -59,7 +61,7 @@ namespace Spekt.TestLogger.UnitTests
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("a.b", LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, "a", "b")]
 
         // Cover all expected cases of different parenthesis locations, handling normal strings
@@ -71,19 +73,18 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("a.b(0.5f)", LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, "a", "b(0.5f)")]
         public void Parse_ParsesAllParseableInputsWithoutNamespace_WithConsoleOutput(string testCaseName, string expectedNamespace, string expectedType, string expectedMethod)
         {
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
-            var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
+            var cout = new FakeConsoleOutput();
+            var actual = new LegacyTestCaseNameParser(cout).Parse(testCaseName);
 
             Assert.AreEqual(expectedNamespace, actual.Namespace);
             Assert.AreEqual(expectedType, actual.Type);
             Assert.AreEqual(expectedMethod, actual.Method);
 
             // Remove the trailing new line before comparing.
-            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserError, cout.Messages.First().Item2.Replace(Environment.NewLine, string.Empty));
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("x.()x()")]
         [DataRow("x")]
         [DataRow("..Z")]
@@ -107,16 +108,15 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("z.a.b((0,(0,1))))")]
         public void Parse_FailsGracefullyOnNonParseableInputs_WithConsoleOutput(string testCaseName)
         {
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
-            var actual = new LegacyTestCaseNameParser().Parse(testCaseName);
+            var cout = new FakeConsoleOutput();
+            var actual = new LegacyTestCaseNameParser(cout).Parse(testCaseName);
 
             Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownNamespace, actual.Namespace);
             Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserUnknownType, actual.Type);
             Assert.AreEqual(testCaseName, actual.Method);
 
             // Remove the trailing new line before comparing.
-            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
+            Assert.AreEqual(LegacyTestCaseNameParser.TestCaseParserError, cout.Messages.First().Item2.Replace(Environment.NewLine, string.Empty));
         }
     }
 }

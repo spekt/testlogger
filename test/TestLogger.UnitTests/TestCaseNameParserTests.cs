@@ -5,13 +5,15 @@ namespace Spekt.TestLogger.UnitTests
 {
     using System;
     using System.IO;
+    using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.UnitTests.TestDoubles;
 
     [TestClass]
     public class TestCaseNameParserTests
     {
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("z.a.b", "z", "a", "b")]
 
         // Cover all expected cases of different parenthesis locations, handling normal strings
@@ -93,7 +95,7 @@ namespace Spekt.TestLogger.UnitTests
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                var actual = new TestCaseNameParser().Parse(testCaseName);
+                var actual = new TestCaseNameParser(new FakeConsoleOutput()).Parse(testCaseName);
 
                 Assert.AreEqual(expectedNamespace, actual.Namespace);
                 Assert.AreEqual(expectedType, actual.Type);
@@ -102,7 +104,7 @@ namespace Spekt.TestLogger.UnitTests
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("a.b")]
         [DataRow("a.b(\"arg\",2)")]
         [DataRow("a(\"arg\",2).b")]
@@ -113,17 +115,15 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("..Z")]
         public void Parse_FailsGracefullyOnNonParseableInputs_WithConsoleOutput(string testCaseName)
         {
-            using var sw = new StringWriter();
-
-            Console.SetOut(sw);
-            var actual = new TestCaseNameParser().Parse(testCaseName);
+            var cout = new FakeConsoleOutput();
+            var actual = new TestCaseNameParser(cout).Parse(testCaseName);
 
             Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownNamespace, actual.Namespace);
             Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownType, actual.Type);
             Assert.AreEqual(testCaseName, actual.Method);
 
             // Remove the trailing new line before comparing.
-            Assert.AreEqual(TestCaseNameParser.TestCaseParserError, sw.ToString().Replace(sw.NewLine, string.Empty));
+            Assert.AreEqual(TestCaseNameParser.TestCaseParserError, cout.Messages.First().Item2.Replace(Environment.NewLine, string.Empty));
         }
     }
 }

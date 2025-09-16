@@ -6,6 +6,7 @@ namespace Spekt.TestLogger.Core
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Spekt.TestLogger.Platform;
 
     public class LegacyTestCaseNameParser
     {
@@ -20,7 +21,13 @@ namespace Spekt.TestLogger.Core
             "with the standard parser. If you have not already, please open a ticket detailing issues you " +
             "are having with the standard parser.";
 
+        private readonly IConsoleOutput consoleOutput;
         private bool parserErrorReported;
+
+        public LegacyTestCaseNameParser(IConsoleOutput consoleOutput)
+        {
+            this.consoleOutput = consoleOutput ?? throw new ArgumentNullException(nameof(consoleOutput));
+        }
 
         private enum NameParseStep
         {
@@ -227,7 +234,7 @@ namespace Spekt.TestLogger.Core
                     if (!this.parserErrorReported)
                     {
                         this.parserErrorReported = true;
-                        Console.WriteLine(TestCaseParserError);
+                        this.consoleOutput.WriteMessage(TestCaseParserError);
                     }
                 }
                 else if (string.IsNullOrWhiteSpace(metadataNamespaceName))
@@ -237,7 +244,7 @@ namespace Spekt.TestLogger.Core
                     if (!this.parserErrorReported)
                     {
                         this.parserErrorReported = true;
-                        Console.WriteLine(TestCaseParserError);
+                        this.consoleOutput.WriteMessage(TestCaseParserError);
                     }
                 }
             }

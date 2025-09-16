@@ -11,6 +11,7 @@ namespace TestLogger.Fixtures
     {
         private const string NetcoreVersion = "netcoreapp3.1";
         private bool buildProject = false;
+        private bool cleanProject = false;
         private string relativeResultsDirectory = string.Empty;
         private string runSettingsSuffix = string.Empty;
 
@@ -19,6 +20,12 @@ namespace TestLogger.Fixtures
         public DotnetTestFixture WithBuild()
         {
             this.buildProject = true;
+            return this;
+        }
+
+        public DotnetTestFixture WithClean()
+        {
+            this.cleanProject = true;
             return this;
         }
 
@@ -38,6 +45,24 @@ namespace TestLogger.Fixtures
 
         public string Execute(string assemblyName, string loggerArgs, bool collectCoverage, string resultsFileName, bool isMTP = false)
         {
+            if (this.cleanProject)
+            {
+                using var cleanProcess = new Process
+                {
+                    StartInfo =
+                    {
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        FileName = "dotnet",
+                        Arguments = $"clean \"{assemblyName.ToAssetDirectoryPath()}\\{assemblyName}.csproj\""
+                    }
+                };
+                cleanProcess.Start();
+                var cleanOutput = cleanProcess.StandardOutput.ReadToEnd();
+                cleanProcess.WaitForExit();
+                Console.WriteLine("\n\n## Clean output:\n" + cleanOutput);
+            }
+
             if (!isMTP)
             {
                 loggerArgs = $"--logger:\"{loggerArgs}\"";

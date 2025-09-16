@@ -15,7 +15,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             var action = () => new TestAttachmentInfo(null, "description");
 
-            Assert.ThrowsException<ArgumentNullException>(action);
+            Assert.ThrowsExactly<ArgumentNullException>(action);
         }
     }
 }

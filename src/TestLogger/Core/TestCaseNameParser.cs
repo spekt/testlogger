@@ -5,6 +5,7 @@ namespace Spekt.TestLogger.Core
 {
     using System;
     using System.Text.RegularExpressions;
+    using Spekt.TestLogger.Platform;
 
     public class TestCaseNameParser
     {
@@ -29,7 +30,17 @@ namespace Spekt.TestLogger.Core
         /// </summary>
         private static readonly Regex ClassDataRegex = new(@"^([a-z0-9_.]{1,})\.([a-z0-9_.]{1,}\(.{0,}\))\.(.{1,})$", RegexOptions);
 
+        private readonly IConsoleOutput consoleOutput;
         private bool parserErrorReported;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestCaseNameParser"/> class.
+        /// </summary>
+        /// <param name="consoleOutput">The console output interface.</param>
+        public TestCaseNameParser(IConsoleOutput consoleOutput)
+        {
+            this.consoleOutput = consoleOutput ?? throw new ArgumentNullException(nameof(consoleOutput));
+        }
 
         /// <summary>
         /// This method attempts to parse out a Namespace, Type and Method name from a given string.
@@ -84,7 +95,7 @@ namespace Spekt.TestLogger.Core
             if (!this.parserErrorReported)
             {
                 this.parserErrorReported = true;
-                Console.WriteLine(TestCaseParserError);
+                this.consoleOutput.WriteMessage(TestCaseParserError);
             }
 
             return pn;

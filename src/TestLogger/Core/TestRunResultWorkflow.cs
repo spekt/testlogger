@@ -14,9 +14,9 @@ namespace Spekt.TestLogger.Core
 
     public static class TestRunResultWorkflow
     {
-        // Parser instances exist per run so we can throttle error notifications to once per run.
-        private static readonly TestCaseNameParser Parser = new();
-        private static readonly LegacyTestCaseNameParser LegacyParser = new();
+        // Parser instances are created per run so we can throttle error notifications to once per run.
+        private static TestCaseNameParser parser;
+        private static LegacyTestCaseNameParser legacyParser;
 
         // This is only reachable for MTP.
         public static void Result(this ITestRun testRun, TestNodeUpdateMessage testNodeUpdateMessage, ITestFramework testFramework)
@@ -26,6 +26,10 @@ namespace Spekt.TestLogger.Core
             {
                 return;
             }
+
+            // Initialize parsers with console output if not already done
+            parser ??= new TestCaseNameParser(testRun.ConsoleOutput);
+            legacyParser ??= new LegacyTestCaseNameParser(testRun.ConsoleOutput);
 
             testRun.LoggerConfiguration.Values.TryGetValue(LoggerConfiguration.ParserKey, out string parserVal);
 
@@ -97,10 +101,27 @@ namespace Spekt.TestLogger.Core
             }
             else
             {
-                fqn = "UnknownFullyQualifiedName";
-                @namespace = "UnknownNamespace";
-                type = "UnknownType";
-                method = "UnknownMethod";
+                // Fallback: Try to parse the DisplayName to extract test information
+                // NUnit doesn't emit TestMethodIdentifierProperty in vstest bridge. See https://github.com/nunit/nunit3-vs-adapter/issues/1259
+                var displayName = testNodeUpdateMessage.TestNode.Uid;
+                var parsedName = parser.Parse(displayName);
+
+                if (parsedName.Namespace != TestCaseNameParser.TestCaseParserUnknownNamespace)
+                {
+                    // Successfully parsed the display name
+                    @namespace = parsedName.Namespace;
+                    type = parsedName.Type;
+                    method = parsedName.Method;
+                    fqn = displayName;
+                }
+                else
+                {
+                    // Could not parse the display name, use Unknown values
+                    fqn = "UnknownFullyQualifiedName";
+                    @namespace = "UnknownNamespace";
+                    type = "UnknownType";
+                    method = "UnknownMethod";
+                }
             }
 
             var assemblyPath = Assembly.GetEntryAssembly()?.Location;
@@ -146,12 +167,16 @@ namespace Spekt.TestLogger.Core
         // This is reachable only for VSTest.
         public static void Result(this ITestRun testRun, TestResult result)
         {
+            // Initialize parsers with console output if not already done
+            parser ??= new TestCaseNameParser(testRun.ConsoleOutput);
+            legacyParser ??= new LegacyTestCaseNameParser(testRun.ConsoleOutput);
+
             var fqn = result.TestCase.FullyQualifiedName;
             testRun.LoggerConfiguration.Values.TryGetValue(LoggerConfiguration.ParserKey, out string parserVal);
             var parsedName = parserVal switch
             {
-                string x when x.Equals("Legacy", StringComparison.OrdinalIgnoreCase) => LegacyParser.Parse(fqn),
-                _ => Parser.Parse(fqn),
+                string x when x.Equals("Legacy", StringComparison.OrdinalIgnoreCase) => legacyParser.Parse(fqn),
+                _ => parser.Parse(fqn),
             };
 
             Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;

@@ -28,8 +28,8 @@
     <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
     <TestingPlatformCaptureOutput>false</TestingPlatformCaptureOutput>
 
-    <NUnitTestAdapterVersion>5.0.0</NUnitTestAdapterVersion>
-    <MSTestVersion>3.8.2</MSTestVersion>
+    <NUnitTestAdapterVersion>5.1.1-alpha.1</NUnitTestAdapterVersion>
+    <MSTestVersion>3.10.1</MSTestVersion>
   </PropertyGroup>
 
   <ItemGroup>

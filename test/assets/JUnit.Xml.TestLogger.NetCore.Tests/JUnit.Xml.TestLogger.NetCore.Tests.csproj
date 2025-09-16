@@ -17,4 +17,11 @@
     <PackageReference Include="NUnit3TestAdapter" Version="$(NUnitTestAdapterVersion)" />
   </ItemGroup>
 
+  <ItemGroup>
+    <TestingPlatformBuilderHook Include="9D52251D-D1A2-42BC-AC7A-F44DEA2DAC63">
+      <DisplayName>JUnitXml.TestLogger</DisplayName>
+      <TypeFullName>Spekt.TestReporter.JUnit.TestingPlatformBuilderHook</TypeFullName>
+    </TestingPlatformBuilderHook>
+  </ItemGroup>
+
 </Project>

@@ -37,7 +37,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
             Assert.IsTrue(transformedResults.Single().Method.Contains(param));
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(null)]
         [DataRow("")]
         [DataRow("    ")]

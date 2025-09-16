@@ -22,7 +22,7 @@ namespace Spekt.TestLogger.UnitTests
                 { LoggerConfiguration.LogFilePathKey, logFilePath }
             };
 
-            Assert.ThrowsException<ArgumentNullException>(new Action(() =>
+            Assert.ThrowsExactly<ArgumentNullException>(new Action(() =>
                 new LoggerConfiguration(config)));
         }
 
@@ -34,7 +34,7 @@ namespace Spekt.TestLogger.UnitTests
                 { DefaultLoggerParameterNames.TestRunDirectory, "/tmp" }
             };
 
-            Assert.ThrowsException<ArgumentException>(new Action(() =>
+            Assert.ThrowsExactly<ArgumentException>(new Action(() =>
                 new LoggerConfiguration(config)));
         }
 
@@ -49,7 +49,7 @@ namespace Spekt.TestLogger.UnitTests
                 { DefaultLoggerParameterNames.TestRunDirectory, "/tmp" }
             };
 
-            Assert.ThrowsException<ArgumentNullException>(new Action(() =>
+            Assert.ThrowsExactly<ArgumentNullException>(new Action(() =>
                 new LoggerConfiguration(config)));
         }
 
@@ -61,7 +61,7 @@ namespace Spekt.TestLogger.UnitTests
                 { LoggerConfiguration.LogFileNameKey, "result.json" },
             };
 
-            Assert.ThrowsException<ArgumentException>(new Action(() =>
+            Assert.ThrowsExactly<ArgumentException>(new Action(() =>
                 new LoggerConfiguration(config)));
         }
 
@@ -76,7 +76,7 @@ namespace Spekt.TestLogger.UnitTests
                 { DefaultLoggerParameterNames.TestRunDirectory, dir }
             };
 
-            Assert.ThrowsException<ArgumentNullException>(new Action(() =>
+            Assert.ThrowsExactly<ArgumentNullException>(new Action(() =>
                 new LoggerConfiguration(config)));
         }
 
