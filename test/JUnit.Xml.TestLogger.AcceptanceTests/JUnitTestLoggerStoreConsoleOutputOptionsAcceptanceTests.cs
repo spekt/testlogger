@@ -32,14 +32,14 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             XDocument resultsXml = XDocument.Load(resultsFile);
 
             var passedTestCaseStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/*[@name='PassTest11']/system-out");
-            Assert.IsTrue(passedTestCaseStdOutNode.Value.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}"));
-            Assert.IsTrue(passedTestCaseStdOutNode.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
+            Assert.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}", passedTestCaseStdOutNode.Value);
+            Assert.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", passedTestCaseStdOutNode.Value);
 
             var testSuiteStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-out");
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}"));
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}"));
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}"));
+            Assert.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}", testSuiteStdOutNode.Value);
+            Assert.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", testSuiteStdOutNode.Value);
+            Assert.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}", testSuiteStdOutNode.Value);
+            Assert.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}", testSuiteStdOutNode.Value);
 
             TestCaseShouldHaveAttachmentInStandardOut(resultsXml, "PassTest11");
         }
@@ -57,12 +57,12 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             XDocument resultsXml = XDocument.Load(resultsFile);
 
             var failedTestCaseStdErrNode = resultsXml.XPathSelectElement("/testsuites/testsuite/*[@name='FailTest11']/system-err");
-            Assert.IsTrue(failedTestCaseStdErrNode.Value.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}"));
-            Assert.IsTrue(failedTestCaseStdErrNode.Value.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}"));
+            Assert.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}", failedTestCaseStdErrNode.Value);
+            Assert.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}", failedTestCaseStdErrNode.Value);
 
             var testSuiteStdErrNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-err");
-            Assert.IsTrue(testSuiteStdErrNode.Value.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}"));
-            Assert.IsTrue(testSuiteStdErrNode.Value.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}"));
+            Assert.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}", testSuiteStdErrNode.Value);
+            Assert.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}", testSuiteStdErrNode.Value);
         }
 
         [TestMethod]
@@ -78,14 +78,14 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             XDocument resultsXml = XDocument.Load(resultsFile);
 
             var passedTestCaseStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/*[@name='PassTest11']/system-out");
-            Assert.IsTrue(passedTestCaseStdOutNode.Value.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}"));
-            Assert.IsTrue(passedTestCaseStdOutNode.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
+            Assert.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}", passedTestCaseStdOutNode.Value);
+            Assert.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", passedTestCaseStdOutNode.Value);
 
             var testSuiteStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-out");
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}"));
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}"));
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}"));
+            Assert.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}", testSuiteStdOutNode.Value);
+            Assert.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", testSuiteStdOutNode.Value);
+            Assert.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}", testSuiteStdOutNode.Value);
+            Assert.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}", testSuiteStdOutNode.Value);
 
             TestCaseShouldHaveAttachmentInStandardOut(resultsXml, "PassTest11");
         }
@@ -103,12 +103,12 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             XDocument resultsXml = XDocument.Load(resultsFile);
 
             var failedTestCaseStdErrNode = resultsXml.XPathSelectElement("/testsuites/testsuite/*[@name='FailTest11']/system-err");
-            Assert.IsTrue(failedTestCaseStdErrNode.Value.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}"));
-            Assert.IsTrue(failedTestCaseStdErrNode.Value.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}"));
+            Assert.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}", failedTestCaseStdErrNode.Value);
+            Assert.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}", failedTestCaseStdErrNode.Value);
 
             var testSuiteStdErrNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-err");
-            Assert.IsTrue(testSuiteStdErrNode.Value.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}"));
-            Assert.IsTrue(testSuiteStdErrNode.Value.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}"));
+            Assert.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}", testSuiteStdErrNode.Value);
+            Assert.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}", testSuiteStdErrNode.Value);
         }
 
         [TestMethod]
@@ -124,8 +124,8 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             XDocument resultsXml = XDocument.Load(resultsFile);
 
             var passedTestCaseStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/*[@name='PassTest11']/system-out");
-            Assert.IsFalse(passedTestCaseStdOutNode.Value.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}"));
-            Assert.IsFalse(passedTestCaseStdOutNode.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
+            Assert.DoesNotContain("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}", passedTestCaseStdOutNode.Value);
+            Assert.DoesNotContain("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", passedTestCaseStdOutNode.Value);
 
             var testSuiteStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-out");
             Assert.IsTrue(testSuiteStdOutNode.Value.Equals(string.Empty));
@@ -165,14 +165,14 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             XDocument resultsXml = XDocument.Load(resultsFile);
 
             var passedTestCaseStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/*[@name='PassTest11']/system-out");
-            Assert.IsFalse(passedTestCaseStdOutNode.Value.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}"));
-            Assert.IsFalse(passedTestCaseStdOutNode.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
+            Assert.DoesNotContain("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}", passedTestCaseStdOutNode.Value);
+            Assert.DoesNotContain("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", passedTestCaseStdOutNode.Value);
 
             var testSuiteStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-out");
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}"));
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}"));
-            Assert.IsTrue(testSuiteStdOutNode.Value.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}"));
+            Assert.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}", testSuiteStdOutNode.Value);
+            Assert.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", testSuiteStdOutNode.Value);
+            Assert.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}", testSuiteStdOutNode.Value);
+            Assert.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}", testSuiteStdOutNode.Value);
 
             TestCaseShouldHaveAttachmentInStandardOut(resultsXml, "PassTest11");
         }
@@ -193,8 +193,8 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             Assert.IsNull(failedTestCaseStdErrNode);
 
             var testSuiteStdErrNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-err");
-            Assert.IsTrue(testSuiteStdErrNode.Value.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}"));
-            Assert.IsTrue(testSuiteStdErrNode.Value.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}"));
+            Assert.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}", testSuiteStdErrNode.Value);
+            Assert.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}", testSuiteStdErrNode.Value);
         }
 
         [TestMethod]
@@ -210,8 +210,8 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             XDocument resultsXml = XDocument.Load(resultsFile);
 
             var passedTestCaseStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/*[@name='PassTest11']/system-out");
-            Assert.IsTrue(passedTestCaseStdOutNode.Value.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}"));
-            Assert.IsTrue(passedTestCaseStdOutNode.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
+            Assert.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}", passedTestCaseStdOutNode.Value);
+            Assert.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", passedTestCaseStdOutNode.Value);
 
             var testSuiteStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-out");
             Assert.IsTrue(testSuiteStdOutNode.Value.Equals(string.Empty));
@@ -232,8 +232,8 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             XDocument resultsXml = XDocument.Load(resultsFile);
 
             var failedTestCaseStdErrNode = resultsXml.XPathSelectElement("/testsuites/testsuite/*[@name='FailTest11']/system-err");
-            Assert.IsTrue(failedTestCaseStdErrNode.Value.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}"));
-            Assert.IsTrue(failedTestCaseStdErrNode.Value.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}"));
+            Assert.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}", failedTestCaseStdErrNode.Value);
+            Assert.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}", failedTestCaseStdErrNode.Value);
 
             var testSuiteStdErrNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-err");
             Assert.IsTrue(testSuiteStdErrNode.Value.Equals(string.Empty));
@@ -243,7 +243,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         {
             var node = resultsXml.XPathSelectElement($"/testsuites/testsuite/*[@name='{testcaseName}']/system-out");
 
-            Assert.IsTrue(node.Value.Contains("[[ATTACHMENT|"));
+            Assert.Contains("[[ATTACHMENT|", node.Value);
         }
     }
 }

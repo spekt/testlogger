@@ -22,7 +22,7 @@ namespace NUnit.Xml.TestLogger.UnitTests
         [TestMethod]
         public void InitializeShouldThrowIfEventsIsNull()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new NUnitXmlTestLogger().Initialize(null, DummyTestResultsDirectory));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new NUnitXmlTestLogger().Initialize(null, DummyTestResultsDirectory));
         }
 
         [TestMethod]

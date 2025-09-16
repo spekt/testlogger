@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(dotnet:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(./build.sh:*)"
     ],
     "deny": [],
     "ask": []

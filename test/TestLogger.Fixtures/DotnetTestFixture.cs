@@ -17,15 +17,10 @@ namespace TestLogger.Fixtures
 
         public static DotnetTestFixture Create() => new DotnetTestFixture();
 
-        public DotnetTestFixture WithBuild()
+        public DotnetTestFixture WithBuild(bool cleanProject = true)
         {
+            this.cleanProject = cleanProject;
             this.buildProject = true;
-            return this;
-        }
-
-        public DotnetTestFixture WithClean()
-        {
-            this.cleanProject = true;
             return this;
         }
 

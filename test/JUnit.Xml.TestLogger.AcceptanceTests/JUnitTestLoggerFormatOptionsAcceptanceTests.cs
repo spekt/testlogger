@@ -11,6 +11,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     using global::TestLogger.Fixtures;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.Platform;
 
     /// <summary>
     /// Acceptance tests evaluate the most recent output of the build.ps1 script, NOT the most
@@ -139,7 +140,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 .ToList();
             foreach (var testcase in testcases)
             {
-                var parsedName = new TestCaseNameParser().Parse(testcase.Attribute("name").Value);
+                var parsedName = new TestCaseNameParser(new FakeConsoleOutput()).Parse(testcase.Attribute("name").Value);
 
                 // A method name only will not be parsable into two pieces
                 Assert.AreEqual(parsedName.Type, TestCaseNameParser.TestCaseParserUnknownType);
@@ -166,7 +167,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             foreach (var testcase in testcases)
             {
                 // Note the new parser can't handle the names with just class.method
-                var parsedName = new LegacyTestCaseNameParser().Parse(testcase.Attribute("name").Value);
+                var parsedName = new LegacyTestCaseNameParser(new FakeConsoleOutput()).Parse(testcase.Attribute("name").Value);
 
                 // If the name is parsable into two pieces, then we have a two piece name and
                 // consider that to be a passing result.
@@ -193,7 +194,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 .ToList();
             foreach (var testcase in testcases)
             {
-                var parsedName = new TestCaseNameParser().Parse(testcase.Attribute("name").Value);
+                var parsedName = new TestCaseNameParser(new FakeConsoleOutput()).Parse(testcase.Attribute("name").Value);
 
                 // We expect the full name would be the class name plus the parsed method
                 var expectedFullName = parsedName.Namespace + "." + parsedName.Type + "." + parsedName.Method;
@@ -204,6 +205,19 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             }
 
             Assert.IsTrue(new JunitXmlValidator().IsValid(resultsXml));
+        }
+
+        private class FakeConsoleOutput : IConsoleOutput
+        {
+            public void WriteError(string message)
+            {
+                // Do nothing
+            }
+
+            public void WriteMessage(string message)
+            {
+                // Do nothing
+            }
         }
     }
 }

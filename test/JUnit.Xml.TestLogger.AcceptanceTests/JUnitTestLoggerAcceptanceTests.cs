@@ -31,7 +31,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             var vstestLoggerArgs = $"junit;LogFilePath={VstestResultsFile}";
             _ = DotnetTestFixture
                 .Create()
-                .WithClean()
                 .WithBuild()
                 .Execute(AssetName, vstestLoggerArgs, collectCoverage: false, VstestResultsFile, isMTP: false);
 
@@ -39,7 +38,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             var mtpLoggerArgs = $"--report-junit --report-junit-filename {MtpResultsFile}";
             _ = DotnetTestFixture
                 .Create()
-                .WithClean()
                 .WithBuild()
                 .Execute(AssetName, mtpLoggerArgs, collectCoverage: false, MtpResultsFile, isMTP: true);
         }
