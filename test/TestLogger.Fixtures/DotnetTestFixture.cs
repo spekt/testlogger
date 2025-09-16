@@ -90,6 +90,7 @@ namespace TestLogger.Fixtures
                 {
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
+                    RedirectStandardError = true,
                     FileName = "dotnet",
                     Arguments = $"test \"{assemblyName.ToAssetDirectoryPath()}\\{assemblyName}.csproj\" {buildArgs}{(isMTP ? " --" : string.Empty)} {loggerArgs} {resultDirectoryArgs} {commandlineSuffix}"
                 }
@@ -111,14 +112,21 @@ namespace TestLogger.Fixtures
 
             // Required to skip icu requirement for netcoreapp3.1 in linux
             dotnet.StartInfo.EnvironmentVariables["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT"] = "1";
-            dotnet.Start();
 
             Console.WriteLine("\n\n## Test run arguments: dotnet " + dotnet.StartInfo.Arguments);
 
             // To avoid deadlocks, always read the output stream first and then wait.
+            dotnet.Start();
+
             var output = dotnet.StandardOutput.ReadToEnd();
+            var error = dotnet.StandardError.ReadToEnd();
             dotnet.WaitForExit();
+
             Console.WriteLine("\n\n ## Test run output\n" + output);
+            if (!string.IsNullOrEmpty(error))
+            {
+                Console.WriteLine("\n\n ## Test run error\n" + error);
+            }
 
             return resultsFile;
         }
