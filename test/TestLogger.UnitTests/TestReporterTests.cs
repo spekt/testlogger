@@ -49,7 +49,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "customKey=customValue");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "customKey=customValue");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -67,7 +67,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "key1=value1;key2=value2;key3=value3");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "key1=value1;key2=value2;key3=value3");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -84,7 +84,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "  key1  =  value1  ;  key2  =  value2  ");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "  key1  =  value1  ;  key2  =  value2  ");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -101,7 +101,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "key1=value1;;key2=value2");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "key1=value1;;key2=value2");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -118,7 +118,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "key1=value1;invalidPair;key2=value2");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "key1=value1;invalidPair;key2=value2");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -135,7 +135,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "key1=value1=extra;key2=value2");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "key1=value1=extra;key2=value2");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -152,7 +152,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "key1=;key2=value2");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "key1=;key2=value2");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -169,7 +169,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "=value1;key2=value2");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "=value1;key2=value2");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -186,7 +186,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "   =value1;key2=value2");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "   =value1;key2=value2");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -203,7 +203,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", string.Empty);
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", string.Empty);
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -220,7 +220,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", (string)null);
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", (string)null);
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -237,7 +237,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "path=C:\\Test\\Folder;url=https://example.com;name=Test-Report_v2.0");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "path=C:\\Test\\Folder;url=https://example.com;name=Test-Report_v2.0");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -254,8 +254,8 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "key1=value1");
-            this.mockCommandLineOptions.SetOption("report-junit-filename", "custom-report.xml");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "key1=value1");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit-filename", "custom-report.xml");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -290,7 +290,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "LogFilePath=custom-path.xml");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "LogFilePath=custom-path.xml");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -307,7 +307,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-config", "LogFileName=custom-name.xml");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit", "LogFileName=custom-name.xml");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act
@@ -324,7 +324,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             this.mockCommandLineOptions.SetOption("report-junit");
-            this.mockCommandLineOptions.SetOption("report-junit-filename", "custom-filename.xml");
+            this.mockCommandLineOptions.SetOption("report-spekt-junit-filename", "custom-filename.xml");
             var reporter = new TestableTestReporter(this.mockServiceProvider.Object, this.mockExtension.Object);
 
             // Act

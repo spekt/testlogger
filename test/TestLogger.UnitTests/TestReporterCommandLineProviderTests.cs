@@ -33,9 +33,8 @@ namespace Spekt.TestLogger.UnitTests
             var provider = new TestReporterCommandLineProvider(this.mockExtension, "nunit");
 
             // Assert
-            Assert.AreEqual("report-nunit", provider.ReportOption);
-            Assert.AreEqual("report-nunit-filename", provider.ReportFileNameOption);
-            Assert.AreEqual("report-nunit-config", provider.ReportConfigOption);
+            Assert.AreEqual("report-spekt-nunit", provider.ReportOption);
+            Assert.AreEqual("report-spekt-nunit-filename", provider.ReportFileNameOption);
         }
 
         [TestMethod]
@@ -45,10 +44,9 @@ namespace Spekt.TestLogger.UnitTests
             var options = this.provider.GetCommandLineOptions().ToArray();
 
             // Assert
-            Assert.AreEqual(3, options.Length);
-            Assert.AreEqual("report-junit", options[0].Name);
-            Assert.AreEqual("report-junit-filename", options[1].Name);
-            Assert.AreEqual("report-junit-config", options[2].Name);
+            Assert.AreEqual(2, options.Length);
+            Assert.AreEqual("report-spekt-junit", options[0].Name);
+            Assert.AreEqual("report-spekt-junit-filename", options[1].Name);
         }
 
         [TestMethod]
@@ -60,8 +58,7 @@ namespace Spekt.TestLogger.UnitTests
             // Assert
             StringAssert.Contains(options[0].Description, "junit");
             StringAssert.Contains(options[1].Description, "junit");
-            StringAssert.Contains(options[2].Description, "junit");
-            StringAssert.Contains(options[2].Description, "key-value");
+            StringAssert.Contains(options[0].Description, "configuration");
         }
 
         [TestMethod]
@@ -69,29 +66,14 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             var mockOptions = new MockCommandLineOptions();
-            mockOptions.SetOption("report-junit-filename", "test.xml");
+            mockOptions.SetOption("report-spekt-junit-filename", "test.xml");
 
             // Act
             var result = await this.provider.ValidateCommandLineOptionsAsync(mockOptions);
 
             // Assert
             Assert.IsFalse(result.IsValid);
-            StringAssert.Contains(result.ErrorMessage, "requires --report-junit");
-        }
-
-        [TestMethod]
-        public async Task ValidateCommandLineOptionsAsync_ShouldFailWhenConfigWithoutReport()
-        {
-            // Arrange
-            var mockOptions = new MockCommandLineOptions();
-            mockOptions.SetOption("report-junit-config", "key=value");
-
-            // Act
-            var result = await this.provider.ValidateCommandLineOptionsAsync(mockOptions);
-
-            // Assert
-            Assert.IsFalse(result.IsValid);
-            StringAssert.Contains(result.ErrorMessage, "requires --report-junit");
+            StringAssert.Contains(result.ErrorMessage, "requires --report-spekt-junit");
         }
 
         [TestMethod]
@@ -99,7 +81,7 @@ namespace Spekt.TestLogger.UnitTests
         {
             // Arrange
             var mockOptions = new MockCommandLineOptions();
-            mockOptions.SetOption("report-junit");
+            mockOptions.SetOption("report-spekt-junit");
 
             // Act
             var result = await this.provider.ValidateCommandLineOptionsAsync(mockOptions);
@@ -112,7 +94,7 @@ namespace Spekt.TestLogger.UnitTests
         public async Task ValidateOptionArgumentsAsync_ShouldFailInvalidConfigFormat()
         {
             // Arrange
-            var commandOption = new CommandLineOption("report-junit-config", "Config", ArgumentArity.ExactlyOne, false);
+            var commandOption = new CommandLineOption("report-spekt-junit", "Config", ArgumentArity.ZeroOrOne, false);
             var invalidArguments = new[] { "invalid-format" };
 
             // Act
@@ -127,7 +109,7 @@ namespace Spekt.TestLogger.UnitTests
         public async Task ValidateOptionArgumentsAsync_ShouldPassValidConfigFormat()
         {
             // Arrange
-            var commandOption = new CommandLineOption("report-junit-config", "Config", ArgumentArity.ExactlyOne, false);
+            var commandOption = new CommandLineOption("report-spekt-junit", "Config", ArgumentArity.ZeroOrOne, false);
             var validArguments = new[] { "key1=value1;key2=value2" };
 
             // Act
@@ -141,7 +123,7 @@ namespace Spekt.TestLogger.UnitTests
         public async Task ValidateOptionArgumentsAsync_ShouldIgnoreNonConfigOptions()
         {
             // Arrange
-            var commandOption = new CommandLineOption("report-junit-filename", "Filename", ArgumentArity.ExactlyOne, false);
+            var commandOption = new CommandLineOption("report-spekt-junit-filename", "Filename", ArgumentArity.ExactlyOne, false);
             var arguments = new[] { "test.xml" };
 
             // Act

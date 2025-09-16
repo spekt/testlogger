@@ -29,19 +29,16 @@ namespace Spekt.TestReporter
 
         public string Description => this.extension.Description;
 
-        public string ReportOption => $"report-{this.loggerName}";
+        public string ReportOption => $"report-spekt-{this.loggerName}";
 
-        public string ReportFileNameOption => $"report-{this.loggerName}-filename";
-
-        public string ReportConfigOption => $"report-{this.loggerName}-config";
+        public string ReportFileNameOption => $"report-spekt-{this.loggerName}-filename";
 
         public IReadOnlyCollection<CommandLineOption> GetCommandLineOptions()
         {
             return
             [
-                new CommandLineOption(this.ReportOption, $"Enable generating {this.loggerName} test report", ArgumentArity.Zero, isHidden: false),
+                new CommandLineOption(this.ReportOption, $"Enable generating {this.loggerName} test report. Optionally provide configuration as key1=value1;key2=value2", ArgumentArity.ZeroOrOne, isHidden: false),
                 new CommandLineOption(this.ReportFileNameOption, $"The name of the generated {this.loggerName} test report", ArgumentArity.ExactlyOne, isHidden: false),
-                new CommandLineOption(this.ReportConfigOption, $"Configuration key-value pairs for {this.loggerName} reporter (format: key1=value1;key2=value2)", ArgumentArity.ExactlyOne, isHidden: false),
             ];
         }
 
@@ -50,15 +47,10 @@ namespace Spekt.TestReporter
 
         public Task<ValidationResult> ValidateCommandLineOptionsAsync(ICommandLineOptions commandLineOptions)
         {
-            // Validate that filename and config options are only used when report option is enabled
+            // Validate that filename option is only used when report option is enabled
             if (commandLineOptions.IsOptionSet(this.ReportFileNameOption) && !commandLineOptions.IsOptionSet(this.ReportOption))
             {
                 return Task.FromResult(ValidationResult.Invalid($"--{this.ReportFileNameOption} requires --{this.ReportOption}"));
-            }
-
-            if (commandLineOptions.IsOptionSet(this.ReportConfigOption) && !commandLineOptions.IsOptionSet(this.ReportOption))
-            {
-                return Task.FromResult(ValidationResult.Invalid($"--{this.ReportConfigOption} requires --{this.ReportOption}"));
             }
 
             return ValidationResult.ValidTask;
@@ -66,7 +58,7 @@ namespace Spekt.TestReporter
 
         public Task<ValidationResult> ValidateOptionArgumentsAsync(CommandLineOption commandOption, string[] arguments)
         {
-            if (commandOption.Name == this.ReportConfigOption && arguments.Length > 0)
+            if (commandOption.Name == this.ReportOption && arguments.Length > 0)
             {
                 // Validate config option format (key=value pairs separated by semicolons)
                 var configValue = arguments[0];
@@ -83,7 +75,7 @@ namespace Spekt.TestReporter
                         if (!pair.Contains('=') || pair.Split('=').Length != 2)
                         {
                             return Task.FromResult(ValidationResult.Invalid(
-                                $"Invalid config format for --{this.ReportConfigOption}. Use key1=value1;key2=value2"));
+                                $"Invalid config format for --{this.ReportOption}. Use key1=value1;key2=value2"));
                         }
                     }
                 }

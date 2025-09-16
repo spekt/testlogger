@@ -35,7 +35,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 .Execute(AssetName, vstestLoggerArgs, collectCoverage: false, VstestResultsFile, isMTP: false);
 
             // Run MTP tests
-            var mtpLoggerArgs = $"--report-junit --report-junit-filename {MtpResultsFile}";
+            var mtpLoggerArgs = $"--report-spekt-junit --report-spekt-junit-filename {MtpResultsFile}";
             _ = DotnetTestFixture
                 .Create()
                 .WithBuild()

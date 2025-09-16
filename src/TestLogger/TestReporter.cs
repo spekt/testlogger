@@ -73,7 +73,7 @@ namespace Spekt.TestReporter
 
         public Task<bool> IsEnabledAsync()
         {
-            var isEnabled = this.serviceProvider.GetCommandLineOptions().IsOptionSet($"report-{this.Name}");
+            var isEnabled = this.serviceProvider.GetCommandLineOptions().IsOptionSet($"report-spekt-{this.Name}");
             if (isEnabled)
             {
                 this.testRun = this.CreateTestRun(this.serviceProvider);
@@ -106,8 +106,8 @@ namespace Spekt.TestReporter
                 { DefaultLoggerParameterNames.TestRunDirectory, serviceProvider.GetConfiguration()["platformOptions:resultDirectory"] }
             };
 
-            // Handle config option - parse key-value pairs
-            if (commandLineOptions.TryGetOptionArgumentList($"report-{this.Name}-config", out var configArguments))
+            // Handle config option from --report-spekt-{loggerName} argument
+            if (commandLineOptions.TryGetOptionArgumentList($"report-spekt-{this.Name}", out var configArguments) && configArguments.Length > 0)
             {
                 var configValue = configArguments[0];
                 if (!string.IsNullOrEmpty(configValue))
@@ -130,7 +130,7 @@ namespace Spekt.TestReporter
             }
 
             // Handle log file path option
-            if (commandLineOptions.TryGetOptionArgumentList($"report-{this.Name}-filename", out var fileNameArguments))
+            if (commandLineOptions.TryGetOptionArgumentList($"report-spekt-{this.Name}-filename", out var fileNameArguments))
             {
                 configDictionary.Add(LoggerConfiguration.LogFileNameKey, fileNameArguments[0]);
             }

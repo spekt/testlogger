@@ -36,7 +36,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         {
             bool isMTP = context.IsMTP(typeof(JUnitTestLoggerXunitAcceptanceTests));
             var loggerArgs = isMTP
-                ? "--report-junit --report-junit-filename test-results.xml"
+                ? "--report-spekt-junit --report-spekt-junit-filename test-results.xml"
                 : "junit;LogFilePath=test-results.xml";
 
             // Enable reporting of internal properties in the adapter using runsettings
@@ -81,7 +81,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
         [TestClass]
         [TestProperty("IsMTP", "true")]
-        [Ignore("XUnit+MTP is not supported because xUnit already provide --report-junit")]
+        [Ignore("XUnit+MTP is not supported because xUnit already provide --report-spekt-junit")]
         public sealed class MTPJUnitTestLoggerXunitAcceptanceTests : JUnitTestLoggerXunitAcceptanceTests
         {
         }
