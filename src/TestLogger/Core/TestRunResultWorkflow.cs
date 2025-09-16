@@ -55,7 +55,10 @@ namespace Spekt.TestLogger.Core
             string @namespace = string.Empty;
             string type = string.Empty;
             string method = string.Empty;
-            bool hasTestMethodIdentifier = false;
+            string fqn = string.Empty;
+
+            // Find TestMethodIdentifierProperty if it exists
+            TestMethodIdentifierProperty methodIdentifier = null;
             foreach (var property in testNodeUpdateMessage.TestNode.Properties)
             {
                 if (property is TestFileLocationProperty testFileLocation)
@@ -77,12 +80,9 @@ namespace Spekt.TestLogger.Core
                 {
                     traits.Add(new Trait(metadata.Key, metadata.Value));
                 }
-                else if (property is TestMethodIdentifierProperty methodIdentifier)
+                else if (property is TestMethodIdentifierProperty methodIdProp)
                 {
-                    @namespace = methodIdentifier.Namespace;
-                    type = methodIdentifier.TypeName;
-                    method = methodIdentifier.MethodName;
-                    hasTestMethodIdentifier = true;
+                    methodIdentifier = methodIdProp;
                 }
                 else if (property is TimingProperty timing)
                 {
@@ -92,37 +92,12 @@ namespace Spekt.TestLogger.Core
                 }
             }
 
-            string fqn;
-            if (hasTestMethodIdentifier)
-            {
-                fqn = string.IsNullOrEmpty(@namespace)
-                    ? $"{type}.{method}"
-                    : $"{@namespace}.{type}.{method}";
-            }
-            else
-            {
-                // Fallback: Try to parse the DisplayName to extract test information
-                // NUnit doesn't emit TestMethodIdentifierProperty in vstest bridge. See https://github.com/nunit/nunit3-vs-adapter/issues/1259
-                var displayName = testNodeUpdateMessage.TestNode.Uid;
-                var parsedName = parser.Parse(displayName);
-
-                if (parsedName.Namespace != TestCaseNameParser.TestCaseParserUnknownNamespace)
-                {
-                    // Successfully parsed the display name
-                    @namespace = parsedName.Namespace;
-                    type = parsedName.Type;
-                    method = parsedName.Method;
-                    fqn = displayName;
-                }
-                else
-                {
-                    // Could not parse the display name, use Unknown values
-                    fqn = "UnknownFullyQualifiedName";
-                    @namespace = "UnknownNamespace";
-                    type = "UnknownType";
-                    method = "UnknownMethod";
-                }
-            }
+            // Parse test information using the unified method
+            var parseResult = parser.Parse(methodIdentifier, testNodeUpdateMessage.TestNode);
+            @namespace = parseResult.Namespace;
+            type = parseResult.Type;
+            method = parseResult.Method;
+            fqn = parseResult.FullyQualifiedName;
 
             var assemblyPath = Assembly.GetEntryAssembly()?.Location;
             if (string.IsNullOrEmpty(assemblyPath))

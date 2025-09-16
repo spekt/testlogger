@@ -17,10 +17,16 @@ This repository contains .NET test loggers for Visual Studio Test Platform (VSTe
 
 ### Debugging Acceptance Tests
 
-If acceptance tests are failing, run with detailed output:
+If acceptance tests are failing, run the test asset with detailed output. Example below:
 
 ```sh
-dotnet test --no-build --logger:"json;LogFilePath=test-results.json" test/assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj
+DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 # prefix below commands with this on Linux
+
+# Reproduce VSTest logger issue
+dotnet test --logger:"json;LogFilePath=test-results-vstest.json" test/assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj
+
+# Reproduce MTP logger issue
+dotnet test test/assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj -p:IsMTP=true -- --report-spekt-json --report-spekt-json test-results-mtp.json
 ```
 
 ## Architecture

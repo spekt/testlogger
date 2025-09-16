@@ -19,45 +19,50 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     /// These acceptance tests look at the specific structure and contents of the produced Xml,
     /// when running using the xUnit vstest runner.
     /// </summary>
-    public abstract class JUnitTestLoggerXunitAcceptanceTests
+    [TestClass]
+    public class JUnitTestLoggerXunitAcceptanceTests
     {
         private const string AssetName = "JUnit.Xml.TestLogger.XUnit.NetCore.Tests";
-        private readonly string resultsFile;
-        private readonly XDocument resultsXml;
+        private const string VstestResultsFile = "test-results-vstest.xml";
+        private const string MtpResultsFile = "test-results-mtp.xml";
 
-        protected JUnitTestLoggerXunitAcceptanceTests()
-        {
-            this.resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), "test-results.xml");
-            this.resultsXml = XDocument.Load(this.resultsFile);
-        }
-
-        [ClassInitialize(InheritanceBehavior.BeforeEachDerivedClass)]
+        [ClassInitialize]
         public static void SuiteInitialize(TestContext context)
         {
-            bool isMTP = context.IsMTP(typeof(JUnitTestLoggerXunitAcceptanceTests));
-            var loggerArgs = isMTP
-                ? "--report-spekt-junit --report-spekt-junit-filename test-results.xml"
-                : "junit;LogFilePath=test-results.xml";
-
-            // Enable reporting of internal properties in the adapter using runsettings
+            // Run VSTest tests
+            var vstestLoggerArgs = $"junit;LogFilePath={VstestResultsFile}";
             _ = DotnetTestFixture
                 .Create()
                 .WithBuild()
-                .Execute(AssetName, loggerArgs, collectCoverage: false, "test-results.xml", isMTP: isMTP);
+                .Execute(AssetName, vstestLoggerArgs, collectCoverage: false, VstestResultsFile, isMTP: false);
+
+            // Run MTP tests
+            var mtpLoggerArgs = $"--report-spekt-junit --report-spekt-junit-filename {MtpResultsFile}";
+            _ = DotnetTestFixture
+                .Create()
+                .WithBuild()
+                .Execute(AssetName, mtpLoggerArgs, collectCoverage: false, MtpResultsFile, isMTP: true);
         }
 
         [TestMethod]
-        public void LoggedXmlValidatesAgainstXsdSchema()
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
+        public void LoggedXmlValidatesAgainstXsdSchema(string resultFileName)
         {
+            var resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), resultFileName);
             var validator = new JunitXmlValidator();
-            var result = validator.IsValid(File.ReadAllText(this.resultsFile));
+            var result = validator.IsValid(File.ReadAllText(resultsFile));
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void TestResultFileShouldContainXUnitTraitAsProperty()
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
+        public void TestResultFileShouldContainXUnitTraitAsProperty(string resultFileName)
         {
-            var properties = this.resultsXml.XPathSelectElement(
+            var resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), resultFileName);
+            var resultsXml = XDocument.Load(resultsFile);
+            var properties = resultsXml.XPathSelectElement(
                 "/testsuites/testsuite//testcase[@classname=\"NUnit.Xml.TestLogger.Tests2.ApiTest\"]/properties");
             Assert.IsNotNull(properties);
             Assert.AreEqual(2, properties.Nodes().Count());
@@ -77,18 +82,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                     Assert.Fail($"Unexpted property found");
                 }
             }
-        }
-
-        [TestClass]
-        [TestProperty("IsMTP", "true")]
-        [Ignore("XUnit+MTP is not supported because xUnit already provide --report-spekt-junit")]
-        public sealed class MTPJUnitTestLoggerXunitAcceptanceTests : JUnitTestLoggerXunitAcceptanceTests
-        {
-        }
-
-        [TestClass]
-        public sealed class VSTestJUnitTestLoggerXunitAcceptanceTests : JUnitTestLoggerXunitAcceptanceTests
-        {
         }
     }
 }
