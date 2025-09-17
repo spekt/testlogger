@@ -94,7 +94,7 @@ jobs:
             **/test-results-*.json
             **/*.log
             test/assets/**/bin/Debug/netcoreapp3.1/
-            test/assets/**/bin/Debug/net8.0/
+            test/assets/**/bin/Debug/net9.0/
       - name: Codecov
         uses: codecov/codecov-action@v3.1.0
         with:
