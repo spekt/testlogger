@@ -16,6 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TestingPlatformBuilderHook Include="89696130-C14B-4102-AA14-081ED5C2C13D">
+      <DisplayName>NUnitXml.TestLogger</DisplayName>
+      <TypeFullName>Spekt.TestReporter.NUnit.TestingPlatformBuilderHook</TypeFullName>
+    </TestingPlatformBuilderHook>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnit.Xml.TestLogger.NetCore.Tests\UnitTest1.cs">
       <Link>UnitTest1.cs</Link>
     </Compile>

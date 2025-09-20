@@ -79,7 +79,7 @@ namespace Spekt.TestLogger.UnitTests.Platform
         public void ReadShouldThrowIfFileDoesNotExist()
         {
             var dummyFile = GetTempFile("dummyFileDoesNotExist.txt");
-            Assert.ThrowsException<ArgumentException>(() => this.fileSystem.Read(dummyFile));
+            Assert.ThrowsExactly<ArgumentException>(() => this.fileSystem.Read(dummyFile));
         }
 
         [TestMethod]
@@ -121,7 +121,7 @@ namespace Spekt.TestLogger.UnitTests.Platform
 
             this.fileSystem.Delete(dummyFile);
 
-            Assert.ThrowsException<ArgumentException>(() => this.fileSystem.Read(dummyFile));
+            Assert.ThrowsExactly<ArgumentException>(() => this.fileSystem.Read(dummyFile));
         }
 
         private static string GetTempFile(string fileName)

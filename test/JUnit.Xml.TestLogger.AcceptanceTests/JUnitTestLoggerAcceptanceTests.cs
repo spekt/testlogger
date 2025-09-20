@@ -21,53 +21,66 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
     public class JUnitTestLoggerAcceptanceTests
     {
         private const string AssetName = "JUnit.Xml.TestLogger.NetCore.Tests";
-        private readonly string resultsFile;
-        private readonly XDocument resultsXml;
-
-        public JUnitTestLoggerAcceptanceTests()
-        {
-            this.resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), "test-results.xml");
-            this.resultsXml = XDocument.Load(this.resultsFile);
-        }
+        private const string VstestResultsFile = "test-results-vstest.xml";
+        private const string MtpResultsFile = "test-results-mtp.xml";
 
         [ClassInitialize]
         public static void SuiteInitialize(TestContext context)
         {
-            var loggerArgs = "junit;LogFilePath=test-results.xml";
-
-            // Enable reporting of internal properties in the adapter using runsettings
+            // Run VSTest tests
+            var vstestLoggerArgs = $"junit;LogFilePath={VstestResultsFile}";
             _ = DotnetTestFixture
                 .Create()
                 .WithBuild()
-                .Execute(AssetName, loggerArgs, collectCoverage: false, "test-results.xml");
+                .Execute(AssetName, vstestLoggerArgs, collectCoverage: false, VstestResultsFile, isMTP: false);
+
+            // Run MTP tests
+            var mtpLoggerArgs = $"--report-spekt-junit --report-spekt-junit-filename {MtpResultsFile}";
+            _ = DotnetTestFixture
+                .Create()
+                .WithBuild()
+                .Execute(AssetName, mtpLoggerArgs, collectCoverage: false, MtpResultsFile, isMTP: true);
         }
 
         [TestMethod]
-        public void TestRunWithLoggerAndFilePathShouldCreateResultsFile()
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
+        public void TestRunWithLoggerAndFilePathShouldCreateResultsFile(string resultFileName)
         {
-            Assert.IsTrue(File.Exists(this.resultsFile));
+            var resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), resultFileName);
+            Assert.IsTrue(File.Exists(resultsFile));
         }
 
         [TestMethod]
-        public void TestResultFileShouldContainTestSuitesInformation()
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
+        public void TestResultFileShouldContainTestSuitesInformation(string resultFileName)
         {
-            var node = this.resultsXml.XPathSelectElement("/testsuites");
+            var resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), resultFileName);
+            var resultsXml = XDocument.Load(resultsFile);
+            var node = resultsXml.XPathSelectElement("/testsuites");
 
             Assert.IsNotNull(node);
         }
 
         [TestMethod]
-        public void TestResultFileShouldContainTestSuiteInformation()
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
+        public void TestResultFileShouldContainTestSuiteInformation(string resultFileName)
         {
-            var node = this.resultsXml.XPathSelectElement("/testsuites/testsuite");
+            var resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), resultFileName);
+            var resultsXml = XDocument.Load(resultsFile);
+            var node = resultsXml.XPathSelectElement("/testsuites/testsuite");
 
             Assert.IsNotNull(node);
             Assert.AreEqual("JUnit.Xml.TestLogger.NetCore.Tests.dll", node.Attribute(XName.Get("name")).Value);
             Assert.AreEqual(Environment.MachineName, node.Attribute(XName.Get("hostname")).Value);
 
+            // MTP marks Inconclusive tests as Skipped (NUnit sends TestOutcome.None)
+            var skipCount = resultFileName == "test-results-mtp.xml" ? 14 : 8;
             Assert.AreEqual("53", node.Attribute(XName.Get("tests")).Value);
             Assert.AreEqual("15", node.Attribute(XName.Get("failures")).Value);
-            Assert.AreEqual("8", node.Attribute(XName.Get("skipped")).Value);
+            Assert.AreEqual($"{skipCount}", node.Attribute(XName.Get("skipped")).Value);
 
             // Errors is zero becasue we don't get errors as a test outcome from .net
             Assert.AreEqual("0", node.Attribute(XName.Get("errors")).Value);
@@ -77,9 +90,13 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
         }
 
         [TestMethod]
-        public void TestResultFileShouldContainTestCases()
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
+        public void TestResultFileShouldContainTestCases(string resultFileName)
         {
-            var node = this.resultsXml.XPathSelectElements("/testsuites/testsuite").Descendants();
+            var resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), resultFileName);
+            var resultsXml = XDocument.Load(resultsFile);
+            var node = resultsXml.XPathSelectElements("/testsuites/testsuite").Descendants();
             var testcases = node.Where(x => x.Name.LocalName == "testcase").ToList();
 
             // Check all test cases
@@ -100,33 +117,47 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 .Where(x => x.Descendants().Any(y => y.Name.LocalName == "skipped"))
                 .ToList();
 
-            Assert.AreEqual(8, skips.Count());
+            // MTP marks Inconclusive tests as Skipped (NUnit sends TestOutcome.None)
+            var skipCount = resultFileName == MtpResultsFile ? 14 : 8;
+            Assert.AreEqual(skipCount, skips.Count());
         }
 
         [TestMethod]
-        public void TestResultFileShouldContainStandardOut()
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
+        public void TestResultFileShouldContainStandardOut(string resultFileName)
         {
-            var node = this.resultsXml.XPathSelectElement("/testsuites/testsuite/system-out");
+            var resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), resultFileName);
+            var resultsXml = XDocument.Load(resultsFile);
+            var node = resultsXml.XPathSelectElement("/testsuites/testsuite/system-out");
 
-            Assert.IsTrue(node.Value.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}"));
-            Assert.IsTrue(node.Value.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}"));
-            Assert.IsTrue(node.Value.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}"));
-            Assert.IsTrue(node.Value.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}"));
+            Assert.Contains("{2010CAE3-7BC0-4841-A5A3-7D5F947BB9FB}", node.Value);
+            Assert.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", node.Value);
+            Assert.Contains("{EEEE1DA6-6296-4486-BDA5-A50A19672F0F}", node.Value);
+            Assert.Contains("{C33FF4B5-75E1-4882-B968-DF9608BFE7C2}", node.Value);
         }
 
         [TestMethod]
-        public void TestResultFileShouldContainErrordOut()
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
+        public void TestResultFileShouldContainErrordOut(string resultFileName)
         {
-            var node = this.resultsXml.XPathSelectElement("/testsuites/testsuite/system-err");
+            var resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), resultFileName);
+            var resultsXml = XDocument.Load(resultsFile);
+            var node = resultsXml.XPathSelectElement("/testsuites/testsuite/system-err");
 
-            Assert.IsTrue(node.Value.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}"));
-            Assert.IsTrue(node.Value.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}"));
+            Assert.Contains("{D46DFA10-EEDD-49E5-804D-FE43051331A7}", node.Value);
+            Assert.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}", node.Value);
         }
 
         [TestMethod]
-        public void TestResultFileShouldContainNUnitCategoryAsProperty()
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
+        public void TestResultFileShouldContainNUnitCategoryAsProperty(string resultFileName)
         {
-            var tesuites = this.resultsXml.XPathSelectElement("/testsuites/testsuite");
+            var resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), resultFileName);
+            var resultsXml = XDocument.Load(resultsFile);
+            var tesuites = resultsXml.XPathSelectElement("/testsuites/testsuite");
             var testcase = tesuites
                 .Nodes()
                 .FirstOrDefault(n =>
@@ -145,14 +176,18 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             var propertyElements = properties.Nodes().ToList();
 
             Assert.AreEqual("Property name", (propertyElements[0] as XElement).Attribute("name").Value);
-            Assert.AreEqual("Property value 1", (propertyElements[0] as XElement).Attribute("value").Value);
+            Assert.IsTrue(propertyElements.Any(p => (p as XElement).Attribute("value").Value == "Property value 1"));
+            Assert.IsTrue(propertyElements.Any(p => (p as XElement).Attribute("value").Value == "Property value 2"));
         }
 
         [TestMethod]
-        public void LoggedXmlValidatesAgainstXsdSchema()
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
+        public void LoggedXmlValidatesAgainstXsdSchema(string resultFileName)
         {
+            var resultsFile = Path.Combine(AssetName.ToAssetDirectoryPath(), resultFileName);
             var validator = new JunitXmlValidator();
-            var result = validator.IsValid(File.ReadAllText(this.resultsFile));
+            var result = validator.IsValid(File.ReadAllText(resultsFile));
             Assert.IsTrue(result);
         }
     }

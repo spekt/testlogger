@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <TargetFramework Condition="'$(UsesXunit3)'=='true'">net8.0</TargetFramework>
+    <TargetFramework Condition="'$(UsesXunit3)'=='true'">net9.0</TargetFramework>
     <!-- Disable stylecop for test assets -->
     <StylecopEnabled>false</StylecopEnabled>
   </PropertyGroup>
@@ -18,6 +18,13 @@
 
     <PackageReference Include="xunit.v3" Version="$(XunitV3Version)" Condition="'$(UsesXunit3)' == 'true'" />
     <PackageReference Include="xunit.runner.visualstudio" Version="$(XunitV3TestAdapterVersion)" Condition="'$(UsesXunit3)' == 'true'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TestingPlatformBuilderHook Include="9D52251D-D1A2-42BC-AC7A-F44DEA2DAC63">
+      <DisplayName>JUnitXml.TestLogger</DisplayName>
+      <TypeFullName>Spekt.TestReporter.JUnit.TestingPlatformBuilderHook</TypeFullName>
+    </TestingPlatformBuilderHook>
   </ItemGroup>
 
 </Project>

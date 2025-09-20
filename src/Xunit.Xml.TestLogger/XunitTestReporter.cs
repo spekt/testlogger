@@ -10,13 +10,11 @@ namespace Spekt.TestReporter.Xunit
     internal sealed class XunitTestReporter : TestReporter
     {
         public XunitTestReporter(XunitTestReporterExtension extension, IServiceProvider serviceProvider)
-            : base(serviceProvider, extension)
+            : base(serviceProvider, extension, "xunit")
         {
         }
 
-        protected override string FileNameOption => XunitReporterCommandLineOptionsProvider.ReportXunitFileNameOption;
-
-        protected override string ReportOption => XunitReporterCommandLineOptionsProvider.ReportXunitOption;
+        protected override string DefaultFileName => "TestResults.xml";
 
         protected override ITestResultSerializer CreateTestResultSerializer()
             => new XunitXmlSerializer();

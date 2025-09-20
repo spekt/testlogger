@@ -14,9 +14,9 @@ namespace Spekt.TestLogger.Core
 
     public static class TestRunResultWorkflow
     {
-        // Parser instances exist per run so we can throttle error notifications to once per run.
-        private static readonly TestCaseNameParser Parser = new();
-        private static readonly LegacyTestCaseNameParser LegacyParser = new();
+        // Parser instances are created per run so we can throttle error notifications to once per run.
+        private static TestCaseNameParser parser;
+        private static LegacyTestCaseNameParser legacyParser;
 
         // This is only reachable for MTP.
         public static void Result(this ITestRun testRun, TestNodeUpdateMessage testNodeUpdateMessage, ITestFramework testFramework)
@@ -26,6 +26,10 @@ namespace Spekt.TestLogger.Core
             {
                 return;
             }
+
+            // Initialize parsers with console output if not already done
+            parser ??= new TestCaseNameParser(testRun.ConsoleOutput);
+            legacyParser ??= new LegacyTestCaseNameParser(testRun.ConsoleOutput);
 
             testRun.LoggerConfiguration.Values.TryGetValue(LoggerConfiguration.ParserKey, out string parserVal);
 
@@ -51,7 +55,10 @@ namespace Spekt.TestLogger.Core
             string @namespace = string.Empty;
             string type = string.Empty;
             string method = string.Empty;
-            bool hasTestMethodIdentifier = false;
+            string fqn = string.Empty;
+
+            // Find TestMethodIdentifierProperty if it exists
+            TestMethodIdentifierProperty methodIdentifier = null;
             foreach (var property in testNodeUpdateMessage.TestNode.Properties)
             {
                 if (property is TestFileLocationProperty testFileLocation)
@@ -73,12 +80,9 @@ namespace Spekt.TestLogger.Core
                 {
                     traits.Add(new Trait(metadata.Key, metadata.Value));
                 }
-                else if (property is TestMethodIdentifierProperty methodIdentifier)
+                else if (property is TestMethodIdentifierProperty methodIdProp)
                 {
-                    @namespace = methodIdentifier.Namespace;
-                    type = methodIdentifier.TypeName;
-                    method = methodIdentifier.MethodName;
-                    hasTestMethodIdentifier = true;
+                    methodIdentifier = methodIdProp;
                 }
                 else if (property is TimingProperty timing)
                 {
@@ -88,20 +92,12 @@ namespace Spekt.TestLogger.Core
                 }
             }
 
-            string fqn;
-            if (hasTestMethodIdentifier)
-            {
-                fqn = string.IsNullOrEmpty(@namespace)
-                    ? $"{type}.{method}"
-                    : $"{@namespace}.{type}.{method}";
-            }
-            else
-            {
-                fqn = "UnknownFullyQualifiedName";
-                @namespace = "UnknownNamespace";
-                type = "UnknownType";
-                method = "UnknownMethod";
-            }
+            // Parse test information using the unified method
+            var parseResult = parser.Parse(methodIdentifier, testNodeUpdateMessage.TestNode);
+            @namespace = parseResult.Namespace;
+            type = parseResult.Type;
+            method = parseResult.Method;
+            fqn = parseResult.FullyQualifiedName;
 
             var assemblyPath = Assembly.GetEntryAssembly()?.Location;
             if (string.IsNullOrEmpty(assemblyPath))
@@ -146,12 +142,16 @@ namespace Spekt.TestLogger.Core
         // This is reachable only for VSTest.
         public static void Result(this ITestRun testRun, TestResult result)
         {
+            // Initialize parsers with console output if not already done
+            parser ??= new TestCaseNameParser(testRun.ConsoleOutput);
+            legacyParser ??= new LegacyTestCaseNameParser(testRun.ConsoleOutput);
+
             var fqn = result.TestCase.FullyQualifiedName;
             testRun.LoggerConfiguration.Values.TryGetValue(LoggerConfiguration.ParserKey, out string parserVal);
             var parsedName = parserVal switch
             {
-                string x when x.Equals("Legacy", StringComparison.OrdinalIgnoreCase) => LegacyParser.Parse(fqn),
-                _ => Parser.Parse(fqn),
+                string x when x.Equals("Legacy", StringComparison.OrdinalIgnoreCase) => legacyParser.Parse(fqn),
+                _ => parser.Parse(fqn),
             };
 
             Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;

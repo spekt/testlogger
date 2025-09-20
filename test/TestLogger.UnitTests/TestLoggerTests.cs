@@ -36,45 +36,45 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void TestLoggerWithNullFileSystemShouldThrowArgumentNullException()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new TestLoggerWithNullFileSystem());
+            Assert.ThrowsExactly<ArgumentNullException>(() => new TestLoggerWithNullFileSystem());
         }
 
         [TestMethod]
         public void TestLoggerWithNullConsoleOutputShouldThrowArgumentNullException()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new TestLoggerWithNullConsoleOutput());
+            Assert.ThrowsExactly<ArgumentNullException>(() => new TestLoggerWithNullConsoleOutput());
         }
 
         [TestMethod]
         public void TestLoggerWithNullResultStoreShouldThrowArgumentNullException()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new TestLoggerWithNullResultStore());
+            Assert.ThrowsExactly<ArgumentNullException>(() => new TestLoggerWithNullResultStore());
         }
 
         [TestMethod]
         public void TestLoggerWithNullResultSerializerShouldThrowArgumentNullException()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new TestLoggerWithNullResultSerializer());
+            Assert.ThrowsExactly<ArgumentNullException>(() => new TestLoggerWithNullResultSerializer());
         }
 
         [TestMethod]
         public void TestLoggerInitializeWithNullDefaultResultFileShouldThrow()
         {
             var testLogger = new TestLoggerWithNullResultFile();
-            Assert.ThrowsException<ArgumentNullException>(() =>
+            Assert.ThrowsExactly<ArgumentNullException>(() =>
                 testLogger.Initialize(new MockTestLoggerEvents(), string.Empty));
         }
 
         [TestMethod]
         public void TestLoggerInitializeShouldThrowForNullEvents()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(null, string.Empty));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.logger.Initialize(null, string.Empty));
         }
 
         [TestMethod]
         public void TestLoggerInitializeShouldThrowForNullResultsDir()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, testResultsDirPath: null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, testResultsDirPath: null));
         }
 
         [TestMethod]
@@ -89,26 +89,26 @@ namespace Spekt.TestLogger.UnitTests
         [TestMethod]
         public void TestLoggerInitializeWithParametersShouldThrowForNullEvents()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(null, new Dictionary<string, string>()));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.logger.Initialize(null, new Dictionary<string, string>()));
         }
 
         [TestMethod]
         public void TestLoggerInitializeWithParametersShouldThrowForNullParameters()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, parameters: null));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, parameters: null));
         }
 
         [TestMethod]
         public void TestLoggerInitializeWithParametersShouldThrowIfOutputDirectoryIsNotSet()
         {
-            Assert.ThrowsException<ArgumentException>(() => this.logger.Initialize(this.mockEvents, new Dictionary<string, string>()));
+            Assert.ThrowsExactly<ArgumentException>(() => this.logger.Initialize(this.mockEvents, new Dictionary<string, string>()));
         }
 
         [TestMethod]
         public void TestLoggerInitializeWithParametersShouldThrowIfOutputDirectoryIsNull()
         {
             this.loggerParams[DefaultLoggerParameterNames.TestRunDirectory] = null;
-            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, this.loggerParams));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, this.loggerParams));
         }
 
         [TestMethod]
@@ -117,7 +117,7 @@ namespace Spekt.TestLogger.UnitTests
             this.loggerParams[LoggerConfiguration.LogFilePathKey] = null;
             this.loggerParams[DefaultLoggerParameterNames.TestRunDirectory] = this.resultsPath;
 
-            Assert.ThrowsException<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, this.loggerParams));
+            Assert.ThrowsExactly<ArgumentNullException>(() => this.logger.Initialize(this.mockEvents, this.loggerParams));
         }
 
         [TestMethod]

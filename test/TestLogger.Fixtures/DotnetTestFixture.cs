@@ -11,13 +11,15 @@ namespace TestLogger.Fixtures
     {
         private const string NetcoreVersion = "netcoreapp3.1";
         private bool buildProject = false;
+        private bool cleanProject = false;
         private string relativeResultsDirectory = string.Empty;
         private string runSettingsSuffix = string.Empty;
 
         public static DotnetTestFixture Create() => new DotnetTestFixture();
 
-        public DotnetTestFixture WithBuild()
+        public DotnetTestFixture WithBuild(bool cleanProject = true)
         {
+            this.cleanProject = cleanProject;
             this.buildProject = true;
             return this;
         }
@@ -38,6 +40,24 @@ namespace TestLogger.Fixtures
 
         public string Execute(string assemblyName, string loggerArgs, bool collectCoverage, string resultsFileName, bool isMTP = false)
         {
+            if (this.cleanProject)
+            {
+                using var cleanProcess = new Process
+                {
+                    StartInfo =
+                    {
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        FileName = "dotnet",
+                        Arguments = $"clean \"{assemblyName.ToAssetDirectoryPath()}\\{assemblyName}.csproj\""
+                    }
+                };
+                cleanProcess.Start();
+                var cleanOutput = cleanProcess.StandardOutput.ReadToEnd();
+                cleanProcess.WaitForExit();
+                Console.WriteLine("\n\n## Clean output:\n" + cleanOutput);
+            }
+
             if (!isMTP)
             {
                 loggerArgs = $"--logger:\"{loggerArgs}\"";
@@ -70,6 +90,7 @@ namespace TestLogger.Fixtures
                 {
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
+                    RedirectStandardError = true,
                     FileName = "dotnet",
                     Arguments = $"test \"{assemblyName.ToAssetDirectoryPath()}\\{assemblyName}.csproj\" {buildArgs}{(isMTP ? " --" : string.Empty)} {loggerArgs} {resultDirectoryArgs} {commandlineSuffix}"
                 }
@@ -91,14 +112,21 @@ namespace TestLogger.Fixtures
 
             // Required to skip icu requirement for netcoreapp3.1 in linux
             dotnet.StartInfo.EnvironmentVariables["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT"] = "1";
-            dotnet.Start();
 
             Console.WriteLine("\n\n## Test run arguments: dotnet " + dotnet.StartInfo.Arguments);
 
             // To avoid deadlocks, always read the output stream first and then wait.
+            dotnet.Start();
+
             var output = dotnet.StandardOutput.ReadToEnd();
+            var error = dotnet.StandardError.ReadToEnd();
             dotnet.WaitForExit();
+
             Console.WriteLine("\n\n ## Test run output\n" + output);
+            if (!string.IsNullOrEmpty(error))
+            {
+                Console.WriteLine("\n\n ## Test run error\n" + error);
+            }
 
             return resultsFile;
         }

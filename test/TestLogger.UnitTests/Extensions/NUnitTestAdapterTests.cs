@@ -31,7 +31,7 @@ namespace Spekt.TestLogger.UnitTests.Extensions
             this.failTestResultInfo = new TestResultInfoBuilder(DummyNamespace, DummyType, DummyMethod).WithOutcome(TestOutcome.Failed).Build();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(TestOutcome.Passed)]
         [DataRow(TestOutcome.Skipped)]
         [DataRow(TestOutcome.Failed)]

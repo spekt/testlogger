@@ -11,7 +11,6 @@ namespace Spekt.TestLogger.UnitTests
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Newtonsoft.Json;
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.UnitTests.TestDoubles;
     using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -63,8 +62,8 @@ namespace Spekt.TestLogger.UnitTests
             this.testRun.Complete(this.testRunCompleteEvent);
 
             this.testRun.Store.Pop(out var results, out var messages);
-            Assert.AreEqual(0, results.Count);
-            Assert.AreEqual(0, messages.Count);
+            Assert.IsEmpty(results);
+            Assert.IsEmpty(messages);
         }
 
         [TestMethod]

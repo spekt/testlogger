@@ -76,19 +76,25 @@ jobs:
           dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/JUnit.Xml.TestLogger.UnitTests/JUnit.Xml.TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
       - name: Acceptance test
         run: |
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/JUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj
-      - name: Upload Verification Files on Fail
+          echo "Running acceptance tests with verbose output..."
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj --logger "console;verbosity=detailed" --blame
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj --logger "console;verbosity=detailed" --blame
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj --logger "console;verbosity=detailed" --blame
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/JUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj --logger "console;verbosity=detailed" --blame
+      - name: Upload Debug Files on Fail
         if: ${{ failure() }}
         uses: actions/upload-artifact@v4
         with:
-          name: Acceptance Test Failure
+          name: Acceptance Test Failure Debug Files
           retention-days: 5
           path: |
             **/*.verified.txt
             **/*.received.txt
+            **/test-results-*.xml
+            **/test-results-*.json
+            **/*.log
+            test/assets/**/bin/Debug/netcoreapp3.1/
+            test/assets/**/bin/Debug/net9.0/
       - name: Codecov
         uses: codecov/codecov-action@v3.1.0
         with:

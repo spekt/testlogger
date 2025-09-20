@@ -21,7 +21,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
         [TestMethod]
         public void InitializeShouldThrowIfEventsIsNull()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new JUnitXmlTestLogger().Initialize(null, DummyTestResultsDirectory));
+            Assert.ThrowsExactly<ArgumentNullException>(() => new JUnitXmlTestLogger().Initialize(null, DummyTestResultsDirectory));
         }
 
         [TestMethod]

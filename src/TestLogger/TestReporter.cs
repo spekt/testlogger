@@ -30,10 +30,11 @@ namespace Spekt.TestReporter
 
         private ITestRun testRun;
 
-        protected TestReporter(IServiceProvider serviceProvider, IExtension extension)
+        protected TestReporter(IServiceProvider serviceProvider, IExtension extension, string loggerName)
         {
             this.serviceProvider = serviceProvider;
             this.extension = extension;
+            this.Name = loggerName;
         }
 
         public Type[] DataTypesConsumed { get; } = new[] { typeof(TestNodeUpdateMessage), typeof(SessionFileArtifact) };
@@ -46,9 +47,9 @@ namespace Spekt.TestReporter
 
         public string Description => this.extension.Description;
 
-        protected abstract string FileNameOption { get; }
+        protected string Name { get; }
 
-        protected abstract string ReportOption { get; }
+        protected abstract string DefaultFileName { get; }
 
         public Task ConsumeAsync(IDataProducer dataProducer, IData value, CancellationToken cancellationToken)
         {
@@ -58,10 +59,12 @@ namespace Spekt.TestReporter
                     this.testAttachmentInfos.Add(new TestAttachmentInfo(sessionFileArtifact.FileInfo.FullName, sessionFileArtifact.Description));
                     break;
 
-                // TODO: When to call this.testRun.Message ?
                 case TestNodeUpdateMessage testNodeUpdateMessage:
-                    this.testRun.Result(testNodeUpdateMessage, this.serviceProvider.GetService<ITestFramework>());
+                    // Capture standard output and error messages at test run level
+                    this.testRun.Message(testNodeUpdateMessage);
 
+                    // Process the test node update message for other updates (e.g., test results)
+                    this.testRun.Result(testNodeUpdateMessage, this.serviceProvider.GetService<ITestFramework>());
                     break;
             }
 
@@ -70,7 +73,7 @@ namespace Spekt.TestReporter
 
         public Task<bool> IsEnabledAsync()
         {
-            var isEnabled = this.serviceProvider.GetCommandLineOptions().IsOptionSet(this.ReportOption);
+            var isEnabled = this.serviceProvider.GetCommandLineOptions().IsOptionSet($"report-spekt-{this.Name}");
             if (isEnabled)
             {
                 this.testRun = this.CreateTestRun(this.serviceProvider);
@@ -94,20 +97,51 @@ namespace Spekt.TestReporter
 
         protected abstract ITestResultSerializer CreateTestResultSerializer();
 
-        private ITestRun CreateTestRun(IServiceProvider serviceProvider)
+        protected ITestRun CreateTestRun(IServiceProvider serviceProvider)
         {
             var commandLineOptions = serviceProvider.GetCommandLineOptions();
             var configDictionary = new Dictionary<string, string>
             {
+                // See `PlatformConfigurationConstants.PlatformResultDirectory` in MTP source.
                 { DefaultLoggerParameterNames.TestRunDirectory, serviceProvider.GetConfiguration()["platformOptions:resultDirectory"] }
             };
 
-            if (commandLineOptions.TryGetOptionArgumentList(this.FileNameOption, out var arguments))
+            // Handle config option from --report-spekt-{loggerName} argument
+            if (commandLineOptions.TryGetOptionArgumentList($"report-spekt-{this.Name}", out var configArguments) && configArguments.Length > 0)
             {
-                configDictionary.Add(LoggerConfiguration.LogFileNameKey, arguments[0]);
+                var configValue = configArguments[0];
+                if (!string.IsNullOrEmpty(configValue))
+                {
+                    var pairs = configValue.Split(';');
+                    foreach (var pair in pairs)
+                    {
+                        var keyValue = pair.Split(new[] { '=' }, 2);
+                        if (keyValue.Length == 2)
+                        {
+                            var key = keyValue[0].Trim();
+                            var value = keyValue[1].Trim();
+                            if (!string.IsNullOrEmpty(key) && !configDictionary.ContainsKey(key))
+                            {
+                                configDictionary.Add(key, value);
+                            }
+                        }
+                    }
+                }
             }
 
-            // TODO: Results directory?
+            // Handle log file path option
+            if (commandLineOptions.TryGetOptionArgumentList($"report-spekt-{this.Name}-filename", out var fileNameArguments))
+            {
+                configDictionary.Add(LoggerConfiguration.LogFileNameKey, fileNameArguments[0]);
+            }
+
+            // Set the default log file name if not provided by user
+            if (!configDictionary.ContainsKey(LoggerConfiguration.LogFilePathKey) &&
+                !configDictionary.ContainsKey(LoggerConfiguration.LogFileNameKey))
+            {
+                configDictionary[LoggerConfiguration.LogFileNameKey] = this.DefaultFileName;
+            }
+
             var loggerConfiguration = new LoggerConfiguration(configDictionary);
 
             return new TestRunBuilder()

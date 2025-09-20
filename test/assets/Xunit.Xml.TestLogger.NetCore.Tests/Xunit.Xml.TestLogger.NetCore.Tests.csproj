@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <TargetFramework Condition="'$(UsesXunit3)'=='true'">net8.0</TargetFramework>
+    <TargetFramework Condition="'$(UsesXunit3)'=='true'">net9.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +20,13 @@
 
   <ItemGroup>
     <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TestingPlatformBuilderHook Include="A4869310-1A9F-405B-8F89-2506F1BF6854">
+      <DisplayName>XunitXml.TestLogger</DisplayName>
+      <TypeFullName>Spekt.TestReporter.Xunit.TestingPlatformBuilderHook</TypeFullName>
+    </TestingPlatformBuilderHook>
   </ItemGroup>
 
 </Project>

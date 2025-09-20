@@ -5,13 +5,13 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageVersion Include="Microsoft.TestPlatform.ObjectModel" Version="15.5.0" />
-        <PackageVersion Include="Microsoft.Testing.Platform" Version="1.8.3" />
+        <PackageVersion Include="Microsoft.Testing.Platform" Version="1.8.4" />
         <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
 
         <PackageVersion Include="Stylecop.Analyzers" Version="1.2.0-beta.556" />
 
-        <PackageVersion Include="MSTest.TestFramework" Version="3.8.3" />
-        <PackageVersion Include="MSTest.TestAdapter" Version="3.8.3" />
+        <PackageVersion Include="MSTest.TestFramework" Version="3.10.1" />
+        <PackageVersion Include="MSTest.TestAdapter" Version="3.10.1" />
         <PackageVersion Include="xunit" Version="2.9.3" />
         <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.2" />
 
