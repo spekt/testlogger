@@ -37,6 +37,20 @@ A path for the report file can be specified as follows:
 
 **Note:** the arguments to `--logger` should be in quotes since `;` is treated as a command delimiter in shell.
 
+### Microsoft.Testing.Platform (MTP) Support
+
+The logger also supports Microsoft.Testing.Platform (MTP) with the following command line options:
+
+```none
+> dotnet test -- --report-spekt-junit --report-spekt-junit-filename test-result.xml
+```
+
+The `--report-spekt-junit` option can also accept configuration arguments:
+
+```none
+> dotnet test -- --report-spekt-junit "key1=value1;key2=value2"
+```
+
 All common options to the logger are documented [in the wiki][config-wiki]. E.g.
 token expansion for `{assembly}` or `{framework}` in result file. If you are writing multiple
 files to the same directory or testing multiple frameworks, these options can prevent

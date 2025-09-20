@@ -302,8 +302,8 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
                 "testsuite",
                 new XElement("properties"),
                 testCaseElements,
-                new XElement("system-out", stdOut.ToString()),
-                new XElement("system-err", stdErr.ToString()));
+                new XElement("system-out", new XCData(stdOut.ToString())),
+                new XElement("system-err", new XCData(stdErr.ToString())));
 
             element.SetAttributeValue("name", Path.GetFileName(results.First().AssemblyPath));
 

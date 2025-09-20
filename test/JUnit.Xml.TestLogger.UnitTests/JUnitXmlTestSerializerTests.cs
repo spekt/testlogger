@@ -4,19 +4,30 @@
 namespace JUnit.Xml.TestLogger.UnitTests
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Xml.Linq;
     using System.Xml.XPath;
     using Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger;
+    using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.Utilities;
     using TestSuite = Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger.JunitXmlSerializer.TestSuite;
 
     [TestClass]
     public class JUnitXmlTestSerializerTests
     {
         private const string DummyTestResultsDirectory = "/tmp/testresults";
+        private const string TestNamespace = "TestNamespace";
+        private const string TestClass = "TestClass";
+        private const string TestMethod = "TestMethod";
+        private const string TestDisplayName = "Test Display Name";
+        private const string TestDllPath = "/path/to/test.dll";
+        private const string TestCsPath = "/path/to/test.cs";
 
         [TestMethod]
         public void InitializeShouldThrowIfEventsIsNull()
@@ -51,6 +62,140 @@ namespace JUnit.Xml.TestLogger.UnitTests
             Assert.AreEqual(expectedXmlForC, result[0].Element.ToString(SaveOptions.DisableFormatting));
             Assert.AreEqual("a", result[1].Name);
             Assert.AreEqual(expectedXmlForA, result[1].Element.ToString(SaveOptions.DisableFormatting));
+        }
+
+        [TestMethod]
+        public void TestCaseSystemOutShouldUseCDATA()
+        {
+            var serializer = new JunitXmlSerializer();
+            var result = CreateTestResultInfo(
+                messages: new List<TestResultMessage>
+                {
+                    new TestResultMessage(TestResultMessage.StandardOutCategory, "Console output with <xml> & characters")
+                });
+
+            var cdataContent = SerializeAndExtractElementContent(serializer, result, "system-out");
+            Assert.AreEqual("Console output with <xml> & characters\n", cdataContent);
+        }
+
+        [TestMethod]
+        public void TestCaseSystemErrShouldUseCDATA()
+        {
+            var serializer = new JunitXmlSerializer();
+            var result = CreateTestResultInfo(
+                messages: new List<TestResultMessage>
+                {
+                    new TestResultMessage(TestResultMessage.StandardErrorCategory, "Error output with <xml> & characters")
+                });
+
+            var cdataContent = SerializeAndExtractElementContent(serializer, result, "system-err");
+            Assert.AreEqual("Error output with <xml> & characters\n", cdataContent);
+        }
+
+        [TestMethod]
+        public void TestSuiteSystemOutShouldUseCDATA()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>
+            {
+                new TestMessageInfo(TestMessageLevel.Informational, "Framework info with <xml> & characters")
+            };
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var systemOutElement = doc.XPathSelectElement("//testsuite/system-out");
+
+            Assert.IsNotNull(systemOutElement);
+            Assert.IsTrue(systemOutElement.FirstNode is XCData);
+            var cdata = (XCData)systemOutElement.FirstNode;
+            StringAssert.Contains(cdata.Value, "Framework info with <xml> & characters");
+        }
+
+        [TestMethod]
+        public void TestSuiteSystemErrShouldUseCDATA()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>
+            {
+                new TestMessageInfo(TestMessageLevel.Error, "Error message with <xml> & characters")
+            };
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var systemErrElement = doc.XPathSelectElement("//testsuite/system-err");
+
+            Assert.IsNotNull(systemErrElement);
+            Assert.IsTrue(systemErrElement.FirstNode is XCData);
+            var cdata = (XCData)systemErrElement.FirstNode;
+            StringAssert.Contains(cdata.Value, "Error - Error message with <xml> & characters");
+        }
+
+        private static LoggerConfiguration CreateTestLoggerConfiguration()
+        {
+            return new LoggerConfiguration(new Dictionary<string, string>
+            {
+                { LoggerConfiguration.LogFilePathKey, "/tmp/testresults.xml" }
+            });
+        }
+
+        private static TestRunConfiguration CreateTestRunConfiguration()
+        {
+            return new TestRunConfiguration { StartTime = DateTime.Now };
+        }
+
+        private static TestResultInfo CreateTestResultInfo(TestOutcome outcome = TestOutcome.Passed, List<TestResultMessage> messages = null)
+        {
+            return new TestResultInfo(
+                TestNamespace,
+                TestClass,
+                TestMethod,
+                $"{TestNamespace}.{TestClass}.{TestMethod}",
+                outcome,
+                TestDisplayName,
+                TestDisplayName,
+                TestDllPath,
+                TestCsPath,
+                42,
+                DateTime.Now,
+                DateTime.Now.AddSeconds(1),
+                TimeSpan.FromSeconds(1),
+                null,
+                null,
+                messages ?? new List<TestResultMessage>(),
+                new List<TestAttachmentInfo>(),
+                new List<Trait>(),
+                "executor://dummy",
+                null);
+        }
+
+        private static string SerializeAndExtractElementContent(JunitXmlSerializer serializer, TestResultInfo result, string elementName)
+        {
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                new List<TestResultInfo> { result },
+                new List<TestMessageInfo>());
+
+            var doc = XDocument.Parse(xml);
+            var testCaseElement = doc.XPathSelectElement("//testcase");
+            var targetElement = testCaseElement.Element(elementName);
+
+            Assert.IsNotNull(targetElement, $"Element '{elementName}' not found in testcase");
+            Assert.IsTrue(targetElement.FirstNode is XCData, $"Element '{elementName}' does not contain CDATA");
+
+            return ((XCData)targetElement.FirstNode).Value;
         }
 
         private static TestSuite CreateTestSuite(string name)
