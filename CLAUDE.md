@@ -29,6 +29,9 @@ dotnet test --logger:"json;LogFilePath=test-results-vstest.json" test/assets/Jso
 dotnet test test/assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj -p:IsMTP=true -- --report-spekt-json --report-spekt-json test-results-mtp.json
 ```
 
+Prefer running the failing acceptance test individually since running all tests
+take long time.
+
 ## Architecture
 
 ### Core Components
