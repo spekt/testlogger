@@ -28,6 +28,7 @@
     <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
     <TestingPlatformCaptureOutput>false</TestingPlatformCaptureOutput>
 
+    <!-- Need a combination with VSTestBridge >= 1.82.0 dependency -->
     <NUnitTestAdapterVersion>5.1.1-alpha.1</NUnitTestAdapterVersion>
     <MSTestVersion>3.10.1</MSTestVersion>
   </PropertyGroup>
