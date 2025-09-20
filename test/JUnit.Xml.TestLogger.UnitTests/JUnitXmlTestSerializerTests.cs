@@ -75,7 +75,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
                 });
 
             var cdataContent = SerializeAndExtractElementContent(serializer, result, "system-out");
-            Assert.AreEqual("Console output with <xml> & characters" + Environment.NewLine, cdataContent);
+            Assert.AreEqual("Console output with <xml> & characters\n", cdataContent);
         }
 
         [TestMethod]
@@ -89,7 +89,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
                 });
 
             var cdataContent = SerializeAndExtractElementContent(serializer, result, "system-err");
-            Assert.AreEqual("Error output with <xml> & characters" + Environment.NewLine, cdataContent);
+            Assert.AreEqual("Error output with <xml> & characters\n", cdataContent);
         }
 
         [TestMethod]
