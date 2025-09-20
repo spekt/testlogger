@@ -95,8 +95,10 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
             Assert.NotNull(nameAttribute);
 
             string nameValue = nameAttribute.Value;
-            Assert.True(File.Exists(nameValue));
-            Assert.True(Path.IsPathRooted(nameValue));
+
+            // We cannot assert the file exists because the tests cleanup previous build outputs.
+            // Assert.True(File.Exists(nameValue), "File does not exist: " + nameValue);
+            Assert.True(Path.IsPathRooted(nameValue), "Path is not rooted: " + nameValue);
 
             Assert.Equal("Xunit.Xml.TestLogger.NetCore.Tests.dll", Path.GetFileName(nameValue));
         }
@@ -405,9 +407,9 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
             // Assert.NotEmpty(failureXmlNode.SelectSingleNode("stack-trace").InnerText);
         }
 
+        // [InlineData("test-results-mtp.xml")] Run level messages not supported in MTP
         [Theory]
         [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
         public void SkippedTestElementShouldContainSkippingReason(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
