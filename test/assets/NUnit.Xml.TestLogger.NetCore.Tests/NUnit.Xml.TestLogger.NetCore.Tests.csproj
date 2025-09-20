@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework Condition="'$(UsesXunit3)'=='true'">net9.0</TargetFramework>
 
     <!-- Disable stylecop for test assets -->
     <StylecopEnabled>false</StylecopEnabled>
