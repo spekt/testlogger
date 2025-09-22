@@ -140,6 +140,90 @@ namespace JUnit.Xml.TestLogger.UnitTests
             StringAssert.Contains(systemErrElement.Value, "Error - Error message with <xml> & characters");
         }
 
+        [TestMethod]
+        public void TestSuiteShouldNotIncludeEmptySystemOutElement()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>(); // No messages
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var systemOutElement = doc.XPathSelectElement("//testsuite/system-out");
+
+            Assert.IsNull(systemOutElement, "Empty system-out element should not be included in test suite");
+        }
+
+        [TestMethod]
+        public void TestSuiteShouldNotIncludeEmptySystemErrElement()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>(); // No messages
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var systemErrElement = doc.XPathSelectElement("//testsuite/system-err");
+
+            Assert.IsNull(systemErrElement, "Empty system-err element should not be included in test suite");
+        }
+
+        [TestMethod]
+        public void TestSuiteShouldIncludeSystemOutElementWhenContentExists()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>
+            {
+                new TestMessageInfo(TestMessageLevel.Informational, "Framework info message")
+            };
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var systemOutElement = doc.XPathSelectElement("//testsuite/system-out");
+
+            Assert.IsNotNull(systemOutElement, "Non-empty system-out element should be included in test suite");
+            Assert.IsTrue(systemOutElement.Value.Contains("Framework info message"));
+        }
+
+        [TestMethod]
+        public void TestSuiteShouldIncludeSystemErrElementWhenContentExists()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>
+            {
+                new TestMessageInfo(TestMessageLevel.Error, "Error message")
+            };
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var systemErrElement = doc.XPathSelectElement("//testsuite/system-err");
+
+            Assert.IsNotNull(systemErrElement, "Non-empty system-err element should be included in test suite");
+            Assert.IsTrue(systemErrElement.Value.Contains("Error - Error message"));
+        }
+
         private static LoggerConfiguration CreateTestLoggerConfiguration()
         {
             return new LoggerConfiguration(new Dictionary<string, string>

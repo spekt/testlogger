@@ -298,12 +298,26 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
             // Adding required properties, system-out, and system-err elements in the correct
             // positions as required by the xsd. In system-out collapse consecutive newlines to a
             // single newline.
-            var element = new XElement(
+            var suiteElement = new XElement(
                 "testsuite",
                 new XElement("properties"),
-                testCaseElements,
-                new XElement("system-out", this.InputSanitizer.Sanitize(stdOut.ToString())),
-                new XElement("system-err", this.InputSanitizer.Sanitize(stdErr.ToString())));
+                testCaseElements);
+
+            // Add system-out and system-err elements only if they have content
+            var systemOutContent = this.InputSanitizer.Sanitize(stdOut.ToString());
+            var systemErrContent = this.InputSanitizer.Sanitize(stdErr.ToString());
+
+            if (!string.IsNullOrWhiteSpace(systemOutContent))
+            {
+                suiteElement.Add(new XElement("system-out", systemOutContent));
+            }
+
+            if (!string.IsNullOrWhiteSpace(systemErrContent))
+            {
+                suiteElement.Add(new XElement("system-err", systemErrContent));
+            }
+
+            var element = suiteElement;
 
             element.SetAttributeValue("name", Path.GetFileName(results.First().AssemblyPath));
 
