@@ -422,9 +422,9 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
             Assert.Equal(1, reasonNodes.Count);
 
             var reasonNode = reasonNodes[0].FirstChild;
-            Assert.IsType<XmlCDataSection>(reasonNode);
+            Assert.IsType<XmlText>(reasonNode);
 
-            XmlCDataSection reasonData = (XmlCDataSection)reasonNode;
+            XmlText reasonData = (XmlText)reasonNode;
 
             string expectedReason = "Skipped";
             Assert.Equal(expectedReason, reasonData.Value);

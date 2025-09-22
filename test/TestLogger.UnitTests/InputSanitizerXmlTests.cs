@@ -24,6 +24,7 @@ namespace Spekt.TestLogger.UnitTests
         [DataRow("aa\0\vbb", @"aa\u0000\u000bbb")]
         [DataRow("aa\uFFFE", @"aa\ufffe")]
         [DataRow("aa\u001F", @"aa\u001f")] // 0x1F from original JUnit logger bug report.
+        [DataRow("Hello\x1B[4mWorld", @"Hello\u001b[4mWorld")] // ANSI escape character \x1B
         public void ReplaceInvalidXmlCharShouldReplaceInvalidXmlCharWithUnicode(string input, string output)
         {
             var sut = new InputSanitizerXml();

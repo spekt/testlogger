@@ -65,7 +65,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
         }
 
         [TestMethod]
-        public void TestCaseSystemOutShouldUseCDATA()
+        public void TestCaseSystemOutShouldBeSanitized()
         {
             var serializer = new JunitXmlSerializer();
             var result = CreateTestResultInfo(
@@ -79,7 +79,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
         }
 
         [TestMethod]
-        public void TestCaseSystemErrShouldUseCDATA()
+        public void TestCaseSystemErrShouldBeSanitized()
         {
             var serializer = new JunitXmlSerializer();
             var result = CreateTestResultInfo(
@@ -93,7 +93,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
         }
 
         [TestMethod]
-        public void TestSuiteSystemOutShouldUseCDATA()
+        public void TestSuiteSystemOutShouldBeSanitized()
         {
             var serializer = new JunitXmlSerializer();
             var results = new List<TestResultInfo> { CreateTestResultInfo() };
@@ -112,13 +112,12 @@ namespace JUnit.Xml.TestLogger.UnitTests
             var systemOutElement = doc.XPathSelectElement("//testsuite/system-out");
 
             Assert.IsNotNull(systemOutElement);
-            Assert.IsTrue(systemOutElement.FirstNode is XCData);
-            var cdata = (XCData)systemOutElement.FirstNode;
-            StringAssert.Contains(cdata.Value, "Framework info with <xml> & characters");
+            Assert.IsTrue(systemOutElement.FirstNode is System.Xml.Linq.XText);
+            StringAssert.Contains(systemOutElement.Value, "Framework info with <xml> & characters");
         }
 
         [TestMethod]
-        public void TestSuiteSystemErrShouldUseCDATA()
+        public void TestSuiteSystemErrShouldBeSanitized()
         {
             var serializer = new JunitXmlSerializer();
             var results = new List<TestResultInfo> { CreateTestResultInfo() };
@@ -137,9 +136,92 @@ namespace JUnit.Xml.TestLogger.UnitTests
             var systemErrElement = doc.XPathSelectElement("//testsuite/system-err");
 
             Assert.IsNotNull(systemErrElement);
-            Assert.IsTrue(systemErrElement.FirstNode is XCData);
-            var cdata = (XCData)systemErrElement.FirstNode;
-            StringAssert.Contains(cdata.Value, "Error - Error message with <xml> & characters");
+            Assert.IsTrue(systemErrElement.FirstNode is System.Xml.Linq.XText);
+            StringAssert.Contains(systemErrElement.Value, "Error - Error message with <xml> & characters");
+        }
+
+        [TestMethod]
+        public void TestSuiteShouldNotIncludeEmptySystemOutElement()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>(); // No messages
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var systemOutElement = doc.XPathSelectElement("//testsuite/system-out");
+
+            Assert.IsNull(systemOutElement, "Empty system-out element should not be included in test suite");
+        }
+
+        [TestMethod]
+        public void TestSuiteShouldNotIncludeEmptySystemErrElement()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>(); // No messages
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var systemErrElement = doc.XPathSelectElement("//testsuite/system-err");
+
+            Assert.IsNull(systemErrElement, "Empty system-err element should not be included in test suite");
+        }
+
+        [TestMethod]
+        public void TestSuiteShouldIncludeSystemOutElementWhenContentExists()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>
+            {
+                new TestMessageInfo(TestMessageLevel.Informational, "Framework info message")
+            };
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var systemOutElement = doc.XPathSelectElement("//testsuite/system-out");
+
+            Assert.IsNotNull(systemOutElement, "Non-empty system-out element should be included in test suite");
+            Assert.IsTrue(systemOutElement.Value.Contains("Framework info message"));
+        }
+
+        [TestMethod]
+        public void TestSuiteShouldIncludeSystemErrElementWhenContentExists()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>
+            {
+                new TestMessageInfo(TestMessageLevel.Error, "Error message")
+            };
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var systemErrElement = doc.XPathSelectElement("//testsuite/system-err");
+
+            Assert.IsNotNull(systemErrElement, "Non-empty system-err element should be included in test suite");
+            Assert.IsTrue(systemErrElement.Value.Contains("Error - Error message"));
         }
 
         private static LoggerConfiguration CreateTestLoggerConfiguration()
@@ -193,9 +275,9 @@ namespace JUnit.Xml.TestLogger.UnitTests
             var targetElement = testCaseElement.Element(elementName);
 
             Assert.IsNotNull(targetElement, $"Element '{elementName}' not found in testcase");
-            Assert.IsTrue(targetElement.FirstNode is XCData, $"Element '{elementName}' does not contain CDATA");
+            Assert.IsTrue(targetElement.FirstNode is System.Xml.Linq.XText, $"Element '{elementName}' should contain text node");
 
-            return ((XCData)targetElement.FirstNode).Value;
+            return targetElement.Value;
         }
 
         private static TestSuite CreateTestSuite(string name)
