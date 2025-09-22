@@ -53,6 +53,7 @@ namespace TestLogger.Fixtures
                     }
                 };
                 cleanProcess.Start();
+                cleanProcess.StandardOutput.ReadToEnd();
                 cleanProcess.WaitForExit();
             }
 
