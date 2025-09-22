@@ -3,6 +3,24 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
+## [7.0.0](https://github.com/spekt/testlogger/compare/v6.1.0...v7.0.0) (2025-09-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* MTP integration for spekt loggers
+
+### Features
+
+* add support for Microsoft.Testing.Platform ([#172](https://github.com/spekt/testlogger/issues/172)) ([b6d9a23](https://github.com/spekt/testlogger/commit/b6d9a233a5a599a09eff884d7887008ca2cf98c9))
+* MTP integration for spekt loggers ([30f586b](https://github.com/spekt/testlogger/commit/30f586bdcab0962a9750ef5a90647bc4dfdde948))
+
+
+### Bug Fixes
+
+* escape suite-level system-out and system-err messages in JUnit logger ([#187](https://github.com/spekt/testlogger/issues/187)) ([d8707e9](https://github.com/spekt/testlogger/commit/d8707e98451300312c4ab2581d153ada1126d458))
+* sanitize out and err text in loggers ([#188](https://github.com/spekt/testlogger/issues/188)) ([d9f8347](https://github.com/spekt/testlogger/commit/d9f834734380de745364f035081c97aa2456e946))
+
 ## [6.1.0](https://github.com/spekt/testlogger/compare/v6.0.0...v6.1.0) (2025-03-15)
 
 
