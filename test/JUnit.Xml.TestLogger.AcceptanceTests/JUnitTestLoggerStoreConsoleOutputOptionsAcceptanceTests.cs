@@ -128,7 +128,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             Assert.DoesNotContain("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", passedTestCaseStdOutNode.Value);
 
             var testSuiteStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-out");
-            Assert.IsTrue(testSuiteStdOutNode.Value.Equals(string.Empty));
+            Assert.IsNull(testSuiteStdOutNode);
 
             TestCaseShouldHaveAttachmentInStandardOut(resultsXml, "PassTest11");
         }
@@ -149,7 +149,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             Assert.IsNull(failedTestCaseStdErrNode);
 
             var testSuiteStdErrNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-err");
-            Assert.IsTrue(testSuiteStdErrNode.Value.Equals(string.Empty));
+            Assert.IsNull(testSuiteStdErrNode);
         }
 
         [TestMethod]
@@ -214,7 +214,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             Assert.Contains("{998AC9EC-7429-42CD-AD55-72037E7AF3D8}", passedTestCaseStdOutNode.Value);
 
             var testSuiteStdOutNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-out");
-            Assert.IsTrue(testSuiteStdOutNode.Value.Equals(string.Empty));
+            Assert.IsNull(testSuiteStdOutNode);
 
             TestCaseShouldHaveAttachmentInStandardOut(resultsXml, "PassTest11");
         }
@@ -236,7 +236,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             Assert.Contains("{33F5FD22-6F40-499D-98E4-481D87FAEAA1}", failedTestCaseStdErrNode.Value);
 
             var testSuiteStdErrNode = resultsXml.XPathSelectElement("/testsuites/testsuite/system-err");
-            Assert.IsTrue(testSuiteStdErrNode.Value.Equals(string.Empty));
+            Assert.IsNull(testSuiteStdErrNode);
         }
 
         private static void TestCaseShouldHaveAttachmentInStandardOut(XDocument resultsXml, string testcaseName)

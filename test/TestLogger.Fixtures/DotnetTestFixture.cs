@@ -53,9 +53,7 @@ namespace TestLogger.Fixtures
                     }
                 };
                 cleanProcess.Start();
-                var cleanOutput = cleanProcess.StandardOutput.ReadToEnd();
                 cleanProcess.WaitForExit();
-                Console.WriteLine("\n\n## Clean output:\n" + cleanOutput);
             }
 
             if (!isMTP)
