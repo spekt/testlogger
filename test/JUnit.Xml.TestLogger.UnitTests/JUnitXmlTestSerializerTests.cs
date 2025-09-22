@@ -65,7 +65,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
         }
 
         [TestMethod]
-        public void TestCaseSystemOutShouldUseCDATA()
+        public void TestCaseSystemOutShouldBeSanitized()
         {
             var serializer = new JunitXmlSerializer();
             var result = CreateTestResultInfo(
@@ -79,7 +79,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
         }
 
         [TestMethod]
-        public void TestCaseSystemErrShouldUseCDATA()
+        public void TestCaseSystemErrShouldBeSanitized()
         {
             var serializer = new JunitXmlSerializer();
             var result = CreateTestResultInfo(
@@ -93,7 +93,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
         }
 
         [TestMethod]
-        public void TestSuiteSystemOutShouldUseCDATA()
+        public void TestSuiteSystemOutShouldBeSanitized()
         {
             var serializer = new JunitXmlSerializer();
             var results = new List<TestResultInfo> { CreateTestResultInfo() };
@@ -112,13 +112,12 @@ namespace JUnit.Xml.TestLogger.UnitTests
             var systemOutElement = doc.XPathSelectElement("//testsuite/system-out");
 
             Assert.IsNotNull(systemOutElement);
-            Assert.IsTrue(systemOutElement.FirstNode is XCData);
-            var cdata = (XCData)systemOutElement.FirstNode;
-            StringAssert.Contains(cdata.Value, "Framework info with <xml> & characters");
+            Assert.IsTrue(systemOutElement.FirstNode is System.Xml.Linq.XText);
+            StringAssert.Contains(systemOutElement.Value, "Framework info with <xml> & characters");
         }
 
         [TestMethod]
-        public void TestSuiteSystemErrShouldUseCDATA()
+        public void TestSuiteSystemErrShouldBeSanitized()
         {
             var serializer = new JunitXmlSerializer();
             var results = new List<TestResultInfo> { CreateTestResultInfo() };
@@ -137,9 +136,8 @@ namespace JUnit.Xml.TestLogger.UnitTests
             var systemErrElement = doc.XPathSelectElement("//testsuite/system-err");
 
             Assert.IsNotNull(systemErrElement);
-            Assert.IsTrue(systemErrElement.FirstNode is XCData);
-            var cdata = (XCData)systemErrElement.FirstNode;
-            StringAssert.Contains(cdata.Value, "Error - Error message with <xml> & characters");
+            Assert.IsTrue(systemErrElement.FirstNode is System.Xml.Linq.XText);
+            StringAssert.Contains(systemErrElement.Value, "Error - Error message with <xml> & characters");
         }
 
         private static LoggerConfiguration CreateTestLoggerConfiguration()
@@ -193,9 +191,9 @@ namespace JUnit.Xml.TestLogger.UnitTests
             var targetElement = testCaseElement.Element(elementName);
 
             Assert.IsNotNull(targetElement, $"Element '{elementName}' not found in testcase");
-            Assert.IsTrue(targetElement.FirstNode is XCData, $"Element '{elementName}' does not contain CDATA");
+            Assert.IsTrue(targetElement.FirstNode is System.Xml.Linq.XText, $"Element '{elementName}' should contain text node");
 
-            return ((XCData)targetElement.FirstNode).Value;
+            return targetElement.Value;
         }
 
         private static TestSuite CreateTestSuite(string name)

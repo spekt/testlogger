@@ -242,6 +242,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.NUnit.Xml.TestLogger
 
         private static XElement CreateTestCaseElement(TestResultInfo result)
         {
+            var sanitizer = new InputSanitizerXml();
             var element = new XElement(
                 "test-case",
                 new XAttribute("name", result.DisplayName),
@@ -267,7 +268,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.NUnit.Xml.TestLogger
 
             if (!string.IsNullOrWhiteSpace(stdOut.ToString()))
             {
-                element.Add(new XElement("output", new XCData(stdOut.ToString())));
+                element.Add(new XElement("output", sanitizer.Sanitize(stdOut.ToString())));
             }
 
             if (result.Outcome == TestOutcome.Failed)

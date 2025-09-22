@@ -248,6 +248,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger
 
         private static XElement CreateTestElement(TestResultInfo result)
         {
+            var sanitizer = new InputSanitizerXml();
             var element = new XElement(
                 "test",
                 new XAttribute("name", result.DisplayName),
@@ -266,7 +267,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger
                 else if (m.Category == "skipReason")
                 {
                     // Using the self-defined category skipReason for now
-                    element.Add(new XElement("reason", new XCData(m.Text)));
+                    element.Add(new XElement("reason", sanitizer.Sanitize(m.Text)));
                 }
             }
 

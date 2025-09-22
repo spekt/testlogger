@@ -302,8 +302,8 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
                 "testsuite",
                 new XElement("properties"),
                 testCaseElements,
-                new XElement("system-out", new XCData(stdOut.ToString())),
-                new XElement("system-err", new XCData(stdErr.ToString())));
+                new XElement("system-out", this.InputSanitizer.Sanitize(stdOut.ToString())),
+                new XElement("system-err", this.InputSanitizer.Sanitize(stdErr.ToString())));
 
             element.SetAttributeValue("name", Path.GetFileName(results.First().AssemblyPath));
 
@@ -410,12 +410,12 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
 
             if (!string.IsNullOrWhiteSpace(stdOut.ToString()))
             {
-                testcaseElement.Add(new XElement("system-out", new XCData(stdOut.ToString())));
+                testcaseElement.Add(new XElement("system-out", this.InputSanitizer.Sanitize(stdOut.ToString())));
             }
 
             if (!string.IsNullOrWhiteSpace(stdErr.ToString()))
             {
-                testcaseElement.Add(new XElement("system-err", new XCData(stdErr.ToString())));
+                testcaseElement.Add(new XElement("system-err", this.InputSanitizer.Sanitize(stdErr.ToString())));
             }
 
             testcaseElement.Add(CreatePropertiesElement(result));
