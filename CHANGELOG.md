@@ -3,6 +3,13 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
+## [7.0.1](https://github.com/spekt/testlogger/compare/v7.0.0...v7.0.1) (2025-10-04)
+
+
+### Bug Fixes
+
+* prep for 7.0.1 release ([#196](https://github.com/spekt/testlogger/issues/196)) ([5cb9d0b](https://github.com/spekt/testlogger/commit/5cb9d0b5f91cede3fad9342c2de43bb7b521d92d))
+
 ## [7.0.0](https://github.com/spekt/testlogger/compare/v6.1.0...v7.0.0) (2025-09-22)
 
 
