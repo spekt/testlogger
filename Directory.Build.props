@@ -56,5 +56,12 @@
     <CodeAnalysisRuleSet Condition="$(TestProject) == 'true'">$(SourceRoot)scripts/stylecop.test.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
+  <!-- Strong name settings to allow use in test projects which use [InternalsVisbleTo], which requires strong naming. -->
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)strongNameKey.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+  </PropertyGroup>
+
 </Project>
 <!-- vim: set ft=xml : -->
