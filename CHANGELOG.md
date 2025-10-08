@@ -3,6 +3,13 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
+## [7.0.2](https://github.com/spekt/testlogger/compare/v7.0.1...v7.0.2) (2025-10-08)
+
+
+### Bug Fixes
+
+* Add strongname keypair ([#199](https://github.com/spekt/testlogger/issues/199)) ([dc01659](https://github.com/spekt/testlogger/commit/dc0165978fc84aa8b7316bd1c47cbb18e17cab06))
+
 ## [7.0.1](https://github.com/spekt/testlogger/compare/v7.0.0...v7.0.1) (2025-10-04)
 
 
