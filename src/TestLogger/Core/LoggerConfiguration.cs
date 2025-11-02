@@ -17,6 +17,7 @@ namespace Spekt.TestLogger.Core
         public const string LogFilePathKey = "LogFilePath";
         public const string LogFileNameKey = "LogFileName";
         public const string ParserKey = "Parser";
+        public const string UseRelativeAttachmentPathKey = "UseRelativeAttachmentPath";
         private const string AssemblyToken = "{assembly}";
         private const string FrameworkToken = "{framework}";
 
@@ -50,6 +51,11 @@ namespace Spekt.TestLogger.Core
         }
 
         public string LogFilePath => this.Values[LogFilePathKey];
+
+        public bool UseRelativeAttachmentPaths
+            => this.Values.TryGetValue(UseRelativeAttachmentPathKey, out var useRelativePathsValue) &&
+               bool.TryParse(useRelativePathsValue, out var useRelativePaths) &&
+               useRelativePaths;
 
         public Dictionary<string, string> Values { get; }
 

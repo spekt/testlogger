@@ -12,7 +12,7 @@ namespace Spekt.TestLogger.Utilities
 
     public static class ArtifactExtensions
     {
-        public static TestAttachmentInfo ToAttachment(this SessionFileArtifact artifact, string baseDirectory = null, bool makeRelativePath = false)
+        public static TestAttachmentInfo ToAttachment(this SessionFileArtifact artifact, string baseDirectory, bool makeRelativePath)
         {
             var filePath = artifact.FileInfo.FullName;
             if (makeRelativePath && !string.IsNullOrEmpty(baseDirectory))
@@ -23,7 +23,7 @@ namespace Spekt.TestLogger.Utilities
             return new TestAttachmentInfo(filePath, artifact.Description);
         }
 
-        public static IEnumerable<TestAttachmentInfo> ToAttachments(this IEnumerable<FileArtifactProperty> artifacts, string baseDirectory = null, bool makeRelativePaths = false)
+        public static IEnumerable<TestAttachmentInfo> ToAttachments(this IEnumerable<FileArtifactProperty> artifacts, string baseDirectory, bool makeRelativePaths)
         {
             if (makeRelativePaths && !string.IsNullOrEmpty(baseDirectory))
             {

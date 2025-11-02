@@ -11,7 +11,7 @@ namespace Spekt.TestLogger.Utilities
 
     public static class AttachmentSetExtensions
     {
-        public static IEnumerable<TestAttachmentInfo> ToAttachments(this AttachmentSet attachmentSet, string baseDirectory = null, bool makeRelativePaths = false)
+        public static IEnumerable<TestAttachmentInfo> ToAttachments(this AttachmentSet attachmentSet, string baseDirectory, bool makeRelativePaths)
         {
             if (makeRelativePaths && !string.IsNullOrEmpty(baseDirectory))
             {

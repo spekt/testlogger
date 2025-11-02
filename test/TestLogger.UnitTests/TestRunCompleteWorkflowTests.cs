@@ -5,7 +5,6 @@ namespace Spekt.TestLogger.UnitTests
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
@@ -33,12 +32,17 @@ namespace Spekt.TestLogger.UnitTests
                 .WithStore(new TestResultStore())
                 .WithSerializer(new JsonTestResultSerializer())
                 .Build();
+
+            var attachmentSet = new AttachmentSet(new Uri("executor://dummy"), "Dummy Attachment Set");
+            attachmentSet.Attachments.Add(new UriDataAttachment(new Uri("/tmp/dll1/artifact1.log"), "artifact1.log"));
+            attachmentSet.Attachments.Add(new UriDataAttachment(new Uri("/tmp/artifact2.log"), "artifact2.log"));
+
             this.testRunCompleteEvent = new TestRunCompleteEventArgs(
                 stats: new TestRunStatistics(),
                 isCanceled: false,
                 isAborted: false,
                 error: null,
-                attachmentSets: new Collection<AttachmentSet>(),
+                attachmentSets: [attachmentSet],
                 elapsedTime: TimeSpan.Zero);
         }
 
@@ -125,6 +129,21 @@ namespace Spekt.TestLogger.UnitTests
             expectedMessages
                 .ForEach(exp => Assert.IsTrue(
                     results.TestMessages.SingleOrDefault(act => act.Level == exp.Level && act.Message == exp.Message) is TestMessageInfo));
+        }
+
+        [TestMethod]
+        public void CompleteShouldIncludeRelativeAttachmentsFromTestRunCompleteEventArgs()
+        {
+            this.testRun.LoggerConfiguration.Values[LoggerConfiguration.UseRelativeAttachmentPathKey] = "true";
+            SimulateTestResult(this.testRun);
+
+            this.testRun.Complete(this.testRunCompleteEvent);
+
+            var logFilePath = this.testRun.LoggerConfiguration.LogFilePath;
+            var results = JsonSerializer.Deserialize<JsonTestResultSerializer.TestReport>(this.fileSystem.Read(logFilePath));
+            Assert.AreEqual(2, results.Attachments.Count());
+            Assert.IsTrue(results.Attachments.Any(a => a.FilePath == "artifact1.log")); // JsonTestLogger only stores file name
+            Assert.IsTrue(results.Attachments.Any(a => a.FilePath == "artifact2.log"));
         }
 
         private static void SimulateTestResult(ITestRun testRun)

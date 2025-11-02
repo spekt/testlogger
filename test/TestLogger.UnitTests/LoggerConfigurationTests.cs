@@ -139,5 +139,34 @@ namespace Spekt.TestLogger.UnitTests
 
             Assert.AreEqual("/tmp/results/NETCoreApp50.json", logFilePath);
         }
+
+        [TestMethod]
+        public void UseRelativeAttachmentPathsShouldBeFalseByDefault()
+        {
+            var config = new Dictionary<string, string>
+            {
+                { LoggerConfiguration.LogFilePathKey, "/tmp/results/result.json" },
+            };
+
+            var loggerConfiguration = new LoggerConfiguration(config);
+
+            Assert.IsFalse(loggerConfiguration.UseRelativeAttachmentPaths);
+        }
+
+        [TestMethod]
+        [DataRow("true")]
+        [DataRow("True")]
+        public void UseRelativeAttachmentPathsShouldBeTrueWhenSet(string value)
+        {
+            var config = new Dictionary<string, string>
+            {
+                { LoggerConfiguration.LogFilePathKey, "/tmp/results/result.json" },
+                { LoggerConfiguration.UseRelativeAttachmentPathKey, value }
+            };
+
+            var loggerConfiguration = new LoggerConfiguration(config);
+
+            Assert.IsTrue(loggerConfiguration.UseRelativeAttachmentPaths);
+        }
     }
 }

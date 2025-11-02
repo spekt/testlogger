@@ -5,6 +5,7 @@ namespace Spekt.TestReporter
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Reflection;
     using System.Runtime.Versioning;
     using System.Threading;
@@ -57,7 +58,10 @@ namespace Spekt.TestReporter
             switch (value)
             {
                 case SessionFileArtifact sessionFileArtifact:
-                    this.testAttachmentInfos.Add(sessionFileArtifact.ToAttachment());
+                    // Capture session file artifacts (e.g., logs, screenshots) at test run level
+                    var baseDirectory = Path.GetDirectoryName(this.testRun.LoggerConfiguration.GetFormattedLogFilePath(this.testRun.RunConfiguration));
+                    var makeRelativePath = this.testRun.LoggerConfiguration.UseRelativeAttachmentPaths;
+                    this.testAttachmentInfos.Add(sessionFileArtifact.ToAttachment(baseDirectory, makeRelativePath));
                     break;
 
                 case TestNodeUpdateMessage testNodeUpdateMessage:

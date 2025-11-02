@@ -24,7 +24,7 @@ namespace Spekt.TestLogger.UnitTests.Utilities
         {
             this.attachmentSet.Attachments.Add(new UriDataAttachment(new Uri("file:///tmp/x.txt"), "x"));
 
-            var attachments = this.attachmentSet.ToAttachments().ToArray();
+            var attachments = this.attachmentSet.ToAttachments("/tmp", makeRelativePaths: false).ToArray();
 
             Assert.AreEqual(1, attachments.Length);
             Assert.AreEqual("/tmp/x.txt", attachments[0].FilePath);
@@ -36,7 +36,7 @@ namespace Spekt.TestLogger.UnitTests.Utilities
         {
             this.attachmentSet.Attachments.Add(new UriDataAttachment(new Uri("/tmp/x.txt", UriKind.Relative), "x"));
 
-            var attachments = this.attachmentSet.ToAttachments().ToArray();
+            var attachments = this.attachmentSet.ToAttachments("/tmp", makeRelativePaths: false).ToArray();
 
             Assert.AreEqual(1, attachments.Length);
             Assert.AreEqual("/tmp/x.txt", attachments[0].FilePath);
