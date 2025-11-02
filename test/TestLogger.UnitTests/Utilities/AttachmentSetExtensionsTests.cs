@@ -42,5 +42,17 @@ namespace Spekt.TestLogger.UnitTests.Utilities
             Assert.AreEqual("/tmp/x.txt", attachments[0].FilePath);
             Assert.AreEqual("x", attachments[0].Description);
         }
+
+        [TestMethod]
+        public void ToAttachmentsShouldMakePathsRelative()
+        {
+            this.attachmentSet.Attachments.Add(new UriDataAttachment(new Uri("file:///user/tests/dll1/bin/Debug/net5.0/attachment.txt"), "attachment"));
+
+            var attachments = this.attachmentSet.ToAttachments("/user/tests/testresults", makeRelativePaths: true).ToArray();
+
+            Assert.AreEqual(1, attachments.Length);
+            Assert.AreEqual("../dll1/bin/Debug/net5.0/attachment.txt", attachments[0].FilePath);
+            Assert.AreEqual("attachment", attachments[0].Description);
+        }
     }
 }

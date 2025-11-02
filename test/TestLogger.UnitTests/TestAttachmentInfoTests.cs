@@ -17,16 +17,5 @@ namespace Spekt.TestLogger.UnitTests
 
             Assert.ThrowsExactly<ArgumentNullException>(action);
         }
-
-        [TestMethod]
-        public void TestAttachmentRelativeUriTest()
-        {
-            var attachUri = new Uri("file://user/tests/dll1/bin/Debug/net5.0/attachment.txt");
-            var resultUri = new Uri("file://user/tests/testresults");
-
-            var relativeAttachUri = resultUri.MakeRelativeUri(attachUri);
-
-            Assert.AreEqual("../../dll1/bin/Debug/net5.0/attachment.txt", relativeAttachUri.ToString());
-        }
     }
 }

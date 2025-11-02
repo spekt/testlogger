@@ -11,8 +11,18 @@ namespace Spekt.TestLogger.Utilities
 
     public static class AttachmentSetExtensions
     {
-        public static IEnumerable<TestAttachmentInfo> ToAttachments(this AttachmentSet attachmentSet)
+        public static IEnumerable<TestAttachmentInfo> ToAttachments(this AttachmentSet attachmentSet, string baseDirectory = null, bool makeRelativePaths = false)
         {
+            if (makeRelativePaths && !string.IsNullOrEmpty(baseDirectory))
+            {
+                return attachmentSet.Attachments.Select(a =>
+                {
+                    var attachmentPath = GetPathFromUri(a.Uri);
+                    var relativePath = ArtifactExtensions.MakeRelativePath(baseDirectory, attachmentPath);
+                    return new TestAttachmentInfo(relativePath, a.Description);
+                });
+            }
+
             return attachmentSet.Attachments.Select(a => new
                     TestAttachmentInfo(GetPathFromUri(a.Uri), a.Description));
         }
