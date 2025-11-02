@@ -29,6 +29,7 @@ namespace Spekt.TestLogger.UnitTests
                 DummyAdapterUri,
                 DummySourceFile);
             this.testRun = new TestRunBuilder()
+                .WithConsoleOutput(new FakeConsoleOutput())
                 .WithLoggerConfiguration(new LoggerConfiguration(BasicConfig()))
                 .WithSerializer(new JsonTestResultSerializer())
                 .WithStore(this.testResultStore).Build();
@@ -64,7 +65,7 @@ namespace Spekt.TestLogger.UnitTests
             Assert.AreEqual(0, results[0].Messages.Count);
             Assert.AreEqual(0, results[0].Traits.Count);
             Assert.AreEqual(0, results[0].Properties.Count);
-            Assert.AreEqual(0, results[0].Attachments.Count);
+            Assert.AreEqual(1, results[0].Attachments.Count);
         }
 
         [TestMethod]
@@ -99,18 +100,36 @@ namespace Spekt.TestLogger.UnitTests
             Assert.AreEqual(0, results[0].Properties.Count);
         }
 
+        [TestMethod]
+        public void ResultShouldCaptureAttachmentsWithRelativePaths()
+        {
+            var testResult = CreateTestResult(this.dummyTestCase, TestOutcome.Passed);
+
+            this.testRun.Result(testResult);
+
+            this.testResultStore.Pop(out var results, out _);
+            Assert.AreEqual(1, results.Count);
+            Assert.AreEqual(1, results[0].Attachments.Count);
+            Assert.AreEqual("subdir/log.txt", results[0].Attachments[0].FilePath);
+        }
+
         private static Dictionary<string, string> BasicConfig()
         {
             return new Dictionary<string, string>
             {
-                { DefaultLoggerParameterNames.TestRunDirectory, "dir" },
-                { LoggerConfiguration.LogFilePathKey, @"dir\results.json" }
+                { DefaultLoggerParameterNames.TestRunDirectory, "/dir" },
+                { LoggerConfiguration.LogFilePathKey, @"/dir/results.json" },
+                { LoggerConfiguration.UseRelativeAttachmentPathKey, "true" }
             };
         }
 
         private static TestResult CreateTestResult(TestCase testCase, TestOutcome outcome)
         {
-            return new TestResult(testCase)
+            var attachmentSet = new AttachmentSet(new Uri("executor://dummy"), "Dummy Attachment Set");
+            var attachment = new UriDataAttachment(new Uri("file:///dir/subdir/log.txt"), "log.txt");
+            attachmentSet.Attachments.Add(attachment);
+
+            var result = new TestResult(testCase)
             {
                 Outcome = outcome,
                 ErrorMessage = "Dummy error",
@@ -119,6 +138,8 @@ namespace Spekt.TestLogger.UnitTests
                 StartTime = DateTimeOffset.MinValue,
                 EndTime = DateTimeOffset.MaxValue
             };
+            result.Attachments.Add(attachmentSet);
+            return result;
         }
     }
 }

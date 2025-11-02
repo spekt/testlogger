@@ -15,7 +15,14 @@ namespace Spekt.TestLogger.Core
     public static class TestRunCompleteWorkflow
     {
         public static void Complete(this ITestRun testRun, TestRunCompleteEventArgs completeEvent)
-            => Complete(testRun, completeEvent.AttachmentSets.SelectMany(x => x.ToAttachments()).ToList());
+        {
+            var logFilePath = testRun.LoggerConfiguration
+                .GetFormattedLogFilePath(testRun.RunConfiguration);
+            var resultsDirectory = Path.GetDirectoryName(logFilePath);
+            var attachments = completeEvent.AttachmentSets.SelectMany(x => x.ToAttachments(baseDirectory: resultsDirectory, makeRelativePaths: testRun.LoggerConfiguration.UseRelativeAttachmentPaths)).ToList();
+
+            Complete(testRun, attachments);
+        }
 
         public static void Complete(this ITestRun testRun, IReadOnlyCollection<TestAttachmentInfo> testAttachmentInfos)
         {

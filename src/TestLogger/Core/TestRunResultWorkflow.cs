@@ -5,6 +5,7 @@ namespace Spekt.TestLogger.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Reflection;
     using Microsoft.Testing.Platform.Extensions.Messages;
@@ -35,7 +36,7 @@ namespace Spekt.TestLogger.Core
 
             Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
 
-            var attachments = testNodeUpdateMessage.TestNode.Properties.OfType<FileArtifactProperty>().Select(p => new TestAttachmentInfo(p.FileInfo.FullName, p.Description)).ToList();
+            var attachments = testNodeUpdateMessage.TestNode.Properties.OfType<FileArtifactProperty>().ToAttachments(baseDirectory: GetTestResultDirectory(testRun), makeRelativePaths: testRun.LoggerConfiguration.UseRelativeAttachmentPaths).ToList();
 
             var (errorMessage, errorStackTrace) = state switch
             {
@@ -154,8 +155,10 @@ namespace Spekt.TestLogger.Core
                 _ => parser.Parse(fqn),
             };
 
-            Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
+            // Prepare attachments with relative paths if configured
+            var attachments = result.Attachments.SelectMany(x => x.ToAttachments(baseDirectory: GetTestResultDirectory(testRun), makeRelativePaths: testRun.LoggerConfiguration.UseRelativeAttachmentPaths)).ToList();
 
+            Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
             testRun.Store.Add(new TestResultInfo(
                 sanitize(parsedName.Namespace),
                 sanitize(parsedName.Type),
@@ -173,10 +176,17 @@ namespace Spekt.TestLogger.Core
                 sanitize(result.ErrorMessage),
                 sanitize(result.ErrorStackTrace),
                 result.Messages.Select(x => new TestResultMessage(sanitize(x.Category), sanitize(x.Text))).ToList(),
-                result.Attachments.SelectMany(x => x.ToAttachments()).ToList(),
+                attachments,
                 result.TestCase.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList(),
                 result.TestCase.ExecutorUri?.ToString(),
                 result.TestCase));
+        }
+
+        private static string GetTestResultDirectory(ITestRun testRun)
+        {
+            var logFilePath = testRun.LoggerConfiguration
+                .GetFormattedLogFilePath(testRun.RunConfiguration);
+            return Path.GetDirectoryName(logFilePath);
         }
     }
 }

@@ -51,13 +51,6 @@ The `--report-spekt-junit` option can also accept configuration arguments:
 > dotnet test -- --report-spekt-junit "key1=value1;key2=value2"
 ```
 
-All common options to the logger are documented [in the wiki][config-wiki]. E.g.
-token expansion for `{assembly}` or `{framework}` in result file. If you are writing multiple
-files to the same directory or testing multiple frameworks, these options can prevent
-test logs from over-writing each other.
-
-[config-wiki]: https://github.com/spekt/testlogger/wiki/Logger-Configuration
-
 ### Customizing Junit XML Contents
 
 There are several options to customize how the junit xml is populated. These options exist to
@@ -74,6 +67,24 @@ After the logger name, command line arguments are provided as key/value pairs wi
 ```none
 > dotnet test --test-adapter-path:. --logger:"junit;key1=value1;key2=value2"
 ```
+
+#### Available options
+
+| Option name                 | Purpose                                                                    | Documentation     |
+| --------------------------- | -------------------------------------------------------------------------- | ----------------- |
+| LogFileName\*               | Customize test result file name with `{assembly}` or `{framework}` tokens  | See [config-wiki] |
+| LogFilePath\*               | Test result file full path                                                 | See [config-wiki] |
+| UseRelativeAttachmentPath\* | Use attachment paths relative to test result file. Boolean. Default: false | See [config-wiki] |
+| MethodFormat                | Alter test case name                                                       | See below         |
+| FailureBodyFormat           | Control test result output                                                 | See below         |
+| StoreConsoleOutput          | Show or hide console output in the test report. Boolean. Default: true     | See below         |
+
+\*All common options to the logger are documented [in the wiki][config-wiki]. E.g.
+token expansion for `{assembly}` or `{framework}` in result file. If you are writing multiple
+files to the same directory or testing multiple frameworks, these options can prevent
+test logs from over-writing each other.
+
+[config-wiki]: https://github.com/spekt/testlogger/wiki/Logger-Configuration
 
 #### MethodFormat
 

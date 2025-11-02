@@ -51,11 +51,15 @@ The `--report-spekt-nunit` option can also accept configuration arguments:
 
 ### Configuration
 
-Supported configuration options include:
+#### Available options
 
-- `LogFilePath`: Sets the output file path (supports token expansion with `{assembly}` and `{framework}`)
+| Option name                 | Purpose                                                                    | Documentation     |
+| --------------------------- | -------------------------------------------------------------------------- | ----------------- |
+| LogFileName\*               | Customize test result file name with `{assembly}` or `{framework}` tokens  | See [config-wiki] |
+| LogFilePath\*               | Test result file full path                                                 | See [config-wiki] |
+| UseRelativeAttachmentPath\* | Use attachment paths relative to test result file. Boolean. Default: false | See [config-wiki] |
 
-All common options to the logger is documented [in the wiki][config-wiki]. E.g.
+\*All common options to the logger is documented [in the wiki][config-wiki]. E.g.
 token expansion for `{assembly}` or `{framework}` in result file.
 
 [config-wiki]: https://github.com/spekt/testlogger/wiki/Logger-Configuration

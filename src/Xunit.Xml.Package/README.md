@@ -51,7 +51,15 @@ The `--report-spekt-xunit` option can also accept configuration arguments:
 
 ### Configuration
 
-All common options to the logger is documented [in the wiki][config-wiki].
+#### Available options
+
+| Option name                 | Purpose                                                                    | Documentation     |
+| --------------------------- | -------------------------------------------------------------------------- | ----------------- |
+| LogFileName\*               | Customize test result file name with `{assembly}` or `{framework}` tokens  | See [config-wiki] |
+| LogFilePath\*               | Test result file full path                                                 | See [config-wiki] |
+| UseRelativeAttachmentPath\* | Use attachment paths relative to test result file. Boolean. Default: false | See [config-wiki] |
+
+\*All common options to the logger is documented [in the wiki][config-wiki].
 
 [config-wiki]: https://github.com/spekt/testlogger/wiki/Logger-Configuration
 
