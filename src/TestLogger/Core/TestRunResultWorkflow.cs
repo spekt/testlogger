@@ -35,7 +35,7 @@ namespace Spekt.TestLogger.Core
 
             Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
 
-            var attachments = testNodeUpdateMessage.TestNode.Properties.OfType<FileArtifactProperty>().Select(p => new TestAttachmentInfo(p.FileInfo.FullName, p.Description)).ToList();
+            var attachments = testNodeUpdateMessage.TestNode.Properties.OfType<FileArtifactProperty>().ToAttachments().ToList();
 
             var (errorMessage, errorStackTrace) = state switch
             {

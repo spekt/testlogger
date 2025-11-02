@@ -18,6 +18,7 @@ namespace Spekt.TestReporter
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.Platform;
+    using Spekt.TestLogger.Utilities;
 
     /// <summary>
     /// Base test reporter implementation for Microsoft.Testing.Platform.
@@ -56,7 +57,7 @@ namespace Spekt.TestReporter
             switch (value)
             {
                 case SessionFileArtifact sessionFileArtifact:
-                    this.testAttachmentInfos.Add(new TestAttachmentInfo(sessionFileArtifact.FileInfo.FullName, sessionFileArtifact.Description));
+                    this.testAttachmentInfos.Add(sessionFileArtifact.ToAttachment());
                     break;
 
                 case TestNodeUpdateMessage testNodeUpdateMessage:
