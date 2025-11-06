@@ -87,14 +87,14 @@ namespace Spekt.TestReporter
             return Task.FromResult(isEnabled);
         }
 
-        public Task OnTestSessionStartingAsync(SessionUid sessionUid, CancellationToken cancellationToken)
+        public Task OnTestSessionStartingAsync(ITestSessionContext testSessionContext)
         {
             var assembly = Assembly.GetEntryAssembly();
             ((TestRun)this.testRun).RunConfiguration = this.testRun.Start(assembly.Location, assembly.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName ?? "unknown-targetframework");
             return Task.CompletedTask;
         }
 
-        public Task OnTestSessionFinishingAsync(SessionUid sessionUid, CancellationToken cancellationToken)
+        public Task OnTestSessionFinishingAsync(ITestSessionContext testSessionContext)
         {
             this.testRun.Complete(this.testAttachmentInfos);
             return Task.CompletedTask;
