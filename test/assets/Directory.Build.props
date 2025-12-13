@@ -18,7 +18,7 @@
     <XunitV3TestAdapterVersion>3.0.2</XunitV3TestAdapterVersion>
     <NUnitVersion>3.13.2</NUnitVersion>
     <NUnitTestAdapterVersion>4.0.0</NUnitTestAdapterVersion>
-    <MSTestVersion>3.4.3</MSTestVersion>
+    <MSTestVersion>3.10.1</MSTestVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(IsMTP)' == 'true'">

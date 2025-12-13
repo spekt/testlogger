@@ -109,9 +109,6 @@ namespace TestLogger.Fixtures
 
             this.LogTestAssetOutDir(assemblyName);
 
-            // Required to skip icu requirement for net8.0 in linux
-            dotnet.StartInfo.EnvironmentVariables["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT"] = "1";
-
             Console.WriteLine("\n\n## Test run arguments: dotnet " + dotnet.StartInfo.Arguments);
 
             // To avoid deadlocks, always read the output stream first and then wait.
