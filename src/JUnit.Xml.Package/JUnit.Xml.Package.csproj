@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <PackageIcon>packageIcon.png</PackageIcon>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup>
