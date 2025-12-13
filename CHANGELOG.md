@@ -3,6 +3,18 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
+## [7.1.0](https://github.com/spekt/testlogger/compare/v7.0.2...v7.1.0) (2025-12-13)
+
+
+### Features
+
+* relative attachments in loggers ([#207](https://github.com/spekt/testlogger/issues/207)) ([b75bd20](https://github.com/spekt/testlogger/commit/b75bd20bc7c1c3a452fd32bd11d429338768c249))
+
+
+### Bug Fixes
+
+* update to .NET 10 SDK and workaround for platform regression in Traits ([#213](https://github.com/spekt/testlogger/issues/213), [#211](https://github.com/spekt/testlogger/issues/211), [#212](https://github.com/spekt/testlogger/issues/212)) ([eb36b5c](https://github.com/spekt/testlogger/commit/eb36b5cf67dcf363e984eb4c6e3e4cdb72359223))
+
 ## [7.0.2](https://github.com/spekt/testlogger/compare/v7.0.1...v7.0.2) (2025-10-08)
 
 
