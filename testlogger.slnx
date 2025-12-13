@@ -1,0 +1,29 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/src/">
+    <Project Path="src/JUnit.Xml.Package/JUnit.Xml.Package.csproj" />
+    <Project Path="src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.csproj" />
+    <Project Path="src/NUnit.Xml.Package/NUnit.Xml.Package.csproj" />
+    <Project Path="src/NUnit.Xml.TestLogger/NUnit.Xml.TestLogger.csproj" />
+    <Project Path="src/TestLogger/TestLogger.csproj" />
+    <Project Path="src/Xunit.Xml.Package/Xunit.Xml.Package.csproj" />
+    <Project Path="src/Xunit.Xml.TestLogger/Xunit.Xml.TestLogger.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Json.TestLogger.Package/Json.TestLogger.Package.csproj" />
+    <Project Path="test/Json.TestLogger.TestAdapter/Json.TestLogger.TestAdapter.csproj" />
+    <Project Path="test/Json.TestLogger/Json.TestLogger.csproj" />
+    <Project Path="test/JUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj" />
+    <Project Path="test/JUnit.Xml.TestLogger.UnitTests/JUnit.Xml.TestLogger.UnitTests.csproj" />
+    <Project Path="test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj" />
+    <Project Path="test/NUnit.Xml.TestLogger.UnitTests/NUnit.Xml.TestLogger.UnitTests.csproj" />
+    <Project Path="test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj" />
+    <Project Path="test/TestLogger.Fixtures/TestLogger.Fixtures.csproj" />
+    <Project Path="test/TestLogger.UnitTests/TestLogger.UnitTests.csproj" />
+    <Project Path="test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj" />
+  </Folder>
+</Solution>
