@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <WarningsAsErrors>true</WarningsAsErrors>
         <EnableCodeAnalysis>true</EnableCodeAnalysis>
         <IsPackable>false</IsPackable>
@@ -20,20 +20,6 @@
         <PackageReference Include="Newtonsoft.Json" />
         <PackageReference Include="Verify.MSTest" />
     </ItemGroup>
-
-    <!-- Build test assets for acceptance tests -->
-    <ItemGroup>
-        <TestAssets Include="$(MSBuildThisFileDirectory)../assets/Json.TestLogger.MSTest.NetCore.Tests/Json.TestLogger.MSTest.NetCore.Tests.csproj" />
-        
-        <TestAssets Include="$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NUnit.NetCore.Tests/Json.TestLogger.NUnit.NetCore.Tests.csproj" />
-
-        <TestAssets Include="$(MSBuildThisFileDirectory)../assets/Json.TestLogger.XUnit.NetCore.Tests/Json.TestLogger.XUnit.NetCore.Tests.csproj" />
-    </ItemGroup>
-    <Target Name="TestTarget" BeforeTargets="Build">
-        <Message Importance="High" Text="... Building test assets" />
-        <MSBuild Projects="@(TestAssets)" Properties="Configuration=$(Configuration)" Targets="Restore;Build" />
-        <Message Importance="High" Text="... Completed" />
-    </Target>
 
     <ItemGroup>
         <ProjectReference Include="..\Json.TestLogger\Json.TestLogger.csproj" />

@@ -8,7 +8,7 @@ namespace NUnit.Xml.TestLogger.Tests2
     public class AttachmentTest
     {
         public TestContext TestContext { get; set; }
-        
+
         [TestMethod]
         public void TestAddAttachment()
         {
