@@ -9,7 +9,7 @@ namespace TestLogger.Fixtures
 
     public class DotnetTestFixture
     {
-        private const string NetcoreVersion = "netcoreapp3.1";
+        private const string NetcoreVersion = "net8.0";
         private bool buildProject = false;
         private bool cleanProject = false;
         private string relativeResultsDirectory = string.Empty;
@@ -109,7 +109,7 @@ namespace TestLogger.Fixtures
 
             this.LogTestAssetOutDir(assemblyName);
 
-            // Required to skip icu requirement for netcoreapp3.1 in linux
+            // Required to skip icu requirement for net8.0 in linux
             dotnet.StartInfo.EnvironmentVariables["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT"] = "1";
 
             Console.WriteLine("\n\n## Test run arguments: dotnet " + dotnet.StartInfo.Arguments);

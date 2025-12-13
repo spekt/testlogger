@@ -50,14 +50,14 @@ jobs:
       TERM: "xterm"
     steps:
       - uses: actions/checkout@v4
-      - name: Setup .NET 9.0
+      - name: Setup .NET 10.0
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 9.x
-      - name: Setup .NET 3.1.x
+          dotnet-version: 10.x
+      - name: Setup .NET 8.x
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: "3.1.x"
+          dotnet-version: "8.x"
       - name: Configure NuGet cache
         uses: actions/cache@v3
         with:
@@ -93,8 +93,8 @@ jobs:
             **/test-results-*.xml
             **/test-results-*.json
             **/*.log
-            test/assets/**/bin/Debug/netcoreapp3.1/
-            test/assets/**/bin/Debug/net9.0/
+            test/assets/**/bin/Debug/net8.0/
+            test/assets/**/bin/Debug/net10.0/
       - name: Codecov
         uses: codecov/codecov-action@v3.1.0
         with:
