@@ -14,7 +14,7 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
     {
         private static readonly string[] ExpectedResultsFiles = new string[]
         {
-            "NUnit.Xml.TestLogger.NetMulti.Tests.NETCoreApp90.test-results.xml",
+            "NUnit.Xml.TestLogger.NetMulti.Tests.NETCoreApp100.test-results.xml",
             "NUnit.Xml.TestLogger.NetMulti.Tests.NETCoreApp31.test-results.xml"
         };
 

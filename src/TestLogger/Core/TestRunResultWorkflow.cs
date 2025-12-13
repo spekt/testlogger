@@ -159,6 +159,8 @@ namespace Spekt.TestLogger.Core
             var attachments = result.Attachments.SelectMany(x => x.ToAttachments(baseDirectory: GetTestResultDirectory(testRun), makeRelativePaths: testRun.LoggerConfiguration.UseRelativeAttachmentPaths)).ToList();
 
             Func<string, string> sanitize = testRun.Serializer.InputSanitizer.Sanitize;
+
+            var traits = GetTraits(result.TestCase, sanitize);
             testRun.Store.Add(new TestResultInfo(
                 sanitize(parsedName.Namespace),
                 sanitize(parsedName.Type),
@@ -177,7 +179,7 @@ namespace Spekt.TestLogger.Core
                 sanitize(result.ErrorStackTrace),
                 result.Messages.Select(x => new TestResultMessage(sanitize(x.Category), sanitize(x.Text))).ToList(),
                 attachments,
-                result.TestCase.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList(),
+                traits,
                 result.TestCase.ExecutorUri?.ToString(),
                 result.TestCase));
         }
@@ -187,6 +189,25 @@ namespace Spekt.TestLogger.Core
             var logFilePath = testRun.LoggerConfiguration
                 .GetFormattedLogFilePath(testRun.RunConfiguration);
             return Path.GetDirectoryName(logFilePath);
+        }
+
+        private static List<Trait> GetTraits(TestCase testCase, Func<string, string> sanitize)
+        {
+            // Workaround for test platform regression in .NET 10 SDK
+            // var traits = result.TestCase.Traits.Select(x => new Trait(sanitize(x.Name), sanitize(x.Value))).ToList();
+            var traits = new List<Trait>();
+            var traitProperty = testCase.Properties.FirstOrDefault(p => p.Id == "TestObject.Traits");
+            if (traitProperty != null)
+            {
+                var traitValues = testCase.GetPropertyValue(traitProperty, Enumerable.Empty<KeyValuePair<string, string>>());
+
+                foreach (var kvp in traitValues)
+                {
+                    traits.Add(new Trait(sanitize(kvp.Key), sanitize(kvp.Value)));
+                }
+            }
+
+            return traits;
         }
     }
 }

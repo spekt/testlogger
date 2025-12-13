@@ -3,8 +3,10 @@
   <PropertyGroup>
     <RunAnalyzers>false</RunAnalyzers>
 
-    <!-- https://github.com/dotnet/sdk/issues/37636 -->
-    <NoWarn>$(NoWarn);NETSDK1188</NoWarn>
+    <!-- https://github.com/dotnet/sdk/issues/37636 
+    NU1903: known vulnerability in dependency warning doesn't make sense in test assets
+    -->
+    <NoWarn>$(NoWarn);NETSDK1188;NU1903</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
