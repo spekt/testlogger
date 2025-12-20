@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- This project ensures we accidentally don't break MTP v1. No assemblies or tests use this. -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Spekt.TestLogger</AssemblyName>
+    <Version>$(PackageVersion)</Version>
+    <IsPackable>true</IsPackable>
+    <DebugType>embedded</DebugType>
+    <EmbedAllSources>true</EmbedAllSources>
+    <DefineConstants>$(DefineConstants);MTP_V1</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Configuration">
+    <RootNamespace>Spekt.TestLogger</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../TestLogger/**/*.cs" Exclude="../TestLogger/obj/**;../TestLogger/bin/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" />
+    <PackageReference Include="Microsoft.Testing.Platform" VersionOverride="1.9.1"/>
+  </ItemGroup>
+
+</Project>

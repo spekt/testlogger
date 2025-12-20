@@ -9,6 +9,7 @@
     <Project Path="src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.csproj" />
     <Project Path="src/NUnit.Xml.Package/NUnit.Xml.Package.csproj" />
     <Project Path="src/NUnit.Xml.TestLogger/NUnit.Xml.TestLogger.csproj" />
+    <Project Path="src/TestLogger.MTPv1/TestLogger.MTPv1.csproj" />
     <Project Path="src/TestLogger/TestLogger.csproj" />
     <Project Path="src/Xunit.Xml.Package/Xunit.Xml.Package.csproj" />
     <Project Path="src/Xunit.Xml.TestLogger/Xunit.Xml.TestLogger.csproj" />
