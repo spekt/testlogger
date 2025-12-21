@@ -116,7 +116,8 @@ namespace TestLogger.Fixtures
                     throw new NotSupportedException("Coverlet isn't supported with MTP yet.");
                 }
 
-                dotnet.StartInfo.Arguments += " --collect:\"XPlat Code Coverage\" --settings coverlet.runsettings";
+                var coverletRunSettingsPath = Path.Combine(Environment.CurrentDirectory, "coverlet.runsettings");
+                dotnet.StartInfo.Arguments += $" --collect:\"XPlat Code Coverage\" --settings \"{coverletRunSettingsPath}\"";
             }
 
             this.LogTestAssetOutDir(assemblyName);

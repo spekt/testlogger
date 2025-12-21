@@ -344,3 +344,4 @@ site
 .vscode/settings.json
 
 *.received.txt
+global.json
