@@ -7,6 +7,10 @@ Junit, NUnit and Xunit logger/reporter extensions for [Visual Studio Test Platfo
 
 ## Packages
 
+> [!IMPORTANT]  
+> If you're using MTPv1 runner, kindly use v7.x of the loggers.
+> v8+ supports MTPv2 and VSTest runners.
+
 | Logger | Stable Package                                                                                                          | Pre-release Package                                                                                                                                         | Usage                                     |
 | ------ | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
 | JUnit  | [![NuGet](https://img.shields.io/nuget/v/JUnitXml.TestLogger.svg)](https://www.nuget.org/packages/JUnitXml.TestLogger/) | [![MyGet Pre Release](https://img.shields.io/myget/spekt/vpre/junitxml.testlogger.svg)](https://www.myget.org/feed/spekt/package/nuget/JunitXml.TestLogger) | [README](src/JUnit.Xml.Package/README.md) |

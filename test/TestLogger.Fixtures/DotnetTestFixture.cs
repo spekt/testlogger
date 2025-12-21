@@ -57,9 +57,12 @@ namespace TestLogger.Fixtures
                 cleanProcess.WaitForExit();
             }
 
-            if (!isMTP)
+            // Clean up global.json to allow running both VSTest and MTP tests in the same build
+            var globalJsonTemplate = Path.Combine(assemblyName.ToAssetDirectoryPath(), "..", "global.json.template");
+            var globalJsonPath = Path.Combine(assemblyName.ToAssetDirectoryPath(), "..", "global.json");
+            if (File.Exists(globalJsonPath))
             {
-                loggerArgs = $"--logger:\"{loggerArgs}\"";
+                File.Delete(globalJsonPath);
             }
 
             var resultsDirectory = Path.Combine(assemblyName.ToAssetDirectoryPath(), this.relativeResultsDirectory);
@@ -71,27 +74,36 @@ namespace TestLogger.Fixtures
 
             // Run dotnet test with logger
             var buildArgs = this.buildProject ? string.Empty : "--no-build";
+            var resultDirectoryArgs = string.IsNullOrEmpty(this.relativeResultsDirectory) ? string.Empty : $"--results-directory \"{resultsDirectory}\"";
+
             if (isMTP)
             {
                 buildArgs += " -p:IsMTP=true";
-            }
+                if (resultDirectoryArgs.Length == 0)
+                {
+                    resultDirectoryArgs = $"--results-directory \"{resultsDirectory}\"";
+                }
 
-            var resultDirectoryArgs = string.IsNullOrEmpty(this.relativeResultsDirectory) ? string.Empty : $"--results-directory \"{resultsDirectory}\"";
-            if (isMTP && resultDirectoryArgs.Length == 0)
+                File.Copy(globalJsonTemplate, globalJsonPath);
+            }
+            else
             {
-                resultDirectoryArgs = $"--results-directory \"{resultsDirectory}\"";
+                loggerArgs = $"--logger:\"{loggerArgs}\"";
             }
 
+            var testProjectPath = Path.Combine(assemblyName.ToAssetDirectoryPath(), $"{assemblyName}.csproj");
             var commandlineSuffix = string.IsNullOrEmpty(this.runSettingsSuffix) ? string.Empty : $"--{(isMTP ? "test-parameter" : string.Empty)} {this.runSettingsSuffix}";
+            var testCommand = isMTP ? $"test --project \"{testProjectPath}\"" : $"test \"{testProjectPath}\"";
             using var dotnet = new Process
             {
                 StartInfo =
                 {
+                    WorkingDirectory = assemblyName.ToAssetDirectoryPath(),
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     FileName = "dotnet",
-                    Arguments = $"test \"{assemblyName.ToAssetDirectoryPath()}\\{assemblyName}.csproj\" {buildArgs}{(isMTP ? " --" : string.Empty)} {loggerArgs} {resultDirectoryArgs} {commandlineSuffix}"
+                    Arguments = $"{testCommand} {buildArgs} {loggerArgs} {resultDirectoryArgs} {commandlineSuffix}"
                 }
             };
 
@@ -104,7 +116,8 @@ namespace TestLogger.Fixtures
                     throw new NotSupportedException("Coverlet isn't supported with MTP yet.");
                 }
 
-                dotnet.StartInfo.Arguments += " --collect:\"XPlat Code Coverage\" --settings coverlet.runsettings";
+                var coverletRunSettingsPath = Path.Combine(Environment.CurrentDirectory, "coverlet.runsettings");
+                dotnet.StartInfo.Arguments += $" --collect:\"XPlat Code Coverage\" --settings \"{coverletRunSettingsPath}\"";
             }
 
             this.LogTestAssetOutDir(assemblyName);

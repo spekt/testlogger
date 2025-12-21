@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <SourceRoot Condition="$(SourceRoot) == ''">$(MSBuildThisFileDirectory)</SourceRoot>
-    <SourcePrefix>7.0.1</SourcePrefix>
+    <SourcePrefix>8.0.0</SourcePrefix>
   </PropertyGroup>
 
   <PropertyGroup>
