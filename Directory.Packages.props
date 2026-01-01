@@ -10,8 +10,8 @@
 
         <PackageVersion Include="Stylecop.Analyzers" Version="1.2.0-beta.556" />
 
-        <PackageVersion Include="MSTest.TestFramework" Version="3.10.5" />
-        <PackageVersion Include="MSTest.TestAdapter" Version="3.10.5" />
+        <PackageVersion Include="MSTest.TestFramework" Version="4.0.2" />
+        <PackageVersion Include="MSTest.TestAdapter" Version="4.0.2" />
         <PackageVersion Include="xunit" Version="2.9.3" />
         <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.2" />
 
