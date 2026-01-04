@@ -3,6 +3,17 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
+## [8.0.0](https://github.com/spekt/testlogger/compare/v7.1.0...v8.0.0) (2026-01-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* use MTP v2 in testlogger ([#214](https://github.com/spekt/testlogger/issues/214))
+
+### Features
+
+* use MTP v2 in testlogger ([#214](https://github.com/spekt/testlogger/issues/214)) ([ef9ddb1](https://github.com/spekt/testlogger/commit/ef9ddb18a85b96db2e5a4f09e36114f74db6904c)), closes [#209](https://github.com/spekt/testlogger/issues/209)
+
 ## [7.1.0](https://github.com/spekt/testlogger/compare/v7.0.2...v7.1.0) (2025-12-13)
 
 
