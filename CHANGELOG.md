@@ -3,6 +3,19 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
+## [8.0.0](https://github.com/spekt/testlogger/compare/v7.1.0...v8.0.0) (2026-01-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for MTP v1. Please use v7.x testloggers if you're using MTP v1 runners.
+* Add support for MTP v2 runner. v8.x only supports MTP v2 and VSTest classic runners. See #209.
+
+### Features
+
+* Add support for MTP v2 runner. v8.x only supports MTP v2 and VSTest classic runners. See [#209](https://github.com/spekt/testlogger/issues/209). ([ef9ddb1](https://github.com/spekt/testlogger/commit/ef9ddb18a85b96db2e5a4f09e36114f74db6904c))
+* Drop support for MTP v1. Please use v7.x testloggers if you're using MTP v1 runners. ([ef9ddb1](https://github.com/spekt/testlogger/commit/ef9ddb18a85b96db2e5a4f09e36114f74db6904c))
+
 ## [7.1.0](https://github.com/spekt/testlogger/compare/v7.0.2...v7.1.0) (2025-12-13)
 
 
