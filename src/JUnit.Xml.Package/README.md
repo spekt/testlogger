@@ -1,6 +1,6 @@
 # JUnit Test Logger
 
-JUnit xml report extension for [Visual Studio Test Platform](https://github.com/microsoft/vstest).
+JUnit xml report extension for [MTP v2](https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-intro) and [Visual Studio Test Platform](https://github.com/microsoft/vstest). Please use v7.x for MTP v1 runners.
 
 [![NuGet Downloads](https://img.shields.io/nuget/dt/JunitXml.TestLogger)](https://www.nuget.org/packages/JunitXml.TestLogger/)
 
