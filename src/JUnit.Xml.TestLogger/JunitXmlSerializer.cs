@@ -359,6 +359,16 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
             // seconds should be low enough it won't interfere with anyone monitoring test duration.
             testcaseElement.SetAttributeValue("time", Math.Max(0.0000001f, result.Duration.TotalSeconds).ToString("0.0000000", CultureInfo.InvariantCulture));
 
+            if (!string.IsNullOrEmpty(result.CodeFilePath))
+            {
+                testcaseElement.SetAttributeValue("file", result.CodeFilePath);
+            }
+
+            if (result.LineNumber > 0)
+            {
+                testcaseElement.SetAttributeValue("line", result.LineNumber);
+            }
+
             if (result.Outcome == TestOutcome.Failed)
             {
                 var failureBodySB = new StringBuilder();
