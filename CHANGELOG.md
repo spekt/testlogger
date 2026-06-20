@@ -3,6 +3,13 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
+## [8.0.1](https://github.com/spekt/testlogger/compare/v8.0.0...v8.0.1) (2026-06-20)
+
+
+### Bug Fixes
+
+* emit file and line attributes on JUnit testcase ([#236](https://github.com/spekt/testlogger/issues/236)) ([3dbb59f](https://github.com/spekt/testlogger/commit/3dbb59f34a898190a073e59fe411bbea228fe05d)), closes [#235](https://github.com/spekt/testlogger/issues/235)
+
 ## [8.0.0](https://github.com/spekt/testlogger/compare/v7.1.0...v8.0.0) (2026-01-09)
 
 
