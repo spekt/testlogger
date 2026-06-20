@@ -224,6 +224,40 @@ namespace JUnit.Xml.TestLogger.UnitTests
             Assert.IsTrue(systemErrElement.Value.Contains("Error - Error message"));
         }
 
+        [TestMethod]
+        public void TestCaseShouldIncludeFileAndLineAttributesWhenSourceIsPresent()
+        {
+            var serializer = new JunitXmlSerializer();
+            var result = CreateTestResultInfo();
+
+            var testCase = SerializeAndGetTestCaseElement(serializer, result);
+
+            Assert.AreEqual(TestCsPath, testCase.Attribute("file")?.Value);
+            Assert.AreEqual("42", testCase.Attribute("line")?.Value);
+        }
+
+        [TestMethod]
+        public void TestCaseShouldOmitFileAttributeWhenCodeFilePathIsMissing()
+        {
+            var serializer = new JunitXmlSerializer();
+            var result = CreateTestResultInfo(codeFilePath: null);
+
+            var testCase = SerializeAndGetTestCaseElement(serializer, result);
+
+            Assert.IsNull(testCase.Attribute("file"));
+        }
+
+        [TestMethod]
+        public void TestCaseShouldOmitLineAttributeWhenLineNumberIsMissing()
+        {
+            var serializer = new JunitXmlSerializer();
+            var result = CreateTestResultInfo(lineNumber: 0);
+
+            var testCase = SerializeAndGetTestCaseElement(serializer, result);
+
+            Assert.IsNull(testCase.Attribute("line"));
+        }
+
         private static LoggerConfiguration CreateTestLoggerConfiguration()
         {
             return new LoggerConfiguration(new Dictionary<string, string>
@@ -237,7 +271,11 @@ namespace JUnit.Xml.TestLogger.UnitTests
             return new TestRunConfiguration { StartTime = DateTime.Now };
         }
 
-        private static TestResultInfo CreateTestResultInfo(TestOutcome outcome = TestOutcome.Passed, List<TestResultMessage> messages = null)
+        private static TestResultInfo CreateTestResultInfo(
+            TestOutcome outcome = TestOutcome.Passed,
+            List<TestResultMessage> messages = null,
+            string codeFilePath = TestCsPath,
+            int lineNumber = 42)
         {
             return new TestResultInfo(
                 TestNamespace,
@@ -248,8 +286,8 @@ namespace JUnit.Xml.TestLogger.UnitTests
                 TestDisplayName,
                 TestDisplayName,
                 TestDllPath,
-                TestCsPath,
-                42,
+                codeFilePath,
+                lineNumber,
                 DateTime.Now,
                 DateTime.Now.AddSeconds(1),
                 TimeSpan.FromSeconds(1),
@@ -262,7 +300,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
                 null);
         }
 
-        private static string SerializeAndExtractElementContent(JunitXmlSerializer serializer, TestResultInfo result, string elementName)
+        private static XElement SerializeAndGetTestCaseElement(JunitXmlSerializer serializer, TestResultInfo result)
         {
             var xml = serializer.Serialize(
                 CreateTestLoggerConfiguration(),
@@ -272,6 +310,13 @@ namespace JUnit.Xml.TestLogger.UnitTests
 
             var doc = XDocument.Parse(xml);
             var testCaseElement = doc.XPathSelectElement("//testcase");
+            Assert.IsNotNull(testCaseElement, "testcase element not found");
+            return testCaseElement;
+        }
+
+        private static string SerializeAndExtractElementContent(JunitXmlSerializer serializer, TestResultInfo result, string elementName)
+        {
+            var testCaseElement = SerializeAndGetTestCaseElement(serializer, result);
             var targetElement = testCaseElement.Element(elementName);
 
             Assert.IsNotNull(targetElement, $"Element '{elementName}' not found in testcase");
