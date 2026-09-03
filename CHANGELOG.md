@@ -3,6 +3,18 @@
 Starting with v4.0.x, all the testloggers use a unified changelog for
 simplicity. For v3.x changelogs, refer to the end of this document.
 
+## [8.1.0](https://github.com/spekt/testlogger/compare/v8.0.0...v8.1.0) (2026-09-03)
+
+
+### Features
+
+* decouple vstest and mtp workflows. See [#229](https://github.com/spekt/testlogger/issues/229) ([#245](https://github.com/spekt/testlogger/issues/245)) ([9a33480](https://github.com/spekt/testlogger/commit/9a33480076914e3c0ba181d3d12d5e0a36af0f9f))
+
+
+### Bug Fixes
+
+* emit file and line attributes on JUnit testcase ([#236](https://github.com/spekt/testlogger/issues/236)) ([3dbb59f](https://github.com/spekt/testlogger/commit/3dbb59f34a898190a073e59fe411bbea228fe05d)), closes [#235](https://github.com/spekt/testlogger/issues/235)
+
 ## [8.0.0](https://github.com/spekt/testlogger/compare/v7.1.0...v8.0.0) (2026-01-09)
 
 
