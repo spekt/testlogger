@@ -39,7 +39,8 @@
     </ItemGroup>
     <Target Name="TestTarget" BeforeTargets="Build">
         <Message Importance="High" Text="... Building test assets" />
-        <MSBuild Projects="@(TestAssets)" Properties="Configuration=$(Configuration)" Targets="Restore;Build" />
+        <!-- Pre-build assets in separate dotnet processes: in-session MSBuild builds reuse the static-graph-restore evaluation, which lacks package-provided build targets (e.g. MSTest TestContext). -->
+        <Exec Command="dotnet build &quot;%(TestAssets.Identity)&quot; -c $(Configuration) --nologo -v q" />
         <Message Importance="High" Text="... Completed" />
     </Target>
 </Project>
