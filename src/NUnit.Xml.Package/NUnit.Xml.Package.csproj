@@ -35,9 +35,13 @@
     <PackageIcon>packageIcon.png</PackageIcon>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NUnit.Xml.TestLogger\NUnit.Xml.TestLogger.csproj" />
-  </ItemGroup>
+  <!-- Format projects are built separately; Package just copies their outputs -->
+  <Target Name="BuildFormatProjects" BeforeTargets="CopyOutputs">
+    <MSBuild Projects="..\NUnit.Xml.TestLogger\NUnit.Xml.TestLogger.VSTest.csproj" Targets="Restore;Build" Properties="Configuration=$(Configuration)" />
+    <MSBuild Projects="..\NUnit.Xml.TestLogger\NUnit.Xml.TestLogger.MTP.csproj" Targets="Restore;Build" Properties="Configuration=$(Configuration)" />
+    <MSBuild Projects="..\TestLogger\TestLogger.VSTest.csproj" Targets="Restore;Build" Properties="Configuration=$(Configuration)" />
+    <MSBuild Projects="..\TestLogger\TestLogger.MTP.csproj" Targets="Restore;Build" Properties="Configuration=$(Configuration)" />
+  </Target>
 
   <ItemGroup>
     <Content Include="NUnitXml.TestLogger.props">
@@ -59,6 +63,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <Target Name="CopyOutputs" AfterTargets="Build">
+    <MakeDir Directories="$(OutputPath)_common\vstest" />
+    <MakeDir Directories="$(OutputPath)_common\mtp" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)/../TestLogger/bin/$(Configuration)/vstest/netstandard2.0/Spekt.TestLogger.VSTest.dll" DestinationFolder="$(OutputPath)_common\vstest" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)/../TestLogger/bin/$(Configuration)/mtp/netstandard2.0/Spekt.TestLogger.Mtp.dll" DestinationFolder="$(OutputPath)_common\mtp" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)/../NUnit.Xml.TestLogger/bin/$(Configuration)/vstest/netstandard2.0/Microsoft.VisualStudio.TestPlatform.Extension.NUnit.Xml.TestLogger.dll" DestinationFolder="$(OutputPath)_common\vstest" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)/../NUnit.Xml.TestLogger/bin/$(Configuration)/mtp/netstandard2.0/Microsoft.VisualStudio.TestPlatform.Extension.NUnit.Xml.TestLogger.dll" DestinationFolder="$(OutputPath)_common\mtp" SkipUnchangedFiles="true" />
+  </Target>
 
   <!-- Prevent Csc from being called -->
   <Target Name="CoreCompile" />

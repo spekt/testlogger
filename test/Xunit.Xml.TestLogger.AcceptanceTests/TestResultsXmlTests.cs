@@ -14,7 +14,8 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
     using System.Xml;
     using Xunit;
 
-    public class TestResultsXmlTests : IClassFixture<TestRunFixture>
+    [Collection("Acceptance")]
+    public class TestResultsXmlTests
     {
         private const string AssembliesElement = @"/assemblies";
         private const string AssemblyElement = @"/assemblies/assembly";

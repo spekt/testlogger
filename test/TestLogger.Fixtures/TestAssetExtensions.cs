@@ -30,15 +30,18 @@ namespace TestLogger.Fixtures
         /// Gets the full path to test asset assembly file.
         /// </summary>
         /// <param name="assetName">Name of the test asset.</param>
+        /// <param name="targetFrameworkVersion">Target framework moniker, e.g. net8.0.</param>
+        /// <param name="isMTP">Whether the MTP-flavored (rather than VSTest-flavored) output is wanted.</param>
         /// <returns>Full path to test assembly.</returns>
-        public static string ToAssetAssemblyPath(this string assetName, string targetFrameworkVersion)
+        public static string ToAssetAssemblyPath(this string assetName, string targetFrameworkVersion, bool isMTP)
         {
 #if DEBUG
             var config = "Debug";
 #else
             var config = "Release";
 #endif
-            return Path.Combine(assetName.ToAssetDirectoryPath(), "bin", config, targetFrameworkVersion, $"{assetName}.dll");
+            var flavor = isMTP ? "mtp" : "vstest";
+            return Path.Combine(assetName.ToAssetDirectoryPath(), "bin", config, flavor, targetFrameworkVersion, $"{assetName}.dll");
         }
 
         public static bool IsMTP(this TestContext context, Type type)

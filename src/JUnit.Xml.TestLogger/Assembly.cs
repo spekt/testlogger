@@ -7,6 +7,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
+#if !DEBUG
 [assembly: ExcludeFromCodeCoverage]
 
 namespace System.Diagnostics.CodeAnalysis;
@@ -16,3 +17,4 @@ internal sealed class ExcludeFromCodeCoverageAttribute : Attribute
 {
 	public ExcludeFromCodeCoverageAttribute() { }
 }
+#endif

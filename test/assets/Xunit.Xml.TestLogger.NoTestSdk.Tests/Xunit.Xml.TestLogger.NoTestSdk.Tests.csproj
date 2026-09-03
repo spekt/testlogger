@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- MTP-only test asset: deliberately references neither Microsoft.NET.Test.Sdk
+       nor xunit.runner.visualstudio (see https://github.com/spekt/testlogger/issues/229).
+       Only ever built with IsMTP=true (see MtpTestAssets) and exercised via MTP legs. -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType Condition="'$(UsesXunit3)'=='true'">exe</OutputType>
+    <!-- Provided by Microsoft.NET.Test.Sdk in sibling assets; declared here
+         explicitly since this MTP-only asset does not reference it (issue #229).
+         Gates test entrypoint generation. -->
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Condition="'$(UsesXunit3)' != 'true'" Include="../../../src/Xunit.Xml.TestLogger/Xunit.Xml.TestLogger.VSTest.csproj" />
+    <ProjectReference Condition="'$(UsesXunit3)' == 'true'" Include="../../../src/Xunit.Xml.TestLogger/Xunit.Xml.TestLogger.MTP.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Condition="'$(UsesXunit3)' != 'true'" Include="xunit" Version="$(XunitVersion)" />
+    <PackageReference Condition="'$(UsesXunit3)' == 'true'" Include="xunit.v3.mtp-v2" Version="$(XunitV3Version)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TestingPlatformBuilderHook Include="A4869310-1A9F-405B-8F89-2506F1BF6854">
+      <DisplayName>XunitXml.TestLogger</DisplayName>
+      <TypeFullName>Spekt.TestReporter.Xunit.TestingPlatformBuilderHook</TypeFullName>
+    </TestingPlatformBuilderHook>
+  </ItemGroup>
+
+</Project>

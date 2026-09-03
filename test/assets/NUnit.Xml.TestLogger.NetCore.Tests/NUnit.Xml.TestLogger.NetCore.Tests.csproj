@@ -3,12 +3,16 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
 
+    <!-- MTP test projects must be executables for the MTP host to launch them -->
+    <OutputType Condition="'$(IsMTP)' == 'true'">exe</OutputType>
+
     <!-- Disable stylecop for test assets -->
     <StylecopEnabled>false</StylecopEnabled>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../../src/NUnit.Xml.TestLogger/NUnit.Xml.TestLogger.csproj" />
+    <ProjectReference Condition="'$(IsMTP)' != 'true'" Include="../../../src/NUnit.Xml.TestLogger/NUnit.Xml.TestLogger.VSTest.csproj" />
+    <ProjectReference Condition="'$(IsMTP)' == 'true'" Include="../../../src/NUnit.Xml.TestLogger/NUnit.Xml.TestLogger.MTP.csproj" />
   </ItemGroup>
 
   <ItemGroup>

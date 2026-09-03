@@ -3,16 +3,13 @@
 
 namespace Spekt.TestLogger.Core
 {
-    using Spekt.TestLogger.Extensions;
     using Spekt.TestLogger.Platform;
 
     public interface ITestRun
     {
-        LoggerConfiguration LoggerConfiguration { get; }
+        LoggerConfiguration LoggerConfiguration { get; set; }
 
-        TestRunConfiguration RunConfiguration { get; }
-
-        ITestAdapterFactory AdapterFactory { get; }
+        TestRunConfiguration RunConfiguration { get; set; }
 
         ITestResultStore Store { get; }
 

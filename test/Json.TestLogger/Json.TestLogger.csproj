@@ -12,16 +12,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\TestLogger.UnitTests\TestDoubles\JsonTestResultSerializer.cs">
+    <Compile Include="..\TestLogger.VSTest.UnitTests\TestDoubles\JsonTestResultSerializer.cs">
       <Link>JsonTestResultSerializer.cs</Link>
     </Compile>
-    <Compile Include="..\TestLogger.UnitTests\TestDoubles\InputSanitizerJson.cs">
+    <Compile Include="..\TestLogger.VSTest.UnitTests\TestDoubles\InputSanitizerJson.cs">
       <Link>InputSanitizerJson.cs</Link>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../src/TestLogger/TestLogger.csproj" />
+    <ProjectReference Include="../../src/TestLogger/TestLogger.VSTest.csproj" />
   </ItemGroup>
 
   <ItemGroup>

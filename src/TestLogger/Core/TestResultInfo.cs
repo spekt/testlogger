@@ -5,7 +5,6 @@ namespace Spekt.TestLogger.Core
 {
     using System;
     using System.Collections.Generic;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
     public sealed class TestResultInfo
     {
@@ -28,8 +27,7 @@ namespace Spekt.TestLogger.Core
             List<TestResultMessage> messages,
             List<TestAttachmentInfo> attachments,
             IReadOnlyCollection<Trait> traits,
-            string executorUri,
-            TestCase testCase)
+            string executorUri)
         {
             this.Namespace = @namespace;
             this.Type = type;
@@ -50,7 +48,6 @@ namespace Spekt.TestLogger.Core
             this.Attachments = attachments;
             this.Traits = traits;
             this.ExecutorUri = executorUri;
-            this.TestCase = testCase;
 
             // Use TestCaseDisplayName by default for reporting.
             this.DisplayName = this.TestCaseDisplayName;
@@ -137,31 +134,20 @@ namespace Spekt.TestLogger.Core
         public string FullTypeName => this.Namespace + "." + this.Type;
 
         /// <summary>
-        /// Gets value that originated at <see cref="TestResult.DisplayName"/>. Intended for use within
+        /// Gets value that originated at test result display name. Intended for use within
         /// this library by framework specific adapters, to ensure that <see cref="Method"/> has the
         /// proper value.
         /// </summary>
         internal string TestResultDisplayName { get; }
 
         /// <summary>
-        /// Gets value that originated at <see cref="TestCase.DisplayName"/>. Intended for use within
+        /// Gets value that originated at test case display name. Intended for use within
         /// this library by framework specific adapters, to ensure that <see cref="Method"/> has the
         /// proper value.
         /// </summary>
         internal string TestCaseDisplayName { get; }
 
         internal string FullyQualifiedName { get; }
-
-        /// <summary>
-        /// Gets the TestCase instance associated with this result.
-        /// </summary>
-        /// <remarks>
-        /// TestProperty store is maintained in TestCase, required for adapter
-        /// extensions to retrieve values.
-        /// Intended for internal usage only. Do not expose for consumer
-        /// loggers.
-        /// </remarks>
-        internal TestCase TestCase { get; }
 
         public override bool Equals(object obj)
         {

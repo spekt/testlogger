@@ -33,14 +33,13 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
             var vstestLoggerArgs = $"junit;LogFilePath={VstestResultsFile}";
             _ = DotnetTestFixture
                 .Create()
-                .WithBuild()
                 .Execute(AssetName, vstestLoggerArgs, collectCoverage: false, VstestResultsFile, isMTP: false);
 
             // Run MTP tests
             var mtpLoggerArgs = $"--report-spekt-junit --report-spekt-junit-filename {MtpResultsFile}";
             _ = DotnetTestFixture
                 .Create()
-                .WithBuild()
+                .WithNoBuild()
                 .Execute(AssetName, mtpLoggerArgs, collectCoverage: false, MtpResultsFile, isMTP: true);
         }
 

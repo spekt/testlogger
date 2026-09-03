@@ -30,10 +30,17 @@
     <TestAssets Condition="$([MSBuild]::IsOSPlatform('Windows'))" Include="$(MSBuildThisFileDirectory)../assets/Xunit.Xml.TestLogger.NetFull.Tests/Xunit.Xml.TestLogger.NetFull.Tests.csproj" />
     <TestAssets Include="$(MSBuildThisFileDirectory)../assets/Xunit.Xml.TestLogger.NetCore.Tests/Xunit.Xml.TestLogger.NetCore.Tests.csproj" />
   </ItemGroup>
+  <!-- Assets exercised through MTP legs; pre-built once here so fixture legs run with no-build -->
+  <ItemGroup>
+    <MtpTestAssets Include="$(MSBuildThisFileDirectory)../assets/Xunit.Xml.TestLogger.NetCore.Tests/Xunit.Xml.TestLogger.NetCore.Tests.csproj" />
+    <MtpTestAssets Include="$(MSBuildThisFileDirectory)../assets/Xunit.Xml.TestLogger.NoTestSdk.Tests/Xunit.Xml.TestLogger.NoTestSdk.Tests.csproj" />
+  </ItemGroup>
   <Target Name="TestTarget" BeforeTargets="Build">
     <Message Importance="High" Text="... Building test assets" />
     <RemoveDir Directories="$(NuGetPackageRoot)/xunitxml.testlogger" />
-    <MSBuild Projects="@(TestAssets)" Properties="Configuration=$(Configuration)" Targets="Restore;Build" />
+    <!-- Pre-build assets in separate dotnet processes: in-session MSBuild builds reuse the static-graph-restore evaluation, which lacks package-provided build targets (e.g. MSTest TestContext). -->
+    <Exec Command="dotnet build &quot;%(TestAssets.Identity)&quot; -c $(Configuration) --nologo -v q" />
+    <Exec Command="dotnet build &quot;%(MtpTestAssets.Identity)&quot; -c $(Configuration) -p:IsMTP=true --nologo -v q" />
     <Message Importance="High" Text="... Completed" />
   </Target>
 </Project>

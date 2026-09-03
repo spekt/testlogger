@@ -26,7 +26,6 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
             var vstestLoggerArgs = "nunit;LogFilePath=test-results-vstest.xml";
             _ = DotnetTestFixture
                 .Create()
-                .WithBuild()
                 .WithRunSettings("-- NUnit.ShowInternalProperties=true")
                 .Execute(AssetName, vstestLoggerArgs, collectCoverage: false, "test-results-vstest.xml", isMTP: false);
 
@@ -34,8 +33,7 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
             var mtpLoggerArgs = "--report-spekt-nunit --report-spekt-nunit-filename test-results-mtp.xml";
             _ = DotnetTestFixture
                 .Create()
-                .WithBuild()
-                .WithRunSettings("NUnit.ShowInternalProperties=true")
+                .WithNoBuild()
                 .Execute(AssetName, mtpLoggerArgs, collectCoverage: false, "test-results-mtp.xml", isMTP: true);
         }
 
@@ -109,7 +107,7 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
 
             Assert.AreEqual("Failed", node.Attribute(XName.Get("result")).Value);
             Assert.AreEqual("NUnit.Xml.TestLogger.NetCore.Tests.dll", node.Attribute(XName.Get("name")).Value);
-            Assert.AreEqual(AssetName.ToAssetAssemblyPath("net8.0"), node.Attribute(XName.Get("fullname")).Value);
+            Assert.AreEqual(AssetName.ToAssetAssemblyPath("net8.0", resultFileName.Contains("mtp")), node.Attribute(XName.Get("fullname")).Value);
 
             var startTimeStr = node.Attribute(XName.Get("start-time"))?.Value;
             var endTimeStr = node.Attribute(XName.Get("end-time"))?.Value;

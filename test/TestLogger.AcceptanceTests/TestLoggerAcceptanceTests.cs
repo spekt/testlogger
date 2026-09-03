@@ -57,6 +57,11 @@ namespace TestLogger.AcceptanceTests
                     var pathForwardSlashes = m.Groups[1].Captures[0].Value.Replace('\\', '/');
                     x = pathForwardSlashes;
                     x = x.Replace("//", "/");
+
+                    // Test runner flavor (vstest/mtp) is an implementation detail of the
+                    // build layout; normalize it away so snapshots stay stable.
+                    x = x.Replace("bin/Debug/vstest/", "bin/Debug/");
+                    x = x.Replace("bin/Debug/mtp/", "bin/Debug/");
                 }
                 else if (prefixedMatch.IsMatch(x))
                 {
@@ -78,7 +83,7 @@ namespace TestLogger.AcceptanceTests
 
             // Collect coverage will attach a runlevel attachment.
             var collectCoverage = testAssembly.Contains("XUnit.NetCore");
-            var resultsFile = DotnetTestFixture.Create().WithBuild().Execute(testAssembly, loggerArgs, collectCoverage, "test-results.json");
+            var resultsFile = DotnetTestFixture.Create().Execute(testAssembly, loggerArgs, collectCoverage, "test-results.json");
             var testReport = JsonConvert.DeserializeObject<TestReport>(File.ReadAllText(resultsFile));
 
             // Using VerifyJson with serialized JSON to avoid incompatibility in object serialization

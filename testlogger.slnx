@@ -6,13 +6,17 @@
   </Configurations>
   <Folder Name="/src/">
     <Project Path="src/JUnit.Xml.Package/JUnit.Xml.Package.csproj" />
-    <Project Path="src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.csproj" />
+    <Project Path="src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.VSTest.csproj" />
+    <Project Path="src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.MTP.csproj" />
     <Project Path="src/NUnit.Xml.Package/NUnit.Xml.Package.csproj" />
-    <Project Path="src/NUnit.Xml.TestLogger/NUnit.Xml.TestLogger.csproj" />
+    <Project Path="src/NUnit.Xml.TestLogger/NUnit.Xml.TestLogger.VSTest.csproj" />
+    <Project Path="src/NUnit.Xml.TestLogger/NUnit.Xml.TestLogger.MTP.csproj" />
     <Project Path="src/TestLogger.MTPv1/TestLogger.MTPv1.csproj" />
-    <Project Path="src/TestLogger/TestLogger.csproj" />
+    <Project Path="src/TestLogger/TestLogger.VSTest.csproj" />
+    <Project Path="src/TestLogger/TestLogger.MTP.csproj" />
     <Project Path="src/Xunit.Xml.Package/Xunit.Xml.Package.csproj" />
-    <Project Path="src/Xunit.Xml.TestLogger/Xunit.Xml.TestLogger.csproj" />
+    <Project Path="src/Xunit.Xml.TestLogger/Xunit.Xml.TestLogger.VSTest.csproj" />
+    <Project Path="src/Xunit.Xml.TestLogger/Xunit.Xml.TestLogger.MTP.csproj" />
   </Folder>
   <Folder Name="/test/">
     <Project Path="test/Json.TestLogger.Package/Json.TestLogger.Package.csproj" />
@@ -24,7 +28,8 @@
     <Project Path="test/NUnit.Xml.TestLogger.UnitTests/NUnit.Xml.TestLogger.UnitTests.csproj" />
     <Project Path="test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj" />
     <Project Path="test/TestLogger.Fixtures/TestLogger.Fixtures.csproj" />
-    <Project Path="test/TestLogger.UnitTests/TestLogger.UnitTests.csproj" />
+    <Project Path="test/TestLogger.VSTest.UnitTests/TestLogger.VSTest.UnitTests.csproj" />
+    <Project Path="test/TestLogger.Mtp.UnitTests/TestLogger.Mtp.UnitTests.csproj" />
     <Project Path="test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj" />
   </Folder>
 </Solution>

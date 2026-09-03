@@ -17,7 +17,6 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .WithResultsDirectory("artifacts")
                                 .Execute("NUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "test-results.xml");
 

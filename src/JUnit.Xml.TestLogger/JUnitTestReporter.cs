@@ -6,6 +6,7 @@ namespace Spekt.TestReporter.JUnit
     using System;
     using Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger;
     using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.Mtp;
 
     internal sealed class JUnitTestReporter : TestReporter
     {

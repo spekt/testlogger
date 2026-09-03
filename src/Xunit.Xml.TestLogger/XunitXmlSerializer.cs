@@ -10,7 +10,6 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger
     using System.Linq;
     using System.Text;
     using System.Xml.Linq;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel;
     using Spekt.TestLogger.Core;
 
     public class XunitXmlSerializer : ITestResultSerializer

@@ -3,7 +3,6 @@
 
 namespace Spekt.TestLogger.Core
 {
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Spekt.TestLogger.Platform;
 
     public interface ITestRunBuilder
@@ -13,11 +12,6 @@ namespace Spekt.TestLogger.Core
         ITestRunBuilder WithStore(ITestResultStore store);
 
         ITestRunBuilder WithSerializer(ITestResultSerializer serializer);
-
-        // TODO: Should ITestRunBuilder be platform-agnostic?
-        // TestLoggerEvents is VSTest-specific.
-        // It may be good to refactor this so that ITestRunBuilder is platform-agnostic, and move this somewhere else.
-        ITestRunBuilder Subscribe(TestLoggerEvents loggerEvents);
 
         ITestRunBuilder WithFileSystem(IFileSystem fileSystem);
 
