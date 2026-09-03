@@ -5,6 +5,7 @@ namespace Spekt.TestReporter.NUnit
 {
     using Microsoft.Testing.Platform.Builder;
     using Microsoft.Testing.Platform.Extensions;
+    using Spekt.TestLogger.Mtp;
 
     public static class NUnitTestReporterExtensions
     {

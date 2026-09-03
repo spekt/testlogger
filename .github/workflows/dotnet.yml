@@ -71,9 +71,10 @@ jobs:
         run: dotnet pack -c Release -p:PackageVersion=${{ env.APP_BUILD_VERSION }}
       - name: Unit test
         run: |
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.UnitTests/TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/NUnit.Xml.TestLogger.UnitTests/NUnit.Xml.TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/JUnit.Xml.TestLogger.UnitTests/JUnit.Xml.TestLogger.UnitTests.csproj -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
+          dotnet run -p:PackageVersion=${{ env.APP_BUILD_VERSION }} --project test/TestLogger.VSTest.UnitTests/TestLogger.VSTest.UnitTests.csproj -- --coverlet --coverlet-output-format cobertura --coverlet-include "[Spekt*]*"
+          dotnet run -p:PackageVersion=${{ env.APP_BUILD_VERSION }} --project test/TestLogger.Mtp.UnitTests/TestLogger.Mtp.UnitTests.csproj -- --coverlet --coverlet-output-format cobertura --coverlet-include "[Spekt*]*"
+          dotnet run -p:PackageVersion=${{ env.APP_BUILD_VERSION }} --project test/NUnit.Xml.TestLogger.UnitTests/NUnit.Xml.TestLogger.UnitTests.csproj -- --coverlet --coverlet-output-format cobertura --coverlet-include "[Spekt*]*" --coverlet-include "[Microsoft.VisualStudio.TestPlatform.Extension*]*"
+          dotnet run -p:PackageVersion=${{ env.APP_BUILD_VERSION }} --project test/JUnit.Xml.TestLogger.UnitTests/JUnit.Xml.TestLogger.UnitTests.csproj -- --coverlet --coverlet-output-format cobertura --coverlet-include "[Spekt*]*" --coverlet-include "[Microsoft.VisualStudio.TestPlatform.Extension*]*"
       - name: Acceptance test
         run: |
           echo "Running acceptance tests with verbose output..."
@@ -93,16 +94,16 @@ jobs:
             **/test-results-*.xml
             **/test-results-*.json
             **/*.log
-            test/assets/**/bin/Debug/net8.0/
-            test/assets/**/bin/Debug/net10.0/
+            test/assets/**/bin/Debug/mtp/
+            test/assets/**/bin/Debug/vstest/
       - name: Codecov
         uses: codecov/codecov-action@v3.1.0
         with:
-          files: test/TestLogger.UnitTests/coverage.opencover.xml
+          files: test/TestLogger.VSTest.UnitTests/bin/Debug/net10.0/TestResults/coverage.cobertura.xml,test/TestLogger.Mtp.UnitTests/bin/Debug/net10.0/TestResults/coverage.cobertura.xml,test/NUnit.Xml.TestLogger.UnitTests/bin/Debug/net10.0/TestResults/coverage.cobertura.xml,test/JUnit.Xml.TestLogger.UnitTests/bin/Debug/net10.0/TestResults/coverage.cobertura.xml
       - name: Publish packages
         if: ${{ github.event_name == 'push' && matrix.os != 'windows-latest' }}
         run: |
-          dotnet nuget push 'src/TestLogger/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
+          dotnet nuget push 'src/TestLogger/bin/Release/*/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/Xunit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/NUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/JUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json

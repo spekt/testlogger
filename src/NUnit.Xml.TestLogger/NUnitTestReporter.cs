@@ -6,6 +6,7 @@ namespace Spekt.TestReporter.NUnit
     using System;
     using Microsoft.VisualStudio.TestPlatform.Extension.NUnit.Xml.TestLogger;
     using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.Mtp;
 
     internal sealed class NUnitTestReporter : TestReporter
     {

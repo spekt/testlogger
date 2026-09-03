@@ -8,7 +8,7 @@ namespace Json.TestLogger
 
     [FriendlyName(FriendlyName)]
     [ExtensionUri(ExtensionUri)]
-    public class JsonTestLogger : Spekt.TestLogger.TestLogger
+    public class JsonTestLogger : Spekt.TestLogger.VSTest.TestLogger
     {
         /// <summary>
         /// Uri used to uniquely identify the logger.

@@ -37,7 +37,7 @@
         <Message Importance="High" Text="... Completed" />
 
         <Message Importance="High" Text="... Restore test assets" />
-        <MSBuild Projects="@(TestAssets)" Properties="Configuration=$(Configuration);PackageVersion=$(PackageVersion);RestoreConfigFile=$(TestRestoreConfig);RestoreNoCache=true" Targets="Restore" />
+        <MSBuild Projects="@(TestAssets)" Properties="Configuration=$(Configuration);PackageVersion=$(PackageVersion);RestoreConfigFile=$(TestRestoreConfig);RestoreNoCache=true" Targets="Restore;Build" />
         <Message Importance="High" Text="... Completed" />
     </Target>
     <ItemGroup>

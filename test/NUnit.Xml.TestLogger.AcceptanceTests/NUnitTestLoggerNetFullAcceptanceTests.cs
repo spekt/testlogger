@@ -42,7 +42,6 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
             // Enable reporting of internal properties in the adapter using runsettings
             _ = DotnetTestFixture
                 .Create()
-                .WithBuild()
                 .Execute(AssetName, loggerArgs, collectCoverage: false, "test-results.xml");
         }
 

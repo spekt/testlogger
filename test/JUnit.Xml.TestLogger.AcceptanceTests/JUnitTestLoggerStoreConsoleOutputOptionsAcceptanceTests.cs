@@ -26,7 +26,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "output-default-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -51,7 +50,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "output-default-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -72,7 +70,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "output-true-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -97,7 +94,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "output-true-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -118,7 +114,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "output-false-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -140,7 +135,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "output-false-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -159,7 +153,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "output-testsuite-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -184,7 +177,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "output-testsuite-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -204,7 +196,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "output-testcase-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -226,7 +217,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "output-testcase-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Spekt.TestLogger.Mtp</AssemblyName>
+    <Version>$(PackageVersion)</Version>
+    <IsPackable>true</IsPackable>
+    <DebugType>embedded</DebugType>
+    <EmbedAllSources>true</EmbedAllSources>
+    <DefaultItemExcludes>$(DefaultItemExcludes);VSTest/**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Configuration">
+    <RootNamespace>Spekt.TestLogger</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Testing.Platform" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

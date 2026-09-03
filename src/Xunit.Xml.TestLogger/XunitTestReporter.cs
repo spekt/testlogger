@@ -6,6 +6,7 @@ namespace Spekt.TestReporter.Xunit
     using System;
     using Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger;
     using Spekt.TestLogger.Core;
+    using Spekt.TestLogger.Mtp;
 
     internal sealed class XunitTestReporter : TestReporter
     {

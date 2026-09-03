@@ -3,23 +3,20 @@
 
 namespace Spekt.TestLogger.Core
 {
-    using Spekt.TestLogger.Extensions;
     using Spekt.TestLogger.Platform;
 
     public class TestRun : ITestRun
     {
-        public LoggerConfiguration LoggerConfiguration { get; internal set; }
+        public LoggerConfiguration LoggerConfiguration { get; set; }
 
-        public TestRunConfiguration RunConfiguration { get; internal set; }
+        public TestRunConfiguration RunConfiguration { get; set; }
 
-        public ITestAdapterFactory AdapterFactory { get; internal set; }
+        public ITestResultStore Store { get; set; }
 
-        public ITestResultStore Store { get; internal set; }
+        public ITestResultSerializer Serializer { get; set; }
 
-        public ITestResultSerializer Serializer { get; internal set; }
+        public IConsoleOutput ConsoleOutput { get; set; }
 
-        public IConsoleOutput ConsoleOutput { get; internal set; }
-
-        public IFileSystem FileSystem { get; internal set; }
+        public IFileSystem FileSystem { get; set; }
     }
 }

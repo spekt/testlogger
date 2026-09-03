@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../../src/NUnit.Xml.TestLogger/NUnit.Xml.TestLogger.csproj" />
+    <ProjectReference Include="../../../src/NUnit.Xml.TestLogger/NUnit.Xml.TestLogger.VSTest.csproj" />
   </ItemGroup>
 
   <ItemGroup>

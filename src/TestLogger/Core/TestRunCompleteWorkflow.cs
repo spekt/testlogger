@@ -7,40 +7,19 @@ namespace Spekt.TestLogger.Core
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-    using System.Linq;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Spekt.TestLogger.Platform;
-    using Spekt.TestLogger.Utilities;
 
     public static class TestRunCompleteWorkflow
     {
-        public static void Complete(this ITestRun testRun, TestRunCompleteEventArgs completeEvent)
-        {
-            var logFilePath = testRun.LoggerConfiguration
-                .GetFormattedLogFilePath(testRun.RunConfiguration);
-            var resultsDirectory = Path.GetDirectoryName(logFilePath);
-            var attachments = completeEvent.AttachmentSets.SelectMany(x => x.ToAttachments(baseDirectory: resultsDirectory, makeRelativePaths: testRun.LoggerConfiguration.UseRelativeAttachmentPaths)).ToList();
-
-            Complete(testRun, attachments);
-        }
-
-        public static void Complete(this ITestRun testRun, IReadOnlyCollection<TestAttachmentInfo> testAttachmentInfos)
+        public static void Complete(
+            this ITestRun testRun,
+            IReadOnlyCollection<TestAttachmentInfo> testAttachmentInfos,
+            List<TestResultInfo> results,
+            List<TestMessageInfo> messages)
         {
             // Update the test run complete timestamp and run level attachments
             testRun.RunConfiguration.EndTime = DateTime.UtcNow;
             testRun.RunConfiguration.Attachments = testAttachmentInfos;
-
-            // Freeze and reset the test result store
-            testRun.Store.Pop(out var results, out var messages);
-
-            // Transform the results with adapter specific hooks
-            var transformedResults = results;
-            if (transformedResults.Any())
-            {
-                var executorUri = transformedResults[0].ExecutorUri;
-                var adapter = testRun.AdapterFactory.CreateTestAdapter(executorUri);
-                transformedResults = adapter.TransformResults(results, messages);
-            }
 
             // Prepare test results file from logger configuration
             var logFilePath = testRun.LoggerConfiguration
@@ -50,7 +29,7 @@ namespace Spekt.TestLogger.Core
             var content = testRun.Serializer.Serialize(
                 testRun.LoggerConfiguration,
                 testRun.RunConfiguration,
-                transformedResults,
+                results,
                 messages);
             testRun.FileSystem.Write(logFilePath, content);
 

@@ -4,7 +4,6 @@
 namespace Spekt.TestLogger.Core
 {
     using System;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
     /// <summary>
     /// A message generated during the test run.

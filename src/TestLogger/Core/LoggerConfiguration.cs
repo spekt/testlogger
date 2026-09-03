@@ -6,7 +6,6 @@ namespace Spekt.TestLogger.Core
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
     /// <summary>
     /// Logger configuration provided by the test platform and command line

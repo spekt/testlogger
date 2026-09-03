@@ -4,7 +4,7 @@
 namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
 {
     using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-    using Spekt.TestLogger;
+    using Spekt.TestLogger.VSTest;
 
     [FriendlyName(FriendlyName)]
     [ExtensionUri(ExtensionUri)]

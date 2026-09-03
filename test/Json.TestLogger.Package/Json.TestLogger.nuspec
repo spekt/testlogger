@@ -13,7 +13,7 @@
   <files>
     <file src="Json.TestLogger.dll" target="build\_common\" />
     <file src="Json.TestAdapter.dll" target="build\_common\" />
-    <file src="Spekt.TestLogger.dll" target="build\_common\" />
+    <file src="Spekt.TestLogger.VSTest.dll" target="build\_common\" />
 
     <!-- Net Core -->
     <file src="Json.TestLogger.props" target="build\netstandard1.0\" />

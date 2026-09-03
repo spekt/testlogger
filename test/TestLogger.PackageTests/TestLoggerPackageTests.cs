@@ -28,7 +28,7 @@ namespace TestLogger.PackageTests
             // Collect coverage will attach a runlevel attachment.
             var collectCoverage = testAssembly.Contains("XUnit.NetCore");
 
-            var resultsFile = DotnetTestFixture.Create().WithBuild().Execute(testAssembly, loggerArgs, collectCoverage, "test-results.xml");
+            var resultsFile = DotnetTestFixture.Create().Execute(testAssembly, loggerArgs, collectCoverage, "test-results.xml");
 
             var testReport = File.ReadAllText(resultsFile);
             Assert.IsNotNull(testReport);

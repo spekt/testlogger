@@ -1,4 +1,30 @@
 <Project>
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)..\'))" />
+
+  <!-- Default Configuration before composing paths below: Directory.Build.props is
+       evaluated before the SDK applies its own Debug default, so $(Configuration)
+       would otherwise freeze empty (explicit -c values arrive as global properties
+       and are unaffected by this default). -->
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+  </PropertyGroup>
+
+  <!-- MTP adapter projects: split obj. Only the auto-generated target framework
+       attribute is disabled (it conflicts with Microsoft.Testing.Platform); the
+       remaining assembly info (including versions) must stay enabled. -->
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('MTP')) and !$(MSBuildProjectName.Contains('MTPv1')) and !$(MSBuildProjectName.Contains('Package'))">
+    <OutputPath>bin\$(Configuration)\mtp\</OutputPath>
+    <BaseIntermediateOutputPath>obj\mtp\</BaseIntermediateOutputPath>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj\vstest\**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <!-- VSTest projects: split obj -->
+  <PropertyGroup Condition="!$(MSBuildProjectName.Contains('MTP')) and !$(MSBuildProjectName.Contains('Package'))">
+    <OutputPath>bin\$(Configuration)\vstest\</OutputPath>
+    <BaseIntermediateOutputPath>obj\vstest\</BaseIntermediateOutputPath>
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj\mtp\**</DefaultItemExcludes>
+  </PropertyGroup>
 </Project>
 <!-- vim: set ft=xml : -->

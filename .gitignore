@@ -141,6 +141,7 @@ _TeamCity*
 *.coveragexml
 coverage.json
 coverage.opencover.xml
+coveragereport/
 
 # NCrunch
 _NCrunch_*

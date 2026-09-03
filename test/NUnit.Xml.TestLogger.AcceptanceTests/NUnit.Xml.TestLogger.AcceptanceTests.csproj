@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../TestLogger.Fixtures/TestLogger.Fixtures.csproj" />
-    <ProjectReference Include="../../src/TestLogger/TestLogger.csproj" />
+    <ProjectReference Include="../../src/TestLogger/TestLogger.VSTest.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,10 +27,15 @@
     <TestAssets Include="$(MSBuildThisFileDirectory)../assets/NUnit.Xml.TestLogger.NetCore.Tests/NUnit.Xml.TestLogger.NetCore.Tests.csproj" />
     <TestAssets Include="$(MSBuildThisFileDirectory)../assets/NUnit.Xml.TestLogger.NetMulti.Tests/NUnit.Xml.TestLogger.NetMulti.Tests.csproj" />
   </ItemGroup>
+  <!-- Assets exercised through MTP legs; pre-built once here so fixture legs run with no-build -->
+  <ItemGroup>
+    <MtpTestAssets Include="$(MSBuildThisFileDirectory)../assets/NUnit.Xml.TestLogger.NetCore.Tests/NUnit.Xml.TestLogger.NetCore.Tests.csproj" />
+  </ItemGroup>
   <Target Name="TestTarget" BeforeTargets="Build">
     <Message Importance="High" Text="... Building test assets" />
     <RemoveDir Directories="$(NuGetPackageRoot)/nunitxml.testlogger" />
     <MSBuild Projects="@(TestAssets)" Properties="Configuration=$(Configuration)" Targets="Restore;Build" />
+    <MSBuild Projects="@(MtpTestAssets)" Properties="Configuration=$(Configuration);IsMTP=true" Targets="Restore;Build" />
     <Message Importance="High" Text="... Completed" />
   </Target>
 </Project>

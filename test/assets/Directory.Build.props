@@ -21,6 +21,28 @@
     <MSTestVersion>3.0.4</MSTestVersion>
   </PropertyGroup>
 
+  <!-- Default Configuration before composing paths below: Directory.Build.props is
+       evaluated before the SDK applies its own Debug default, so $(Configuration)
+       would otherwise freeze empty (explicit -c values arrive as global properties
+       and are unaffected by this default). -->
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+  </PropertyGroup>
+
+  <!-- Split intermediate and output paths per test runner flavor so VSTest and MTP
+       restores/builds cannot observe each other's state (conditional PackageReferences
+       differ per flavor, e.g. xunit 2.x vs xunit.v3). Mirrors src/Directory.Build.props. -->
+  <PropertyGroup Condition="'$(IsMTP)' == 'true'">
+    <BaseIntermediateOutputPath>obj\mtp\</BaseIntermediateOutputPath>
+    <OutputPath>bin\$(Configuration)\mtp\</OutputPath>
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj\vstest\**</DefaultItemExcludes>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(IsMTP)' != 'true'">
+    <BaseIntermediateOutputPath>obj\vstest\</BaseIntermediateOutputPath>
+    <OutputPath>bin\$(Configuration)\vstest\</OutputPath>
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj\mtp\**</DefaultItemExcludes>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(IsMTP)' == 'true'">
     <UsesXunit3>true</UsesXunit3>
     <DefineConstants>$(DefineConstants);USES_XUNIT3</DefineConstants>

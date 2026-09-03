@@ -31,7 +31,6 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
 
             _ = DotnetTestFixture
                     .Create()
-                    .WithBuild()
                     .Execute("NUnit.Xml.TestLogger.NetMulti.Tests", loggerArgs, collectCoverage: false, "test-results.xml");
 
             foreach (string resultFile in testResultFiles)

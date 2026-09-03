@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger</AssemblyName>
+    <Version>$(PackageVersion)</Version>
+    <IsPackable>false</IsPackable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Configuration">
+    <RootNamespace>Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../TestLogger/TestLogger.VSTest.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="XunitTestReporter.cs" />
+    <Compile Remove="XunitTestReporterExtension.cs" />
+    <Compile Remove="XunitTestReporterExtensions.cs" />
+    <Compile Remove="TestingPlatformBuilderHook.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

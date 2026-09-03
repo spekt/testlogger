@@ -10,8 +10,6 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
     using System.Linq;
     using System.Text;
     using System.Xml.Linq;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.Utilities;
 

@@ -13,12 +13,14 @@
     <icon>packageIcon.png</icon>
   </metadata>
   <files>
-    <file src="Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger.dll" target="build\_common\" />
-    <file src="Spekt.TestLogger.dll" target="build\_common\" />
+    <file src="_common\vstest\Spekt.TestLogger.VSTest.dll" target="build\_common\vstest\" />
+    <file src="_common\vstest\Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger.dll" target="build\_common\vstest\" />
+    <file src="_common\mtp\Spekt.TestLogger.Mtp.dll" target="build\_common\mtp\" />
+    <file src="_common\mtp\Microsoft.VisualStudio.TestPlatform.Extension.Xunit.Xml.TestLogger.dll" target="build\_common\mtp\" />
     <file src="README.md" target="docs\" />
     <file src="CHANGELOG.md" target="docs\" />
     <file src="packageIcon.png" target="\" />
 
-    <file src="XunitXml.TestLogger.props" target="build\netstandard2.0\" />
+    <file src="XunitXml.TestLogger.props" target="build\" />
   </files>
 </package>

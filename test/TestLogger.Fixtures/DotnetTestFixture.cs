@@ -6,12 +6,13 @@ namespace TestLogger.Fixtures
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Text;
 
     public class DotnetTestFixture
     {
         private const string NetcoreVersion = "net8.0";
-        private bool buildProject = false;
         private bool cleanProject = false;
+        private bool noBuild = false;
         private string relativeResultsDirectory = string.Empty;
         private string runSettingsSuffix = string.Empty;
 
@@ -20,7 +21,20 @@ namespace TestLogger.Fixtures
         public DotnetTestFixture WithBuild(bool cleanProject = true)
         {
             this.cleanProject = cleanProject;
-            this.buildProject = true;
+            this.noBuild = false;
+            return this;
+        }
+
+        /// <summary>
+        /// Runs the test leg with --no-build against pre-built outputs.
+        /// Only use where --no-build is known to work (MTP legs); VSTest legs
+        /// must build (incrementally) because vstest.console rejects --no-build runs.
+        /// </summary>
+        /// <returns>The current fixture instance.</returns>
+        public DotnetTestFixture WithNoBuild()
+        {
+            this.cleanProject = false;
+            this.noBuild = true;
             return this;
         }
 
@@ -49,7 +63,7 @@ namespace TestLogger.Fixtures
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
                         FileName = "dotnet",
-                        Arguments = $"clean \"{assemblyName.ToAssetDirectoryPath()}\\{assemblyName}.csproj\""
+                        Arguments = $"clean \"{assemblyName.ToAssetDirectoryPath()}\\{assemblyName}.csproj\"{(isMTP ? " -p:IsMTP=true" : string.Empty)}"
                     }
                 };
                 cleanProcess.Start();
@@ -72,8 +86,9 @@ namespace TestLogger.Fixtures
                 File.Delete(resultsFile);
             }
 
-            // Run dotnet test with logger
-            var buildArgs = this.buildProject ? string.Empty : "--no-build";
+            // Run dotnet test with logger. --no-build is opt-in (WithNoBuild) because
+            // vstest.console rejects --no-build runs; default is an incremental build.
+            var buildArgs = this.noBuild ? "--no-build" : string.Empty;
             var resultDirectoryArgs = string.IsNullOrEmpty(this.relativeResultsDirectory) ? string.Empty : $"--results-directory \"{resultsDirectory}\"";
 
             if (isMTP)
@@ -120,16 +135,35 @@ namespace TestLogger.Fixtures
                 dotnet.StartInfo.Arguments += $" --collect:\"XPlat Code Coverage\" --settings \"{coverletRunSettingsPath}\"";
             }
 
-            this.LogTestAssetOutDir(assemblyName);
+            this.LogTestAssetOutDir(assemblyName, isMTP);
 
             Console.WriteLine("\n\n## Test run arguments: dotnet " + dotnet.StartInfo.Arguments);
 
-            // To avoid deadlocks, always read the output stream first and then wait.
+            // Use async reads to avoid deadlock when child process writes heavily to stderr
+            // while parent blocks on stdout ReadToEnd().
+            var outputBuilder = new StringBuilder();
+            var errorBuilder = new StringBuilder();
+            dotnet.OutputDataReceived += (sender, e) =>
+            {
+                if (e.Data != null)
+                {
+                    outputBuilder.AppendLine(e.Data);
+                }
+            };
+            dotnet.ErrorDataReceived += (sender, e) =>
+            {
+                if (e.Data != null)
+                {
+                    errorBuilder.AppendLine(e.Data);
+                }
+            };
             dotnet.Start();
-
-            var output = dotnet.StandardOutput.ReadToEnd();
-            var error = dotnet.StandardError.ReadToEnd();
+            dotnet.BeginOutputReadLine();
+            dotnet.BeginErrorReadLine();
             dotnet.WaitForExit();
+
+            var output = outputBuilder.ToString();
+            var error = errorBuilder.ToString();
 
             Console.WriteLine("\n\n ## Test run output\n" + output);
             if (!string.IsNullOrEmpty(error))
@@ -140,14 +174,16 @@ namespace TestLogger.Fixtures
             return resultsFile;
         }
 
-        private void LogTestAssetOutDir(string assemblyName)
+        private void LogTestAssetOutDir(string assemblyName, bool isMTP)
         {
             // Log the contents of test output directory. Useful to verify if the logger is copied
             Console.WriteLine("\n\n## Contents of test output directory:");
 
+            var flavor = isMTP ? "mtp" : "vstest";
+
             // Create directory so test does not fail under windows.
-            Directory.CreateDirectory(Path.Combine(assemblyName, $"bin/Debug/{NetcoreVersion}"));
-            foreach (var f in Directory.GetFiles(Path.Combine(assemblyName, $"bin/Debug/{NetcoreVersion}")))
+            Directory.CreateDirectory(Path.Combine(assemblyName, $"bin/Debug/{flavor}/{NetcoreVersion}"));
+            foreach (var f in Directory.GetFiles(Path.Combine(assemblyName, $"bin/Debug/{flavor}/{NetcoreVersion}")))
             {
                 Console.WriteLine("  " + f);
             }

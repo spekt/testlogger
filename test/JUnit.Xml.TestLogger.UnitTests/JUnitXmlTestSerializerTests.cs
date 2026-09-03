@@ -16,7 +16,11 @@ namespace JUnit.Xml.TestLogger.UnitTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.Utilities;
+    using TestMessageLevel = Spekt.TestLogger.Core.TestMessageLevel;
+    using TestOutcome = Spekt.TestLogger.Core.TestOutcome;
+    using TestResultMessage = Spekt.TestLogger.Core.TestResultMessage;
     using TestSuite = Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger.JunitXmlSerializer.TestSuite;
+    using Trait = Spekt.TestLogger.Core.Trait;
 
     [TestClass]
     public class JUnitXmlTestSerializerTests
@@ -296,8 +300,7 @@ namespace JUnit.Xml.TestLogger.UnitTests
                 messages ?? new List<TestResultMessage>(),
                 new List<TestAttachmentInfo>(),
                 new List<Trait>(),
-                "executor://dummy",
-                null);
+                "executor://dummy");
         }
 
         private static XElement SerializeAndGetTestCaseElement(JunitXmlSerializer serializer, TestResultInfo result)

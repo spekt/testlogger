@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../../src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.csproj" />
+    <ProjectReference Condition="'$(UsesXunit3)' != 'true'" Include="../../../src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.VSTest.csproj" />
+    <ProjectReference Condition="'$(UsesXunit3)' == 'true'" Include="../../../src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.MTP.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../../src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.csproj" />
+    <ProjectReference Include="../../../src/JUnit.Xml.TestLogger/JUnit.Xml.TestLogger.VSTest.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -33,7 +33,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "failure-default-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -61,7 +60,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "failure-verbose-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -81,7 +79,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "failure-verbose-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -110,7 +107,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "failure-verbose-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -130,7 +126,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "method-default-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -156,7 +151,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "method-class-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);
@@ -184,7 +178,6 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
             var resultsFile = DotnetTestFixture
                                 .Create()
-                                .WithBuild()
                                 .Execute("JUnit.Xml.TestLogger.NetCore.Tests", loggerArgs, collectCoverage: false, "method-full-test-results.xml");
 
             XDocument resultsXml = XDocument.Load(resultsFile);

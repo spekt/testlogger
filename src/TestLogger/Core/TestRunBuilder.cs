@@ -4,8 +4,6 @@
 namespace Spekt.TestLogger.Core
 {
     using System;
-    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
-    using Spekt.TestLogger.Extensions;
     using Spekt.TestLogger.Platform;
 
     public class TestRunBuilder : ITestRunBuilder
@@ -17,7 +15,6 @@ namespace Spekt.TestLogger.Core
             this.testRun = new TestRun
             {
                 RunConfiguration = new TestRunConfiguration(),
-                AdapterFactory = new TestAdapterFactory(),
             };
         }
 
@@ -36,24 +33,6 @@ namespace Spekt.TestLogger.Core
         public ITestRunBuilder WithSerializer(ITestResultSerializer serializer)
         {
             this.testRun.Serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
-            return this;
-        }
-
-        public ITestRunBuilder Subscribe(TestLoggerEvents loggerEvents)
-        {
-            if (loggerEvents == null)
-            {
-                throw new ArgumentNullException(nameof(loggerEvents));
-            }
-
-            loggerEvents.TestRunStart += (_, eventArgs) =>
-            {
-                this.testRun.RunConfiguration = this.testRun.Start(eventArgs);
-            };
-            loggerEvents.TestRunMessage += (_, eventArgs) => this.TraceAndThrow(() => this.testRun.Message(eventArgs), "TestRunMessage");
-            loggerEvents.TestResult += (_, eventArgs) => this.TraceAndThrow(() => this.testRun.Result(eventArgs.Result), "TestResult");
-            loggerEvents.TestRunComplete += (_, eventArgs) => this.TraceAndThrow(() => this.testRun.Complete(eventArgs), "TestRunComplete");
-
             return this;
         }
 
