@@ -7,6 +7,9 @@
        and are unaffected by this default). -->
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+
+    <!-- Ensure the source code is not marked as test projects -->
+    <IsTestingPlatformApplication>false</IsTestingPlatformApplication>
   </PropertyGroup>
 
   <!-- MTP adapter projects: split obj. Only the auto-generated target framework

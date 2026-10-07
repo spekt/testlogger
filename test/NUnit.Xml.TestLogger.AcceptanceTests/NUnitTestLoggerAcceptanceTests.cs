@@ -254,7 +254,7 @@ namespace NUnit.Xml.TestLogger.AcceptanceTests
             // Assert that start and end times are in the right order and they are recent (i.e. not default DateTime values)
             Assert.IsTrue(startTime < endTime, "test case start time should be before end time");
             var timeDiff = (DateTime.UtcNow - startTime.ToUniversalTime()).Duration();
-            Assert.IsTrue(timeDiff < TimeSpan.FromMinutes(1), "test case start time should not be too far in the past, difference was {0}", timeDiff);
+            Assert.IsTrue(timeDiff < TimeSpan.FromMinutes(1), $"test case start time should not be too far in the past, difference was {timeDiff}");
         }
 
         // [DataRow("test-results-mtp.xml")] // NOT SUPPORTED: MTP does not include the Seed property in the test case

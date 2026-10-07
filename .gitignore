@@ -345,4 +345,4 @@ site
 .vscode/settings.json
 
 *.received.txt
-global.json
+test/assets/global.json

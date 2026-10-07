@@ -1,0 +1,142 @@
+<Project>
+  <!--
+    Shared pre-build for test assets, imported by acceptance/PackageTests projects.
+    Each project defines which assets to build:
+      <TestAssets>         VSTest-flavor assets, built as-is.
+      <MtpTestAssets>      MTP-flavor assets, built with -p:IsMTP=true.
+      <TestAssetPurgeDirs> (optional) NuGet cache dirs to remove first.
+    Plus optional <TestAssetProperties> (e.g. PackageVersion/RestoreConfigFile),
+    forwarded as -p: arguments to every asset build.
+
+    Assets build in PARALLEL, each in its own dotnet process (separate MSBuild
+    sessions). Do NOT replace this with in-session <MSBuild> tasks: package-provided
+    build targets (e.g. MSTest's TestFramework.Extensions reference) are only
+    imported on re-evaluation, which in-session builds skip on clean obj,
+    breaking compilation with CS0246.
+  -->
+  <UsingTask TaskName="BuildAssetsInParallel"
+             TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Projects ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      <MtpProjects ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="false" />
+      <Configuration Required="true" />
+      <Properties Required="false" />
+      <MtpProperties Required="false" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Method" Language="cs"><![CDATA[
+      public override bool Execute()
+      {
+        // One entry per queued build; the label doubles as the outputs key, so
+        // VSTest and MTP builds of the same asset stay distinct.
+        var jobs = new System.Collections.Generic.List<string[]>();
+        foreach (var project in Projects)
+        {
+            jobs.Add(new string[] { project.ItemSpec, Properties, project.ItemSpec });
+        }
+        if (MtpProjects != null)
+        {
+            foreach (var project in MtpProjects)
+            {
+                jobs.Add(new string[] { project.ItemSpec + " [MTP]", MtpProperties, project.ItemSpec });
+            }
+        }
+        var failures = new System.Collections.Concurrent.ConcurrentBag<string>();
+        var outputs = new System.Collections.Concurrent.ConcurrentDictionary<string, string>();
+        var tasks = new System.Collections.Generic.List<System.Threading.Tasks.Task>();
+        foreach (var job in jobs)
+        {
+            var label = job[0];
+            var extraProperties = job[1];
+            var itemSpec = job[2];
+            tasks.Add(System.Threading.Tasks.Task.Run(() =>
+            {
+                var projectPath = System.IO.Path.GetFullPath(itemSpec);
+                var startInfo = new System.Diagnostics.ProcessStartInfo("dotnet");
+                startInfo.UseShellExecute = false;
+                startInfo.RedirectStandardOutput = true;
+                startInfo.RedirectStandardError = true;
+                // Isolate concurrent builds of the same project (VSTest vs MTP
+                // flavors): shared MSBuild server nodes must not be reused.
+                startInfo.Environment["MSBUILDDISABLENODEREUSE"] = "1";
+                // NB: ProcessStartInfo.ArgumentList is unavailable in the reference set
+                // inline tasks compile against, so quote arguments manually instead.
+                var arguments = new System.Text.StringBuilder();
+                var append = new System.Action<string>((value) =>
+                {
+                    if (arguments.Length > 0)
+                    {
+                        arguments.Append(' ');
+                    }
+                    arguments.Append('"');
+                    arguments.Append(value.Replace("\"", "\\\""));
+                    arguments.Append('"');
+                });
+                append("build");
+                append(projectPath);
+                append("-c");
+                append(Configuration);
+                append("--nologo");
+                append("-v");
+                append("q");
+                foreach (var pair in (extraProperties ?? string.Empty).Split(';'))
+                {
+                    var trimmed = pair.Trim();
+                    if (trimmed.Length > 0)
+                    {
+                        append("-p:" + trimmed);
+                    }
+                }
+                startInfo.Arguments = arguments.ToString();
+                var output = new System.Text.StringBuilder();
+                using (var process = new System.Diagnostics.Process { StartInfo = startInfo })
+                {
+                    process.OutputDataReceived += (sender, e) => { if (e.Data != null) { output.AppendLine(e.Data); } };
+                    process.ErrorDataReceived += (sender, e) => { if (e.Data != null) { output.AppendLine(e.Data); } };
+                    process.Start();
+                    process.BeginOutputReadLine();
+                    process.BeginErrorReadLine();
+                    process.WaitForExit();
+                    outputs[label] = output.ToString();
+                    if (process.ExitCode != 0)
+                    {
+                        failures.Add(label);
+                    }
+                }
+            }));
+        }
+        System.Threading.Tasks.Task.WaitAll(tasks.ToArray());
+        // Replay child output sequentially for deterministic logs, VSTest assets first.
+        foreach (var job in jobs)
+        {
+            string text;
+            if (outputs.TryGetValue(job[0], out text) && text.Length > 0)
+            {
+                Log.LogMessage(Microsoft.Build.Framework.MessageImportance.Normal, "--- " + job[0] + " ---\n" + text);
+            }
+        }
+        foreach (var failed in failures)
+        {
+            string text;
+            outputs.TryGetValue(failed, out text);
+            Log.LogError("Test asset build failed (" + failed + ")\n" + text);
+        }
+        return failures.IsEmpty;
+      }
+      ]]></Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="TestTarget" BeforeTargets="Build">
+    <Message Importance="High" Text="... Remove existing testloggers" Condition="'@(TestAssetPurgeDirs)' != ''" />
+    <RemoveDir Directories="@(TestAssetPurgeDirs)" Condition="'@(TestAssetPurgeDirs)' != ''" />
+    <Message Importance="High" Text="... Building test assets" />
+    <BuildAssetsInParallel Projects="@(TestAssets)"
+                            MtpProjects="@(MtpTestAssets)"
+                            Configuration="$(Configuration)"
+                            Properties="$(TestAssetProperties)"
+                            MtpProperties="IsMTP=true;$(TestAssetProperties)" />
+    <Message Importance="High" Text="... Completed" />
+  </Target>
+</Project>

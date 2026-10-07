@@ -5,45 +5,62 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
 {
     using System.IO;
     using System.Xml;
-    using Xunit;
+    using global::TestLogger.Fixtures;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
     /// Validates running the MTP logger on a test project without a
     /// Microsoft.NET.Test.Sdk reference (see issue #229).
     /// </summary>
-    [Collection("Acceptance")]
+    [TestClass]
+    [DoNotParallelize]
     public class NoTestSdkAcceptanceTests
     {
+        private const string AssetName = "Xunit.Xml.TestLogger.NoTestSdk.Tests";
+        private const string ResultsFileName = "test-results-mtp.xml";
         private const string TargetFrameworkVersion = "net8.0";
         private const string ObjectModelAssembly = "Microsoft.VisualStudio.TestPlatform.ObjectModel.dll";
 
-        private readonly NoTestSdkFixture fixture;
+        private static string resultsFile;
+        private static string assetDirectory;
 
-        public NoTestSdkAcceptanceTests(NoTestSdkFixture fixture)
+        // Fixture legs spawn dotnet test subprocesses that share mutable state
+        // (test/assets/global.json selects the test runner per leg), so legs
+        // run once here up front and all tests in this class stay sequential.
+        [ClassInitialize]
+        public static void SuiteInitialize(TestContext context)
         {
-            this.fixture = fixture;
+            // MTP-only asset without Microsoft.NET.Test.Sdk (see issue #229).
+            var mtpLoggerArgs = $"--report-spekt-xunit --report-spekt-xunit-filename {ResultsFileName}";
+            resultsFile = DotnetTestFixture
+                .Create()
+                .WithNoBuild()
+                .Execute(AssetName, mtpLoggerArgs, collectCoverage: false, resultsFileName: ResultsFileName, isMTP: true);
+
+            Assert.IsFalse(string.IsNullOrEmpty(resultsFile), "MTP results file cannot be null");
+            assetDirectory = AssetName.ToAssetDirectoryPath();
         }
 
-        [Fact]
+        [TestMethod]
         public void MtpRunWithoutTestSdkShouldProduceResultsFile()
         {
-            Assert.True(File.Exists(this.fixture.ResultsFile));
+            Assert.IsTrue(File.Exists(resultsFile));
         }
 
-        [Fact]
+        [TestMethod]
         public void MtpRunWithoutTestSdkShouldReportTestCounts()
         {
             var resultsXml = new XmlDocument();
-            resultsXml.Load(this.fixture.ResultsFile);
+            resultsXml.Load(resultsFile);
             var assemblyNode = resultsXml.SelectSingleNode("/assemblies/assembly");
 
-            Assert.NotNull(assemblyNode);
-            Assert.Equal("3", assemblyNode.Attributes["total"].Value);
-            Assert.Equal("2", assemblyNode.Attributes["passed"].Value);
-            Assert.Equal("1", assemblyNode.Attributes["failed"].Value);
+            Assert.IsNotNull(assemblyNode);
+            Assert.AreEqual("3", assemblyNode.Attributes["total"].Value);
+            Assert.AreEqual("2", assemblyNode.Attributes["passed"].Value);
+            Assert.AreEqual("1", assemblyNode.Attributes["failed"].Value);
         }
 
-        [Fact]
+        [TestMethod]
         public void MtpRunWithoutTestSdkShouldNotDeployTestPlatformObjectModel()
         {
 #if DEBUG
@@ -52,14 +69,14 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
             var config = "Release";
 #endif
             var objectModelPath = Path.Combine(
-                this.fixture.AssetDirectory,
+                assetDirectory,
                 "bin",
                 config,
                 "mtp",
                 TargetFrameworkVersion,
                 ObjectModelAssembly);
 
-            Assert.False(File.Exists(objectModelPath), "Microsoft.VisualStudio.TestPlatform.ObjectModel must not be deployed for MTP-only runs (issue #229).");
+            Assert.IsFalse(File.Exists(objectModelPath), "Microsoft.VisualStudio.TestPlatform.ObjectModel must not be deployed for MTP-only runs (issue #229).");
         }
     }
 }

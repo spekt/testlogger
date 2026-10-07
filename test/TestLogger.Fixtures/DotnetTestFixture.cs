@@ -12,7 +12,7 @@ namespace TestLogger.Fixtures
     {
         private const string NetcoreVersion = "net8.0";
         private bool cleanProject = false;
-        private bool noBuild = false;
+        private bool noBuild = true;
         private string relativeResultsDirectory = string.Empty;
         private string runSettingsSuffix = string.Empty;
 
@@ -27,8 +27,9 @@ namespace TestLogger.Fixtures
 
         /// <summary>
         /// Runs the test leg with --no-build against pre-built outputs.
-        /// Only use where --no-build is known to work (MTP legs); VSTest legs
-        /// must build (incrementally) because vstest.console rejects --no-build runs.
+        /// This is the default: TestTarget pre-builds all assets, and legs must not
+        /// rebuild (they would only repeat identical compilation). Use <see cref="WithBuild"/>
+        /// to opt back into an in-leg build.
         /// </summary>
         /// <returns>The current fixture instance.</returns>
         public DotnetTestFixture WithNoBuild()
@@ -71,13 +72,12 @@ namespace TestLogger.Fixtures
                 cleanProcess.WaitForExit();
             }
 
-            // Clean up global.json to allow running both VSTest and MTP tests in the same build
-            var globalJsonTemplate = Path.Combine(assemblyName.ToAssetDirectoryPath(), "..", "global.json.template");
+            // Select the dotnet test runner per leg. The repo-root global.json forces MTP mode,
+            // so each leg writes a shadowing test/assets/global.json (nearest file wins):
+            // MTP legs opt into MTP mode, VSTest legs opt out back to VSTest mode.
+            var globalJsonTemplate = Path.Combine(assemblyName.ToAssetDirectoryPath(), "..", isMTP ? "global.json.template" : "global.json.vstest.template");
             var globalJsonPath = Path.Combine(assemblyName.ToAssetDirectoryPath(), "..", "global.json");
-            if (File.Exists(globalJsonPath))
-            {
-                File.Delete(globalJsonPath);
-            }
+            File.Copy(globalJsonTemplate, globalJsonPath, overwrite: true);
 
             var resultsDirectory = Path.Combine(assemblyName.ToAssetDirectoryPath(), this.relativeResultsDirectory);
             var resultsFile = Path.Combine(resultsDirectory, resultsFileName);
@@ -86,8 +86,8 @@ namespace TestLogger.Fixtures
                 File.Delete(resultsFile);
             }
 
-            // Run dotnet test with logger. --no-build is opt-in (WithNoBuild) because
-            // vstest.console rejects --no-build runs; default is an incremental build.
+            // Run dotnet test with logger. Legs default to --no-build against TestTarget
+            // pre-built outputs; WithBuild opts back into an in-leg (incremental) build.
             var buildArgs = this.noBuild ? "--no-build" : string.Empty;
             var resultDirectoryArgs = string.IsNullOrEmpty(this.relativeResultsDirectory) ? string.Empty : $"--results-directory \"{resultsDirectory}\"";
 
@@ -98,8 +98,6 @@ namespace TestLogger.Fixtures
                 {
                     resultDirectoryArgs = $"--results-directory \"{resultsDirectory}\"";
                 }
-
-                File.Copy(globalJsonTemplate, globalJsonPath);
             }
             else
             {

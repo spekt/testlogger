@@ -15,7 +15,7 @@ namespace Spekt.TestReporter.Xunit
             var compositeExtension = new CompositeExtensionFactory<XunitTestReporter>(serviceProvider =>
                 new XunitTestReporter(extension, serviceProvider));
             testApplicationBuilder.TestHost.AddDataConsumer(compositeExtension);
-            testApplicationBuilder.TestHost.AddTestSessionLifetimeHandle(compositeExtension);
+            testApplicationBuilder.TestHost.AddTestSessionLifetimeHandler(compositeExtension);
 
             testApplicationBuilder.CommandLine.AddProvider(() => new TestReporterCommandLineProvider(extension, "xunit"));
         }

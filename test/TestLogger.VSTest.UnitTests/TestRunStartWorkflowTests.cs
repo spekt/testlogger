@@ -10,6 +10,7 @@ namespace Spekt.TestLogger.UnitTests
     using Spekt.TestLogger.Core;
     using Spekt.TestLogger.UnitTests.TestDoubles;
     using Spekt.TestLogger.VSTest.Core;
+    using TestRun = Spekt.TestLogger.Core.TestRun;
 
     [TestClass]
     public class TestRunStartWorkflowTests
@@ -86,7 +87,7 @@ namespace Spekt.TestLogger.UnitTests
             Assert.IsNotNull(run.RunConfiguration);
             Assert.AreEqual("/tmp/test.dll", run.RunConfiguration.AssemblyPath);
             Assert.AreEqual(".NETCoreApp,Version=v5.0", run.RunConfiguration.TargetFramework);
-            Assert.IsNotNull(run.RunConfiguration.StartTime);
+            Assert.AreNotEqual(default(DateTime), run.RunConfiguration.StartTime);
         }
     }
 }
