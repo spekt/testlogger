@@ -127,7 +127,7 @@ namespace Spekt.TestLogger.Mtp.Core
                 return state switch
                 {
                     PassedTestNodeStateProperty => TestOutcome.Passed,
-                    FailedTestNodeStateProperty or ErrorTestNodeStateProperty or TimeoutTestNodeStateProperty or CancelledTestNodeStateProperty => TestOutcome.Failed,
+                    FailedTestNodeStateProperty or ErrorTestNodeStateProperty or TimeoutTestNodeStateProperty => TestOutcome.Failed,
                     SkippedTestNodeStateProperty => TestOutcome.Skipped,
                     _ => TestOutcome.None,
                 };

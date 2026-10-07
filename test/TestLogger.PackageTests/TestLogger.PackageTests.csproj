@@ -6,6 +6,9 @@
         <EnableCodeAnalysis>true</EnableCodeAnalysis>
         <IsPackable>false</IsPackable>
         <TestProject>true</TestProject>
+        <OutputType>Exe</OutputType>
+        <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+        <EnableMSTestRunner>true</EnableMSTestRunner>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -15,9 +18,11 @@
     <ItemGroup>
         <PackageReference Include="MSTest.TestFramework" />
         <PackageReference Include="MSTest.TestAdapter" />
-        <PackageReference Include="Moq" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" />
-        <PackageReference Include="Verify.MSTest" />
+        <PackageReference Include="Microsoft.Testing.Platform" />
+        <PackageReference Include="Microsoft.Testing.Platform.MSBuild" />
+        <PackageReference Include="Microsoft.Testing.Extensions.Telemetry" />
+        <PackageReference Include="Microsoft.Testing.Extensions.TrxReport.Abstractions" />
+        <PackageReference Include="Newtonsoft.Json" />
     </ItemGroup>
 
     <!-- Build test assets for acceptance tests -->
@@ -29,20 +34,16 @@
     <PropertyGroup>
         <TestRestoreConfig>$(MSBuildThisFileDirectory)../assets/NuGet.Release.config</TestRestoreConfig>
     </PropertyGroup>
-    <Target Name="TestTarget" BeforeTargets="Build">
-        <Message Importance="High" Text="... Remove existing testloggers" />
-        <RemoveDir Directories="$(NuGetPackageRoot)/nunitxml.testlogger" />
-        <RemoveDir Directories="$(NuGetPackageRoot)/junitxml.testlogger" />
-        <RemoveDir Directories="$(NuGetPackageRoot)/xunitxml.testlogger" />
-        <Message Importance="High" Text="... Completed" />
-
-        <Message Importance="High" Text="... Restore test assets" />
-        <!-- Pre-build assets in separate dotnet processes: in-session MSBuild builds reuse the static-graph-restore evaluation, which lacks package-provided build targets (e.g. MSTest TestContext). -->
-        <Exec Command="dotnet build &quot;%(TestAssets.Identity)&quot; -c $(Configuration) -p:PackageVersion=$(PackageVersion) -p:RestoreConfigFile=$(TestRestoreConfig) -p:RestoreNoCache=true --nologo -v q" />
-        <Message Importance="High" Text="... Completed" />
-        <Message Importance="High" Text="... Completed" />
-    </Target>
+    <PropertyGroup>
+        <TestAssetProperties>PackageVersion=$(PackageVersion);RestoreConfigFile=$(TestRestoreConfig);RestoreNoCache=true</TestAssetProperties>
+    </PropertyGroup>
+    <ItemGroup>
+        <TestAssetPurgeDirs Include="$(NuGetPackageRoot)/nunitxml.testlogger" />
+        <TestAssetPurgeDirs Include="$(NuGetPackageRoot)/junitxml.testlogger" />
+        <TestAssetPurgeDirs Include="$(NuGetPackageRoot)/xunitxml.testlogger" />
+    </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="../TestLogger.Fixtures/TestLogger.Fixtures.csproj" />
     </ItemGroup>
+  <Import Project="../TestAssets.targets" />
 </Project>

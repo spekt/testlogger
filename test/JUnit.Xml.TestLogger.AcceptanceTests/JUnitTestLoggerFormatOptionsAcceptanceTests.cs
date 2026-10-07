@@ -138,7 +138,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 var parsedName = new TestCaseNameParser(new FakeConsoleOutput()).Parse(testcase.Attribute("name").Value);
 
                 // A method name only will not be parsable into two pieces
-                Assert.AreEqual(parsedName.Type, TestCaseNameParser.TestCaseParserUnknownType);
+                Assert.AreEqual(TestCaseNameParser.TestCaseParserUnknownType, parsedName.Type);
             }
 
             Assert.IsTrue(new JunitXmlValidator().IsValid(resultsXml));
@@ -165,7 +165,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
 
                 // If the name is parsable into two pieces, then we have a two piece name and
                 // consider that to be a passing result.
-                Assert.AreNotEqual(parsedName.Type, TestCaseNameParser.TestCaseParserUnknownType);
+                Assert.AreNotEqual(TestCaseNameParser.TestCaseParserUnknownType, parsedName.Type);
             }
 
             Assert.IsTrue(new JunitXmlValidator().IsValid(resultsXml));
@@ -193,7 +193,7 @@ namespace JUnit.Xml.TestLogger.AcceptanceTests
                 var expectedFullName = parsedName.Namespace + "." + parsedName.Type + "." + parsedName.Method;
 
                 // If the name is parsable into two pieces, then we have at least a two piece name
-                Assert.AreNotEqual(parsedName.Type, TestCaseNameParser.TestCaseParserUnknownType);
+                Assert.AreNotEqual(TestCaseNameParser.TestCaseParserUnknownType, parsedName.Type);
                 Assert.AreEqual(expectedFullName, testcase.Attribute("name").Value);
             }
 

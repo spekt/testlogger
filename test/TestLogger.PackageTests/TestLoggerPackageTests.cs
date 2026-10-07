@@ -10,8 +10,6 @@ namespace TestLogger.PackageTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using TestLogger.Fixtures;
-    using VerifyMSTest;
-    using VerifyTests;
 
     [TestClass]
     public class TestLoggerPackageTests

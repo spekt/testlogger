@@ -12,9 +12,10 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
     using System.Reflection;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using Xunit;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [Collection("Acceptance")]
+    [TestClass]
+    [DoNotParallelize]
     public class TestResultsXmlTests
     {
         private const string AssembliesElement = @"/assemblies";
@@ -24,31 +25,54 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
         private const string TotalPassingTestsCount = "6";
         private const int TotalTestClassesCount = 5;
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        // Fixtures spawn dotnet test subprocesses that share mutable state
+        // (test/assets/global.json selects the test runner per leg), so legs
+        // run once here up front and all tests in this class stay sequential.
+        [ClassInitialize]
+        public static void SuiteInitialize(TestContext context)
+        {
+            // Run VSTest tests
+            var vstestLoggerArgs = "xunit;LogFilePath=test-results-vstest.xml";
+            var vstestResultsFile = global::TestLogger.Fixtures.DotnetTestFixture
+                .Create()
+                .Execute("Xunit.Xml.TestLogger.NetCore.Tests", vstestLoggerArgs, collectCoverage: false, resultsFileName: "test-results-vstest.xml", isMTP: false);
+
+            // Run MTP tests
+            var mtpLoggerArgs = "--report-spekt-xunit --report-spekt-xunit-filename test-results-mtp.xml";
+            var mtpResultsFile = global::TestLogger.Fixtures.DotnetTestFixture
+                .Create()
+                .WithNoBuild()
+                .Execute("Xunit.Xml.TestLogger.NetCore.Tests", mtpLoggerArgs, collectCoverage: false, resultsFileName: "test-results-mtp.xml", isMTP: true);
+
+            Assert.IsFalse(string.IsNullOrEmpty(vstestResultsFile), "VSTest results file cannot be null");
+            Assert.IsFalse(string.IsNullOrEmpty(mtpResultsFile), "MTP results file cannot be null");
+        }
+
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void OnlyOneAssembliesElementShouldExists(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             var assembliesNodes = testResultsXmlDocument.SelectNodes(TestResultsXmlTests.AssembliesElement);
 
-            Assert.True(assembliesNodes.Count == 1);
+            Assert.IsTrue(assembliesNodes.Count == 1);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssembliesElementShouldHaveTimestampAttribute(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             var assembliesNodes = testResultsXmlDocument.SelectSingleNode(TestResultsXmlTests.AssembliesElement);
 
-            Assert.NotNull(assembliesNodes.Attributes["timestamp"]);
+            Assert.IsNotNull(assembliesNodes.Attributes["timestamp"]);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssembliesElementTimestampAttributeShouldHaveValidTimestamp(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
@@ -59,9 +83,9 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
             Convert.ToDateTime(timestamp, CultureInfo.InvariantCulture);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssembliesElementTimestampAttributeValueShouldHaveCertainFormat(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
@@ -70,144 +94,144 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
             string timestampString = assembliesNodes.Attributes["timestamp"].Value;
             Regex regex = new Regex(@"^\d{2,2}/\d{2,2}/\d{4,4} \d{2,2}:\d{2,2}:\d{2,2}$");
 
-            Assert.Matches(regex, timestampString);
+            StringAssert.Matches(timestampString, regex);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssemblyElementShouldPresent(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             var assemblyNodes = testResultsXmlDocument.SelectNodes(TestResultsXmlTests.AssemblyElement);
 
-            Assert.True(assemblyNodes.Count == 1);
+            Assert.IsTrue(assemblyNodes.Count == 1);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssemblyElementNameAttributeShouldHaveValueRootedPathToAssembly(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode assemblyNode = testResultsXmlDocument.SelectSingleNode(TestResultsXmlTests.AssemblyElement);
 
             XmlAttribute nameAttribute = assemblyNode.Attributes["name"];
-            Assert.NotNull(nameAttribute);
+            Assert.IsNotNull(nameAttribute);
 
             string nameValue = nameAttribute.Value;
 
             // We cannot assert the file exists because the tests cleanup previous build outputs.
             // Assert.True(File.Exists(nameValue), "File does not exist: " + nameValue);
-            Assert.True(Path.IsPathRooted(nameValue), "Path is not rooted: " + nameValue);
+            Assert.IsTrue(Path.IsPathRooted(nameValue), "Path is not rooted: " + nameValue);
 
-            Assert.Equal("Xunit.Xml.TestLogger.NetCore.Tests.dll", Path.GetFileName(nameValue));
+            Assert.AreEqual("Xunit.Xml.TestLogger.NetCore.Tests.dll", Path.GetFileName(nameValue));
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssemblyElementRunDateAttributeShouldHaveValidFormatDate(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode assemblyNode = testResultsXmlDocument.SelectSingleNode(TestResultsXmlTests.AssemblyElement);
 
             XmlAttribute runDateAttribute = assemblyNode.Attributes["run-date"];
-            Assert.NotNull(runDateAttribute);
+            Assert.IsNotNull(runDateAttribute);
 
             string runDateValue = runDateAttribute.Value;
             Regex regex = new Regex(@"^\d{4,4}-\d{2,2}-\d{2,2}$");
 
-            Assert.Matches(regex, runDateValue);
+            StringAssert.Matches(runDateValue, regex);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssemblyElementRunDateAttributeShouldHaveValidDateValue(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode assemblyNode = testResultsXmlDocument.SelectSingleNode(TestResultsXmlTests.AssemblyElement);
 
             XmlAttribute runTimeAttribute = assemblyNode.Attributes["run-time"];
-            Assert.NotNull(runTimeAttribute);
+            Assert.IsNotNull(runTimeAttribute);
 
             string runTimeValue = runTimeAttribute.Value;
             Regex regex = new Regex(@"^\d{2,2}:\d{2,2}:\d{2,2}$");
 
-            Assert.Matches(regex, runTimeValue);
+            StringAssert.Matches(runTimeValue, regex);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssemblyElementTotalAttributeShouldValueEqualToNumberOfTotalTests(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode assemblyNode = testResultsXmlDocument.SelectSingleNode(TestResultsXmlTests.AssemblyElement);
 
-            Assert.Equal(TotalTestsCount, assemblyNode.Attributes["total"].Value);
+            Assert.AreEqual(TotalTestsCount, assemblyNode.Attributes["total"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssemblyElementPassedAttributeShouldValueEqualToNumberOfPassedTests(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode assemblyNode = testResultsXmlDocument.SelectSingleNode(TestResultsXmlTests.AssemblyElement);
 
-            Assert.Equal(TotalPassingTestsCount, assemblyNode.Attributes["passed"].Value);
+            Assert.AreEqual(TotalPassingTestsCount, assemblyNode.Attributes["passed"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssemblyElementFailedAttributeShouldHaveValueEqualToNumberOfFailedTests(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode assemblyNode = testResultsXmlDocument.SelectSingleNode(TestResultsXmlTests.AssemblyElement);
 
-            Assert.Equal("2", assemblyNode.Attributes["failed"].Value);
+            Assert.AreEqual("2", assemblyNode.Attributes["failed"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssemblyElementSkippedAttributeShouldHaveValueEqualToNumberOfSkippedTests(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode assemblyNode = testResultsXmlDocument.SelectSingleNode(TestResultsXmlTests.AssemblyElement);
 
-            Assert.Equal("1", assemblyNode.Attributes["skipped"].Value);
+            Assert.AreEqual("1", assemblyNode.Attributes["skipped"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssemblyElementErrorsAttributeShouldHaveValueEqualToNumberOfErrors(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode assemblyNode = testResultsXmlDocument.SelectSingleNode(TestResultsXmlTests.AssemblyElement);
 
-            Assert.Equal("0", assemblyNode.Attributes["errors"].Value);
+            Assert.AreEqual("0", assemblyNode.Attributes["errors"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void AssemblyElementTimeAttributeShouldHaveValidFormatValue(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode assemblyNode = testResultsXmlDocument.SelectSingleNode(TestResultsXmlTests.AssemblyElement);
 
             Regex regex = new Regex(@"^\d{1,}\.\d{3,3}$");
-            Assert.Matches(regex, assemblyNode.Attributes["time"].Value);
+            StringAssert.Matches(assemblyNode.Attributes["time"].Value, regex);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void ErrorsElementShouldHaveNoError(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
@@ -215,90 +239,90 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
 
             XmlNode errorsNode = assemblyNode.SelectSingleNode("errors");
 
-            Assert.Equal(string.Empty, errorsNode.InnerText);
+            Assert.AreEqual(string.Empty, errorsNode.InnerText);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void CollectionElementsCountShouldBeTwo(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNodeList collectionElementNodeList = testResultsXmlDocument.SelectNodes(TestResultsXmlTests.CollectionElement);
 
-            Assert.Equal(TotalTestClassesCount, collectionElementNodeList.Count);
+            Assert.AreEqual(TotalTestClassesCount, collectionElementNodeList.Count);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void CollectionElementTotalAttributeShouldHaveValueEqualToTotalNumberOfTestsInAClass(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode unitTest1Collection = this.GetUnitTest1Collection(testResultsXmlDocument);
 
-            Assert.Equal("3", unitTest1Collection.Attributes["total"].Value);
+            Assert.AreEqual("3", unitTest1Collection.Attributes["total"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void CollectionElementPassedAttributeShouldHaveValueEqualToPassedTestsInAClass(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode unitTest1Collection = this.GetUnitTest1Collection(testResultsXmlDocument);
 
-            Assert.Equal("1", unitTest1Collection.Attributes["passed"].Value);
+            Assert.AreEqual("1", unitTest1Collection.Attributes["passed"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void CollectionElementFailedAttributeShouldHaveValueEqualToFailedTestsInAClass(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode unitTest1Collection = this.GetUnitTest1Collection(testResultsXmlDocument);
 
-            Assert.Equal("1", unitTest1Collection.Attributes["failed"].Value);
+            Assert.AreEqual("1", unitTest1Collection.Attributes["failed"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void CollectionElementSkippedAttributeShouldHaveValueEqualToSkippedTestsInAClass(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode unitTest1Collection = this.GetUnitTest1Collection(testResultsXmlDocument);
 
-            Assert.Equal("1", unitTest1Collection.Attributes["skipped"].Value);
+            Assert.AreEqual("1", unitTest1Collection.Attributes["skipped"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void CollectionElementTimeAttributeShouldHaveValidFormatValue(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode unitTest1Collection = this.GetUnitTest1Collection(testResultsXmlDocument);
 
             Regex regex = new Regex(@"^\d{1,}\.\d{3,3}$");
-            Assert.Matches(regex, unitTest1Collection.Attributes["time"].Value);
+            StringAssert.Matches(unitTest1Collection.Attributes["time"].Value, regex);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void CollectionElementShouldContainThreeTestsElements(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode unitTest1Collection = this.GetUnitTest1Collection(testResultsXmlDocument);
 
-            Assert.True(unitTest1Collection.SelectNodes("test").Count == 3);
+            Assert.IsTrue(unitTest1Collection.SelectNodes("test").Count == 3);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void TestElementNameAttributeShouldBeEscaped(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
@@ -307,36 +331,36 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
                 "UnitTest3",
                 @"Xunit.Xml.TestLogger.NetCore.Tests.UnitTest3.TestInvalidName");
 
-            Assert.Equal(
+            Assert.AreEqual(
                 "Xunit.Xml.TestLogger.NetCore.Tests.UnitTest3.TestInvalidName(input: \"Head\\u0080r\")",
                 testNodes.Item(0).Attributes["name"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void TestElementTypeAttributeShouldHaveCorrectValue(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode failedTestXmlNode = this.GetATestXmlNode(testResultsXmlDocument);
 
-            Assert.Equal("Xunit.Xml.TestLogger.NetCore.Tests.UnitTest1", failedTestXmlNode.Attributes["type"].Value);
+            Assert.AreEqual("Xunit.Xml.TestLogger.NetCore.Tests.UnitTest1", failedTestXmlNode.Attributes["type"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void TestElementMethodAttributeShouldHaveCorrectValue(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode failedTestXmlNode = this.GetATestXmlNode(testResultsXmlDocument);
 
-            Assert.Equal("FailTest11", failedTestXmlNode.Attributes["method"].Value);
+            Assert.AreEqual("FailTest11", failedTestXmlNode.Attributes["method"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void TestElementTimeAttributeShouldHaveValidFormatValue(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
@@ -344,38 +368,38 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
 
             Regex regex = new Regex(@"^\d{1,}\.\d{7,7}$");
 
-            Assert.Matches(regex, failedTestXmlNode.Attributes["time"].Value);
+            StringAssert.Matches(failedTestXmlNode.Attributes["time"].Value, regex);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void TestElementShouldHaveTraits(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode failedTestXmlNode = this.GetATestXmlNode(testResultsXmlDocument);
 
             var traits = failedTestXmlNode.SelectSingleNode("traits")?.ChildNodes;
-            Assert.NotNull(traits);
-            Assert.Equal(1, traits.Count);
-            Assert.Equal("Category", traits[0].Attributes["name"].Value);
-            Assert.Equal("DummyCategory", traits[0].Attributes["value"].Value);
+            Assert.IsNotNull(traits);
+            Assert.AreEqual(1, traits.Count);
+            Assert.AreEqual("Category", traits[0].Attributes["name"].Value);
+            Assert.AreEqual("DummyCategory", traits[0].Attributes["value"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void FailedTestElementResultAttributeShouldHaveValueFail(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
             XmlNode failedTestXmlNode = this.GetATestXmlNode(testResultsXmlDocument);
 
-            Assert.Equal("Fail", failedTestXmlNode.Attributes["result"].Value);
+            Assert.AreEqual("Fail", failedTestXmlNode.Attributes["result"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void PassedTestElementResultAttributeShouldHaveValuePass(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
@@ -384,12 +408,12 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
                 "UnitTest1",
                 "Xunit.Xml.TestLogger.NetCore.Tests.UnitTest1.PassTest11");
 
-            Assert.Equal("Pass", passedTestXmlNode.Attributes["result"].Value);
+            Assert.AreEqual("Pass", passedTestXmlNode.Attributes["result"].Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void FailedTestElementShouldContainsFailureDetails(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
@@ -397,20 +421,20 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
 
             var failureNodeList = failedTestXmlNode.SelectNodes("failure");
 
-            Assert.True(failureNodeList.Count == 1);
+            Assert.IsTrue(failureNodeList.Count == 1);
 
             var failureXmlNode = failureNodeList[0];
 
             var expectedFailureMessage = "Assert.False() Failure" + Environment.NewLine + "Expected: False" +
                                          Environment.NewLine + "Actual:   True";
-            Assert.Equal(expectedFailureMessage, failureXmlNode.SelectSingleNode("message").InnerText);
+            Assert.AreEqual(expectedFailureMessage, failureXmlNode.SelectSingleNode("message").InnerText);
 
             // Assert.NotEmpty(failureXmlNode.SelectSingleNode("stack-trace").InnerText);
         }
 
         // [InlineData("test-results-mtp.xml")] Run level messages not supported in MTP
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
         public void SkippedTestElementShouldContainSkippingReason(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
@@ -420,20 +444,20 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
                 "Xunit.Xml.TestLogger.NetCore.Tests.UnitTest1.SkipTest11");
             var reasonNodes = skippedTestNode.SelectNodes("reason");
 
-            Assert.Equal(1, reasonNodes.Count);
+            Assert.AreEqual(1, reasonNodes.Count);
 
             var reasonNode = reasonNodes[0].FirstChild;
-            Assert.IsType<XmlText>(reasonNode);
+            Assert.IsInstanceOfType(reasonNode, typeof(XmlText));
 
             XmlText reasonData = (XmlText)reasonNode;
 
             string expectedReason = "Skipped";
-            Assert.Equal(expectedReason, reasonData.Value);
+            Assert.AreEqual(expectedReason, reasonData.Value);
         }
 
-        [Theory]
-        [InlineData("test-results-vstest.xml")]
-        [InlineData("test-results-mtp.xml")]
+        [TestMethod]
+        [DataRow("test-results-vstest.xml")]
+        [DataRow("test-results-mtp.xml")]
         public void NestedTestClassesShouldBePresent(string resultFileName)
         {
             var testResultsXmlDocument = this.LoadTestResultsXml(resultFileName);
@@ -443,7 +467,7 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
                     "Xunit.Xml.TestLogger.NetCore.Tests.ParentUnitNestedTest3332+ChildUnitNestedTest3332.PassTest33321");
             var result = nestedTestNode.Attributes["result"];
 
-            Assert.Equal("Pass", result.Value);
+            Assert.AreEqual("Pass", result.Value);
         }
 
         private XmlNode GetATestXmlNode(
@@ -473,7 +497,7 @@ namespace Xunit.Xml.TestLogger.AcceptanceTests
             var testNodes = testResultsXmlDocument.SelectNodes(
                 $"//assemblies/assembly/collection[contains(@name, \"{name}\")]");
 
-            Assert.Equal(1, testNodes.Count);
+            Assert.AreEqual(1, testNodes.Count);
             return testNodes.Item(0);
         }
 

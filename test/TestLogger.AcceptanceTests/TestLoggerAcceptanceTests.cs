@@ -43,43 +43,7 @@ namespace TestLogger.AcceptanceTests
                 $"{(comment.Length > 0 ? "-" + comment : string.Empty)}");
 
             // Make any paths uniform regardless of OS.
-            settings.ScrubLinesWithReplace(x =>
-            {
-                var options = RegexOptions.IgnoreCase | RegexOptions.Compiled;
-                var nameInDebugFolderMatch = new Regex(@".*([\/\\]*bin[\/\\]*Debug[\/\\]*.*)$", options);
-                var prefixedMatch = new Regex(@"^(.{0,}: )(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
-                var pathMatch = new Regex(@"^(.{0,}test[\/\\]assets[\/\\]Json\.TestLogger)(.{0,})$", options);
-
-                if (nameInDebugFolderMatch.IsMatch(x))
-                {
-                    // Used to take something like 'C:\\lsdkjf\sdf\bin\Debug\a\b\c.txt' => '/bin/Debug/a/b/c.txt' which helps with cross dev/platform comparison
-                    var m = nameInDebugFolderMatch.Match(x);
-                    var pathForwardSlashes = m.Groups[1].Captures[0].Value.Replace('\\', '/');
-                    x = pathForwardSlashes;
-                    x = x.Replace("//", "/");
-
-                    // Test runner flavor (vstest/mtp) is an implementation detail of the
-                    // build layout; normalize it away so snapshots stay stable.
-                    x = x.Replace("bin/Debug/vstest/", "bin/Debug/");
-                    x = x.Replace("bin/Debug/mtp/", "bin/Debug/");
-                }
-                else if (prefixedMatch.IsMatch(x))
-                {
-                    var m = prefixedMatch.Match(x);
-                    var prefix = m.Groups[1].Captures[0].Value.Replace('\\', '/');
-                    var pathForwardSlashes = m.Groups[3].Captures[0].Value.Replace('\\', '/');
-                    x = prefix + "test/assets/Json.TestLogger" + pathForwardSlashes;
-                }
-                else if (pathMatch.IsMatch(x))
-                {
-                    var m = pathMatch.Match(x);
-                    var pathForwardSlashes = m.Groups[2].Captures[0].Value.Replace('\\', '/');
-                    x = "test/assets/Json.TestLogger" + pathForwardSlashes;
-                }
-
-                x = x.Replace(@"\r\n", @"\n"); // Fix cross plat failures.
-                return x;
-            });
+            settings.ScrubLinesWithReplace(line => SnapshotScrubber.ScrubLine(line, "Json.TestLogger"));
 
             // Collect coverage will attach a runlevel attachment.
             var collectCoverage = testAssembly.Contains("XUnit.NetCore");

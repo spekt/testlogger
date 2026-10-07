@@ -6,6 +6,9 @@
         <EnableCodeAnalysis>true</EnableCodeAnalysis>
         <IsPackable>false</IsPackable>
         <TestProject>true</TestProject>
+        <OutputType>Exe</OutputType>
+        <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+        <EnableMSTestRunner>true</EnableMSTestRunner>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -16,7 +19,10 @@
         <PackageReference Include="MSTest.TestFramework" />
         <PackageReference Include="MSTest.TestAdapter" />
         <PackageReference Include="Moq" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="Microsoft.Testing.Platform" />
+        <PackageReference Include="Microsoft.Testing.Platform.MSBuild" />
+        <PackageReference Include="Microsoft.Testing.Extensions.Telemetry" />
+        <PackageReference Include="Microsoft.Testing.Extensions.TrxReport.Abstractions" />
         <PackageReference Include="Newtonsoft.Json" />
         <PackageReference Include="Verify.MSTest" />
     </ItemGroup>
@@ -37,10 +43,5 @@
         <TestAssets Include="$(MSBuildThisFileDirectory)../assets/Json.TestLogger.NUnit.NetCore.Tests/Json.TestLogger.NUnit.NetCore.Tests.csproj" />
         <TestAssets Include="$(MSBuildThisFileDirectory)../assets/Json.TestLogger.XUnit.NetCore.Tests/Json.TestLogger.XUnit.NetCore.Tests.csproj" />
     </ItemGroup>
-    <Target Name="TestTarget" BeforeTargets="Build">
-        <Message Importance="High" Text="... Building test assets" />
-        <!-- Pre-build assets in separate dotnet processes: in-session MSBuild builds reuse the static-graph-restore evaluation, which lacks package-provided build targets (e.g. MSTest TestContext). -->
-        <Exec Command="dotnet build &quot;%(TestAssets.Identity)&quot; -c $(Configuration) --nologo -v q" />
-        <Message Importance="High" Text="... Completed" />
-    </Target>
+  <Import Project="../TestAssets.targets" />
 </Project>

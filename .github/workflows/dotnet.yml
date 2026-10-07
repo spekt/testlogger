@@ -78,10 +78,10 @@ jobs:
       - name: Acceptance test
         run: |
           echo "Running acceptance tests with verbose output..."
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj --logger "console;verbosity=detailed" --blame
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj --logger "console;verbosity=detailed" --blame
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj --logger "console;verbosity=detailed" --blame
-          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} test/JUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj --logger "console;verbosity=detailed" --blame
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} --project test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj -v n
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} --project test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj -v n
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} --project test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj -v n
+          dotnet test -p:PackageVersion=${{ env.APP_BUILD_VERSION }} --project test/JUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj -v n
       - name: Upload Debug Files on Fail
         if: ${{ failure() }}
         uses: actions/upload-artifact@v4

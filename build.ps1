@@ -12,11 +12,11 @@ if ($?) {
     Get-Content coveragereport/Summary.txt
 }
 if ($?) {
-    dotnet test test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj
-    dotnet test test/TestLogger.PackageTests/TestLogger.PackageTests.csproj
+    dotnet test --project test/TestLogger.AcceptanceTests/TestLogger.AcceptanceTests.csproj
+    dotnet test --project test/TestLogger.PackageTests/TestLogger.PackageTests.csproj
 }
 if ($?) {
-    dotnet test test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj
-    dotnet test test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj
-    dotnet test test/JUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj
+    dotnet test --project test/Xunit.Xml.TestLogger.AcceptanceTests/Xunit.Xml.TestLogger.AcceptanceTests.csproj
+    dotnet test --project test/NUnit.Xml.TestLogger.AcceptanceTests/NUnit.Xml.TestLogger.AcceptanceTests.csproj
+    dotnet test --project test/JUnit.Xml.TestLogger.AcceptanceTests/JUnit.Xml.TestLogger.AcceptanceTests.csproj
 }

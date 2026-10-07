@@ -6,6 +6,9 @@
     <EnableCodeAnalysis>true</EnableCodeAnalysis>
     <IsPackable>false</IsPackable>
     <TestProject>true</TestProject>
+    <OutputType>Exe</OutputType>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <EnableMSTestRunner>true</EnableMSTestRunner>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +20,10 @@
     <PackageReference Include="MSTest.TestFramework" />
     <PackageReference Include="MSTest.TestAdapter" />
     <PackageReference Include="Moq" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Microsoft.Testing.Platform" />
+    <PackageReference Include="Microsoft.Testing.Platform.MSBuild" />
+    <PackageReference Include="Microsoft.Testing.Extensions.Telemetry" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport.Abstractions" />
     <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
 
@@ -31,12 +37,8 @@
   <ItemGroup>
     <MtpTestAssets Include="$(MSBuildThisFileDirectory)../assets/NUnit.Xml.TestLogger.NetCore.Tests/NUnit.Xml.TestLogger.NetCore.Tests.csproj" />
   </ItemGroup>
-  <Target Name="TestTarget" BeforeTargets="Build">
-    <Message Importance="High" Text="... Building test assets" />
-    <RemoveDir Directories="$(NuGetPackageRoot)/nunitxml.testlogger" />
-    <!-- Pre-build assets in separate dotnet processes: in-session MSBuild builds reuse the static-graph-restore evaluation, which lacks package-provided build targets (e.g. MSTest TestContext). -->
-    <Exec Command="dotnet build &quot;%(TestAssets.Identity)&quot; -c $(Configuration) --nologo -v q" />
-    <Exec Command="dotnet build &quot;%(MtpTestAssets.Identity)&quot; -c $(Configuration) -p:IsMTP=true --nologo -v q" />
-    <Message Importance="High" Text="... Completed" />
-  </Target>
+  <ItemGroup>
+    <TestAssetPurgeDirs Include="$(NuGetPackageRoot)/nunitxml.testlogger" />
+  </ItemGroup>
+  <Import Project="../TestAssets.targets" />
 </Project>
