@@ -8,12 +8,20 @@
     Plus optional <TestAssetProperties> (e.g. PackageVersion/RestoreConfigFile),
     forwarded as -p: arguments to every asset build.
 
-    Assets build in PARALLEL, each in its own dotnet process (separate MSBuild
-    sessions). Do NOT replace this with in-session <MSBuild> tasks: package-provided
+    Assets build in PARALLEL by default (local dev), each in its own dotnet
+    process (separate MSBuild sessions). On CI (GITHUB_ACTIONS/CI), or when
+    -p:TestAssetsParallel=false is passed, they build SEQUENTIALLY instead:
+    concurrent builds of assets sharing a referenced project race on its
+    outputs (e.g. GenerateDepsFile writing deps.json), which fails CI builds.
+    Do NOT replace this with in-session <MSBuild> tasks: package-provided
     build targets (e.g. MSTest's TestFramework.Extensions reference) are only
     imported on re-evaluation, which in-session builds skip on clean obj,
     breaking compilation with CS0246.
   -->
+  <PropertyGroup>
+    <TestAssetsParallel Condition="'$(TestAssetsParallel)' == '' And '$(GITHUB_ACTIONS)' != 'true' And '$(CI)' != 'true'">true</TestAssetsParallel>
+    <TestAssetsParallel Condition="'$(TestAssetsParallel)' == ''">false</TestAssetsParallel>
+  </PropertyGroup>
   <UsingTask TaskName="BuildAssetsInParallel"
              TaskFactory="RoslynCodeTaskFactory"
              AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
@@ -23,6 +31,7 @@
       <Configuration Required="true" />
       <Properties Required="false" />
       <MtpProperties Required="false" />
+      <Parallel Required="false" />
     </ParameterGroup>
     <Task>
       <Code Type="Method" Language="cs"><![CDATA[
@@ -44,22 +53,20 @@
         }
         var failures = new System.Collections.Concurrent.ConcurrentBag<string>();
         var outputs = new System.Collections.Concurrent.ConcurrentDictionary<string, string>();
-        var tasks = new System.Collections.Generic.List<System.Threading.Tasks.Task>();
-        foreach (var job in jobs)
+        var parallel = !string.Equals(Parallel, "false", System.StringComparison.OrdinalIgnoreCase);
+        var runOne = new System.Action<string, string, string>((label, extraProperties, itemSpec) =>
         {
-            var label = job[0];
-            var extraProperties = job[1];
-            var itemSpec = job[2];
-            tasks.Add(System.Threading.Tasks.Task.Run(() =>
+            var projectPath = System.IO.Path.GetFullPath(itemSpec);
+            var startInfo = new System.Diagnostics.ProcessStartInfo("dotnet");
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+            if (parallel)
             {
-                var projectPath = System.IO.Path.GetFullPath(itemSpec);
-                var startInfo = new System.Diagnostics.ProcessStartInfo("dotnet");
-                startInfo.UseShellExecute = false;
-                startInfo.RedirectStandardOutput = true;
-                startInfo.RedirectStandardError = true;
                 // Isolate concurrent builds of the same project (VSTest vs MTP
                 // flavors): shared MSBuild server nodes must not be reused.
                 startInfo.Environment["MSBUILDDISABLENODEREUSE"] = "1";
+            }
                 // NB: ProcessStartInfo.ArgumentList is unavailable in the reference set
                 // inline tasks compile against, so quote arguments manually instead.
                 var arguments = new System.Text.StringBuilder();
@@ -104,9 +111,24 @@
                         failures.Add(label);
                     }
                 }
-            }));
+        });
+        if (parallel)
+        {
+            var tasks = new System.Collections.Generic.List<System.Threading.Tasks.Task>();
+            foreach (var job in jobs)
+            {
+                var captured = job;
+                tasks.Add(System.Threading.Tasks.Task.Run(() => runOne(captured[0], captured[1], captured[2])));
+            }
+            System.Threading.Tasks.Task.WaitAll(tasks.ToArray());
         }
-        System.Threading.Tasks.Task.WaitAll(tasks.ToArray());
+        else
+        {
+            foreach (var job in jobs)
+            {
+                runOne(job[0], job[1], job[2]);
+            }
+        }
         // Replay child output sequentially for deterministic logs, VSTest assets first.
         foreach (var job in jobs)
         {
@@ -136,7 +158,8 @@
                             MtpProjects="@(MtpTestAssets)"
                             Configuration="$(Configuration)"
                             Properties="$(TestAssetProperties)"
-                            MtpProperties="IsMTP=true;$(TestAssetProperties)" />
+                            MtpProperties="IsMTP=true;$(TestAssetProperties)"
+                            Parallel="$(TestAssetsParallel)" />
     <Message Importance="High" Text="... Completed" />
   </Target>
 </Project>
