@@ -5,6 +5,15 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Existing release tag to publish (e.g., v1.2.3)'
+        required: true
+      force_publish:
+        description: 'Publish even if release-please did not create a new release'
+        type: boolean
+        default: true
 
 # Required by release-please
 permissions:
@@ -34,6 +43,12 @@ jobs:
         run: |
           RELEASE_VERSION=${{ steps.release.outputs.tag_name }}
           echo "APP_BUILD_VERSION=${RELEASE_VERSION#v}" >> $GITHUB_ENV
+      - name: Override version from manual tag
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.tag_name != '' }}
+        run: |
+          echo "APP_BUILD_VERSION=${TAG_NAME#v}" >> $GITHUB_ENV
+        env:
+          TAG_NAME: ${{ inputs.tag_name }}
       - name: Final build version
         run: |
           echo ${{ env.APP_BUILD_VERSION }}
@@ -112,13 +127,13 @@ jobs:
           dotnet nuget push 'src/JUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
       # Get a short-lived NuGet API key
       - name: NuGet login (OIDC → temp API key)
-        if: ${{ needs.version.outputs.release_created && github.event_name == 'push' && matrix.os != 'windows-latest' }}
+        if: ${{ (needs.version.outputs.release_created || inputs.force_publish) && github.event_name == 'push' && matrix.os != 'windows-latest' }}
         uses: NuGet/login@v1
         id: login
         with:
           user: codito
       - name: Publish release packages
-        if: ${{ needs.version.outputs.release_created && github.event_name == 'push' && matrix.os != 'windows-latest' }}
+        if: ${{ (needs.version.outputs.release_created || inputs.force_publish) && github.event_name == 'push' && matrix.os != 'windows-latest' }}
         run: |
           dotnet nuget push 'src/Xunit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
           dotnet nuget push 'src/NUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
