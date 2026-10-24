@@ -127,13 +127,13 @@ jobs:
           dotnet nuget push 'src/JUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
       # Get a short-lived NuGet API key
       - name: NuGet login (OIDC → temp API key)
-        if: ${{ (needs.version.outputs.release_created || inputs.force_publish) && github.event_name == 'push' && matrix.os != 'windows-latest' }}
+        if: ${{ (needs.version.outputs.release_created || inputs.force_publish) && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && matrix.os != 'windows-latest' }}
         uses: NuGet/login@v1
         id: login
         with:
           user: codito
       - name: Publish release packages
-        if: ${{ (needs.version.outputs.release_created || inputs.force_publish) && github.event_name == 'push' && matrix.os != 'windows-latest' }}
+        if: ${{ (needs.version.outputs.release_created || inputs.force_publish) && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && matrix.os != 'windows-latest' }}
         run: |
           dotnet nuget push 'src/Xunit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
           dotnet nuget push 'src/NUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
