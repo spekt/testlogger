@@ -37,6 +37,7 @@ jobs:
           echo ${{ env.APP_BUILD_VERSION }}
     outputs:
       build_version: ${{ env.APP_BUILD_VERSION }}
+      release_created: ${{ steps.release.outputs.release_created }}
   build:
     strategy:
       matrix:
@@ -100,10 +101,24 @@ jobs:
         uses: codecov/codecov-action@v3.1.0
         with:
           files: test/TestLogger.VSTest.UnitTests/bin/Debug/net10.0/TestResults/coverage.cobertura.xml,test/TestLogger.Mtp.UnitTests/bin/Debug/net10.0/TestResults/coverage.cobertura.xml,test/NUnit.Xml.TestLogger.UnitTests/bin/Debug/net10.0/TestResults/coverage.cobertura.xml,test/JUnit.Xml.TestLogger.UnitTests/bin/Debug/net10.0/TestResults/coverage.cobertura.xml
-      - name: Publish packages
+      - name: Publish pre-release packages
         if: ${{ github.event_name == 'push' && matrix.os != 'windows-latest' }}
         run: |
           dotnet nuget push 'src/TestLogger/bin/Release/*/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/Xunit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/NUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
           dotnet nuget push 'src/JUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ secrets.SPEKT_MYGET_KEY }} --source https://www.myget.org/F/spekt/api/v3/index.json
+      # Get a short-lived NuGet API key
+      - name: NuGet login (OIDC → temp API key)
+        if: ${{ needs.version.outputs.release_created && github.event_name == 'push' && matrix.os != 'windows-latest' }}
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: codito
+      - name: Publish release packages
+        if: ${{ needs.version.outputs.release_created && github.event_name == 'push' && matrix.os != 'windows-latest' }}
+        run: |
+          echo "Publish flow running!"
+#          dotnet nuget push 'src/Xunit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+#          dotnet nuget push 'src/NUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+#          dotnet nuget push 'src/JUnit.Xml.Package/bin/Release/*.nupkg' --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
