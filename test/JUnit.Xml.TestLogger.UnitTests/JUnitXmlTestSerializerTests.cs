@@ -183,6 +183,32 @@ namespace JUnit.Xml.TestLogger.UnitTests
         }
 
         [TestMethod]
+        public void TestSuiteTimestampShouldBeTimezoneAware()
+        {
+            var serializer = new JunitXmlSerializer();
+            var results = new List<TestResultInfo> { CreateTestResultInfo() };
+            var messages = new List<TestMessageInfo>();
+
+            // StartTime is recorded as DateTime.UtcNow in production, so the serialized
+            // timestamp carries an explicit +00:00 offset rather than an ambiguous local time.
+            var runConfiguration = new TestRunConfiguration
+            {
+                StartTime = new DateTime(2024, 1, 15, 10, 30, 0, DateTimeKind.Utc)
+            };
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                runConfiguration,
+                results,
+                messages);
+
+            var doc = XDocument.Parse(xml);
+            var timestamp = doc.XPathSelectElement("//testsuite").Attribute("timestamp").Value;
+
+            Assert.AreEqual("2024-01-15T10:30:00+00:00", timestamp);
+        }
+
+        [TestMethod]
         public void TestSuiteShouldIncludeSystemOutElementWhenContentExists()
         {
             var serializer = new JunitXmlSerializer();

@@ -324,7 +324,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
             element.SetAttributeValue("failures", results.Where(x => x.Outcome == TestOutcome.Failed).Count());
             element.SetAttributeValue("errors", 0); // looks like this isn't supported by .net?
             element.SetAttributeValue("time", results.Sum(x => x.Duration.TotalSeconds).ToString(CultureInfo.InvariantCulture));
-            element.SetAttributeValue("timestamp", runConfiguration.StartTime.ToString("s"));
+            element.SetAttributeValue("timestamp", runConfiguration.StartTime.ToString("yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture));
             element.SetAttributeValue("hostname", Environment.MachineName);
             element.SetAttributeValue("id", 0); // we never output multiple, so this is always zero.
             element.SetAttributeValue("package", Path.GetFileName(results.First().AssemblyPath));
