@@ -255,6 +255,20 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
             return propertyElements.Any() ? new XElement("properties", propertyElements.Distinct()) : null;
         }
 
+        private static double GetSuiteWallClockSeconds(List<TestResultInfo> results)
+        {
+            // Use wall-clock elapsed (max end - min start) so tests running in parallel
+            // within an assembly are not overcounted by summing per-test durations. Fall
+            // back to the sum when per-test timing is unavailable (default timestamps).
+            var timed = results.Where(x => x.StartTime != default && x.EndTime != default).ToList();
+            if (timed.Count == 0)
+            {
+                return results.Sum(x => x.Duration.TotalSeconds);
+            }
+
+            return (timed.Max(x => x.EndTime) - timed.Min(x => x.StartTime)).TotalSeconds;
+        }
+
         private XElement CreateTestSuitesElement(List<TestResultInfo> results, TestRunConfiguration runConfiguration, List<TestMessageInfo> messages)
         {
             var assemblies = results.Select(x => x.AssemblyPath).Distinct().ToList();
@@ -323,7 +337,7 @@ namespace Microsoft.VisualStudio.TestPlatform.Extension.Junit.Xml.TestLogger
             element.SetAttributeValue("skipped", results.Where(x => x.Outcome == TestOutcome.Skipped).Count());
             element.SetAttributeValue("failures", results.Where(x => x.Outcome == TestOutcome.Failed).Count());
             element.SetAttributeValue("errors", 0); // looks like this isn't supported by .net?
-            element.SetAttributeValue("time", results.Sum(x => x.Duration.TotalSeconds).ToString(CultureInfo.InvariantCulture));
+            element.SetAttributeValue("time", GetSuiteWallClockSeconds(results).ToString(CultureInfo.InvariantCulture));
             element.SetAttributeValue("timestamp", runConfiguration.StartTime.ToString("s"));
             element.SetAttributeValue("hostname", Environment.MachineName);
             element.SetAttributeValue("id", 0); // we never output multiple, so this is always zero.
