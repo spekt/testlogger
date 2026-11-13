@@ -183,6 +183,32 @@ namespace JUnit.Xml.TestLogger.UnitTests
         }
 
         [TestMethod]
+        public void TestSuiteTimeShouldBeWallClockNotSumOfDurations()
+        {
+            var serializer = new JunitXmlSerializer();
+
+            // Two tests that overlap in time (as under in-assembly parallelism):
+            // durations sum to 18s, but the wall-clock span is only 10s.
+            var start = new DateTime(2024, 1, 15, 10, 0, 0, DateTimeKind.Utc);
+            var results = new List<TestResultInfo>
+            {
+                CreateTestResultInfo(startTime: start, endTime: start.AddSeconds(10)),
+                CreateTestResultInfo(startTime: start.AddSeconds(1), endTime: start.AddSeconds(9))
+            };
+
+            var xml = serializer.Serialize(
+                CreateTestLoggerConfiguration(),
+                CreateTestRunConfiguration(),
+                results,
+                new List<TestMessageInfo>());
+
+            var doc = XDocument.Parse(xml);
+            var time = doc.XPathSelectElement("//testsuite").Attribute("time").Value;
+
+            Assert.AreEqual("10", time);
+        }
+
+        [TestMethod]
         public void TestSuiteShouldIncludeSystemOutElementWhenContentExists()
         {
             var serializer = new JunitXmlSerializer();
@@ -279,8 +305,12 @@ namespace JUnit.Xml.TestLogger.UnitTests
             TestOutcome outcome = TestOutcome.Passed,
             List<TestResultMessage> messages = null,
             string codeFilePath = TestCsPath,
-            int lineNumber = 42)
+            int lineNumber = 42,
+            DateTime? startTime = null,
+            DateTime? endTime = null)
         {
+            var start = startTime ?? DateTime.Now;
+            var end = endTime ?? start.AddSeconds(1);
             return new TestResultInfo(
                 TestNamespace,
                 TestClass,
@@ -292,9 +322,9 @@ namespace JUnit.Xml.TestLogger.UnitTests
                 TestDllPath,
                 codeFilePath,
                 lineNumber,
-                DateTime.Now,
-                DateTime.Now.AddSeconds(1),
-                TimeSpan.FromSeconds(1),
+                start,
+                end,
+                end - start,
                 null,
                 null,
                 messages ?? new List<TestResultMessage>(),
